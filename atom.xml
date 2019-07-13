@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>精神小伙-记录成长</title>
+  
+  <subtitle>一个爱学习的计算机菜鸟笔记</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://yoursite.com/"/>
+  <updated>2019-07-13T11:10:40.173Z</updated>
+  <id>http://yoursite.com/</id>
+  
+  <author>
+    <name>精神小伙</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>hexo搭建个人博客（二）</title>
+    <link href="http://yoursite.com/2019/05/21/hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%BA%8C%EF%BC%89/"/>
+    <id>http://yoursite.com/2019/05/21/hexo搭建个人博客（二）/</id>
+    <published>2019-05-21T08:58:13.000Z</published>
+    <updated>2019-07-13T11:10:40.173Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="博客部署到GitHub"><a href="#博客部署到GitHub" class="headerlink" title="博客部署到GitHub"></a>博客部署到GitHub</h1><h2 id="1-如果没有GitHub账号可以参考我的其他文章"><a href="#1-如果没有GitHub账号可以参考我的其他文章" class="headerlink" title="(1)如果没有GitHub账号可以参考我的其他文章"></a>(1)如果没有GitHub账号可以参考我的其他文章</h2><p>有的话我们就进入到自己GitHub的主页面</p><p><img src="1.png" alt></p><p>点击第一个，我们新建一个仓库,在Repository name里输入自己的用户名.github.io</p><blockquote><p>用户部署个人博客的GitHub仓库<strong>命名必须符合特定要求</strong></p></blockquote><p>例如我的输入是:</p><blockquote><p>PlutoaCharon.github.io</p></blockquote><p><img src="2.png" alt></p><p>点击绿色的Create repository按钮创建新的仓库,出现如下界面说明创建成功!</p><p><img src="3.png" alt></p><h2 id="2-保留这个页面-在blog所在的路径下-在cmd里输入"><a href="#2-保留这个页面-在blog所在的路径下-在cmd里输入" class="headerlink" title="(2)保留这个页面,在blog所在的路径下,在cmd里输入"></a>(2)保留这个页面,在blog所在的路径下,在cmd里输入</h2><p><code>cnpm install --save hexo-deployer-git</code></p><p>安装一个<strong>git</strong>的部署插件</p><p><img src="4.png" alt></p><h2 id="3-在blog目录下的-config-ym文件-我们使用nodepad-打开编辑-或者使用系统自带的笔记本打开也可以"><a href="#3-在blog目录下的-config-ym文件-我们使用nodepad-打开编辑-或者使用系统自带的笔记本打开也可以" class="headerlink" title="(3)在blog目录下的_config.ym文件,我们使用nodepad++打开编辑,或者使用系统自带的笔记本打开也可以"></a>(3)在blog目录下的_config.ym文件,我们使用nodepad++打开编辑,或者使用系统自带的笔记本打开也可以</h2><p>到最底部可以发现有一个Deployment配置<br>我们在这里做一些配置修改<br>type:  git<br>repo:  <a href="https://github.com/PlutoaCharon/PlutoaCharon.github.io.git" target="_blank" rel="noopener">https://github.com/PlutoaCharon/PlutoaCharon.github.io.git</a><br>branch:  master</p><p><img src="5.png" alt></p><p>repo的地址就是咱们新建的仓库的地址，要输入自己的仓库地址，不要输入我的哦。</p><blockquote><p>注意：要在冒号后面加入空格，否则下一步会出现错误</p></blockquote><p>保存以后在cmd里输入</p><p><code>hexo d</code></p><blockquote><p>d的意思就是deport</p></blockquote><h2 id="4-输入GitHub的账号密码"><a href="#4-输入GitHub的账号密码" class="headerlink" title="(4)输入GitHub的账号密码"></a>(4)输入GitHub的账号密码</h2><blockquote><p>我是因为安装了GitHub的桌面版才出现Login界面,如果你们没有安装的话应该是在cmd里输入的</p></blockquote><p><img src="6.png" alt></p><p>成功!</p><p>一开始我们的仓库是空的，当我们刷新的时候会发现多了一些东西，这些就是我们博客生成的内容.</p><p><img src="7.png" alt></p><p>这时我们在网址里输入我们刚才的仓库地址就可以直接访问博客，而且也不用在本地打开了.</p><p><img src="8.png" alt></p><p>这样简单的博客就部署就完成了！</p><p>接下来大家可以去网上找一些好看的主题，这里就不在一一赘述了,制作一个自己的风格博客吧。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;博客部署到GitHub&quot;&gt;&lt;a href=&quot;#博客部署到GitHub&quot; class=&quot;headerlink&quot; title=&quot;博客部署到GitHub&quot;&gt;&lt;/a&gt;博客部署到GitHub&lt;/h1&gt;&lt;h2 id=&quot;1-如果没有GitHub账号可以参考我的其他文章&quot;&gt;&lt;a 
+      
+    
+    </summary>
+    
+      <category term="博客" scheme="http://yoursite.com/categories/%E5%8D%9A%E5%AE%A2/"/>
+    
+    
+      <category term="hexo" scheme="http://yoursite.com/tags/hexo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>hexo搭建个人博客（一）</title>
+    <link href="http://yoursite.com/2019/05/20/hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%B8%80%EF%BC%89/"/>
+    <id>http://yoursite.com/2019/05/20/hexo搭建个人博客（一）/</id>
+    <published>2019-05-20T08:58:13.000Z</published>
+    <updated>2019-07-13T10:42:55.127Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h1><h2 id="下载Node-js"><a href="#下载Node-js" class="headerlink" title="下载Node js"></a>下载Node js</h2><blockquote><p>官方地址：<a href="https://nodejs.org/en/" target="_blank" rel="noopener">https://nodejs.org/en/</a> </p></blockquote><p><img src="1.png" alt></p><p>点击第一个绿色按钮     </p><p><img src="2.png" alt> </p><p>安装过程就是一直下一步就可以了。安装完成之后打开cmd</p><p>键盘按住win+r键，输入cmd打开</p><p><img src="3.png" alt></p><p>输入node -v查看node的版本</p><p><img src="4.png" alt></p><p>npm -v查看包管理器版本</p><p><img src="5.png" alt></p><p>这样安装nodejs的步骤就完成了</p><h2 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h2><blockquote><p>因为hexo是需要nodejs来支持的，上面就是前置步骤</p></blockquote><p>这样咱们来开始真正安装hexo博客的框架</p><p>安装之前，我们需要借助npm包来安装，但是因为咱们国内镜像源安装太慢，所以我们一般是在使用之前，先安装cnpm。这里我们使用npm逆向安装cmpm，使用来自淘宝的源</p><p>在cmd里输入</p><p><code>npm install -g cnpm --registry=https://registry.npm.taobao.org</code></p><p>其中<br><strong>–registry镜像源的指向<br>-g全局安装</strong></p><p><img src="6.png" alt></p><p>安装成功<br>在cmd中输入 cnpm -v查看cnpm的版本</p><p><img src="7.png" alt></p><p>这样cnpm便安装成功了。搭建个人博客的过程更是一个学习的过程，其中有报错的地方很正常，我们在重新执行一遍就可以，不要心急，自己搭建完一个自己的博客成就感是非常高的。</p><p>接下来我们使用cnpm来安装hexo。在cmd中输入</p><p><code>cnpm install -g hexo-cli</code></p><p>使用hexo -v查看版本</p><p><img src="8.png" alt></p><p>hexo我们就安装成功了</p><h1 id="使用hexo正式搭建博客"><a href="#使用hexo正式搭建博客" class="headerlink" title="使用hexo正式搭建博客"></a>使用hexo正式搭建博客</h1><p>现在我在cmd的路径是</p><p><img src="9.png" alt></p><p>我们在该路径里创建一个blog文件夹。在cmd里输入</p><p><code>mkdir blog</code></p><p>打开我的电脑，输入C:\Users\lenovo，可以看到在该路径多了一个blog文件夹<br><img src="10.png" alt></p><blockquote><p>如果我们在搭建过程中出现了一些无法避免的错误，可以把blog的文件删掉，重新来过就可以啦.</p></blockquote><p>在cmd里输入 cd ./blog</p><p><strong>cd就是进入到某个路径</strong></p><p><strong>./指当前路径</strong></p><p>我们进去blog目录之后，我们使用hexo生成我们的博客。</p><p>接下来我们打开管理员的命令提示符，这里的权限更大<br>键盘输入</p><p><code>win+x</code></p><p><img src="11.png" alt></p><p>选择命令提示符（管理员）,进入到我们的blog路径,输入</p><p><code>hexo init</code></p><p><strong>初始化hexo</strong></p><p>报错：</p><p><img src="12.png" alt></p><p>键盘输入ctrl+c 选择N</p><p>重新输入 heox init</p><p><img src="13.png" alt></p><p><strong>成功！</strong></p><p>在cmd里输入 hexo s 启动hexo</p><p><img src="14.png" alt></p><p>我们打开浏览器，输入有下划线的那段网址</p><p><img src="15.png" alt></p><p>可以看到，hexo自动帮我生成了一个hello world文章,里面内容是hexo的新手教程</p><h2 id="第一篇博客"><a href="#第一篇博客" class="headerlink" title="第一篇博客"></a>第一篇博客</h2><p>首先我们断开掉hexo，键盘按ctrl+c 输入N</p><p>在cmd里输入hexo n “我的第一篇博客文章”</p><p><img src="16.png" alt></p><p><strong>生成成功</strong></p><p>打开我的电脑，进入C:\Users\lenovo\blog\source_posts\路径里，可以看到里面有两个md文件。</p><p><img src="17.png" alt></p><p>接下来我们在cmd中先清理一下，回到blog文件夹输入</p><p><code>hexo clean</code></p><p><img src="18.png" alt></p><p>然后输入</p><p><code>hexo g</code></p><p><img src="19.png" alt></p><p>然后我们在重新启动一下</p><p>输入</p><p><code>hexo s</code></p><p>进入hexo里以后会出现咱们写的第一篇文章</p><p><img src="20.png" alt></p><hr><p>这样我们的博客就搭建成功了，自定义博客自己下去可以慢慢摸索。<br>刚开始的时候不用着急，博客空空的后面可以慢慢加，只要把博客部署起来那么不久之后就会玩的很熟了。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;前期准备&quot;&gt;&lt;a href=&quot;#前期准备&quot; class=&quot;headerlink&quot; title=&quot;前期准备&quot;&gt;&lt;/a&gt;前期准备&lt;/h1&gt;&lt;h2 id=&quot;下载Node-js&quot;&gt;&lt;a href=&quot;#下载Node-js&quot; class=&quot;headerlink&quot; title=
+      
+    
+    </summary>
+    
+      <category term="博客" scheme="http://yoursite.com/categories/%E5%8D%9A%E5%AE%A2/"/>
+    
+    
+      <category term="hexo" scheme="http://yoursite.com/tags/hexo/"/>
+    
+  </entry>
+  
+</feed>

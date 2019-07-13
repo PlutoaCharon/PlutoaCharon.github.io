@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link rel="stylesheet" href="/lib/pace/pace-theme-barber-shop.min.css?v=1.0.2">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+<link rel="stylesheet" href="/css/main.css?v=7.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=7.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.2.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.2.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.2.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="前期准备下载Node js 官方地址：https://nodejs.org/en/    点击第一个绿色按钮        安装过程就是一直下一步就可以了。安装完成之后打开cmd 键盘按住win+r键，输入cmd打开  输入node -v查看node的版本  npm -v查看包管理器版本  这样安装nodejs的步骤就完成了 安装hexo 因为hexo是需要nodejs来支持的，上面就是前置步骤">
+<meta name="keywords" content="hexo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hexo搭建个人博客（一）">
+<meta property="og:url" content="http://yoursite.com/2019/05/20/hexo搭建个人博客（一）/index.html">
+<meta property="og:site_name" content="精神小伙-记录成长">
+<meta property="og:description" content="前期准备下载Node js 官方地址：https://nodejs.org/en/    点击第一个绿色按钮        安装过程就是一直下一步就可以了。安装完成之后打开cmd 键盘按住win+r键，输入cmd打开  输入node -v查看node的版本  npm -v查看包管理器版本  这样安装nodejs的步骤就完成了 安装hexo 因为hexo是需要nodejs来支持的，上面就是前置步骤">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2019/05/20/hexo搭建个人博客（一）/1.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/20/hexo搭建个人博客（一）/2.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/20/hexo搭建个人博客（一）/3.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/20/hexo搭建个人博客（一）/4.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/20/hexo搭建个人博客（一）/5.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/20/hexo搭建个人博客（一）/6.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/20/hexo搭建个人博客（一）/7.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/20/hexo搭建个人博客（一）/8.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/20/hexo搭建个人博客（一）/9.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/20/hexo搭建个人博客（一）/10.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/20/hexo搭建个人博客（一）/11.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/20/hexo搭建个人博客（一）/12.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/20/hexo搭建个人博客（一）/13.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/20/hexo搭建个人博客（一）/14.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/20/hexo搭建个人博客（一）/15.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/20/hexo搭建个人博客（一）/16.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/20/hexo搭建个人博客（一）/17.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/20/hexo搭建个人博客（一）/18.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/20/hexo搭建个人博客（一）/19.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/20/hexo搭建个人博客（一）/20.png">
+<meta property="og:updated_time" content="2019-07-13T10:42:55.127Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="hexo搭建个人博客（一）">
+<meta name="twitter:description" content="前期准备下载Node js 官方地址：https://nodejs.org/en/    点击第一个绿色按钮        安装过程就是一直下一步就可以了。安装完成之后打开cmd 键盘按住win+r键，输入cmd打开  输入node -v查看node的版本  npm -v查看包管理器版本  这样安装nodejs的步骤就完成了 安装hexo 因为hexo是需要nodejs来支持的，上面就是前置步骤">
+<meta name="twitter:image" content="http://yoursite.com/2019/05/20/hexo搭建个人博客（一）/1.png">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="精神小伙-记录成长" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="http://yoursite.com/2019/05/20/hexo搭建个人博客（一）/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>hexo搭建个人博客（一） | 精神小伙-记录成长</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">精神小伙-记录成长</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">一个爱学习的计算机菜鸟笔记</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/20/hexo搭建个人博客（一）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="精神小伙">
+      <meta itemprop="description" content="Just Do ‘IT’ .">
+      <meta itemprop="image" content="/images/Me.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="精神小伙-记录成长">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">hexo搭建个人博客（一）
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-05-20 16:58:13" itemprop="dateCreated datePublished" datetime="2019-05-20T16:58:13+08:00">2019-05-20</time>
+            </span>
+          
+
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-07-13 18:42:55" itemprop="dateModified" datetime="2019-07-13T18:42:55+08:00">2019-07-13</time>
+              </span>
+            
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/博客/" itemprop="url" rel="index"><span itemprop="name">博客</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+                 阅读次数： 
+                <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+              </span>
+            </span>
+          
+
+          <br>
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span title="本文字数">1.3k</span>
+            </span>
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span title="阅读时长">1 分钟</span>
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h1><h2 id="下载Node-js"><a href="#下载Node-js" class="headerlink" title="下载Node js"></a>下载Node js</h2><blockquote>
+<p>官方地址：<a href="https://nodejs.org/en/" target="_blank" rel="noopener">https://nodejs.org/en/</a> </p>
+</blockquote>
+<p><img src="1.png" alt></p>
+<p>点击第一个绿色按钮     </p>
+<p><img src="2.png" alt> </p>
+<p>安装过程就是一直下一步就可以了。安装完成之后打开cmd</p>
+<p>键盘按住win+r键，输入cmd打开</p>
+<p><img src="3.png" alt></p>
+<p>输入node -v查看node的版本</p>
+<p><img src="4.png" alt></p>
+<p>npm -v查看包管理器版本</p>
+<p><img src="5.png" alt></p>
+<p>这样安装nodejs的步骤就完成了</p>
+<h2 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h2><blockquote>
+<p>因为hexo是需要nodejs来支持的，上面就是前置步骤</p>
+</blockquote>
+<p>这样咱们来开始真正安装hexo博客的框架</p>
+<p>安装之前，我们需要借助npm包来安装，但是因为咱们国内镜像源安装太慢，所以我们一般是在使用之前，先安装cnpm。这里我们使用npm逆向安装cmpm，使用来自淘宝的源</p>
+<p>在cmd里输入</p>
+<p><code>npm install -g cnpm --registry=https://registry.npm.taobao.org</code></p>
+<p>其中<br><strong>–registry镜像源的指向<br>-g全局安装</strong></p>
+<p><img src="6.png" alt></p>
+<p>安装成功<br>在cmd中输入 cnpm -v查看cnpm的版本</p>
+<p><img src="7.png" alt></p>
+<p>这样cnpm便安装成功了。搭建个人博客的过程更是一个学习的过程，其中有报错的地方很正常，我们在重新执行一遍就可以，不要心急，自己搭建完一个自己的博客成就感是非常高的。</p>
+<p>接下来我们使用cnpm来安装hexo。在cmd中输入</p>
+<p><code>cnpm install -g hexo-cli</code></p>
+<p>使用hexo -v查看版本</p>
+<p><img src="8.png" alt></p>
+<p>hexo我们就安装成功了</p>
+<h1 id="使用hexo正式搭建博客"><a href="#使用hexo正式搭建博客" class="headerlink" title="使用hexo正式搭建博客"></a>使用hexo正式搭建博客</h1><p>现在我在cmd的路径是</p>
+<p><img src="9.png" alt></p>
+<p>我们在该路径里创建一个blog文件夹。在cmd里输入</p>
+<p><code>mkdir blog</code></p>
+<p>打开我的电脑，输入C:\Users\lenovo，可以看到在该路径多了一个blog文件夹<br><img src="10.png" alt></p>
+<blockquote>
+<p>如果我们在搭建过程中出现了一些无法避免的错误，可以把blog的文件删掉，重新来过就可以啦.</p>
+</blockquote>
+<p>在cmd里输入 cd ./blog</p>
+<p><strong>cd就是进入到某个路径</strong></p>
+<p><strong>./指当前路径</strong></p>
+<p>我们进去blog目录之后，我们使用hexo生成我们的博客。</p>
+<p>接下来我们打开管理员的命令提示符，这里的权限更大<br>键盘输入</p>
+<p><code>win+x</code></p>
+<p><img src="11.png" alt></p>
+<p>选择命令提示符（管理员）,进入到我们的blog路径,输入</p>
+<p><code>hexo init</code></p>
+<p><strong>初始化hexo</strong></p>
+<p>报错：</p>
+<p><img src="12.png" alt></p>
+<p>键盘输入ctrl+c 选择N</p>
+<p>重新输入 heox init</p>
+<p><img src="13.png" alt></p>
+<p><strong>成功！</strong></p>
+<p>在cmd里输入 hexo s 启动hexo</p>
+<p><img src="14.png" alt></p>
+<p>我们打开浏览器，输入有下划线的那段网址</p>
+<p><img src="15.png" alt></p>
+<p>可以看到，hexo自动帮我生成了一个hello world文章,里面内容是hexo的新手教程</p>
+<h2 id="第一篇博客"><a href="#第一篇博客" class="headerlink" title="第一篇博客"></a>第一篇博客</h2><p>首先我们断开掉hexo，键盘按ctrl+c 输入N</p>
+<p>在cmd里输入hexo n “我的第一篇博客文章”</p>
+<p><img src="16.png" alt></p>
+<p><strong>生成成功</strong></p>
+<p>打开我的电脑，进入C:\Users\lenovo\blog\source_posts\路径里，可以看到里面有两个md文件。</p>
+<p><img src="17.png" alt></p>
+<p>接下来我们在cmd中先清理一下，回到blog文件夹输入</p>
+<p><code>hexo clean</code></p>
+<p><img src="18.png" alt></p>
+<p>然后输入</p>
+<p><code>hexo g</code></p>
+<p><img src="19.png" alt></p>
+<p>然后我们在重新启动一下</p>
+<p>输入</p>
+<p><code>hexo s</code></p>
+<p>进入hexo里以后会出现咱们写的第一篇文章</p>
+<p><img src="20.png" alt></p>
+<hr>
+<p>这样我们的博客就搭建成功了，自定义博客自己下去可以慢慢摸索。<br>刚开始的时候不用着急，博客空空的后面可以慢慢加，只要把博客部署起来那么不久之后就会玩的很熟了。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        
+          
+        
+        <div class="post-tags">
+          
+            <a href="/tags/hexo/" rel="tag"><i class="fa fa-tag"></i> hexo</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/05/21/hexo搭建个人博客（二）/" rel="prev" title="hexo搭建个人博客（二）">
+                hexo搭建个人博客（二） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/Me.jpg" alt="精神小伙">
+            
+              <p class="site-author-name" itemprop="name">精神小伙</p>
+              <div class="site-description motion-element" itemprop="description">Just Do ‘IT’ .</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                    <span class="site-state-item-count">1</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                    <span class="site-state-item-count">1</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前期准备"><span class="nav-number">1.</span> <span class="nav-text">前期准备</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#下载Node-js"><span class="nav-number">1.1.</span> <span class="nav-text">下载Node js</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装hexo"><span class="nav-number">1.2.</span> <span class="nav-text">安装hexo</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用hexo正式搭建博客"><span class="nav-number">2.</span> <span class="nav-text">使用hexo正式搭建博客</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#第一篇博客"><span class="nav-number">2.1.</span> <span class="nav-text">第一篇博客</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">精神小伙</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+    <span title="站点总字数">2k</span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    
+    <span title="站点阅读时长">2 分钟</span>
+  
+</div>
+
+<!--
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.2.0</div>
+
+-->
+
+
+
+
+<div>
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("05/20/2019 00:00:00");
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+setInterval("createtime()",250);
+</script>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+  
+  <script color="0,0,255" opacity="0.5" zindex="-1" count="99" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.2.0"></script>
+
+  <script src="/js/motion.js?v=7.2.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.2.0"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.2.0"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.2.0"></script>
+<script src="/js/post-details.js?v=7.2.0"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.2.0"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
