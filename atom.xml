@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-07-13T11:10:40.173Z</updated>
+  <updated>2019-07-17T12:13:41.428Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,11 +17,37 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Github学习笔记</title>
+    <link href="http://yoursite.com/2019/07/17/Github%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    <id>http://yoursite.com/2019/07/17/Github学习笔记/</id>
+    <published>2019-07-17T11:34:58.000Z</published>
+    <updated>2019-07-17T12:13:41.428Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>作为一个码代码的萌新，想要学习更前沿更丰富的代码就得来全球最大的开源社区啦！:)</p><p>但是网上的参考资料太多太复杂，我就一边学一边把自己的学习过程整理下来，方便日后复习查看。</p><h1 id="什么是GitHub"><a href="#什么是GitHub" class="headerlink" title="什么是GitHub"></a>什么是GitHub</h1><p>github是一个基于git的代码托管平台，付费用户可以建私人仓库，我们一般的免费用户只能使用公共仓库，也就是代码要公开。<br>Github 由Chris Wanstrath, PJ Hyett 与Tom Preston-Werner三位开发者在2008年4月创办。迄今拥有59名全职员工，主要提供基于git的版本托管服务。</p><p>git是一个版本控制工具，github是一个用git做版本控制的项目托管平台。</p><h1 id="Why-GitHub"><a href="#Why-GitHub" class="headerlink" title="Why GitHub"></a>Why GitHub</h1><p>Git 是一款免费的、开源的、分布式的版本控制系统。旨在快速高效地处理无论规模大小的任何软件工程。</p><p>每一个 Git克隆 都是一个完整的文件库，含有全部历史记录和修订追踪能力，不依赖于网络连接或中心服务器。其最大特色就是“分支”及“合并”操作非常快速、简便。</p><h1 id="开始使用"><a href="#开始使用" class="headerlink" title="开始使用"></a>开始使用</h1><h2 id="注册GitHub账号"><a href="#注册GitHub账号" class="headerlink" title="注册GitHub账号"></a>注册GitHub账号</h2><p><img src="1.png" alt></p><p>由于我已经有一个账号，大家没有的话得从头开始创建，点击Create an account即可。</p><h2 id="填写基本信息"><a href="#填写基本信息" class="headerlink" title="填写基本信息"></a>填写基本信息</h2><p>填写好自己的基本信息，点击创建就可以拥有一个崭新的GitHub账号</p><p><img src="2.png" alt></p><h2 id="创建属于自己的工程"><a href="#创建属于自己的工程" class="headerlink" title="创建属于自己的工程"></a>创建属于自己的工程</h2><p><img src="3.png" alt></p><p>登录进入自己的GitHub账号后如上图所示</p><p><img src="4.png" alt></p><p>点击箭头所指区域进入<strong>个人中心</strong></p><p><img src="5.png" alt></p><p>点击绿色的小方块</p><p><img src="6.png" alt></p><p><img src="7.png" alt></p><p><img src="8.png" alt></p><p>可以看到我是2018年10月18日创建的GitHub账号。</p><h2 id="创建第一个工程"><a href="#创建第一个工程" class="headerlink" title="创建第一个工程"></a>创建第一个工程</h2><blockquote><p>The Hello World project is a time-honored tradition in computer programming. It is a simple exercise that gets you started when learning something new. Let’s get started with GitHub!</p></blockquote><h3 id="Step-1-Create-a-Repository"><a href="#Step-1-Create-a-Repository" class="headerlink" title="Step 1. Create a Repository"></a>Step 1. Create a Repository</h3><blockquote><p>A repository is usually used to organize a single project. Repositories can contain folders and files, images, videos, spreadsheets, and data sets – anything your project needs. We recommend including a README, or a file with information about your project. GitHub makes it easy to add one at the same time you create your new repository. It also offers other common options such as a license file.<br>Your hello-world repository can be a place where you store ideas, resources, or even share and discuss things with others.</p></blockquote><p><img src="10.png" alt></p><ol><li>将Repository命名为 Hello World</li><li>填写Description</li><li>选择Public</li><li>选中Initialize with a README</li><li>点击 <strong>Create repository</strong>.</li></ol><p><img src="11.png" alt></p><p><img src="12.png" alt></p><h3 id="Step-2-Create-a-Branch"><a href="#Step-2-Create-a-Branch" class="headerlink" title="Step 2. Create a Branch"></a>Step 2. Create a Branch</h3><ol><li>To create a new branch</li><li>进入新建的Hello World repository中</li><li>点击Branch master选项</li><li>输入readme-edits</li><li>选中下方的蓝色链接</li></ol><p><img src="13.png" alt></p><p><img src="14.png" alt></p><p><img src="15.png" alt></p><blockquote><p>现在你有两个分支master和readme-edits。他们看起来完全相同，但是接下来,我们将添加我们更改的新分支。</p></blockquote><h3 id="Step-3-Make-and-commit-changes"><a href="#Step-3-Make-and-commit-changes" class="headerlink" title="Step 3. Make and commit changes"></a>Step 3. Make and commit changes</h3><p>现在咱们有了master的复制版本，readme-edits 分支，这是一个代码视图，我们可以在这里做一些编辑。</p><p>在GitHub中,保存更改被称为commit 提交。每个提交都有一个关联的提交消息,，这是一个描述解释为什么一个特定的更改。提交信息捕获您的更改的历史,所以其他人可以很方便的看到你做了什么。</p><ol><li>点击README.md文件</li><li>点击铅笔图标右上角的编辑文件的视图</li><li>修改README.md</li><li>点击下方的Commit changes</li></ol><p><img src="16.png" alt></p><p><img src="17.png" alt></p><p><img src="18.png" alt></p><p><img src="19.png" alt></p><p><strong>当然这些改变只会在readme-edits这个分支中改变README.md，并不会影响master</strong></p><h3 id="Step-4-Open-a-Pull-Request"><a href="#Step-4-Open-a-Pull-Request" class="headerlink" title="Step 4. Open a Pull Request"></a>Step 4. Open a Pull Request</h3><p>我修改了你的代码，所以请求（request）你把我修改过的代码拉（pull）回去看看</p><ol><li>点击New pull request</li><li>选择创建的readme-edits分支</li><li>可以查看跟master相比的代码</li><li>查看无误后点击Create Pull Request</li><li>这时你的改变后的代码就到Pull request界面中</li><li>你可以选择是否merge</li></ol><p><img src="20.png" alt></p><p><img src="21.png" alt></p><p><img src="22.png" alt></p><p><img src="23.png" alt></p><p><img src="24.png" alt></p><p><img src="25.png" alt></p><h3 id="Step-5-Merge-your-Pull-Request"><a href="#Step-5-Merge-your-Pull-Request" class="headerlink" title="Step 5. Merge your Pull Request"></a>Step 5. Merge your Pull Request</h3><p>这是本次实验的最后一步，Merge可以将别人给你的Pull Request整合到自己的主界面代码视图中</p><ol><li>点击Merge pull request将改变整合到master中</li><li>整合成功后就可以将readme-edits分支删掉</li></ol><p><img src="26.png" alt></p><p><img src="27.png" alt></p><p><img src="28.png" alt></p><p><img src="29.png" alt></p><h3 id="Finally"><a href="#Finally" class="headerlink" title="Finally"></a>Finally</h3><p>我们可以发现，master的README变成了readme-edits分支中的README</p><p><img src="30.png" alt></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;作为一个码代码的萌新，想要学习更前沿更丰富的代码就得来全球最大的开源社区啦！:)&lt;/p&gt;
+&lt;p&gt;但是网上的参考资料太多太复杂，我就一边学一边
+      
+    
+    </summary>
+    
+      <category term="GitHub" scheme="http://yoursite.com/categories/GitHub/"/>
+    
+    
+      <category term="GitHub" scheme="http://yoursite.com/tags/GitHub/"/>
+    
+  </entry>
+  
+  <entry>
     <title>hexo搭建个人博客（二）</title>
     <link href="http://yoursite.com/2019/05/21/hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%BA%8C%EF%BC%89/"/>
     <id>http://yoursite.com/2019/05/21/hexo搭建个人博客（二）/</id>
     <published>2019-05-21T08:58:13.000Z</published>
-    <updated>2019-07-13T11:10:40.173Z</updated>
+    <updated>2019-07-17T11:37:54.529Z</updated>
     
     <content type="html"><![CDATA[<h1 id="博客部署到GitHub"><a href="#博客部署到GitHub" class="headerlink" title="博客部署到GitHub"></a>博客部署到GitHub</h1><h2 id="1-如果没有GitHub账号可以参考我的其他文章"><a href="#1-如果没有GitHub账号可以参考我的其他文章" class="headerlink" title="(1)如果没有GitHub账号可以参考我的其他文章"></a>(1)如果没有GitHub账号可以参考我的其他文章</h2><p>有的话我们就进入到自己GitHub的主页面</p><p><img src="1.png" alt></p><p>点击第一个，我们新建一个仓库,在Repository name里输入自己的用户名.github.io</p><blockquote><p>用户部署个人博客的GitHub仓库<strong>命名必须符合特定要求</strong></p></blockquote><p>例如我的输入是:</p><blockquote><p>PlutoaCharon.github.io</p></blockquote><p><img src="2.png" alt></p><p>点击绿色的Create repository按钮创建新的仓库,出现如下界面说明创建成功!</p><p><img src="3.png" alt></p><h2 id="2-保留这个页面-在blog所在的路径下-在cmd里输入"><a href="#2-保留这个页面-在blog所在的路径下-在cmd里输入" class="headerlink" title="(2)保留这个页面,在blog所在的路径下,在cmd里输入"></a>(2)保留这个页面,在blog所在的路径下,在cmd里输入</h2><p><code>cnpm install --save hexo-deployer-git</code></p><p>安装一个<strong>git</strong>的部署插件</p><p><img src="4.png" alt></p><h2 id="3-在blog目录下的-config-ym文件-我们使用nodepad-打开编辑-或者使用系统自带的笔记本打开也可以"><a href="#3-在blog目录下的-config-ym文件-我们使用nodepad-打开编辑-或者使用系统自带的笔记本打开也可以" class="headerlink" title="(3)在blog目录下的_config.ym文件,我们使用nodepad++打开编辑,或者使用系统自带的笔记本打开也可以"></a>(3)在blog目录下的_config.ym文件,我们使用nodepad++打开编辑,或者使用系统自带的笔记本打开也可以</h2><p>到最底部可以发现有一个Deployment配置<br>我们在这里做一些配置修改<br>type:  git<br>repo:  <a href="https://github.com/PlutoaCharon/PlutoaCharon.github.io.git" target="_blank" rel="noopener">https://github.com/PlutoaCharon/PlutoaCharon.github.io.git</a><br>branch:  master</p><p><img src="5.png" alt></p><p>repo的地址就是咱们新建的仓库的地址，要输入自己的仓库地址，不要输入我的哦。</p><blockquote><p>注意：要在冒号后面加入空格，否则下一步会出现错误</p></blockquote><p>保存以后在cmd里输入</p><p><code>hexo d</code></p><blockquote><p>d的意思就是deport</p></blockquote><h2 id="4-输入GitHub的账号密码"><a href="#4-输入GitHub的账号密码" class="headerlink" title="(4)输入GitHub的账号密码"></a>(4)输入GitHub的账号密码</h2><blockquote><p>我是因为安装了GitHub的桌面版才出现Login界面,如果你们没有安装的话应该是在cmd里输入的</p></blockquote><p><img src="6.png" alt></p><p>成功!</p><p>一开始我们的仓库是空的，当我们刷新的时候会发现多了一些东西，这些就是我们博客生成的内容.</p><p><img src="7.png" alt></p><p>这时我们在网址里输入我们刚才的仓库地址就可以直接访问博客，而且也不用在本地打开了.</p><p><img src="8.png" alt></p><p>这样简单的博客就部署就完成了！</p><p>接下来大家可以去网上找一些好看的主题，这里就不在一一赘述了,制作一个自己的风格博客吧。</p>]]></content>
     
@@ -36,6 +62,8 @@
     
       <category term="博客" scheme="http://yoursite.com/categories/%E5%8D%9A%E5%AE%A2/"/>
     
+    
+      <category term="GitHub" scheme="http://yoursite.com/tags/GitHub/"/>
     
       <category term="hexo" scheme="http://yoursite.com/tags/hexo/"/>
     
