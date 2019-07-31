@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-07-30T12:00:54.597Z</updated>
+  <updated>2019-07-31T11:40:11.814Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Centos7下的JDK安装</title>
+    <link href="http://yoursite.com/2019/07/31/Centos7%E4%B8%8B%E7%9A%84JDK%E5%AE%89%E8%A3%85/"/>
+    <id>http://yoursite.com/2019/07/31/Centos7下的JDK安装/</id>
+    <published>2019-07-31T11:15:56.000Z</published>
+    <updated>2019-07-31T11:40:11.814Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="卸载系统自带OpenJDK以及相关的java文件"><a href="#卸载系统自带OpenJDK以及相关的java文件" class="headerlink" title="卸载系统自带OpenJDK以及相关的java文件"></a>卸载系统自带OpenJDK以及相关的java文件</h2><h3 id="查看系统自带jdk版本信息"><a href="#查看系统自带jdk版本信息" class="headerlink" title="查看系统自带jdk版本信息"></a>查看系统自带jdk版本信息</h3><p><code>java -version</code></p><p>查看当前系统自带的open jdk版本信息</p><h3 id="查找要删除的jdk文件"><a href="#查找要删除的jdk文件" class="headerlink" title="查找要删除的jdk文件"></a>查找要删除的jdk文件</h3><p>输入</p><p><code>rpm -qa | grep java</code></p><p>查看包含java字符串的文件，其中删除类似下面这四个文件（不一定是四个）</p><pre><code>java-1.7.0-openjdk-1.7.0.111-2.6.7.8.el7.x86_64java-1.8.0-openjdk-1.8.0.102-4.b14.el7.x86_64java-1.8.0-openjdk-headless-1.8.0.102-4.b14.el7.x86_64java-1.7.0-openjdk-headless-1.7.0.111-2.6.7.8.el7.x86_64</code></pre><p>包含noarch的文件不必删除，如下：</p><pre><code>python-javapackages-3.4.1-11.el7.noarchtzdata-java-2016g-2.el7.noarchjavapackages-tools-3.4.1-11.el7.noarch</code></pre><h3 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h3><p>删除的具体命令如下：</p><pre><code>rpm -e --nodeps java-1.7.0-openjdk-1.7.0.111-2.6.7.8.el7.x86_64rpm -e --nodeps java-1.8.0-openjdk-1.8.0.102-4.b14.el7.x86_64rpm -e --nodeps java-1.8.0-openjdk-headless-1.8.0.102-4.b14.el7.x86_64rpm -e --nodeps java-1.7.0-openjdk-headless-1.7.0.111-2.6.7.8.el7.x86_64</code></pre><p>执行完以上步骤后可以再次使用java -version查看是否已经删除成功。</p><p><img src="1.png" alt></p><h2 id="下载最新稳定版JDK"><a href="#下载最新稳定版JDK" class="headerlink" title="下载最新稳定版JDK"></a>下载最新稳定版JDK</h2><h3 id="下载地址"><a href="#下载地址" class="headerlink" title="下载地址"></a>下载地址</h3><blockquote><p><a href="https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html" target="_blank" rel="noopener">https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html</a></p></blockquote><p><img src="2.png" alt></p><h3 id="解压JDK"><a href="#解压JDK" class="headerlink" title="解压JDK"></a>解压JDK</h3><p>在命令窗口键入（在特定的文件录下，如/opt/java）:</p><p><code>tar -zxvf jdk-8u144-linux-x64.tar.gz</code></p><h3 id="配置JDK环境变量"><a href="#配置JDK环境变量" class="headerlink" title="配置JDK环境变量"></a>配置JDK环境变量</h3><ol><li>编辑全局变量</li></ol><p>命令行输入：</p><p><code>vim /etc/profile</code></p><p>在文本最后一行添加如下:</p><pre><code>#java environmentexport JAVA_HOME=/opt/java/jdk1.8.0_201export CLASSPATH=.:${JAVA_HOME}/jre/lib/rt.jar:${JAVA_HOME}/lib/dt.jar:${JAVA_HOME}/lib/tools.jarexport PATH=$PATH:${JAVA_HOME}/bin</code></pre><p><strong>保存并退出编辑。</strong></p><ol start="2"><li>让设置的环境变量生效</li></ol><p><code>source /etc/profile</code></p><ol start="3"><li>检查是否配置成功</li></ol><p><code>java -version</code></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;卸载系统自带OpenJDK以及相关的java文件&quot;&gt;&lt;a href=&quot;#卸载系统自带OpenJDK以及相关的java文件&quot; class=&quot;headerlink&quot; title=&quot;卸载系统自带OpenJDK以及相关的java文件&quot;&gt;&lt;/a&gt;卸载系统自带OpenJDK以
+      
+    
+    </summary>
+    
+      <category term="Liunx" scheme="http://yoursite.com/categories/Liunx/"/>
+    
+      <category term="Hadoop" scheme="http://yoursite.com/categories/Liunx/Hadoop/"/>
+    
+    
+      <category term="Liunx" scheme="http://yoursite.com/tags/Liunx/"/>
+    
+      <category term="java" scheme="http://yoursite.com/tags/java/"/>
+    
+  </entry>
   
   <entry>
     <title>Centos7下NAT设置静态ip</title>
@@ -92,9 +121,9 @@
       <category term="博客" scheme="http://yoursite.com/categories/%E5%8D%9A%E5%AE%A2/"/>
     
     
-      <category term="GitHub" scheme="http://yoursite.com/tags/GitHub/"/>
-    
       <category term="hexo" scheme="http://yoursite.com/tags/hexo/"/>
+    
+      <category term="GitHub" scheme="http://yoursite.com/tags/GitHub/"/>
     
   </entry>
   
