@@ -101,26 +101,20 @@
 
 
 
-  <meta name="description" content="前期准备在VMware下安装Centos7 以后，选择NAT模式 查看IP地址 ip addr  现在我的ip地址是dhcp动态分配出的，地址为192.168.0.128，网卡名字为ens33 点击VMware Workstation 编辑下的虚拟网络编辑器  在里面我们可以看到虚拟网卡的信息 点击 更改设置  点击Vmnet8网卡，将子网ip改为自己想要的ip地址类型，这里我修改的是192.16">
-<meta name="keywords" content="Liunx,网络">
+  <meta name="description" content="前言相信大家初学java时，肯定会涉及到“配置环境变量”，而在网上搜索大多是教我们如何如配置，真正说明为什么要去配置环境变量的不多。 不管在windows里还是liunx里都少不了环境变量的配置，一键Copy是解决不了问题的，还可能会出现各种各样的问题，如果我们搞清楚原理，就会方便许多。 今天我们就以java环境变量来了解，什么是环境变量以及为什么要配置。 什么是环境变量环境变量（Environm">
+<meta name="keywords" content="Java">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Centos7下NAT设置静态ip">
-<meta property="og:url" content="http://yoursite.com/2019/07/30/Centos7下NAT设置静态ip/index.html">
+<meta property="og:title" content="什么是环境变量">
+<meta property="og:url" content="http://yoursite.com/2019/08/02/什么是环境变量/index.html">
 <meta property="og:site_name" content="浩翰Redamancy的博客">
-<meta property="og:description" content="前期准备在VMware下安装Centos7 以后，选择NAT模式 查看IP地址 ip addr  现在我的ip地址是dhcp动态分配出的，地址为192.168.0.128，网卡名字为ens33 点击VMware Workstation 编辑下的虚拟网络编辑器  在里面我们可以看到虚拟网卡的信息 点击 更改设置  点击Vmnet8网卡，将子网ip改为自己想要的ip地址类型，这里我修改的是192.16">
+<meta property="og:description" content="前言相信大家初学java时，肯定会涉及到“配置环境变量”，而在网上搜索大多是教我们如何如配置，真正说明为什么要去配置环境变量的不多。 不管在windows里还是liunx里都少不了环境变量的配置，一键Copy是解决不了问题的，还可能会出现各种各样的问题，如果我们搞清楚原理，就会方便许多。 今天我们就以java环境变量来了解，什么是环境变量以及为什么要配置。 什么是环境变量环境变量（Environm">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://yoursite.com/2019/07/30/Centos7下NAT设置静态ip/1.png">
-<meta property="og:image" content="http://yoursite.com/2019/07/30/Centos7下NAT设置静态ip/2.png">
-<meta property="og:image" content="http://yoursite.com/2019/07/30/Centos7下NAT设置静态ip/3.png">
-<meta property="og:image" content="http://yoursite.com/2019/07/30/Centos7下NAT设置静态ip/4.png">
-<meta property="og:image" content="http://yoursite.com/2019/07/30/Centos7下NAT设置静态ip/5.png">
-<meta property="og:image" content="http://yoursite.com/2019/07/30/Centos7下NAT设置静态ip/6.png">
-<meta property="og:image" content="http://yoursite.com/2019/07/30/Centos7下NAT设置静态ip/7.png">
-<meta property="og:updated_time" content="2019-07-30T12:00:54.597Z">
+<meta property="og:image" content="http://yoursite.com/2019/08/02/什么是环境变量/1.png">
+<meta property="og:updated_time" content="2019-08-02T11:36:28.363Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Centos7下NAT设置静态ip">
-<meta name="twitter:description" content="前期准备在VMware下安装Centos7 以后，选择NAT模式 查看IP地址 ip addr  现在我的ip地址是dhcp动态分配出的，地址为192.168.0.128，网卡名字为ens33 点击VMware Workstation 编辑下的虚拟网络编辑器  在里面我们可以看到虚拟网卡的信息 点击 更改设置  点击Vmnet8网卡，将子网ip改为自己想要的ip地址类型，这里我修改的是192.16">
-<meta name="twitter:image" content="http://yoursite.com/2019/07/30/Centos7下NAT设置静态ip/1.png">
+<meta name="twitter:title" content="什么是环境变量">
+<meta name="twitter:description" content="前言相信大家初学java时，肯定会涉及到“配置环境变量”，而在网上搜索大多是教我们如何如配置，真正说明为什么要去配置环境变量的不多。 不管在windows里还是liunx里都少不了环境变量的配置，一键Copy是解决不了问题的，还可能会出现各种各样的问题，如果我们搞清楚原理，就会方便许多。 今天我们就以java环境变量来了解，什么是环境变量以及为什么要配置。 什么是环境变量环境变量（Environm">
+<meta name="twitter:image" content="http://yoursite.com/2019/08/02/什么是环境变量/1.png">
 
 
 
@@ -130,7 +124,7 @@
 
   
   
-  <link rel="canonical" href="http://yoursite.com/2019/07/30/Centos7下NAT设置静态ip/">
+  <link rel="canonical" href="http://yoursite.com/2019/08/02/什么是环境变量/">
 
 
 
@@ -140,7 +134,7 @@
   };
 </script>
 
-  <title>Centos7下NAT设置静态ip | 浩翰Redamancy的博客</title>
+  <title>什么是环境变量 | 浩翰Redamancy的博客</title>
   
 
 
@@ -357,7 +351,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/30/Centos7下NAT设置静态ip/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/02/什么是环境变量/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="精神小伙">
@@ -374,7 +368,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Centos7下NAT设置静态ip
+          <h1 class="post-title" itemprop="name headline">什么是环境变量
 
               
             
@@ -400,7 +394,7 @@
                 
               
 
-              <time title="创建时间：2019-07-30 19:23:49 / 修改时间：20:00:54" itemprop="dateCreated datePublished" datetime="2019-07-30T19:23:49+08:00">2019-07-30</time>
+              <time title="创建时间：2019-08-02 19:00:28 / 修改时间：19:36:28" itemprop="dateCreated datePublished" datetime="2019-08-02T19:00:28+08:00">2019-08-02</time>
             </span>
           
 
@@ -419,7 +413,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Liunx/" itemprop="url" rel="index"><span itemprop="name">Liunx</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a></span>
 
                 
                 
@@ -454,7 +448,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span title="本文字数">941</span>
+              <span title="本文字数">1.4k</span>
             </span>
           
 
@@ -485,54 +479,55 @@
       
 
       
-        <h2 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h2><p>在VMware下安装Centos7 以后，选择NAT模式</p>
-<p>查看IP地址</p>
-<p><code>ip addr</code></p>
-<p><img src="1.png" alt></p>
-<p>现在我的ip地址是dhcp动态分配出的，地址为<strong>192.168.0.128</strong>，网卡名字为<strong>ens33</strong></p>
-<p>点击VMware Workstation 编辑下的<strong>虚拟网络编辑器</strong></p>
-<p><img src="2.png" alt></p>
-<p>在里面我们可以看到虚拟网卡的信息</p>
-<p>点击 <strong>更改设置</strong></p>
-<p><img src="3.png" alt></p>
-<p>点击Vmnet8网卡，将子网ip改为自己想要的ip地址类型，这里我修改的是192.168.0.0</p>
-<p>然后点击NAT设置，将网关设置为192.168.0.253</p>
-<p><img src="4.png" alt></p>
-<p><img src="5.png" alt></p>
-<p><strong>保存退出。</strong></p>
-<h2 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h2><p>在/etc/sysconfig/network-scripts/下找到网卡配置文件 <strong>ens33</strong></p>
-<p><code>vim ifcfg-ens33</code></p>
-<p>添加静态ip的配置项</p>
-<pre><code>TYPE=Ethernet
-PROXY_METHOD=none
-BROWSER_ONLY=no
-BOOTPROTO=static #将dhcp改为static
-DEFROUTE=yes
-IPV4_FAILURE_FATAL=no
-IPV6INIT=yes
-IPV6_AUTOCONF=yes
-IPV6_DEFROUTE=yes
-IPV6_FAILURE_FATAL=no
-IPV6_ADDR_GEN_MODE=stable-privacy
-NAME=ens33
-UUID=27046f8e-9615-376c-b4d4-36646661dbe3
-ONBOOT=yes     #开机自启网卡
-AUTOCONNECT_PRIORITY=-999
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>相信大家初学java时，肯定会涉及到“配置环境变量”，而在网上搜索大多是教我们如何如配置，真正说明为什么要去配置环境变量的不多。</p>
+<p>不管在windows里还是liunx里都少不了环境变量的配置，一键Copy是解决不了问题的，还可能会出现各种各样的问题，如果我们搞清楚原理，就会方便许多。</p>
+<p>今天我们就以java环境变量来了解，什么是环境变量以及为什么要配置。</p>
+<h2 id="什么是环境变量"><a href="#什么是环境变量" class="headerlink" title="什么是环境变量"></a>什么是环境变量</h2><h3 id="环境变量（Environment-Variable-）"><a href="#环境变量（Environment-Variable-）" class="headerlink" title="环境变量（Environment Variable ）"></a>环境变量（Environment Variable ）</h3><p>环境变量是在操作系统中一个具有特定名字的对象，它包含了一个或者多个应用程序所将使用到的信息。</p>
+<h3 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h3><blockquote>
+<p>可以随意给其赋值的一个存储单元</p>
+</blockquote>
+<h4 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h4><p>例如jvm这些都属于小软件，它们处于<strong>操作系统</strong>这个大软件中。</p>
+<h4 id="环境变量的作用"><a href="#环境变量的作用" class="headerlink" title="环境变量的作用"></a>环境变量的作用</h4><p>变量在任何程序中的作用都是“被赋值/被取值”！这个全局变量操作系统可以使用，其内的小软件也可以使用！</p>
+<h4 id="环境变量有哪些"><a href="#环境变量有哪些" class="headerlink" title="环境变量有哪些"></a>环境变量有哪些</h4><ol>
+<li>在Windows中，是由可视化的窗口模式展现出来的</li>
+</ol>
+<p><img src="1.png" alt="Windowds"></p>
+<ol start="2">
+<li>在Linux中</li>
+</ol>
+<p><strong>设置：</strong></p>
+<p>在 <code>/etc/profile</code>文件中设置，<code>export</code>的意思就是将局部变量设置为环境变量。现有的变量是被这样一行代码设置的：</p>
+<p><code>export PATH USER LOGNAME MAIL HOSTNAME HISTSIZE HISTCONTROL</code></p>
+<p>这几个环境变量已经有一些默认值了，不过我们可以追加内容，比如修改PATH：</p>
+<pre><code># : 的意思是并列
 
-IPADDR=192.168.0.1       #静态ip （添加）   
-NETMASK=255.255.255.0    #子网掩码
-GATEWAY=192.168.0.253    #默认网关（刚才在配置项中设置的网关）
-DNS1=192.168.0.253       #DNS设置与默认网关相同即可
-PREFIX=24
-</code></pre><p><strong>保存</strong></p>
-<h2 id="重启网络服务"><a href="#重启网络服务" class="headerlink" title="重启网络服务"></a>重启网络服务</h2><p><code>service network restart</code></p>
-<h2 id="检查网络"><a href="#检查网络" class="headerlink" title="检查网络"></a>检查网络</h2><p><img src="6.png" alt></p>
-<p>可以看到，这里我的地址就变成了192.168.0.1</p>
+PATH = /abc/def:$PATH
+</code></pre><p><strong>查看：</strong></p>
+<p>查看全部，使用<code>env</code>命令即可。</p>
+<p>查看单个，可以使用<code>echo</code>：如<code>echo $JAVA_HOME。</code></p>
+<h2 id="在JAVA中"><a href="#在JAVA中" class="headerlink" title="在JAVA中"></a>在JAVA中</h2><p>我们知道什么是环境变量以后，在java中会具体怎么用到呢？</p>
+<h3 id="常见的Java相关环境变量及其作用"><a href="#常见的Java相关环境变量及其作用" class="headerlink" title="常见的Java相关环境变量及其作用"></a>常见的Java相关环境变量及其作用</h3><h4 id="PATH"><a href="#PATH" class="headerlink" title="PATH"></a>PATH</h4><p>PATH是操作系统用的，用来指定操作系统需要使用到的可执行程序的位置。对于Java来说，通常需要把JDK的bin目录添加进入PATH中，这样你就可以在任意目录下使用bin下面的可执行程序，如javac.exe、java.exe等。</p>
+<p><strong>这个变量一定要保证将JRE/JDK的bin纳入其中。</strong></p>
+<pre><code>JDK,JRE，JVM三者之间的关系，以及JDK，JRE包含的主要结构有哪些
+JDK = JRE + Java的开发工具（javac.exe,java.exe,javadoc.exe）
+JRD = JVM + Java核心类库
+</code></pre><h4 id="JAVA-HOME"><a href="#JAVA-HOME" class="headerlink" title="JAVA_HOME"></a>JAVA_HOME</h4><p>JAVA_HOME是一个约定，通常它指的是JDK的目录。如果需要JDK的话，大部分程序会默认去环境变量中取JAVA_HOME这个变量。</p>
+<p><strong>很重要，一些java开发的工具例如IDEA就需要。</strong></p>
+<h4 id="CLASSPATH"><a href="#CLASSPATH" class="headerlink" title="CLASSPATH"></a>CLASSPATH</h4><p>在于告诉Java执行环境，在哪些目录下可以找到我们所要执行的Java程序所需要的类或者包。不过在JDK1.5之后的版本完全可以不用设置classpath环境变量就能正常运行程序。</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><ol>
+<li><p>需要在操作系统下设置的变量：</p>
+<p> PATH中包含JRE/JDK的bin目录。<br> JAVA_HOME</p>
+</li>
+<li><p>一条命令语句包含命令本身（操作）和操作对象：Command + object，编译和运行Java程序必须经过两个步骤：</p>
+</li>
+</ol>
 <ul>
-<li>查看是否可以连通外网<br><code>ping www.baidu.com</code></li>
+<li><p>将源文件编译成字节码 （javac）</p>
+</li>
+<li><p>执行平台无关的字节码程序（java）</p>
+</li>
 </ul>
-<p><img src="7.png" alt></p>
-<p>外网也是可以ping通的，这样我们的静态ip就设置完成了。</p>
+<p>那么错误可能会有两种情况，一是没有找到命令，二是没有找到命令所要操作的文件。</p>
 
       
     </div>
@@ -559,9 +554,7 @@ PREFIX=24
         
         <div class="post-tags">
           
-            <a href="/tags/Liunx/" rel="tag"><i class="fa fa-tag"></i> Liunx</a>
-          
-            <a href="/tags/网络/" rel="tag"><i class="fa fa-tag"></i> 网络</a>
+            <a href="/tags/Java/" rel="tag"><i class="fa fa-tag"></i> Java</a>
           
         </div>
       
@@ -574,8 +567,8 @@ PREFIX=24
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/07/17/Github学习笔记/" rel="next" title="Github学习笔记">
-                <i class="fa fa-chevron-left"></i> Github学习笔记
+              <a href="/2019/07/31/Centos7下的JDK安装/" rel="next" title="Centos7下的JDK安装">
+                <i class="fa fa-chevron-left"></i> Centos7下的JDK安装
               </a>
             
           </div>
@@ -584,8 +577,8 @@ PREFIX=24
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/07/31/Centos7下的JDK安装/" rel="prev" title="Centos7下的JDK安装">
-                Centos7下的JDK安装 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/08/02/Java变量类型/" rel="prev" title="Java变量类型">
+                Java变量类型 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -756,7 +749,7 @@ PREFIX=24
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前期准备"><span class="nav-number">1.</span> <span class="nav-text">前期准备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改配置文件"><span class="nav-number">2.</span> <span class="nav-text">修改配置文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重启网络服务"><span class="nav-number">3.</span> <span class="nav-text">重启网络服务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#检查网络"><span class="nav-number">4.</span> <span class="nav-text">检查网络</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是环境变量"><span class="nav-number">2.</span> <span class="nav-text">什么是环境变量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#环境变量（Environment-Variable-）"><span class="nav-number">2.1.</span> <span class="nav-text">环境变量（Environment Variable ）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#变量"><span class="nav-number">2.2.</span> <span class="nav-text">变量</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#环境"><span class="nav-number">2.2.1.</span> <span class="nav-text">环境</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#环境变量的作用"><span class="nav-number">2.2.2.</span> <span class="nav-text">环境变量的作用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#环境变量有哪些"><span class="nav-number">2.2.3.</span> <span class="nav-text">环境变量有哪些</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在JAVA中"><span class="nav-number">3.</span> <span class="nav-text">在JAVA中</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#常见的Java相关环境变量及其作用"><span class="nav-number">3.1.</span> <span class="nav-text">常见的Java相关环境变量及其作用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#PATH"><span class="nav-number">3.1.1.</span> <span class="nav-text">PATH</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#JAVA-HOME"><span class="nav-number">3.1.2.</span> <span class="nav-text">JAVA_HOME</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CLASSPATH"><span class="nav-number">3.1.3.</span> <span class="nav-text">CLASSPATH</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小结"><span class="nav-number">4.</span> <span class="nav-text">小结</span></a></li></ol></div>
             
 
           </div>

@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-07-31T11:53:55.818Z</updated>
+  <updated>2019-08-02T11:35:29.529Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,11 +17,62 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Java变量类型</title>
+    <link href="http://yoursite.com/2019/08/02/Java%E5%8F%98%E9%87%8F%E7%B1%BB%E5%9E%8B/"/>
+    <id>http://yoursite.com/2019/08/02/Java变量类型/</id>
+    <published>2019-08-02T11:00:44.000Z</published>
+    <updated>2019-08-02T11:35:29.529Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="变量的分类"><a href="#变量的分类" class="headerlink" title="变量的分类"></a>变量的分类</h2><h3 id="按数据类型分类"><a href="#按数据类型分类" class="headerlink" title="按数据类型分类"></a>按数据类型分类</h3><p><strong>详细说明：</strong></p><ol><li>整型：</li></ol><ul><li>byte(1字节=8bit)</li><li>short(2字节)</li><li>int(4字节)</li><li>long(8字节)</li></ul><p>① byte范围：-128 ~ 127</p><p>② 声明long型变量，必须以”l”或”L”结尾</p><p>③ 通常，定义整型变量时，使用int型。</p><p>④整型的常量，默认类型是：int型</p><ol start="2"><li>浮点型：float(4字节) \ double(8字节)</li></ol><p>① 浮点型，表示带小数点的数值</p><p>② float表示数值的范围比long还大</p><p>③ 定义float类型变量时，变量要以”f”或”F”结尾</p><p>④ 通常，定义浮点型变量时，使用double型。</p><p>⑤ 浮点型的常量，默认类型为：double</p><ol start="3"><li>字符型：char (1字符=2字节)<br>① 定义char型变量，通常使用一对’’,内部只能写一个字符<br>② 表示方式：</li></ol><ul><li>声明一个字符</li><li>转义字符</li><li>直接使用 Unicode 值来表示字符型常量</li></ul><ol start="4"><li>布尔型：boolean</li></ol><p>① 只能取两个值之一：true 、 false</p><p>② 常常在条件判断、循环结构中使用</p><h2 id="定义变量的格式"><a href="#定义变量的格式" class="headerlink" title="定义变量的格式"></a>定义变量的格式</h2><p>数据类型  变量名 = 变量值;</p><p>或</p><p>数据类型  变量名;</p><p>变量名 = 变量值;</p><h3 id="变量使用的注意点"><a href="#变量使用的注意点" class="headerlink" title="变量使用的注意点"></a>变量使用的注意点</h3><p>① 变量必须先声明，后使用</p><p>② 变量都定义在其作用域内。在作用域内，它是有效的。换句话说，出了作用域，就失效了</p><p>③ 同一个作用域内，不可以声明两个同名的变量</p><h3 id="基本数据类型变量间运算规则"><a href="#基本数据类型变量间运算规则" class="headerlink" title="基本数据类型变量间运算规则"></a>基本数据类型变量间运算规则</h3><p>涉及到的基本数据类型：除了boolean之外的其他7种</p><p>自动类型转换(只涉及7种基本数据类型）</p><p><strong>结论：</strong></p><blockquote><p>当容量小的数据类型的变量与容量大的数据类型的变量做运算时，结果自动提升为容量大的数据类型。</p></blockquote><p>byte 、char 、short –&gt; int –&gt; long –&gt; float –&gt; double</p><p>特别的：当byte、char、short三种类型的变量做运算时，结果为<strong>int型</strong></p><p>说明：此时的容量大小指的是，表示数的范围的大和小。比如：float容量要大于long的容量</p><h3 id="强制类型转换-只涉及7种基本数据类型）：自动类型提升运算的逆运算"><a href="#强制类型转换-只涉及7种基本数据类型）：自动类型提升运算的逆运算" class="headerlink" title="强制类型转换(只涉及7种基本数据类型）：自动类型提升运算的逆运算"></a>强制类型转换(只涉及7种基本数据类型）：自动类型提升运算的逆运算</h3><ol><li>需要使用强转符：()</li><li>注意点：强制类型转换，可能导致精度损失。</li></ol><h2 id="String与8种基本数据类型间的运算"><a href="#String与8种基本数据类型间的运算" class="headerlink" title="String与8种基本数据类型间的运算"></a>String与8种基本数据类型间的运算</h2><ol><li>String属于引用数据类型,翻译为：字符串</li><li>声明String类型变量时，使用一对””</li><li>String可以和8种基本数据类型变量做运算，且运算只能是连接运算：+</li><li>运算的结果仍然是String类型</li></ol><p><strong>避免：</strong></p><pre><code>String s = 123;//编译错误String s1 = &quot;123&quot;;int i = (int)s1;//编译错误</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;变量的分类&quot;&gt;&lt;a href=&quot;#变量的分类&quot; class=&quot;headerlink&quot; title=&quot;变量的分类&quot;&gt;&lt;/a&gt;变量的分类&lt;/h2&gt;&lt;h3 id=&quot;按数据类型分类&quot;&gt;&lt;a href=&quot;#按数据类型分类&quot; class=&quot;headerlink&quot; title=
+      
+    
+    </summary>
+    
+      <category term="Java" scheme="http://yoursite.com/categories/Java/"/>
+    
+    
+      <category term="Java" scheme="http://yoursite.com/tags/Java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>什么是环境变量</title>
+    <link href="http://yoursite.com/2019/08/02/%E4%BB%80%E4%B9%88%E6%98%AF%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/"/>
+    <id>http://yoursite.com/2019/08/02/什么是环境变量/</id>
+    <published>2019-08-02T11:00:28.000Z</published>
+    <updated>2019-08-02T11:36:28.363Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>相信大家初学java时，肯定会涉及到“配置环境变量”，而在网上搜索大多是教我们如何如配置，真正说明为什么要去配置环境变量的不多。</p><p>不管在windows里还是liunx里都少不了环境变量的配置，一键Copy是解决不了问题的，还可能会出现各种各样的问题，如果我们搞清楚原理，就会方便许多。</p><p>今天我们就以java环境变量来了解，什么是环境变量以及为什么要配置。</p><h2 id="什么是环境变量"><a href="#什么是环境变量" class="headerlink" title="什么是环境变量"></a>什么是环境变量</h2><h3 id="环境变量（Environment-Variable-）"><a href="#环境变量（Environment-Variable-）" class="headerlink" title="环境变量（Environment Variable ）"></a>环境变量（Environment Variable ）</h3><p>环境变量是在操作系统中一个具有特定名字的对象，它包含了一个或者多个应用程序所将使用到的信息。</p><h3 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h3><blockquote><p>可以随意给其赋值的一个存储单元</p></blockquote><h4 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h4><p>例如jvm这些都属于小软件，它们处于<strong>操作系统</strong>这个大软件中。</p><h4 id="环境变量的作用"><a href="#环境变量的作用" class="headerlink" title="环境变量的作用"></a>环境变量的作用</h4><p>变量在任何程序中的作用都是“被赋值/被取值”！这个全局变量操作系统可以使用，其内的小软件也可以使用！</p><h4 id="环境变量有哪些"><a href="#环境变量有哪些" class="headerlink" title="环境变量有哪些"></a>环境变量有哪些</h4><ol><li>在Windows中，是由可视化的窗口模式展现出来的</li></ol><p><img src="1.png" alt="Windowds"></p><ol start="2"><li>在Linux中</li></ol><p><strong>设置：</strong></p><p>在 <code>/etc/profile</code>文件中设置，<code>export</code>的意思就是将局部变量设置为环境变量。现有的变量是被这样一行代码设置的：</p><p><code>export PATH USER LOGNAME MAIL HOSTNAME HISTSIZE HISTCONTROL</code></p><p>这几个环境变量已经有一些默认值了，不过我们可以追加内容，比如修改PATH：</p><pre><code># : 的意思是并列PATH = /abc/def:$PATH</code></pre><p><strong>查看：</strong></p><p>查看全部，使用<code>env</code>命令即可。</p><p>查看单个，可以使用<code>echo</code>：如<code>echo $JAVA_HOME。</code></p><h2 id="在JAVA中"><a href="#在JAVA中" class="headerlink" title="在JAVA中"></a>在JAVA中</h2><p>我们知道什么是环境变量以后，在java中会具体怎么用到呢？</p><h3 id="常见的Java相关环境变量及其作用"><a href="#常见的Java相关环境变量及其作用" class="headerlink" title="常见的Java相关环境变量及其作用"></a>常见的Java相关环境变量及其作用</h3><h4 id="PATH"><a href="#PATH" class="headerlink" title="PATH"></a>PATH</h4><p>PATH是操作系统用的，用来指定操作系统需要使用到的可执行程序的位置。对于Java来说，通常需要把JDK的bin目录添加进入PATH中，这样你就可以在任意目录下使用bin下面的可执行程序，如javac.exe、java.exe等。</p><p><strong>这个变量一定要保证将JRE/JDK的bin纳入其中。</strong></p><pre><code>JDK,JRE，JVM三者之间的关系，以及JDK，JRE包含的主要结构有哪些JDK = JRE + Java的开发工具（javac.exe,java.exe,javadoc.exe）JRD = JVM + Java核心类库</code></pre><h4 id="JAVA-HOME"><a href="#JAVA-HOME" class="headerlink" title="JAVA_HOME"></a>JAVA_HOME</h4><p>JAVA_HOME是一个约定，通常它指的是JDK的目录。如果需要JDK的话，大部分程序会默认去环境变量中取JAVA_HOME这个变量。</p><p><strong>很重要，一些java开发的工具例如IDEA就需要。</strong></p><h4 id="CLASSPATH"><a href="#CLASSPATH" class="headerlink" title="CLASSPATH"></a>CLASSPATH</h4><p>在于告诉Java执行环境，在哪些目录下可以找到我们所要执行的Java程序所需要的类或者包。不过在JDK1.5之后的版本完全可以不用设置classpath环境变量就能正常运行程序。</p><h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><ol><li><p>需要在操作系统下设置的变量：</p><p> PATH中包含JRE/JDK的bin目录。<br> JAVA_HOME</p></li><li><p>一条命令语句包含命令本身（操作）和操作对象：Command + object，编译和运行Java程序必须经过两个步骤：</p></li></ol><ul><li><p>将源文件编译成字节码 （javac）</p></li><li><p>执行平台无关的字节码程序（java）</p></li></ul><p>那么错误可能会有两种情况，一是没有找到命令，二是没有找到命令所要操作的文件。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;相信大家初学java时，肯定会涉及到“配置环境变量”，而在网上搜索大多是教我们如何如配置，真正说明为什么要去配置环境变量的不多。&lt;/p&gt;
+&lt;
+      
+    
+    </summary>
+    
+      <category term="Java" scheme="http://yoursite.com/categories/Java/"/>
+    
+    
+      <category term="Java" scheme="http://yoursite.com/tags/Java/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Centos7下的JDK安装</title>
     <link href="http://yoursite.com/2019/07/31/Centos7%E4%B8%8B%E7%9A%84JDK%E5%AE%89%E8%A3%85/"/>
     <id>http://yoursite.com/2019/07/31/Centos7下的JDK安装/</id>
     <published>2019-07-31T11:15:56.000Z</published>
-    <updated>2019-07-31T11:53:55.818Z</updated>
+    <updated>2019-08-02T11:13:18.623Z</updated>
     
     <content type="html"><![CDATA[<h2 id="卸载系统自带OpenJDK以及相关的java文件"><a href="#卸载系统自带OpenJDK以及相关的java文件" class="headerlink" title="卸载系统自带OpenJDK以及相关的java文件"></a>卸载系统自带OpenJDK以及相关的java文件</h2><h3 id="查看系统自带jdk版本信息"><a href="#查看系统自带jdk版本信息" class="headerlink" title="查看系统自带jdk版本信息"></a>查看系统自带jdk版本信息</h3><p><code>java -version</code></p><p>查看当前系统自带的open jdk版本信息</p><h3 id="查找要删除的jdk文件"><a href="#查找要删除的jdk文件" class="headerlink" title="查找要删除的jdk文件"></a>查找要删除的jdk文件</h3><p>输入</p><p><code>rpm -qa | grep java</code></p><p>查看包含java字符串的文件，其中删除类似下面这四个文件（不一定是四个）</p><pre><code>java-1.7.0-openjdk-1.7.0.111-2.6.7.8.el7.x86_64java-1.8.0-openjdk-1.8.0.102-4.b14.el7.x86_64java-1.8.0-openjdk-headless-1.8.0.102-4.b14.el7.x86_64java-1.7.0-openjdk-headless-1.7.0.111-2.6.7.8.el7.x86_64</code></pre><p>包含noarch的文件不必删除，如下：</p><pre><code>python-javapackages-3.4.1-11.el7.noarchtzdata-java-2016g-2.el7.noarchjavapackages-tools-3.4.1-11.el7.noarch</code></pre><h3 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h3><p>删除的具体命令如下：</p><pre><code>rpm -e --nodeps java-1.7.0-openjdk-1.7.0.111-2.6.7.8.el7.x86_64rpm -e --nodeps java-1.8.0-openjdk-1.8.0.102-4.b14.el7.x86_64rpm -e --nodeps java-1.8.0-openjdk-headless-1.8.0.102-4.b14.el7.x86_64rpm -e --nodeps java-1.7.0-openjdk-headless-1.7.0.111-2.6.7.8.el7.x86_64</code></pre><p>执行完以上步骤后可以再次使用java -version查看是否已经删除成功。</p><p><img src="1.png" alt></p><h2 id="下载最新稳定版JDK"><a href="#下载最新稳定版JDK" class="headerlink" title="下载最新稳定版JDK"></a>下载最新稳定版JDK</h2><h3 id="下载地址"><a href="#下载地址" class="headerlink" title="下载地址"></a>下载地址</h3><blockquote><p><a href="https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html" target="_blank" rel="noopener">https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html</a></p></blockquote><p><img src="2.png" alt></p><h3 id="解压JDK"><a href="#解压JDK" class="headerlink" title="解压JDK"></a>解压JDK</h3><p>在命令窗口键入（在特定的文件录下，如/opt/java）:</p><p><code>tar -zxvf jdk-8u144-linux-x64.tar.gz</code></p><h3 id="配置JDK环境变量"><a href="#配置JDK环境变量" class="headerlink" title="配置JDK环境变量"></a>配置JDK环境变量</h3><ol><li>编辑全局变量</li></ol><p>命令行输入：</p><p><code>vim /etc/profile</code></p><p>在文本最后一行添加如下:</p><pre><code>#java environmentexport JAVA_HOME=/opt/java/jdk1.8.0_201export CLASSPATH=.:${JAVA_HOME}/jre/lib/rt.jar:${JAVA_HOME}/lib/dt.jar:${JAVA_HOME}/lib/tools.jarexport PATH=$PATH:${JAVA_HOME}/bin</code></pre><p><strong>保存并退出编辑。</strong></p><ol start="2"><li>让设置的环境变量生效</li></ol><p><code>source /etc/profile</code></p><ol start="3"><li>检查是否配置成功</li></ol><p><code>java -version</code></p>]]></content>
     
@@ -41,7 +92,7 @@
     
       <category term="Liunx" scheme="http://yoursite.com/tags/Liunx/"/>
     
-      <category term="java" scheme="http://yoursite.com/tags/java/"/>
+      <category term="Java" scheme="http://yoursite.com/tags/Java/"/>
     
   </entry>
   
