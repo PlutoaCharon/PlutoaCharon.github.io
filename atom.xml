@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-08-02T11:35:29.529Z</updated>
+  <updated>2019-08-08T12:01:43.138Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,11 +17,98 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>初识Scala</title>
+    <link href="http://yoursite.com/2019/08/08/%E5%88%9D%E8%AF%86Scala/"/>
+    <id>http://yoursite.com/2019/08/08/初识Scala/</id>
+    <published>2019-08-08T11:33:24.000Z</published>
+    <updated>2019-08-08T12:01:43.138Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="Scala概述"><a href="#Scala概述" class="headerlink" title="Scala概述"></a>Scala概述</h2><h3 id="学习Scala的原因"><a href="#学习Scala的原因" class="headerlink" title="学习Scala的原因"></a>学习Scala的原因</h3><ol><li><p>Spark—新一代内存级大数据计算框架，是大数据的重要内容。</p></li><li><p>Spark就是使用Scala编写的。因此为了更好的学习Spark, 需要掌握Scala这门语言。</p></li><li><p>Scala 是 Scalable Language 的简写，是一门多范式(范式/编程方式[面向对象/函数式编程])的编程语言</p></li><li><p>联邦理工学院洛桑（EPFL）的Martin Odersky于2001年开始设计Scala</p></li><li><p>Spark的兴起，带动Scala语言的发展！</p></li></ol><h3 id="Scala语言的特点"><a href="#Scala语言的特点" class="headerlink" title="Scala语言的特点"></a>Scala语言的特点</h3><blockquote><p>Scala 是一门以 java 虚拟机（JVM）为运行环境并将面向对象和函数式编程的最佳特性结合在一起的静态类型编程语言。</p></blockquote><ol><li>Scala 是一门多范式 (multi-paradigm) 的编程语言，Scala 支持面向对象和函数式编程</li><li>Scala 源代码(.scala)会被编译成 Java 字节码(.class)，然后运行于 JVM 之上，并可以调用现有的<br>Java 类库，实现两种语言的无缝对接。</li><li>scala 单作为一门语言来看， 非常的简洁高效（三元运算， ++ ， –）</li><li>Scala 在设计时，马丁·奥德斯基 是参考了 Java 的设计思想，可以说 Scala 是源于 java，同时马丁·奥德斯基 也加入了自己的思想，将函数式编程语言的特点融合到 JAVA 中</li></ol><h3 id="Scala的转义字符"><a href="#Scala的转义字符" class="headerlink" title="Scala的转义字符"></a>Scala的转义字符</h3><ol><li>\t ：一个制表符</li><li>\n ：换行符</li><li>\ ：一个 \</li><li>\” : 一个 “</li><li>\r ： 一个回车</li></ol><h3 id="Scala语言输出的三种方式"><a href="#Scala语言输出的三种方式" class="headerlink" title="Scala语言输出的三种方式"></a>Scala语言输出的三种方式</h3><ol><li>字符串通过+号连接（类似 java）。</li><li>printf 用法 （类似 C 语言）字符串通过 % 传值。</li><li>字符串通过$引用(类似 PHP）。</li></ol><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">object TestPrint &#123;</span><br><span class="line"></span><br><span class="line"><span class="function">def <span class="title">main</span><span class="params">(args: Array[String])</span>: Unit </span>= &#123;</span><br><span class="line"></span><br><span class="line"><span class="comment">//使用+</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> name : String = <span class="string">"tom"</span> <span class="keyword">var</span> sal : Double = <span class="number">1.2</span> println(<span class="string">"hello"</span> + sal + name )</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使 用 格 式 化 的 方 式</span></span><br><span class="line"></span><br><span class="line"><span class="function">printf <span class="title">printf</span><span class="params">(<span class="string">"name=%s sal=%f\n"</span>, name, sal)</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="comment">//使用$引用的方式，输出变量，类似 php</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="title">println</span><span class="params">(s<span class="string">"第三种方式 name=$name sal = $&#123;sal + 1&#125;"</span>)</span></span></span><br><span class="line"><span class="function">&#125;</span></span><br><span class="line"><span class="function">&#125;</span></span><br></pre></td></tr></table></figure><h3 id="Scala-中的注释类型"><a href="#Scala-中的注释类型" class="headerlink" title="Scala 中的注释类型"></a>Scala 中的注释类型</h3><ol><li>单行注释</li><li>多行注释</li><li>文档注释</li></ol><p>跟Java类似此处就不再赘述</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;Scala概述&quot;&gt;&lt;a href=&quot;#Scala概述&quot; class=&quot;headerlink&quot; title=&quot;Scala概述&quot;&gt;&lt;/a&gt;Scala概述&lt;/h2&gt;&lt;h3 id=&quot;学习Scala的原因&quot;&gt;&lt;a href=&quot;#学习Scala的原因&quot; class=&quot;head
+      
+    
+    </summary>
+    
+      <category term="Liunx" scheme="http://yoursite.com/categories/Liunx/"/>
+    
+      <category term="Scala" scheme="http://yoursite.com/categories/Liunx/Scala/"/>
+    
+    
+      <category term="Scala" scheme="http://yoursite.com/tags/Scala/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Scala的安装</title>
+    <link href="http://yoursite.com/2019/08/08/Scala%E7%9A%84%E5%AE%89%E8%A3%85/"/>
+    <id>http://yoursite.com/2019/08/08/Scala的安装/</id>
+    <published>2019-08-08T09:29:24.000Z</published>
+    <updated>2019-08-08T11:58:19.395Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="准备安装"><a href="#准备安装" class="headerlink" title="准备安装"></a>准备安装</h2><p>首先在官网下载好scala以后，安装在hadoop目录下</p><pre><code>cd /opt/hadooptar -zxvf scala-2.12.8.tgz</code></pre><h2 id="进入环境变量"><a href="#进入环境变量" class="headerlink" title="进入环境变量"></a>进入环境变量</h2><p><code>vim /etc/profile</code></p><pre><code>#scalaexport SCALA_HOME=/opt/hadoop/scala-2.12.8export PATH=$PATH:$SCALA_HOME/bin</code></pre><p><code>source /etc/profile</code><br><strong>保存</strong></p><p>在相应的slave1，与slave2中也进行相应修改</p><h2 id="安装成功"><a href="#安装成功" class="headerlink" title="安装成功"></a>安装成功</h2><p><img src="1.png" alt="Scala"></p><h2 id="将scala分发到其他节点上"><a href="#将scala分发到其他节点上" class="headerlink" title="将scala分发到其他节点上"></a>将scala分发到其他节点上</h2><pre><code>scp -r scala-2.12.8 root@slave1:/opt/hadoop/scp -r scala-2.12.8 root@slave2:/opt/hadoop/</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;准备安装&quot;&gt;&lt;a href=&quot;#准备安装&quot; class=&quot;headerlink&quot; title=&quot;准备安装&quot;&gt;&lt;/a&gt;准备安装&lt;/h2&gt;&lt;p&gt;首先在官网下载好scala以后，安装在hadoop目录下&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;cd /opt/hadoop
+tar
+      
+    
+    </summary>
+    
+      <category term="Liunx" scheme="http://yoursite.com/categories/Liunx/"/>
+    
+      <category term="Scala" scheme="http://yoursite.com/categories/Liunx/Scala/"/>
+    
+    
+      <category term="Liunx" scheme="http://yoursite.com/tags/Liunx/"/>
+    
+      <category term="Scala" scheme="http://yoursite.com/tags/Scala/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Liunx中tar命令的使用</title>
+    <link href="http://yoursite.com/2019/08/08/Liunx%E4%B8%ADtar%E5%91%BD%E4%BB%A4%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
+    <id>http://yoursite.com/2019/08/08/Liunx中tar命令的使用/</id>
+    <published>2019-08-08T09:06:25.000Z</published>
+    <updated>2019-08-08T09:25:46.109Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>把常用的tar解压命令总结下，当作备忘：</p></blockquote><hr><h2 id="tar"><a href="#tar" class="headerlink" title="tar"></a>tar</h2><pre><code>-c: 建立压缩档案-x：解压-t：查看内容-r：向压缩归档文件末尾追加文件-u：更新原压缩包中的文件</code></pre><p>这五个是独立的命令，压缩解压都要用到其中一个，可以和别的命令连用但只能用其中一个。下面的参数是根据需要在压缩或解压档案时可选的。</p><pre><code>-z：有gzip属性的-j：有bz2属性的-Z：有compress属性的-v：显示所有过程-O：将文件解开到标准输出</code></pre><h3 id="下面的参数-f是必须的"><a href="#下面的参数-f是必须的" class="headerlink" title="下面的参数-f是必须的"></a>下面的参数-f是必须的</h3><blockquote><p>-f: 使用档案名字，切记，这个参数是最后一个参数，后面只能接档案名。</p></blockquote><p><code>tar -cf all.tar *.jpg</code></p><p>这条命令是将所有.jpg的文件打成一个名为all.tar的包。-c是表示产生新的包，-f指定包的文件名。</p><p><code>tar -rf all.tar *.gif</code></p><p>这条命令是将所有.gif的文件增加到all.tar的包里面去。-r是表示增加文件的意思。</p><p><code>tar -uf all.tar logo.gif</code></p><p>这条命令是更新原来tar包all.tar中logo.gif文件，-u是表示更新文件的意思。</p><p><code>tar -tf all.tar</code></p><p>这条命令是列出all.tar包中所有文件，-t是列出文件的意思</p><p><code>tar -xf all.tar</code></p><p>这条命令是解出all.tar包中所有文件，-x是解开的意思</p><h2 id="压缩"><a href="#压缩" class="headerlink" title="压缩"></a>压缩</h2><p>将目录里所有jpg文件打包成tar.jpg</p><p><code>tar –cvf jpg.tar *.jpg</code></p><p>将目录里所有jpg文件打包成jpg.tar后，并且将其用gzip压缩，生成一个gzip压缩过的包，命名为jpg.tar.gz</p><p><code>tar –czf jpg.tar.gz *.jpg</code></p><p>将目录里所有jpg文件打包成jpg.tar后，并且将其用bzip2压缩，生成一个bzip2压缩过的包，命名为jpg.tar.bz2</p><p><code>tar –cjf jpg.tar.bz2 *.jpg</code></p><p>将目录里所有jpg文件打包成jpg.tar后，并且将其用compress压缩，生成一个umcompress压缩过的包，命名为jpg.tar.Z</p><p><code>tar –cZf jpg.tar.Z *.jpg</code></p><p>rar格式的压缩，需要先下载rar for linux</p><p><code>rar a jpg.rar *.jpg</code></p><p>zip格式的压缩，需要先下载zip for linux</p><p><code>zip jpg.zip *.jpg</code></p><h2 id="解压"><a href="#解压" class="headerlink" title="解压"></a>解压</h2><p>解压 tar包</p><p><code>tar –xvf file.tar</code></p><p>解压tar.gz</p><p><code>tar -xzvf file.tar.gz</code></p><p>解压 tar.bz2</p><p><code>tar -xjvf file.tar.bz2</code></p><p>解压tar.Z</p><p><code>tar –xZvf file.tar.Z</code></p><p>解压rar</p><p><code>unrar e file.rar</code></p><p>解压zip</p><p><code>unzip file.zip</code></p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><pre><code>*.tar 用 tar –xvf 解压*.gz 用 gzip -d或者gunzip 解压*.tar.gz和*.tgz 用 tar –xzf 解压*.bz2 用 bzip2 -d或者用bunzip2 解压*.tar.bz2用tar –xjf 解压*.Z 用 uncompress 解压*.tar.Z 用tar –xZf 解压*.rar 用 unrar e解压*.zip 用 unzip 解压</code></pre><blockquote><p>linux下最常用的打包程序就是tar了，使用tar程序打出来的包我们常称为tar包，tar包文件的命令通常都是<br>以.tar结尾的。生成tar包后，就可以用其它的程序来进行压缩。</p></blockquote><h3 id="命令详解"><a href="#命令详解" class="headerlink" title="命令详解"></a>命令详解</h3><ol><li>命令格式:</li></ol><p><code>tar[必要参数][选择参数][文件]</code></p><ol start="2"><li>命令功能：</li></ol><p>用来压缩和解压文件。tar本身不具有压缩功能。他是调用压缩功能实现的</p><ol start="3"><li>命令参数：</li></ol><p><strong>必要参数有如下：</strong></p><pre><code>-A 新增压缩文件到已存在的压缩-B 设置区块大小-c 建立新的压缩文件-d 记录文件的差别-r 添加文件到已经压缩的文件-u 添加改变了和现有的文件到已经存在的压缩文件-x 从压缩的文件中提取文件-t 显示压缩文件的内容-z 支持gzip解压文件-j 支持bzip2解压文件-Z 支持compress解压文件-v 显示操作过程-l 文件系统边界设置-k 保留原有文件不覆盖-m 保留文件不被覆盖-W 确认压缩文件的正确性可选参数如下：-b 设置区块数目-C 切换到指定目录-f 指定压缩文件--help 显示帮助信息--version 显示版本信息</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;把常用的tar解压命令总结下，当作备忘：&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h2 id=&quot;tar&quot;&gt;&lt;a href=&quot;#tar&quot; class=&quot;headerlink&quot; title=&quot;tar&quot;&gt;&lt;/a&gt;tar&lt;/h2&gt;&lt;pre&gt;&lt;cod
+      
+    
+    </summary>
+    
+      <category term="Liunx" scheme="http://yoursite.com/categories/Liunx/"/>
+    
+    
+      <category term="Liunx" scheme="http://yoursite.com/tags/Liunx/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Java变量类型</title>
     <link href="http://yoursite.com/2019/08/02/Java%E5%8F%98%E9%87%8F%E7%B1%BB%E5%9E%8B/"/>
     <id>http://yoursite.com/2019/08/02/Java变量类型/</id>
     <published>2019-08-02T11:00:44.000Z</published>
-    <updated>2019-08-02T11:35:29.529Z</updated>
+    <updated>2019-08-08T09:40:49.172Z</updated>
     
     <content type="html"><![CDATA[<h2 id="变量的分类"><a href="#变量的分类" class="headerlink" title="变量的分类"></a>变量的分类</h2><h3 id="按数据类型分类"><a href="#按数据类型分类" class="headerlink" title="按数据类型分类"></a>按数据类型分类</h3><p><strong>详细说明：</strong></p><ol><li>整型：</li></ol><ul><li>byte(1字节=8bit)</li><li>short(2字节)</li><li>int(4字节)</li><li>long(8字节)</li></ul><p>① byte范围：-128 ~ 127</p><p>② 声明long型变量，必须以”l”或”L”结尾</p><p>③ 通常，定义整型变量时，使用int型。</p><p>④整型的常量，默认类型是：int型</p><ol start="2"><li>浮点型：float(4字节) \ double(8字节)</li></ol><p>① 浮点型，表示带小数点的数值</p><p>② float表示数值的范围比long还大</p><p>③ 定义float类型变量时，变量要以”f”或”F”结尾</p><p>④ 通常，定义浮点型变量时，使用double型。</p><p>⑤ 浮点型的常量，默认类型为：double</p><ol start="3"><li>字符型：char (1字符=2字节)<br>① 定义char型变量，通常使用一对’’,内部只能写一个字符<br>② 表示方式：</li></ol><ul><li>声明一个字符</li><li>转义字符</li><li>直接使用 Unicode 值来表示字符型常量</li></ul><ol start="4"><li>布尔型：boolean</li></ol><p>① 只能取两个值之一：true 、 false</p><p>② 常常在条件判断、循环结构中使用</p><h2 id="定义变量的格式"><a href="#定义变量的格式" class="headerlink" title="定义变量的格式"></a>定义变量的格式</h2><p>数据类型  变量名 = 变量值;</p><p>或</p><p>数据类型  变量名;</p><p>变量名 = 变量值;</p><h3 id="变量使用的注意点"><a href="#变量使用的注意点" class="headerlink" title="变量使用的注意点"></a>变量使用的注意点</h3><p>① 变量必须先声明，后使用</p><p>② 变量都定义在其作用域内。在作用域内，它是有效的。换句话说，出了作用域，就失效了</p><p>③ 同一个作用域内，不可以声明两个同名的变量</p><h3 id="基本数据类型变量间运算规则"><a href="#基本数据类型变量间运算规则" class="headerlink" title="基本数据类型变量间运算规则"></a>基本数据类型变量间运算规则</h3><p>涉及到的基本数据类型：除了boolean之外的其他7种</p><p>自动类型转换(只涉及7种基本数据类型）</p><p><strong>结论：</strong></p><blockquote><p>当容量小的数据类型的变量与容量大的数据类型的变量做运算时，结果自动提升为容量大的数据类型。</p></blockquote><p>byte 、char 、short –&gt; int –&gt; long –&gt; float –&gt; double</p><p>特别的：当byte、char、short三种类型的变量做运算时，结果为<strong>int型</strong></p><p>说明：此时的容量大小指的是，表示数的范围的大和小。比如：float容量要大于long的容量</p><h3 id="强制类型转换-只涉及7种基本数据类型）：自动类型提升运算的逆运算"><a href="#强制类型转换-只涉及7种基本数据类型）：自动类型提升运算的逆运算" class="headerlink" title="强制类型转换(只涉及7种基本数据类型）：自动类型提升运算的逆运算"></a>强制类型转换(只涉及7种基本数据类型）：自动类型提升运算的逆运算</h3><ol><li>需要使用强转符：()</li><li>注意点：强制类型转换，可能导致精度损失。</li></ol><h2 id="String与8种基本数据类型间的运算"><a href="#String与8种基本数据类型间的运算" class="headerlink" title="String与8种基本数据类型间的运算"></a>String与8种基本数据类型间的运算</h2><ol><li>String属于引用数据类型,翻译为：字符串</li><li>声明String类型变量时，使用一对””</li><li>String可以和8种基本数据类型变量做运算，且运算只能是连接运算：+</li><li>运算的结果仍然是String类型</li></ol><p><strong>避免：</strong></p><pre><code>String s = 123;//编译错误String s1 = &quot;123&quot;;int i = (int)s1;//编译错误</code></pre>]]></content>
     

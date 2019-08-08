@@ -101,48 +101,18 @@
 
 
 
-  <meta name="description" content="前言作为一个码代码的萌新，想要学习更前沿更丰富的代码就得来全球最大的开源社区啦！:) 但是网上的参考资料太多太复杂，我就一边学一边把自己的学习过程整理下来，方便日后复习查看。 什么是GitHubgithub是一个基于git的代码托管平台，付费用户可以建私人仓库，我们一般的免费用户只能使用公共仓库，也就是代码要公开。Github 由Chris Wanstrath, PJ Hyett 与Tom Pre">
-<meta name="keywords" content="GitHub">
+  <meta name="description" content="把常用的tar解压命令总结下，当作备忘：   tar-c: 建立压缩档案 -x：解压 -t：查看内容 -r：向压缩归档文件末尾追加文件 -u：更新原压缩包中的文件 这五个是独立的命令，压缩解压都要用到其中一个，可以和别的命令连用但只能用其中一个。下面的参数是根据需要在压缩或解压档案时可选的。 -z：有gzip属性的 -j：有bz2属性的 -Z：有compress属性的 -v：显示所有过程 -O：">
+<meta name="keywords" content="Liunx">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Github学习笔记">
-<meta property="og:url" content="http://yoursite.com/2019/07/17/Github学习笔记/index.html">
+<meta property="og:title" content="Liunx中tar命令的使用">
+<meta property="og:url" content="http://yoursite.com/2019/08/08/Liunx中tar命令的使用/index.html">
 <meta property="og:site_name" content="浩翰Redamancy的博客">
-<meta property="og:description" content="前言作为一个码代码的萌新，想要学习更前沿更丰富的代码就得来全球最大的开源社区啦！:) 但是网上的参考资料太多太复杂，我就一边学一边把自己的学习过程整理下来，方便日后复习查看。 什么是GitHubgithub是一个基于git的代码托管平台，付费用户可以建私人仓库，我们一般的免费用户只能使用公共仓库，也就是代码要公开。Github 由Chris Wanstrath, PJ Hyett 与Tom Pre">
+<meta property="og:description" content="把常用的tar解压命令总结下，当作备忘：   tar-c: 建立压缩档案 -x：解压 -t：查看内容 -r：向压缩归档文件末尾追加文件 -u：更新原压缩包中的文件 这五个是独立的命令，压缩解压都要用到其中一个，可以和别的命令连用但只能用其中一个。下面的参数是根据需要在压缩或解压档案时可选的。 -z：有gzip属性的 -j：有bz2属性的 -Z：有compress属性的 -v：显示所有过程 -O：">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://yoursite.com/2019/07/17/Github学习笔记/1.png">
-<meta property="og:image" content="http://yoursite.com/2019/07/17/Github学习笔记/2.png">
-<meta property="og:image" content="http://yoursite.com/2019/07/17/Github学习笔记/3.png">
-<meta property="og:image" content="http://yoursite.com/2019/07/17/Github学习笔记/4.png">
-<meta property="og:image" content="http://yoursite.com/2019/07/17/Github学习笔记/5.png">
-<meta property="og:image" content="http://yoursite.com/2019/07/17/Github学习笔记/6.png">
-<meta property="og:image" content="http://yoursite.com/2019/07/17/Github学习笔记/7.png">
-<meta property="og:image" content="http://yoursite.com/2019/07/17/Github学习笔记/8.png">
-<meta property="og:image" content="http://yoursite.com/2019/07/17/Github学习笔记/10.png">
-<meta property="og:image" content="http://yoursite.com/2019/07/17/Github学习笔记/11.png">
-<meta property="og:image" content="http://yoursite.com/2019/07/17/Github学习笔记/12.png">
-<meta property="og:image" content="http://yoursite.com/2019/07/17/Github学习笔记/13.png">
-<meta property="og:image" content="http://yoursite.com/2019/07/17/Github学习笔记/14.png">
-<meta property="og:image" content="http://yoursite.com/2019/07/17/Github学习笔记/15.png">
-<meta property="og:image" content="http://yoursite.com/2019/07/17/Github学习笔记/16.png">
-<meta property="og:image" content="http://yoursite.com/2019/07/17/Github学习笔记/17.png">
-<meta property="og:image" content="http://yoursite.com/2019/07/17/Github学习笔记/18.png">
-<meta property="og:image" content="http://yoursite.com/2019/07/17/Github学习笔记/19.png">
-<meta property="og:image" content="http://yoursite.com/2019/07/17/Github学习笔记/20.png">
-<meta property="og:image" content="http://yoursite.com/2019/07/17/Github学习笔记/21.png">
-<meta property="og:image" content="http://yoursite.com/2019/07/17/Github学习笔记/22.png">
-<meta property="og:image" content="http://yoursite.com/2019/07/17/Github学习笔记/23.png">
-<meta property="og:image" content="http://yoursite.com/2019/07/17/Github学习笔记/24.png">
-<meta property="og:image" content="http://yoursite.com/2019/07/17/Github学习笔记/25.png">
-<meta property="og:image" content="http://yoursite.com/2019/07/17/Github学习笔记/26.png">
-<meta property="og:image" content="http://yoursite.com/2019/07/17/Github学习笔记/27.png">
-<meta property="og:image" content="http://yoursite.com/2019/07/17/Github学习笔记/28.png">
-<meta property="og:image" content="http://yoursite.com/2019/07/17/Github学习笔记/29.png">
-<meta property="og:image" content="http://yoursite.com/2019/07/17/Github学习笔记/30.png">
-<meta property="og:updated_time" content="2019-07-21T11:09:16.848Z">
+<meta property="og:updated_time" content="2019-08-08T09:25:46.109Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Github学习笔记">
-<meta name="twitter:description" content="前言作为一个码代码的萌新，想要学习更前沿更丰富的代码就得来全球最大的开源社区啦！:) 但是网上的参考资料太多太复杂，我就一边学一边把自己的学习过程整理下来，方便日后复习查看。 什么是GitHubgithub是一个基于git的代码托管平台，付费用户可以建私人仓库，我们一般的免费用户只能使用公共仓库，也就是代码要公开。Github 由Chris Wanstrath, PJ Hyett 与Tom Pre">
-<meta name="twitter:image" content="http://yoursite.com/2019/07/17/Github学习笔记/1.png">
+<meta name="twitter:title" content="Liunx中tar命令的使用">
+<meta name="twitter:description" content="把常用的tar解压命令总结下，当作备忘：   tar-c: 建立压缩档案 -x：解压 -t：查看内容 -r：向压缩归档文件末尾追加文件 -u：更新原压缩包中的文件 这五个是独立的命令，压缩解压都要用到其中一个，可以和别的命令连用但只能用其中一个。下面的参数是根据需要在压缩或解压档案时可选的。 -z：有gzip属性的 -j：有bz2属性的 -Z：有compress属性的 -v：显示所有过程 -O：">
 
 
 
@@ -152,7 +122,7 @@
 
   
   
-  <link rel="canonical" href="http://yoursite.com/2019/07/17/Github学习笔记/">
+  <link rel="canonical" href="http://yoursite.com/2019/08/08/Liunx中tar命令的使用/">
 
 
 
@@ -162,7 +132,7 @@
   };
 </script>
 
-  <title>Github学习笔记 | 浩翰Redamancy的博客</title>
+  <title>Liunx中tar命令的使用 | 浩翰Redamancy的博客</title>
   
 
 
@@ -379,7 +349,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/17/Github学习笔记/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/08/Liunx中tar命令的使用/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="精神小伙">
@@ -396,7 +366,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Github学习笔记
+          <h1 class="post-title" itemprop="name headline">Liunx中tar命令的使用
 
               
             
@@ -422,23 +392,13 @@
                 
               
 
-              <time title="创建时间：2019-07-17 19:34:58" itemprop="dateCreated datePublished" datetime="2019-07-17T19:34:58+08:00">2019-07-17</time>
+              <time title="创建时间：2019-08-08 17:06:25 / 修改时间：17:25:46" itemprop="dateCreated datePublished" datetime="2019-08-08T17:06:25+08:00">2019-08-08</time>
             </span>
           
 
           
             
 
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-07-21 19:09:16" itemprop="dateModified" datetime="2019-07-21T19:09:16+08:00">2019-07-21</time>
-              </span>
             
           
 
@@ -451,7 +411,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/GitHub/" itemprop="url" rel="index"><span itemprop="name">GitHub</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Liunx/" itemprop="url" rel="index"><span itemprop="name">Liunx</span></a></span>
 
                 
                 
@@ -486,7 +446,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span title="本文字数">2.4k</span>
+              <span title="本文字数">1.8k</span>
             </span>
           
 
@@ -517,95 +477,105 @@
       
 
       
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>作为一个码代码的萌新，想要学习更前沿更丰富的代码就得来全球最大的开源社区啦！:)</p>
-<p>但是网上的参考资料太多太复杂，我就一边学一边把自己的学习过程整理下来，方便日后复习查看。</p>
-<h1 id="什么是GitHub"><a href="#什么是GitHub" class="headerlink" title="什么是GitHub"></a>什么是GitHub</h1><p>github是一个基于git的代码托管平台，付费用户可以建私人仓库，我们一般的免费用户只能使用公共仓库，也就是代码要公开。<br>Github 由Chris Wanstrath, PJ Hyett 与Tom Preston-Werner三位开发者在2008年4月创办。迄今拥有59名全职员工，主要提供基于git的版本托管服务。</p>
-<p>git是一个版本控制工具，github是一个用git做版本控制的项目托管平台。</p>
-<h1 id="Why-GitHub"><a href="#Why-GitHub" class="headerlink" title="Why GitHub"></a>Why GitHub</h1><p>Git 是一款免费的、开源的、分布式的版本控制系统。旨在快速高效地处理无论规模大小的任何软件工程。</p>
-<p>每一个 Git克隆 都是一个完整的文件库，含有全部历史记录和修订追踪能力，不依赖于网络连接或中心服务器。其最大特色就是“分支”及“合并”操作非常快速、简便。</p>
-<h1 id="开始使用"><a href="#开始使用" class="headerlink" title="开始使用"></a>开始使用</h1><h2 id="注册GitHub账号"><a href="#注册GitHub账号" class="headerlink" title="注册GitHub账号"></a>注册GitHub账号</h2><p><img src="1.png" alt></p>
-<p>由于我已经有一个账号，大家没有的话得从头开始创建，点击Create an account即可。</p>
-<h2 id="填写基本信息"><a href="#填写基本信息" class="headerlink" title="填写基本信息"></a>填写基本信息</h2><p>填写好自己的基本信息，点击创建就可以拥有一个崭新的GitHub账号</p>
-<p><img src="2.png" alt></p>
-<h2 id="创建属于自己的工程"><a href="#创建属于自己的工程" class="headerlink" title="创建属于自己的工程"></a>创建属于自己的工程</h2><p><img src="3.png" alt></p>
-<p>登录进入自己的GitHub账号后如上图所示</p>
-<p><img src="4.png" alt></p>
-<p>点击箭头所指区域进入<strong>个人中心</strong></p>
-<p><img src="5.png" alt></p>
-<p>点击绿色的小方块</p>
-<p><img src="6.png" alt></p>
-<p><img src="7.png" alt></p>
-<p><img src="8.png" alt></p>
-<p>可以看到我是2018年10月18日创建的GitHub账号。</p>
-<h2 id="创建第一个工程"><a href="#创建第一个工程" class="headerlink" title="创建第一个工程"></a>创建第一个工程</h2><blockquote>
-<p>The Hello World project is a time-honored tradition in computer programming. It is a simple exercise that gets you started when learning something new. Let’s get started with GitHub!</p>
+        <blockquote>
+<p>把常用的tar解压命令总结下，当作备忘：</p>
 </blockquote>
-<h3 id="Step-1-Create-a-Repository"><a href="#Step-1-Create-a-Repository" class="headerlink" title="Step 1. Create a Repository"></a>Step 1. Create a Repository</h3><blockquote>
-<p>A repository is usually used to organize a single project. Repositories can contain folders and files, images, videos, spreadsheets, and data sets – anything your project needs. We recommend including a README, or a file with information about your project. GitHub makes it easy to add one at the same time you create your new repository. It also offers other common options such as a license file.<br>Your hello-world repository can be a place where you store ideas, resources, or even share and discuss things with others.</p>
+<hr>
+<h2 id="tar"><a href="#tar" class="headerlink" title="tar"></a>tar</h2><pre><code>-c: 建立压缩档案
+-x：解压
+-t：查看内容
+-r：向压缩归档文件末尾追加文件
+-u：更新原压缩包中的文件
+</code></pre><p>这五个是独立的命令，压缩解压都要用到其中一个，可以和别的命令连用但只能用其中一个。下面的参数是根据需要在压缩或解压档案时可选的。</p>
+<pre><code>-z：有gzip属性的
+-j：有bz2属性的
+-Z：有compress属性的
+-v：显示所有过程
+-O：将文件解开到标准输出
+</code></pre><h3 id="下面的参数-f是必须的"><a href="#下面的参数-f是必须的" class="headerlink" title="下面的参数-f是必须的"></a>下面的参数-f是必须的</h3><blockquote>
+<p>-f: 使用档案名字，切记，这个参数是最后一个参数，后面只能接档案名。</p>
 </blockquote>
-<p><img src="10.png" alt></p>
-<ol>
-<li>将Repository命名为 Hello World</li>
-<li>填写Description</li>
-<li>选择Public</li>
-<li>选中Initialize with a README</li>
-<li>点击 <strong>Create repository</strong>.</li>
-</ol>
-<p><img src="11.png" alt></p>
-<p><img src="12.png" alt></p>
-<h3 id="Step-2-Create-a-Branch"><a href="#Step-2-Create-a-Branch" class="headerlink" title="Step 2. Create a Branch"></a>Step 2. Create a Branch</h3><ol>
-<li>To create a new branch</li>
-<li>进入新建的Hello World repository中</li>
-<li>点击Branch master选项</li>
-<li>输入readme-edits</li>
-<li>选中下方的蓝色链接</li>
-</ol>
-<p><img src="13.png" alt></p>
-<p><img src="14.png" alt></p>
-<p><img src="15.png" alt></p>
-<blockquote>
-<p>现在你有两个分支master和readme-edits。他们看起来完全相同，但是接下来,我们将添加我们更改的新分支。</p>
+<p><code>tar -cf all.tar *.jpg</code></p>
+<p>这条命令是将所有.jpg的文件打成一个名为all.tar的包。-c是表示产生新的包，-f指定包的文件名。</p>
+<p><code>tar -rf all.tar *.gif</code></p>
+<p>这条命令是将所有.gif的文件增加到all.tar的包里面去。-r是表示增加文件的意思。</p>
+<p><code>tar -uf all.tar logo.gif</code></p>
+<p>这条命令是更新原来tar包all.tar中logo.gif文件，-u是表示更新文件的意思。</p>
+<p><code>tar -tf all.tar</code></p>
+<p>这条命令是列出all.tar包中所有文件，-t是列出文件的意思</p>
+<p><code>tar -xf all.tar</code></p>
+<p>这条命令是解出all.tar包中所有文件，-x是解开的意思</p>
+<h2 id="压缩"><a href="#压缩" class="headerlink" title="压缩"></a>压缩</h2><p>将目录里所有jpg文件打包成tar.jpg</p>
+<p><code>tar –cvf jpg.tar *.jpg</code></p>
+<p>将目录里所有jpg文件打包成jpg.tar后，并且将其用gzip压缩，生成一个gzip压缩过的包，命名为jpg.tar.gz</p>
+<p><code>tar –czf jpg.tar.gz *.jpg</code></p>
+<p>将目录里所有jpg文件打包成jpg.tar后，并且将其用bzip2压缩，生成一个bzip2压缩过的包，命名为jpg.tar.bz2</p>
+<p><code>tar –cjf jpg.tar.bz2 *.jpg</code></p>
+<p>将目录里所有jpg文件打包成jpg.tar后，并且将其用compress压缩，生成一个umcompress压缩过的包，命名为jpg.tar.Z</p>
+<p><code>tar –cZf jpg.tar.Z *.jpg</code></p>
+<p>rar格式的压缩，需要先下载rar for linux</p>
+<p><code>rar a jpg.rar *.jpg</code></p>
+<p>zip格式的压缩，需要先下载zip for linux</p>
+<p><code>zip jpg.zip *.jpg</code></p>
+<h2 id="解压"><a href="#解压" class="headerlink" title="解压"></a>解压</h2><p>解压 tar包</p>
+<p><code>tar –xvf file.tar</code></p>
+<p>解压tar.gz</p>
+<p><code>tar -xzvf file.tar.gz</code></p>
+<p>解压 tar.bz2</p>
+<p><code>tar -xjvf file.tar.bz2</code></p>
+<p>解压tar.Z</p>
+<p><code>tar –xZvf file.tar.Z</code></p>
+<p>解压rar</p>
+<p><code>unrar e file.rar</code></p>
+<p>解压zip</p>
+<p><code>unzip file.zip</code></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><pre><code>*.tar 用 tar –xvf 解压
+*.gz 用 gzip -d或者gunzip 解压
+*.tar.gz和*.tgz 用 tar –xzf 解压
+*.bz2 用 bzip2 -d或者用bunzip2 解压
+*.tar.bz2用tar –xjf 解压
+*.Z 用 uncompress 解压
+*.tar.Z 用tar –xZf 解压
+*.rar 用 unrar e解压
+*.zip 用 unzip 解压
+</code></pre><blockquote>
+<p>linux下最常用的打包程序就是tar了，使用tar程序打出来的包我们常称为tar包，tar包文件的命令通常都是<br>以.tar结尾的。生成tar包后，就可以用其它的程序来进行压缩。</p>
 </blockquote>
-<h3 id="Step-3-Make-and-commit-changes"><a href="#Step-3-Make-and-commit-changes" class="headerlink" title="Step 3. Make and commit changes"></a>Step 3. Make and commit changes</h3><p>现在咱们有了master的复制版本，readme-edits 分支，这是一个代码视图，我们可以在这里做一些编辑。</p>
-<p>在GitHub中,保存更改被称为commit 提交。每个提交都有一个关联的提交消息,，这是一个描述解释为什么一个特定的更改。提交信息捕获您的更改的历史,所以其他人可以很方便的看到你做了什么。</p>
-<ol>
-<li>点击README.md文件</li>
-<li>点击铅笔图标右上角的编辑文件的视图</li>
-<li>修改README.md</li>
-<li>点击下方的Commit changes</li>
+<h3 id="命令详解"><a href="#命令详解" class="headerlink" title="命令详解"></a>命令详解</h3><ol>
+<li>命令格式:</li>
 </ol>
-<p><img src="16.png" alt></p>
-<p><img src="17.png" alt></p>
-<p><img src="18.png" alt></p>
-<p><img src="19.png" alt></p>
-<p><strong>当然这些改变只会在readme-edits这个分支中改变README.md，并不会影响master</strong></p>
-<h3 id="Step-4-Open-a-Pull-Request"><a href="#Step-4-Open-a-Pull-Request" class="headerlink" title="Step 4. Open a Pull Request"></a>Step 4. Open a Pull Request</h3><p>我修改了你的代码，所以请求（request）你把我修改过的代码拉（pull）回去看看</p>
-<ol>
-<li>点击New pull request</li>
-<li>选择创建的readme-edits分支</li>
-<li>可以查看跟master相比的代码</li>
-<li>查看无误后点击Create Pull Request</li>
-<li>这时你的改变后的代码就到Pull request界面中</li>
-<li>你可以选择是否merge</li>
+<p><code>tar[必要参数][选择参数][文件]</code></p>
+<ol start="2">
+<li>命令功能：</li>
 </ol>
-<p><img src="20.png" alt></p>
-<p><img src="21.png" alt></p>
-<p><img src="22.png" alt></p>
-<p><img src="23.png" alt></p>
-<p><img src="24.png" alt></p>
-<p><img src="25.png" alt></p>
-<h3 id="Step-5-Merge-your-Pull-Request"><a href="#Step-5-Merge-your-Pull-Request" class="headerlink" title="Step 5. Merge your Pull Request"></a>Step 5. Merge your Pull Request</h3><p>这是本次实验的最后一步，Merge可以将别人给你的Pull Request整合到自己的主界面代码视图中</p>
-<ol>
-<li>点击Merge pull request将改变整合到master中</li>
-<li>整合成功后就可以将readme-edits分支删掉</li>
+<p>用来压缩和解压文件。tar本身不具有压缩功能。他是调用压缩功能实现的</p>
+<ol start="3">
+<li>命令参数：</li>
 </ol>
-<p><img src="26.png" alt></p>
-<p><img src="27.png" alt></p>
-<p><img src="28.png" alt></p>
-<p><img src="29.png" alt></p>
-<h3 id="Finally"><a href="#Finally" class="headerlink" title="Finally"></a>Finally</h3><p>我们可以发现，master的README变成了readme-edits分支中的README</p>
-<p><img src="30.png" alt></p>
-
+<p><strong>必要参数有如下：</strong></p>
+<pre><code>-A 新增压缩文件到已存在的压缩
+-B 设置区块大小
+-c 建立新的压缩文件
+-d 记录文件的差别
+-r 添加文件到已经压缩的文件
+-u 添加改变了和现有的文件到已经存在的压缩文件
+-x 从压缩的文件中提取文件
+-t 显示压缩文件的内容
+-z 支持gzip解压文件
+-j 支持bzip2解压文件
+-Z 支持compress解压文件
+-v 显示操作过程
+-l 文件系统边界设置
+-k 保留原有文件不覆盖
+-m 保留文件不被覆盖
+-W 确认压缩文件的正确性
+可选参数如下：
+-b 设置区块数目
+-C 切换到指定目录
+-f 指定压缩文件
+--help 显示帮助信息
+--version 显示版本信息
+</code></pre>
       
     </div>
 
@@ -631,7 +601,7 @@
         
         <div class="post-tags">
           
-            <a href="/tags/GitHub/" rel="tag"><i class="fa fa-tag"></i> GitHub</a>
+            <a href="/tags/Liunx/" rel="tag"><i class="fa fa-tag"></i> Liunx</a>
           
         </div>
       
@@ -644,8 +614,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/05/21/hexo搭建个人博客（二）/" rel="next" title="hexo搭建个人博客（二）">
-                <i class="fa fa-chevron-left"></i> hexo搭建个人博客（二）
+              <a href="/2019/08/02/Java变量类型/" rel="next" title="Java变量类型">
+                <i class="fa fa-chevron-left"></i> Java变量类型
               </a>
             
           </div>
@@ -654,8 +624,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/07/30/Centos7下NAT设置静态ip/" rel="prev" title="Centos7下NAT设置静态ip">
-                Centos7下NAT设置静态ip <i class="fa fa-chevron-right"></i>
+              <a href="/2019/08/08/Scala的安装/" rel="prev" title="Scala的安装">
+                Scala的安装 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -830,7 +800,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是GitHub"><span class="nav-number">2.</span> <span class="nav-text">什么是GitHub</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Why-GitHub"><span class="nav-number">3.</span> <span class="nav-text">Why GitHub</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#开始使用"><span class="nav-number">4.</span> <span class="nav-text">开始使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#注册GitHub账号"><span class="nav-number">4.1.</span> <span class="nav-text">注册GitHub账号</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#填写基本信息"><span class="nav-number">4.2.</span> <span class="nav-text">填写基本信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建属于自己的工程"><span class="nav-number">4.3.</span> <span class="nav-text">创建属于自己的工程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建第一个工程"><span class="nav-number">4.4.</span> <span class="nav-text">创建第一个工程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-1-Create-a-Repository"><span class="nav-number">4.4.1.</span> <span class="nav-text">Step 1. Create a Repository</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-2-Create-a-Branch"><span class="nav-number">4.4.2.</span> <span class="nav-text">Step 2. Create a Branch</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-3-Make-and-commit-changes"><span class="nav-number">4.4.3.</span> <span class="nav-text">Step 3. Make and commit changes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-4-Open-a-Pull-Request"><span class="nav-number">4.4.4.</span> <span class="nav-text">Step 4. Open a Pull Request</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-5-Merge-your-Pull-Request"><span class="nav-number">4.4.5.</span> <span class="nav-text">Step 5. Merge your Pull Request</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Finally"><span class="nav-number">4.4.6.</span> <span class="nav-text">Finally</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#tar"><span class="nav-number">1.</span> <span class="nav-text">tar</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#下面的参数-f是必须的"><span class="nav-number">1.1.</span> <span class="nav-text">下面的参数-f是必须的</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#压缩"><span class="nav-number">2.</span> <span class="nav-text">压缩</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解压"><span class="nav-number">3.</span> <span class="nav-text">解压</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#命令详解"><span class="nav-number">4.1.</span> <span class="nav-text">命令详解</span></a></li></ol></li></ol></div>
             
 
           </div>

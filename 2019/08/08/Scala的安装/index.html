@@ -101,48 +101,20 @@
 
 
 
-  <meta name="description" content="前言作为一个码代码的萌新，想要学习更前沿更丰富的代码就得来全球最大的开源社区啦！:) 但是网上的参考资料太多太复杂，我就一边学一边把自己的学习过程整理下来，方便日后复习查看。 什么是GitHubgithub是一个基于git的代码托管平台，付费用户可以建私人仓库，我们一般的免费用户只能使用公共仓库，也就是代码要公开。Github 由Chris Wanstrath, PJ Hyett 与Tom Pre">
-<meta name="keywords" content="GitHub">
+  <meta name="description" content="准备安装首先在官网下载好scala以后，安装在hadoop目录下 cd /opt/hadoop tar -zxvf scala-2.12.8.tgz 进入环境变量vim /etc/profile #scala  export SCALA_HOME=/opt/hadoop/scala-2.12.8 export PATH=$PATH:$SCALA_HOME/bin source /etc/profi">
+<meta name="keywords" content="Liunx,Scala">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Github学习笔记">
-<meta property="og:url" content="http://yoursite.com/2019/07/17/Github学习笔记/index.html">
+<meta property="og:title" content="Scala的安装">
+<meta property="og:url" content="http://yoursite.com/2019/08/08/Scala的安装/index.html">
 <meta property="og:site_name" content="浩翰Redamancy的博客">
-<meta property="og:description" content="前言作为一个码代码的萌新，想要学习更前沿更丰富的代码就得来全球最大的开源社区啦！:) 但是网上的参考资料太多太复杂，我就一边学一边把自己的学习过程整理下来，方便日后复习查看。 什么是GitHubgithub是一个基于git的代码托管平台，付费用户可以建私人仓库，我们一般的免费用户只能使用公共仓库，也就是代码要公开。Github 由Chris Wanstrath, PJ Hyett 与Tom Pre">
+<meta property="og:description" content="准备安装首先在官网下载好scala以后，安装在hadoop目录下 cd /opt/hadoop tar -zxvf scala-2.12.8.tgz 进入环境变量vim /etc/profile #scala  export SCALA_HOME=/opt/hadoop/scala-2.12.8 export PATH=$PATH:$SCALA_HOME/bin source /etc/profi">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://yoursite.com/2019/07/17/Github学习笔记/1.png">
-<meta property="og:image" content="http://yoursite.com/2019/07/17/Github学习笔记/2.png">
-<meta property="og:image" content="http://yoursite.com/2019/07/17/Github学习笔记/3.png">
-<meta property="og:image" content="http://yoursite.com/2019/07/17/Github学习笔记/4.png">
-<meta property="og:image" content="http://yoursite.com/2019/07/17/Github学习笔记/5.png">
-<meta property="og:image" content="http://yoursite.com/2019/07/17/Github学习笔记/6.png">
-<meta property="og:image" content="http://yoursite.com/2019/07/17/Github学习笔记/7.png">
-<meta property="og:image" content="http://yoursite.com/2019/07/17/Github学习笔记/8.png">
-<meta property="og:image" content="http://yoursite.com/2019/07/17/Github学习笔记/10.png">
-<meta property="og:image" content="http://yoursite.com/2019/07/17/Github学习笔记/11.png">
-<meta property="og:image" content="http://yoursite.com/2019/07/17/Github学习笔记/12.png">
-<meta property="og:image" content="http://yoursite.com/2019/07/17/Github学习笔记/13.png">
-<meta property="og:image" content="http://yoursite.com/2019/07/17/Github学习笔记/14.png">
-<meta property="og:image" content="http://yoursite.com/2019/07/17/Github学习笔记/15.png">
-<meta property="og:image" content="http://yoursite.com/2019/07/17/Github学习笔记/16.png">
-<meta property="og:image" content="http://yoursite.com/2019/07/17/Github学习笔记/17.png">
-<meta property="og:image" content="http://yoursite.com/2019/07/17/Github学习笔记/18.png">
-<meta property="og:image" content="http://yoursite.com/2019/07/17/Github学习笔记/19.png">
-<meta property="og:image" content="http://yoursite.com/2019/07/17/Github学习笔记/20.png">
-<meta property="og:image" content="http://yoursite.com/2019/07/17/Github学习笔记/21.png">
-<meta property="og:image" content="http://yoursite.com/2019/07/17/Github学习笔记/22.png">
-<meta property="og:image" content="http://yoursite.com/2019/07/17/Github学习笔记/23.png">
-<meta property="og:image" content="http://yoursite.com/2019/07/17/Github学习笔记/24.png">
-<meta property="og:image" content="http://yoursite.com/2019/07/17/Github学习笔记/25.png">
-<meta property="og:image" content="http://yoursite.com/2019/07/17/Github学习笔记/26.png">
-<meta property="og:image" content="http://yoursite.com/2019/07/17/Github学习笔记/27.png">
-<meta property="og:image" content="http://yoursite.com/2019/07/17/Github学习笔记/28.png">
-<meta property="og:image" content="http://yoursite.com/2019/07/17/Github学习笔记/29.png">
-<meta property="og:image" content="http://yoursite.com/2019/07/17/Github学习笔记/30.png">
-<meta property="og:updated_time" content="2019-07-21T11:09:16.848Z">
+<meta property="og:image" content="http://yoursite.com/2019/08/08/Scala的安装/1.png">
+<meta property="og:updated_time" content="2019-08-08T11:58:19.395Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Github学习笔记">
-<meta name="twitter:description" content="前言作为一个码代码的萌新，想要学习更前沿更丰富的代码就得来全球最大的开源社区啦！:) 但是网上的参考资料太多太复杂，我就一边学一边把自己的学习过程整理下来，方便日后复习查看。 什么是GitHubgithub是一个基于git的代码托管平台，付费用户可以建私人仓库，我们一般的免费用户只能使用公共仓库，也就是代码要公开。Github 由Chris Wanstrath, PJ Hyett 与Tom Pre">
-<meta name="twitter:image" content="http://yoursite.com/2019/07/17/Github学习笔记/1.png">
+<meta name="twitter:title" content="Scala的安装">
+<meta name="twitter:description" content="准备安装首先在官网下载好scala以后，安装在hadoop目录下 cd /opt/hadoop tar -zxvf scala-2.12.8.tgz 进入环境变量vim /etc/profile #scala  export SCALA_HOME=/opt/hadoop/scala-2.12.8 export PATH=$PATH:$SCALA_HOME/bin source /etc/profi">
+<meta name="twitter:image" content="http://yoursite.com/2019/08/08/Scala的安装/1.png">
 
 
 
@@ -152,7 +124,7 @@
 
   
   
-  <link rel="canonical" href="http://yoursite.com/2019/07/17/Github学习笔记/">
+  <link rel="canonical" href="http://yoursite.com/2019/08/08/Scala的安装/">
 
 
 
@@ -162,7 +134,7 @@
   };
 </script>
 
-  <title>Github学习笔记 | 浩翰Redamancy的博客</title>
+  <title>Scala的安装 | 浩翰Redamancy的博客</title>
   
 
 
@@ -379,7 +351,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/17/Github学习笔记/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/08/Scala的安装/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="精神小伙">
@@ -396,7 +368,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Github学习笔记
+          <h1 class="post-title" itemprop="name headline">Scala的安装
 
               
             
@@ -422,23 +394,13 @@
                 
               
 
-              <time title="创建时间：2019-07-17 19:34:58" itemprop="dateCreated datePublished" datetime="2019-07-17T19:34:58+08:00">2019-07-17</time>
+              <time title="创建时间：2019-08-08 17:29:24 / 修改时间：19:58:19" itemprop="dateCreated datePublished" datetime="2019-08-08T17:29:24+08:00">2019-08-08</time>
             </span>
           
 
           
             
 
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-07-21 19:09:16" itemprop="dateModified" datetime="2019-07-21T19:09:16+08:00">2019-07-21</time>
-              </span>
             
           
 
@@ -451,7 +413,14 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/GitHub/" itemprop="url" rel="index"><span itemprop="name">GitHub</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Liunx/" itemprop="url" rel="index"><span itemprop="name">Liunx</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Liunx/Scala/" itemprop="url" rel="index"><span itemprop="name">Scala</span></a></span>
 
                 
                 
@@ -486,7 +455,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span title="本文字数">2.4k</span>
+              <span title="本文字数">342</span>
             </span>
           
 
@@ -498,7 +467,7 @@
               
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
               
-              <span title="阅读时长">2 分钟</span>
+              <span title="阅读时长">1 分钟</span>
             </span>
           
 
@@ -517,95 +486,21 @@
       
 
       
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>作为一个码代码的萌新，想要学习更前沿更丰富的代码就得来全球最大的开源社区啦！:)</p>
-<p>但是网上的参考资料太多太复杂，我就一边学一边把自己的学习过程整理下来，方便日后复习查看。</p>
-<h1 id="什么是GitHub"><a href="#什么是GitHub" class="headerlink" title="什么是GitHub"></a>什么是GitHub</h1><p>github是一个基于git的代码托管平台，付费用户可以建私人仓库，我们一般的免费用户只能使用公共仓库，也就是代码要公开。<br>Github 由Chris Wanstrath, PJ Hyett 与Tom Preston-Werner三位开发者在2008年4月创办。迄今拥有59名全职员工，主要提供基于git的版本托管服务。</p>
-<p>git是一个版本控制工具，github是一个用git做版本控制的项目托管平台。</p>
-<h1 id="Why-GitHub"><a href="#Why-GitHub" class="headerlink" title="Why GitHub"></a>Why GitHub</h1><p>Git 是一款免费的、开源的、分布式的版本控制系统。旨在快速高效地处理无论规模大小的任何软件工程。</p>
-<p>每一个 Git克隆 都是一个完整的文件库，含有全部历史记录和修订追踪能力，不依赖于网络连接或中心服务器。其最大特色就是“分支”及“合并”操作非常快速、简便。</p>
-<h1 id="开始使用"><a href="#开始使用" class="headerlink" title="开始使用"></a>开始使用</h1><h2 id="注册GitHub账号"><a href="#注册GitHub账号" class="headerlink" title="注册GitHub账号"></a>注册GitHub账号</h2><p><img src="1.png" alt></p>
-<p>由于我已经有一个账号，大家没有的话得从头开始创建，点击Create an account即可。</p>
-<h2 id="填写基本信息"><a href="#填写基本信息" class="headerlink" title="填写基本信息"></a>填写基本信息</h2><p>填写好自己的基本信息，点击创建就可以拥有一个崭新的GitHub账号</p>
-<p><img src="2.png" alt></p>
-<h2 id="创建属于自己的工程"><a href="#创建属于自己的工程" class="headerlink" title="创建属于自己的工程"></a>创建属于自己的工程</h2><p><img src="3.png" alt></p>
-<p>登录进入自己的GitHub账号后如上图所示</p>
-<p><img src="4.png" alt></p>
-<p>点击箭头所指区域进入<strong>个人中心</strong></p>
-<p><img src="5.png" alt></p>
-<p>点击绿色的小方块</p>
-<p><img src="6.png" alt></p>
-<p><img src="7.png" alt></p>
-<p><img src="8.png" alt></p>
-<p>可以看到我是2018年10月18日创建的GitHub账号。</p>
-<h2 id="创建第一个工程"><a href="#创建第一个工程" class="headerlink" title="创建第一个工程"></a>创建第一个工程</h2><blockquote>
-<p>The Hello World project is a time-honored tradition in computer programming. It is a simple exercise that gets you started when learning something new. Let’s get started with GitHub!</p>
-</blockquote>
-<h3 id="Step-1-Create-a-Repository"><a href="#Step-1-Create-a-Repository" class="headerlink" title="Step 1. Create a Repository"></a>Step 1. Create a Repository</h3><blockquote>
-<p>A repository is usually used to organize a single project. Repositories can contain folders and files, images, videos, spreadsheets, and data sets – anything your project needs. We recommend including a README, or a file with information about your project. GitHub makes it easy to add one at the same time you create your new repository. It also offers other common options such as a license file.<br>Your hello-world repository can be a place where you store ideas, resources, or even share and discuss things with others.</p>
-</blockquote>
-<p><img src="10.png" alt></p>
-<ol>
-<li>将Repository命名为 Hello World</li>
-<li>填写Description</li>
-<li>选择Public</li>
-<li>选中Initialize with a README</li>
-<li>点击 <strong>Create repository</strong>.</li>
-</ol>
-<p><img src="11.png" alt></p>
-<p><img src="12.png" alt></p>
-<h3 id="Step-2-Create-a-Branch"><a href="#Step-2-Create-a-Branch" class="headerlink" title="Step 2. Create a Branch"></a>Step 2. Create a Branch</h3><ol>
-<li>To create a new branch</li>
-<li>进入新建的Hello World repository中</li>
-<li>点击Branch master选项</li>
-<li>输入readme-edits</li>
-<li>选中下方的蓝色链接</li>
-</ol>
-<p><img src="13.png" alt></p>
-<p><img src="14.png" alt></p>
-<p><img src="15.png" alt></p>
-<blockquote>
-<p>现在你有两个分支master和readme-edits。他们看起来完全相同，但是接下来,我们将添加我们更改的新分支。</p>
-</blockquote>
-<h3 id="Step-3-Make-and-commit-changes"><a href="#Step-3-Make-and-commit-changes" class="headerlink" title="Step 3. Make and commit changes"></a>Step 3. Make and commit changes</h3><p>现在咱们有了master的复制版本，readme-edits 分支，这是一个代码视图，我们可以在这里做一些编辑。</p>
-<p>在GitHub中,保存更改被称为commit 提交。每个提交都有一个关联的提交消息,，这是一个描述解释为什么一个特定的更改。提交信息捕获您的更改的历史,所以其他人可以很方便的看到你做了什么。</p>
-<ol>
-<li>点击README.md文件</li>
-<li>点击铅笔图标右上角的编辑文件的视图</li>
-<li>修改README.md</li>
-<li>点击下方的Commit changes</li>
-</ol>
-<p><img src="16.png" alt></p>
-<p><img src="17.png" alt></p>
-<p><img src="18.png" alt></p>
-<p><img src="19.png" alt></p>
-<p><strong>当然这些改变只会在readme-edits这个分支中改变README.md，并不会影响master</strong></p>
-<h3 id="Step-4-Open-a-Pull-Request"><a href="#Step-4-Open-a-Pull-Request" class="headerlink" title="Step 4. Open a Pull Request"></a>Step 4. Open a Pull Request</h3><p>我修改了你的代码，所以请求（request）你把我修改过的代码拉（pull）回去看看</p>
-<ol>
-<li>点击New pull request</li>
-<li>选择创建的readme-edits分支</li>
-<li>可以查看跟master相比的代码</li>
-<li>查看无误后点击Create Pull Request</li>
-<li>这时你的改变后的代码就到Pull request界面中</li>
-<li>你可以选择是否merge</li>
-</ol>
-<p><img src="20.png" alt></p>
-<p><img src="21.png" alt></p>
-<p><img src="22.png" alt></p>
-<p><img src="23.png" alt></p>
-<p><img src="24.png" alt></p>
-<p><img src="25.png" alt></p>
-<h3 id="Step-5-Merge-your-Pull-Request"><a href="#Step-5-Merge-your-Pull-Request" class="headerlink" title="Step 5. Merge your Pull Request"></a>Step 5. Merge your Pull Request</h3><p>这是本次实验的最后一步，Merge可以将别人给你的Pull Request整合到自己的主界面代码视图中</p>
-<ol>
-<li>点击Merge pull request将改变整合到master中</li>
-<li>整合成功后就可以将readme-edits分支删掉</li>
-</ol>
-<p><img src="26.png" alt></p>
-<p><img src="27.png" alt></p>
-<p><img src="28.png" alt></p>
-<p><img src="29.png" alt></p>
-<h3 id="Finally"><a href="#Finally" class="headerlink" title="Finally"></a>Finally</h3><p>我们可以发现，master的README变成了readme-edits分支中的README</p>
-<p><img src="30.png" alt></p>
+        <h2 id="准备安装"><a href="#准备安装" class="headerlink" title="准备安装"></a>准备安装</h2><p>首先在官网下载好scala以后，安装在hadoop目录下</p>
+<pre><code>cd /opt/hadoop
+tar -zxvf scala-2.12.8.tgz
+</code></pre><h2 id="进入环境变量"><a href="#进入环境变量" class="headerlink" title="进入环境变量"></a>进入环境变量</h2><p><code>vim /etc/profile</code></p>
+<pre><code>#scala
 
+export SCALA_HOME=/opt/hadoop/scala-2.12.8
+export PATH=$PATH:$SCALA_HOME/bin
+</code></pre><p><code>source /etc/profile</code><br><strong>保存</strong></p>
+<p>在相应的slave1，与slave2中也进行相应修改</p>
+<h2 id="安装成功"><a href="#安装成功" class="headerlink" title="安装成功"></a>安装成功</h2><p><img src="1.png" alt="Scala"></p>
+<h2 id="将scala分发到其他节点上"><a href="#将scala分发到其他节点上" class="headerlink" title="将scala分发到其他节点上"></a>将scala分发到其他节点上</h2><pre><code>scp -r scala-2.12.8 root@slave1:/opt/hadoop/
+
+scp -r scala-2.12.8 root@slave2:/opt/hadoop/
+</code></pre>
       
     </div>
 
@@ -631,7 +526,9 @@
         
         <div class="post-tags">
           
-            <a href="/tags/GitHub/" rel="tag"><i class="fa fa-tag"></i> GitHub</a>
+            <a href="/tags/Liunx/" rel="tag"><i class="fa fa-tag"></i> Liunx</a>
+          
+            <a href="/tags/Scala/" rel="tag"><i class="fa fa-tag"></i> Scala</a>
           
         </div>
       
@@ -644,8 +541,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/05/21/hexo搭建个人博客（二）/" rel="next" title="hexo搭建个人博客（二）">
-                <i class="fa fa-chevron-left"></i> hexo搭建个人博客（二）
+              <a href="/2019/08/08/Liunx中tar命令的使用/" rel="next" title="Liunx中tar命令的使用">
+                <i class="fa fa-chevron-left"></i> Liunx中tar命令的使用
               </a>
             
           </div>
@@ -654,8 +551,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/07/30/Centos7下NAT设置静态ip/" rel="prev" title="Centos7下NAT设置静态ip">
-                Centos7下NAT设置静态ip <i class="fa fa-chevron-right"></i>
+              <a href="/2019/08/08/初识Scala/" rel="prev" title="初识Scala">
+                初识Scala <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -830,7 +727,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是GitHub"><span class="nav-number">2.</span> <span class="nav-text">什么是GitHub</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Why-GitHub"><span class="nav-number">3.</span> <span class="nav-text">Why GitHub</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#开始使用"><span class="nav-number">4.</span> <span class="nav-text">开始使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#注册GitHub账号"><span class="nav-number">4.1.</span> <span class="nav-text">注册GitHub账号</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#填写基本信息"><span class="nav-number">4.2.</span> <span class="nav-text">填写基本信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建属于自己的工程"><span class="nav-number">4.3.</span> <span class="nav-text">创建属于自己的工程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建第一个工程"><span class="nav-number">4.4.</span> <span class="nav-text">创建第一个工程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-1-Create-a-Repository"><span class="nav-number">4.4.1.</span> <span class="nav-text">Step 1. Create a Repository</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-2-Create-a-Branch"><span class="nav-number">4.4.2.</span> <span class="nav-text">Step 2. Create a Branch</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-3-Make-and-commit-changes"><span class="nav-number">4.4.3.</span> <span class="nav-text">Step 3. Make and commit changes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-4-Open-a-Pull-Request"><span class="nav-number">4.4.4.</span> <span class="nav-text">Step 4. Open a Pull Request</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-5-Merge-your-Pull-Request"><span class="nav-number">4.4.5.</span> <span class="nav-text">Step 5. Merge your Pull Request</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Finally"><span class="nav-number">4.4.6.</span> <span class="nav-text">Finally</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#准备安装"><span class="nav-number">1.</span> <span class="nav-text">准备安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#进入环境变量"><span class="nav-number">2.</span> <span class="nav-text">进入环境变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装成功"><span class="nav-number">3.</span> <span class="nav-text">安装成功</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#将scala分发到其他节点上"><span class="nav-number">4.</span> <span class="nav-text">将scala分发到其他节点上</span></a></li></ol></div>
             
 
           </div>
