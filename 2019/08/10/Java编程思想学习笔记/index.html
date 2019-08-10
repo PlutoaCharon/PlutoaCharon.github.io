@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link rel="stylesheet" href="/lib/pace/pace-theme-barber-shop.min.css?v=1.0.2">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+<link rel="stylesheet" href="/css/main.css?v=7.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon1.ico?v=7.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.2.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.2.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.2.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="对象导论抽象过程所有编程语言都提供抽象机制。万物皆为对象程序是对象的集合，它们通过发送消息来告知彼此所要做的。每个对象都有自己的由其他对象所构成的存储每个对象都拥有其类型某一特定类型的所有对象都可以接受同样的消息对象具有状态，行为和标识 每个对象都有一个接口怎样才能获取有用的对象？必须有某种方式产生对对象的请求，是对象完成各种任务，如完成一笔交易，在屏幕上画图，打开开关等。每个对象都只能满足某些请">
+<meta name="keywords" content="Java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java编程思想学习笔记">
+<meta property="og:url" content="http://yoursite.com/2019/08/10/Java编程思想学习笔记/index.html">
+<meta property="og:site_name" content="浩翰Redamancy的博客">
+<meta property="og:description" content="对象导论抽象过程所有编程语言都提供抽象机制。万物皆为对象程序是对象的集合，它们通过发送消息来告知彼此所要做的。每个对象都有自己的由其他对象所构成的存储每个对象都拥有其类型某一特定类型的所有对象都可以接受同样的消息对象具有状态，行为和标识 每个对象都有一个接口怎样才能获取有用的对象？必须有某种方式产生对对象的请求，是对象完成各种任务，如完成一笔交易，在屏幕上画图，打开开关等。每个对象都只能满足某些请">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-08-10T02:50:29.713Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java编程思想学习笔记">
+<meta name="twitter:description" content="对象导论抽象过程所有编程语言都提供抽象机制。万物皆为对象程序是对象的集合，它们通过发送消息来告知彼此所要做的。每个对象都有自己的由其他对象所构成的存储每个对象都拥有其类型某一特定类型的所有对象都可以接受同样的消息对象具有状态，行为和标识 每个对象都有一个接口怎样才能获取有用的对象？必须有某种方式产生对对象的请求，是对象完成各种任务，如完成一笔交易，在屏幕上画图，打开开关等。每个对象都只能满足某些请">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="浩翰Redamancy的博客" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="http://yoursite.com/2019/08/10/Java编程思想学习笔记/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Java编程思想学习笔记 | 浩翰Redamancy的博客</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+	
+	<a href="https://github.com/PlutoaCharon" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">浩翰Redamancy的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">一个爱学习的计算机菜鸟笔记</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/10/Java编程思想学习笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="精神小伙">
+      <meta itemprop="description" content="Just Do ‘IT’ .">
+      <meta itemprop="image" content="/images/Me.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="浩翰Redamancy的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Java编程思想学习笔记
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-08-10 10:42:19 / 修改时间：10:50:29" itemprop="dateCreated datePublished" datetime="2019-08-10T10:42:19+08:00">2019-08-10</time>
+            </span>
+          
+
+          
+            
+
+            
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+                 阅读次数： 
+                <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+              </span>
+            </span>
+          
+
+          <br>
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span title="本文字数">2.7k</span>
+            </span>
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span title="阅读时长">2 分钟</span>
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="对象导论"><a href="#对象导论" class="headerlink" title="对象导论"></a>对象导论</h1><h2 id="抽象过程"><a href="#抽象过程" class="headerlink" title="抽象过程"></a>抽象过程</h2><p>所有编程语言都提供抽象机制。<br>万物皆为对象<br>程序是对象的集合，它们通过发送消息来告知彼此所要做的。<br>每个对象都有自己的由其他对象所构成的存储<br>每个对象都拥有其类型<br>某一特定类型的所有对象都可以接受同样的消息<br>对象具有状态，行为和标识</p>
+<h2 id="每个对象都有一个接口"><a href="#每个对象都有一个接口" class="headerlink" title="每个对象都有一个接口"></a>每个对象都有一个接口</h2><p>怎样才能获取有用的对象？必须有某种方式产生对对象的请求，是对象完成各种任务，如完成一笔交易，在屏幕上画图，打开开关等。每个对象都只能满足某些请求，这些请求有对象的接口（interface）所定义，决定接口的便是类型。<br>以电灯泡为例来做一个简单的比喻：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Light lt = <span class="keyword">new</span> Litght();</span><br><span class="line">lt.on();</span><br></pre></td></tr></table></figure>
+<p><strong>接口确定了对某一特定对象所能发出的请求。</strong></p>
+<p>上例中，类型/类的名称是Light，特定的Light对象的名词是It，可以向Light对象发出的请求是：打开它，关闭它，将它调亮，将它调暗。你以下列方式创建了一个Light对象：定义这个对象的‘引用’(It)，然后调用new方法来创建该类型的新对象。为了向对象发送消息，需要声明对象的名称，并以圆点符号连接一个消息请求。</p>
+<h2 id="每个对象都提供服务"><a href="#每个对象都提供服务" class="headerlink" title="每个对象都提供服务"></a>每个对象都提供服务</h2><p>程序本身将向用户提供服务，他将通过调用其他对象提供的服务来实现这一目的。</p>
+<h2 id="被隐藏的具体实现"><a href="#被隐藏的具体实现" class="headerlink" title="被隐藏的具体实现"></a>被隐藏的具体实现</h2><p>java用三个关键字在类的内部设定边界，public，private，protected<br>java还有一种默认的访问权限，当没有使用前面提到的任何访问指定词时，它将发挥作用。这种权限通常被称为包访问权限</p>
+<h2 id="复用具体实现"><a href="#复用具体实现" class="headerlink" title="复用具体实现"></a>复用具体实现</h2><p>代码复用是面向对象程序设计语言所提供的的最了不起的优点之一。</p>
+<h2 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h2><p>当继承现有类型时，也就创造了新的类型。这个新的类型不仅包括现有类型的所有成员（尽管private成员被隐藏，并且不可访问），而且更重要的是它复制了基类的接口。也就是说，所有可以发送给基类对象的消息同时也可以发送给导出类对象。导出类与基类具有相同的类型。</p>
+<p>一个圆形也是一个几何形。</p>
+<p>有两种方法可以使基类与导出类产生差异。<br>直接在导出类中添加新方法，这个新方法并不是基类接口的一部分。<br>覆改变现有基类的方法，覆盖。</p>
+<h2 id="伴随多态的可互换对象"><a href="#伴随多态的可互换对象" class="headerlink" title="伴随多态的可互换对象"></a>伴随多态的可互换对象</h2><p>面向对象程序设计的最重要的妙诀:编译器不可能产生传统意义上的函数调用。</p>
+<p>如果用Java来编写一个方法(后面很快你就会学习如何编写):</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">doSomething</span><span class="params">(Shape shape)</span></span>&#123;</span><br><span class="line">    shape.erase();</span><br><span class="line">    shape.draw();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这个方法可以与任何Shape对话，因此它是独立于任何它要绘制和擦除的对象的其体类型的。</p>
+<p>如果程序中其他部分用到了doSomething()方法:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Circle CirCie，<span class="keyword">new</span> Circle();</span><br><span class="line">Triangle triangle = <span class="keyword">new</span> triangle();</span><br><span class="line">Line line = <span class="keyword">new</span> Line():</span><br><span class="line">doSomething(circle);</span><br><span class="line">doSomething(triangle);</span><br><span class="line">doSomething(line);</span><br></pre></td></tr></table></figure>
+<p>对doSomething()的调用会白动地正确处理，而不管对象的确切类型。</p>
+<p>这是一个相当令人惊奇的诀窍。看看下面这行代码:</p>
+<p><code>doSomething(circle);</code></p>
+<p>当Circle被传入到预期接收Shape的方法中，究竟会发生什么。由于Circle可以被doSomething() 看作是Shape，也就是说，doSomething()可以发送给Shape的任何消息，Circle都可以接收，那么，这么做是完全安全且合乎逻辑的。</p>
+<h2 id="单根继承结构"><a href="#单根继承结构" class="headerlink" title="单根继承结构"></a>单根继承结构</h2><p>在OOP中，自c++面世以来就己变得非常瞩目的一个问题就是，是否所有的类最终都继承自单一的基类。在java中(事实上还包括除C++以外的所有OOP语言)，答案是yes，这个终极基类的名字就是<strong>Object</strong>。事实证明，单根继承结构带来了很多好处。</p>
+<p>在单根继承结构中的所有对象都具有一个共用接口，所以它们归根到底都是相同的基本类型。</p>
+<h2 id="容器"><a href="#容器" class="headerlink" title="容器"></a>容器</h2><p>这个通常被称为容器(也称为集合，不过Java类库以不同的含义使用“集合”这个术语，所以本书使用“容器”这个词)的新对象，在任何需要时都可扩充自己以容纳你置于其中的所有东西。因此不需要知道将来会把多少个对象置于容器中，只需要创建一个容器对象，然后让它处理所有细节。</p>
+<h2 id="对象的创建和生命期"><a href="#对象的创建和生命期" class="headerlink" title="对象的创建和生命期"></a>对象的创建和生命期</h2><p>在使用对象时，最关键的问题之一便是他们的生成和销毁方式。每个对象为了生存都需要资源，尤其是内存。当我们不再需要一个对象时，它必须被清理掉，使其占有的资源被释放和重用。</p>
+<p>Java完全采用了动态内存分配方式。每当想要创建新对象时，就要使用new关键字来构建此对象的动态实例。</p>
+<p>Java提供了<strong>垃圾回收器</strong>的机制，它可以自动发现对象何时不再被使用，并继而销毁它。</p>
+<h2 id="异常处理：处理错误"><a href="#异常处理：处理错误" class="headerlink" title="异常处理：处理错误"></a>异常处理：处理错误</h2><p> 异常处理将错误处理直接置于编程语言中，有时甚至置于操作系统中。异常是一种对象，它从出错地点被“抛出’，并被专门设计用来处理特定类型错误的相应的异常处理器“捕获”。异常处理就像是与程序正常执行路径并行的、在错误发生时执行的另一条路径。因为它是另一条完全分离的执行路径，所以它不会干扰正常的执行代码。这往往使得代码编写变得简单，因为不需要被迫定期检查错误。</p>
+<p>此外，被抛出的异常不像方法返回的错误值和方法设置的用来表示错误条件的标志位那样可以被忽略。异常不能被忽略，所以它保证一定会在某处得到处理。</p>
+<p>最后需要指出的是：异常提供了一种从错误状况进行可靠恢复的途径。现在不再是只能退出程序，你可以经常进行校正，并恢复程序的执行，这些都有助于编写出更健壮的程序。<br>Java的异常处理在众多的编程语言中格外引人注目，因为Java一开始就内置了异常处理，而且强制你必须使用它。</p>
+<h2 id="并发编程"><a href="#并发编程" class="headerlink" title="并发编程"></a>并发编程</h2><p>在计算机编程中有一个基本概念。就是在同一时刻处理多个任务的思想。许多程序设计问题都要求，程序能够停下正在做的工作，转而处理某个其他问题。然后再返回主进程。</p>
+<p>有时中断对于处理时间性强的任务是必需的，但是对于大量的其他问题，我们只是想把问题切分成多个可独立运行的部分(任务)，从而提高程序的响应能力。在程序中，这些彼此独立运行的部分称之为线程，上述概念被称为“并发”。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>你知道过程型语一言看起来像什么样子：数据定义和函数调用。想了解此类程序的含义，你必须忙上一阵，需要通读函数调用和低层概念，以在脑海里建立一个模型。这正是我们在设计过程式程序时，需要中间表示形式的原因。这些程序总是容易把人搞糊涂，因为它们使用的表示术语更加面向计算机而不是你要解决的问题。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        
+          
+        
+        <div class="post-tags">
+          
+            <a href="/tags/Java/" rel="tag"><i class="fa fa-tag"></i> Java</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/08/09/Hadoop2-8-0的环境搭建/" rel="next" title="Hadoop2.8.0的环境搭建">
+                <i class="fa fa-chevron-left"></i> Hadoop2.8.0的环境搭建
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/08/10/Java编程思想学习笔记-二/" rel="prev" title="Java编程思想学习笔记(二)">
+                Java编程思想学习笔记(二) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/Me.jpg" alt="精神小伙">
+            
+              <p class="site-author-name" itemprop="name">精神小伙</p>
+              <div class="site-description motion-element" itemprop="description">Just Do ‘IT’ .</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">13</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#对象导论"><span class="nav-number">1.</span> <span class="nav-text">对象导论</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#抽象过程"><span class="nav-number">1.1.</span> <span class="nav-text">抽象过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#每个对象都有一个接口"><span class="nav-number">1.2.</span> <span class="nav-text">每个对象都有一个接口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#每个对象都提供服务"><span class="nav-number">1.3.</span> <span class="nav-text">每个对象都提供服务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#被隐藏的具体实现"><span class="nav-number">1.4.</span> <span class="nav-text">被隐藏的具体实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#复用具体实现"><span class="nav-number">1.5.</span> <span class="nav-text">复用具体实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#继承"><span class="nav-number">1.6.</span> <span class="nav-text">继承</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#伴随多态的可互换对象"><span class="nav-number">1.7.</span> <span class="nav-text">伴随多态的可互换对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单根继承结构"><span class="nav-number">1.8.</span> <span class="nav-text">单根继承结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#容器"><span class="nav-number">1.9.</span> <span class="nav-text">容器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对象的创建和生命期"><span class="nav-number">1.10.</span> <span class="nav-text">对象的创建和生命期</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#异常处理：处理错误"><span class="nav-number">1.11.</span> <span class="nav-text">异常处理：处理错误</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#并发编程"><span class="nav-number">1.12.</span> <span class="nav-text">并发编程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">1.13.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">精神小伙</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+    <span title="站点总字数">26k</span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    
+    <span title="站点阅读时长">23 分钟</span>
+  
+</div>
+
+<!--
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.2.0</div>
+
+-->
+
+
+
+
+<div>
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("05/20/2019 00:00:00");
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+setInterval("createtime()",250);
+</script>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+      
+    
+  
+  <script color="0,0,255" opacity="0.5" zindex="-1" count="99" src="cdn.jsdelivr.net/gh/theme-next/theme-next-canvas-nest@1/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.2.0"></script>
+
+  <script src="/js/motion.js?v=7.2.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.2.0"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.2.0"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.2.0"></script>
+<script src="/js/post-details.js?v=7.2.0"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.2.0"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
