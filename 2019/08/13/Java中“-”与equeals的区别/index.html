@@ -101,18 +101,23 @@
 
 
 
-  <meta name="description" content="对象导论抽象过程所有编程语言都提供抽象机制。万物皆为对象程序是对象的集合，它们通过发送消息来告知彼此所要做的。每个对象都有自己的由其他对象所构成的存储每个对象都拥有其类型某一特定类型的所有对象都可以接受同样的消息对象具有状态，行为和标识 每个对象都有一个接口怎样才能获取有用的对象？必须有某种方式产生对对象的请求，是对象完成各种任务，如完成一笔交易，在屏幕上画图，打开开关等。每个对象都只能满足某些请">
+  <meta name="description" content="==：==是比较两个变量的值，如果是基本数据类型，那么就是比较的基本数据的大小值 情况一：123int a=1;int b=1;System.out.println(a==b);  以上图中：==比较的就是上面两个内存块中的值，都是1，所以是true 但是如果存储的是引用类型，其实比较的还是变量本身所存储的值，我们都知道，变量存储引用类型其实存储的只是引用对象的地址作为值存储到变量中，那么当用==">
 <meta name="keywords" content="Java">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java编程思想学习笔记">
-<meta property="og:url" content="http://yoursite.com/2019/08/10/Java编程思想学习笔记/index.html">
+<meta property="og:title" content="Java中“==”与equeals的区别">
+<meta property="og:url" content="http://yoursite.com/2019/08/13/Java中“-”与equeals的区别/index.html">
 <meta property="og:site_name" content="浩翰Redamancy的博客">
-<meta property="og:description" content="对象导论抽象过程所有编程语言都提供抽象机制。万物皆为对象程序是对象的集合，它们通过发送消息来告知彼此所要做的。每个对象都有自己的由其他对象所构成的存储每个对象都拥有其类型某一特定类型的所有对象都可以接受同样的消息对象具有状态，行为和标识 每个对象都有一个接口怎样才能获取有用的对象？必须有某种方式产生对对象的请求，是对象完成各种任务，如完成一笔交易，在屏幕上画图，打开开关等。每个对象都只能满足某些请">
+<meta property="og:description" content="==：==是比较两个变量的值，如果是基本数据类型，那么就是比较的基本数据的大小值 情况一：123int a=1;int b=1;System.out.println(a==b);  以上图中：==比较的就是上面两个内存块中的值，都是1，所以是true 但是如果存储的是引用类型，其实比较的还是变量本身所存储的值，我们都知道，变量存储引用类型其实存储的只是引用对象的地址作为值存储到变量中，那么当用==">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-10T02:50:29.713Z">
+<meta property="og:image" content="http://yoursite.com/2019/08/13/Java中“-”与equeals的区别/image001.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/13/Java中“-”与equeals的区别/image003.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/13/Java中“-”与equeals的区别/image005.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/13/Java中“-”与equeals的区别/image007.png">
+<meta property="og:updated_time" content="2019-08-13T12:10:31.501Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Java编程思想学习笔记">
-<meta name="twitter:description" content="对象导论抽象过程所有编程语言都提供抽象机制。万物皆为对象程序是对象的集合，它们通过发送消息来告知彼此所要做的。每个对象都有自己的由其他对象所构成的存储每个对象都拥有其类型某一特定类型的所有对象都可以接受同样的消息对象具有状态，行为和标识 每个对象都有一个接口怎样才能获取有用的对象？必须有某种方式产生对对象的请求，是对象完成各种任务，如完成一笔交易，在屏幕上画图，打开开关等。每个对象都只能满足某些请">
+<meta name="twitter:title" content="Java中“==”与equeals的区别">
+<meta name="twitter:description" content="==：==是比较两个变量的值，如果是基本数据类型，那么就是比较的基本数据的大小值 情况一：123int a=1;int b=1;System.out.println(a==b);  以上图中：==比较的就是上面两个内存块中的值，都是1，所以是true 但是如果存储的是引用类型，其实比较的还是变量本身所存储的值，我们都知道，变量存储引用类型其实存储的只是引用对象的地址作为值存储到变量中，那么当用==">
+<meta name="twitter:image" content="http://yoursite.com/2019/08/13/Java中“-”与equeals的区别/image001.png">
 
 
 
@@ -122,7 +127,7 @@
 
   
   
-  <link rel="canonical" href="http://yoursite.com/2019/08/10/Java编程思想学习笔记/">
+  <link rel="canonical" href="http://yoursite.com/2019/08/13/Java中“-”与equeals的区别/">
 
 
 
@@ -132,7 +137,7 @@
   };
 </script>
 
-  <title>Java编程思想学习笔记 | 浩翰Redamancy的博客</title>
+  <title>Java中“==”与equeals的区别 | 浩翰Redamancy的博客</title>
   
 
 
@@ -349,7 +354,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/10/Java编程思想学习笔记/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/13/Java中“-”与equeals的区别/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="精神小伙">
@@ -366,7 +371,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Java编程思想学习笔记
+          <h1 class="post-title" itemprop="name headline">Java中“==”与equeals的区别
 
               
             
@@ -392,7 +397,7 @@
                 
               
 
-              <time title="创建时间：2019-08-10 10:42:19 / 修改时间：10:50:29" itemprop="dateCreated datePublished" datetime="2019-08-10T10:42:19+08:00">2019-08-10</time>
+              <time title="创建时间：2019-08-13 19:58:48 / 修改时间：20:10:31" itemprop="dateCreated datePublished" datetime="2019-08-13T19:58:48+08:00">2019-08-13</time>
             </span>
           
 
@@ -446,7 +451,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span title="本文字数">2.7k</span>
+              <span title="本文字数">1.6k</span>
             </span>
           
 
@@ -458,7 +463,7 @@
               
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
               
-              <span title="阅读时长">2 分钟</span>
+              <span title="阅读时长">1 分钟</span>
             </span>
           
 
@@ -477,39 +482,30 @@
       
 
       
-        <h1 id="对象导论"><a href="#对象导论" class="headerlink" title="对象导论"></a>对象导论</h1><h2 id="抽象过程"><a href="#抽象过程" class="headerlink" title="抽象过程"></a>抽象过程</h2><p>所有编程语言都提供抽象机制。<br>万物皆为对象<br>程序是对象的集合，它们通过发送消息来告知彼此所要做的。<br>每个对象都有自己的由其他对象所构成的存储<br>每个对象都拥有其类型<br>某一特定类型的所有对象都可以接受同样的消息<br>对象具有状态，行为和标识</p>
-<h2 id="每个对象都有一个接口"><a href="#每个对象都有一个接口" class="headerlink" title="每个对象都有一个接口"></a>每个对象都有一个接口</h2><p>怎样才能获取有用的对象？必须有某种方式产生对对象的请求，是对象完成各种任务，如完成一笔交易，在屏幕上画图，打开开关等。每个对象都只能满足某些请求，这些请求有对象的接口（interface）所定义，决定接口的便是类型。<br>以电灯泡为例来做一个简单的比喻：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Light lt = <span class="keyword">new</span> Litght();</span><br><span class="line">lt.on();</span><br></pre></td></tr></table></figure>
-<p><strong>接口确定了对某一特定对象所能发出的请求。</strong></p>
-<p>上例中，类型/类的名称是Light，特定的Light对象的名词是It，可以向Light对象发出的请求是：打开它，关闭它，将它调亮，将它调暗。你以下列方式创建了一个Light对象：定义这个对象的‘引用’(It)，然后调用new方法来创建该类型的新对象。为了向对象发送消息，需要声明对象的名称，并以圆点符号连接一个消息请求。</p>
-<h2 id="每个对象都提供服务"><a href="#每个对象都提供服务" class="headerlink" title="每个对象都提供服务"></a>每个对象都提供服务</h2><p>程序本身将向用户提供服务，他将通过调用其他对象提供的服务来实现这一目的。</p>
-<h2 id="被隐藏的具体实现"><a href="#被隐藏的具体实现" class="headerlink" title="被隐藏的具体实现"></a>被隐藏的具体实现</h2><p>java用三个关键字在类的内部设定边界，public，private，protected<br>java还有一种默认的访问权限，当没有使用前面提到的任何访问指定词时，它将发挥作用。这种权限通常被称为包访问权限</p>
-<h2 id="复用具体实现"><a href="#复用具体实现" class="headerlink" title="复用具体实现"></a>复用具体实现</h2><p>代码复用是面向对象程序设计语言所提供的的最了不起的优点之一。</p>
-<h2 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h2><p>当继承现有类型时，也就创造了新的类型。这个新的类型不仅包括现有类型的所有成员（尽管private成员被隐藏，并且不可访问），而且更重要的是它复制了基类的接口。也就是说，所有可以发送给基类对象的消息同时也可以发送给导出类对象。导出类与基类具有相同的类型。</p>
-<p>一个圆形也是一个几何形。</p>
-<p>有两种方法可以使基类与导出类产生差异。<br>直接在导出类中添加新方法，这个新方法并不是基类接口的一部分。<br>覆改变现有基类的方法，覆盖。</p>
-<h2 id="伴随多态的可互换对象"><a href="#伴随多态的可互换对象" class="headerlink" title="伴随多态的可互换对象"></a>伴随多态的可互换对象</h2><p>面向对象程序设计的最重要的妙诀:编译器不可能产生传统意义上的函数调用。</p>
-<p>如果用Java来编写一个方法(后面很快你就会学习如何编写):</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">doSomething</span><span class="params">(Shape shape)</span></span>&#123;</span><br><span class="line">    shape.erase();</span><br><span class="line">    shape.draw();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这个方法可以与任何Shape对话，因此它是独立于任何它要绘制和擦除的对象的其体类型的。</p>
-<p>如果程序中其他部分用到了doSomething()方法:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Circle CirCie，<span class="keyword">new</span> Circle();</span><br><span class="line">Triangle triangle = <span class="keyword">new</span> triangle();</span><br><span class="line">Line line = <span class="keyword">new</span> Line():</span><br><span class="line">doSomething(circle);</span><br><span class="line">doSomething(triangle);</span><br><span class="line">doSomething(line);</span><br></pre></td></tr></table></figure>
-<p>对doSomething()的调用会白动地正确处理，而不管对象的确切类型。</p>
-<p>这是一个相当令人惊奇的诀窍。看看下面这行代码:</p>
-<p><code>doSomething(circle);</code></p>
-<p>当Circle被传入到预期接收Shape的方法中，究竟会发生什么。由于Circle可以被doSomething() 看作是Shape，也就是说，doSomething()可以发送给Shape的任何消息，Circle都可以接收，那么，这么做是完全安全且合乎逻辑的。</p>
-<h2 id="单根继承结构"><a href="#单根继承结构" class="headerlink" title="单根继承结构"></a>单根继承结构</h2><p>在OOP中，自c++面世以来就己变得非常瞩目的一个问题就是，是否所有的类最终都继承自单一的基类。在java中(事实上还包括除C++以外的所有OOP语言)，答案是yes，这个终极基类的名字就是<strong>Object</strong>。事实证明，单根继承结构带来了很多好处。</p>
-<p>在单根继承结构中的所有对象都具有一个共用接口，所以它们归根到底都是相同的基本类型。</p>
-<h2 id="容器"><a href="#容器" class="headerlink" title="容器"></a>容器</h2><p>这个通常被称为容器(也称为集合，不过Java类库以不同的含义使用“集合”这个术语，所以本书使用“容器”这个词)的新对象，在任何需要时都可扩充自己以容纳你置于其中的所有东西。因此不需要知道将来会把多少个对象置于容器中，只需要创建一个容器对象，然后让它处理所有细节。</p>
-<h2 id="对象的创建和生命期"><a href="#对象的创建和生命期" class="headerlink" title="对象的创建和生命期"></a>对象的创建和生命期</h2><p>在使用对象时，最关键的问题之一便是他们的生成和销毁方式。每个对象为了生存都需要资源，尤其是内存。当我们不再需要一个对象时，它必须被清理掉，使其占有的资源被释放和重用。</p>
-<p>Java完全采用了动态内存分配方式。每当想要创建新对象时，就要使用new关键字来构建此对象的动态实例。</p>
-<p>Java提供了<strong>垃圾回收器</strong>的机制，它可以自动发现对象何时不再被使用，并继而销毁它。</p>
-<h2 id="异常处理：处理错误"><a href="#异常处理：处理错误" class="headerlink" title="异常处理：处理错误"></a>异常处理：处理错误</h2><p> 异常处理将错误处理直接置于编程语言中，有时甚至置于操作系统中。异常是一种对象，它从出错地点被“抛出’，并被专门设计用来处理特定类型错误的相应的异常处理器“捕获”。异常处理就像是与程序正常执行路径并行的、在错误发生时执行的另一条路径。因为它是另一条完全分离的执行路径，所以它不会干扰正常的执行代码。这往往使得代码编写变得简单，因为不需要被迫定期检查错误。</p>
-<p>此外，被抛出的异常不像方法返回的错误值和方法设置的用来表示错误条件的标志位那样可以被忽略。异常不能被忽略，所以它保证一定会在某处得到处理。</p>
-<p>最后需要指出的是：异常提供了一种从错误状况进行可靠恢复的途径。现在不再是只能退出程序，你可以经常进行校正，并恢复程序的执行，这些都有助于编写出更健壮的程序。<br>Java的异常处理在众多的编程语言中格外引人注目，因为Java一开始就内置了异常处理，而且强制你必须使用它。</p>
-<h2 id="并发编程"><a href="#并发编程" class="headerlink" title="并发编程"></a>并发编程</h2><p>在计算机编程中有一个基本概念。就是在同一时刻处理多个任务的思想。许多程序设计问题都要求，程序能够停下正在做的工作，转而处理某个其他问题。然后再返回主进程。</p>
-<p>有时中断对于处理时间性强的任务是必需的，但是对于大量的其他问题，我们只是想把问题切分成多个可独立运行的部分(任务)，从而提高程序的响应能力。在程序中，这些彼此独立运行的部分称之为线程，上述概念被称为“并发”。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>你知道过程型语一言看起来像什么样子：数据定义和函数调用。想了解此类程序的含义，你必须忙上一阵，需要通读函数调用和低层概念，以在脑海里建立一个模型。这正是我们在设计过程式程序时，需要中间表示形式的原因。这些程序总是容易把人搞糊涂，因为它们使用的表示术语更加面向计算机而不是你要解决的问题。</p>
+        <h2 id="："><a href="#：" class="headerlink" title="==："></a>==：</h2><p><code>==</code>是比较两个变量的值，如果是基本数据类型，那么就是比较的基本数据的大小值</p>
+<h3 id="情况一："><a href="#情况一：" class="headerlink" title="情况一："></a>情况一：</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a=<span class="number">1</span>;</span><br><span class="line"><span class="keyword">int</span> b=<span class="number">1</span>;</span><br><span class="line">System.out.println(a==b);</span><br></pre></td></tr></table></figure>
+<p><img src="image001.png" alt="Java"></p>
+<p>以上图中：==比较的就是上面两个内存块中的值，都是1，所以是true</p>
+<p>但是如果存储的是引用类型，其实比较的还是变量本身所存储的值，我们都知道，<br>变量存储引用类型其实存储的只是引用对象的地址作为值存储到变量中，那么当用==<br>判断时，比较的就是这两个<strong>地址值</strong>了，所以说==比的是两个变量所存储的值，</p>
+<p>至于这个值是什么类型的，就看放什么了</p>
+<h3 id="情况二："><a href="#情况二：" class="headerlink" title="情况二："></a>情况二：</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">User a = <span class="keyword">new</span> User();</span><br><span class="line">User b = <span class="keyword">new</span> User();</span><br><span class="line">System.out.println(a==b);</span><br></pre></td></tr></table></figure>
+<p><img src="image003.png" alt="Java"></p>
+<p>在上图中，a和b存的就是一个引用对象，在这时判断a==b时，比较的也是a和b所存储的值，</p>
+<p>可以看出，a里面存的是0x1234，b里面存放的是0x5874,很明显不相等，所以是false</p>
+<h3 id="情况三："><a href="#情况三：" class="headerlink" title="情况三："></a>情况三：</h3><p>而当使用==比较字符串时：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">String a=<span class="string">"abcd"</span>;</span><br><span class="line">String b=<span class="string">"abcd"</span>;</span><br><span class="line">System.out.println(a==b);</span><br></pre></td></tr></table></figure>
+<p><img src="image005.png" alt="Java"></p>
+<p>这时，a和b存储的是同一个常量字符串，地址也一样，所以是true。</p>
+<p>情况四：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">String a=<span class="keyword">new</span> String(<span class="string">"abcd"</span>);</span><br><span class="line">String b=<span class="keyword">new</span> String(<span class="string">"abcd"</span>);</span><br><span class="line">System.out.printlnl(a==b);</span><br></pre></td></tr></table></figure>
+<p><img src="image007.png" alt="Java"></p>
+<p>如果通过创建对象的方式创建字符串，那么流程就会向上图一样，a和b里面所存放的值就不一样了，a和b 比较就是false</p>
+<h2 id="equals"><a href="#equals" class="headerlink" title="equals()"></a>equals()</h2><p>JAVA当中所有的类都是继承于<code>Object</code>这个超类的，在Object类中定义了一个equals的方法，equals的源码是这样写的：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object obj)</span> </span>&#123;</span><br><span class="line">    <span class="comment">//this - s1</span></span><br><span class="line">    <span class="comment">//obj - s2</span></span><br><span class="line">    <span class="keyword">return</span> (<span class="keyword">this</span> == obj);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可以看到，这个方法的初始默认行为是比较对象的内存地址值，一般来说，意义不大。所以，在一些类库当中这个方法被重写了，如String、Integer、Date。在这些类当中equals有其自身的实现（一般都是用来比较对象的成员变量值是否相同），而不再是比较类在堆内存中的存放地址了。</p>
+<p>所以说，对于复合数据类型之间进行equals比较，在没有覆写equals方法的情况下，他们之间的比较还是内存中的存放位置的地址值，跟双等号（==）的结果相同；如果被复写，按照复写的要求来。</p>
+<h2 id="练习"><a href="#练习" class="headerlink" title="练习"></a>练习</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*  String s1 = "a";</span></span><br><span class="line"><span class="comment">    String s2 = "b";</span></span><br><span class="line"><span class="comment">    String s3 = "c";</span></span><br><span class="line"><span class="comment">    String s4 = "abc";</span></span><br><span class="line"><span class="comment">    String s5 = s1+s2+s3;</span></span><br><span class="line"><span class="comment">    System.out.println(s4 == s5);</span></span><br><span class="line"><span class="comment">    System.out.println(s4.equals(s5));</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line">    String s1 = <span class="string">"a"</span> + <span class="string">"b"</span> + <span class="string">"c"</span>;</span><br><span class="line">    String s2 = <span class="string">"abc"</span>;</span><br><span class="line">    System.out.println(s1 == s2);</span><br><span class="line">    System.out.println(s1.equals(s2));</span><br></pre></td></tr></table></figure>
+<p>地址值的话，由于String是常量，存放于常量池中。而Java中对于常量有常量优化机制，所以没有注释的部分，在编译时候，就是将abc相加的结果赋值给s1，又发现常量池中已经有了abc，所以s1和s2指向的是常量池中的同一个abc，而注释的部分，由于是变量相加，运行时会在常量池中创建新的abc，所以是两个不同的abc</p>
 
       
     </div>
@@ -549,8 +545,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/08/09/Hadoop2-8-0的环境搭建/" rel="next" title="Hadoop2.8.0的环境搭建">
-                <i class="fa fa-chevron-left"></i> Hadoop2.8.0的环境搭建
+              <a href="/2019/08/10/Java编程思想学习笔记-二/" rel="next" title="Java编程思想学习笔记(二)">
+                <i class="fa fa-chevron-left"></i> Java编程思想学习笔记(二)
               </a>
             
           </div>
@@ -559,8 +555,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/08/10/Java编程思想学习笔记-二/" rel="prev" title="Java编程思想学习笔记(二)">
-                Java编程思想学习笔记(二) <i class="fa fa-chevron-right"></i>
+              <a href="/2019/08/13/初识Spark/" rel="prev" title="初识Spark">
+                初识Spark <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -741,7 +737,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#对象导论"><span class="nav-number">1.</span> <span class="nav-text">对象导论</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#抽象过程"><span class="nav-number">1.1.</span> <span class="nav-text">抽象过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#每个对象都有一个接口"><span class="nav-number">1.2.</span> <span class="nav-text">每个对象都有一个接口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#每个对象都提供服务"><span class="nav-number">1.3.</span> <span class="nav-text">每个对象都提供服务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#被隐藏的具体实现"><span class="nav-number">1.4.</span> <span class="nav-text">被隐藏的具体实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#复用具体实现"><span class="nav-number">1.5.</span> <span class="nav-text">复用具体实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#继承"><span class="nav-number">1.6.</span> <span class="nav-text">继承</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#伴随多态的可互换对象"><span class="nav-number">1.7.</span> <span class="nav-text">伴随多态的可互换对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单根继承结构"><span class="nav-number">1.8.</span> <span class="nav-text">单根继承结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#容器"><span class="nav-number">1.9.</span> <span class="nav-text">容器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对象的创建和生命期"><span class="nav-number">1.10.</span> <span class="nav-text">对象的创建和生命期</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#异常处理：处理错误"><span class="nav-number">1.11.</span> <span class="nav-text">异常处理：处理错误</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#并发编程"><span class="nav-number">1.12.</span> <span class="nav-text">并发编程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">1.13.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#："><span class="nav-number">1.</span> <span class="nav-text">==：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#情况一："><span class="nav-number">1.1.</span> <span class="nav-text">情况一：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#情况二："><span class="nav-number">1.2.</span> <span class="nav-text">情况二：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#情况三："><span class="nav-number">1.3.</span> <span class="nav-text">情况三：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#equals"><span class="nav-number">2.</span> <span class="nav-text">equals()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#练习"><span class="nav-number">3.</span> <span class="nav-text">练习</span></a></li></ol></div>
             
 
           </div>
