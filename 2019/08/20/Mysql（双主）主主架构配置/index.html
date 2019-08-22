@@ -101,18 +101,26 @@
 
 
 
-  <meta name="description" content="Just Do ‘IT’ .">
+  <meta name="description" content="前言本次搭建Mysql主主架构基于我的keepalived+nginx+apache+mysql实现高可用、负载均衡的网站这篇文章 在搭建主主配置之前我们先介绍介绍mysql主从方案 mysql主从方案,有一主多从，读写分离等功能，但是单主存在单点故障，从库切换成主库需要作改动等缺点。 因此，如果是双主或者多主，就会增加mysql入口，增加高可用。 不过多主需要考虑自增长ID问题，这个需要特别设置">
 <meta name="keywords" content="高可用负载均衡">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Mysql（双主）主主架构配置">
 <meta property="og:url" content="http://yoursite.com/2019/08/20/Mysql（双主）主主架构配置/index.html">
 <meta property="og:site_name" content="浩翰Redamancy的博客">
-<meta property="og:description" content="Just Do ‘IT’ .">
+<meta property="og:description" content="前言本次搭建Mysql主主架构基于我的keepalived+nginx+apache+mysql实现高可用、负载均衡的网站这篇文章 在搭建主主配置之前我们先介绍介绍mysql主从方案 mysql主从方案,有一主多从，读写分离等功能，但是单主存在单点故障，从库切换成主库需要作改动等缺点。 因此，如果是双主或者多主，就会增加mysql入口，增加高可用。 不过多主需要考虑自增长ID问题，这个需要特别设置">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-20T12:23:49.600Z">
+<meta property="og:image" content="http://yoursite.com/2019/08/20/Mysql（双主）主主架构配置/1.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/20/Mysql（双主）主主架构配置/2.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/20/Mysql（双主）主主架构配置/3.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/20/Mysql（双主）主主架构配置/5.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/20/Mysql（双主）主主架构配置/7.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/20/Mysql（双主）主主架构配置/8.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/20/Mysql（双主）主主架构配置/9.png">
+<meta property="og:updated_time" content="2019-08-22T12:47:49.145Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mysql（双主）主主架构配置">
-<meta name="twitter:description" content="Just Do ‘IT’ .">
+<meta name="twitter:description" content="前言本次搭建Mysql主主架构基于我的keepalived+nginx+apache+mysql实现高可用、负载均衡的网站这篇文章 在搭建主主配置之前我们先介绍介绍mysql主从方案 mysql主从方案,有一主多从，读写分离等功能，但是单主存在单点故障，从库切换成主库需要作改动等缺点。 因此，如果是双主或者多主，就会增加mysql入口，增加高可用。 不过多主需要考虑自增长ID问题，这个需要特别设置">
+<meta name="twitter:image" content="http://yoursite.com/2019/08/20/Mysql（双主）主主架构配置/1.png">
 
 
 
@@ -392,13 +400,23 @@
                 
               
 
-              <time title="创建时间：2019-08-20 20:22:20 / 修改时间：20:23:49" itemprop="dateCreated datePublished" datetime="2019-08-20T20:22:20+08:00">2019-08-20</time>
+              <time title="创建时间：2019-08-20 20:22:20" itemprop="dateCreated datePublished" datetime="2019-08-20T20:22:20+08:00">2019-08-20</time>
             </span>
           
 
           
             
 
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-08-22 20:47:49" itemprop="dateModified" datetime="2019-08-22T20:47:49+08:00">2019-08-22</time>
+              </span>
             
           
 
@@ -446,7 +464,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span title="本文字数">0</span>
+              <span title="本文字数">3.6k</span>
             </span>
           
 
@@ -458,7 +476,7 @@
               
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
               
-              <span title="阅读时长">1 分钟</span>
+              <span title="阅读时长">3 分钟</span>
             </span>
           
 
@@ -477,7 +495,142 @@
       
 
       
-        
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本次搭建Mysql主主架构基于我的<a href="http://localhost:4000/2019/08/20/keepalived-nginx-apache-mysql%E5%AE%9E%E7%8E%B0%E9%AB%98%E5%8F%AF%E7%94%A8%E3%80%81%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%E7%9A%84%E7%BD%91%E7%AB%99/#more" target="_blank" rel="noopener">keepalived+nginx+apache+mysql实现高可用、负载均衡的网站</a>这篇文章</p>
+<p>在搭建主主配置之前我们先介绍介绍mysql主从方案</p>
+<p>mysql主从方案,有一主多从，读写分离等功能，但是单主存在单点故障，从库切换成主库需要作改动等缺点。</p>
+<p>因此，如果是双主或者多主，就会增加mysql入口，增加高可用。</p>
+<p>不过多主需要考虑自增长ID问题，这个需要特别设置配置文件，比如双主，可以使用奇偶，总之，主之间设置自增长ID相互不冲突就能完美解决自增长ID冲突问题。</p>
+<p>MySQL双主（主主）架构方案思路是:</p>
+<ol>
+<li><p>两台mysql都可读写，互为主备，默认只使用一台（masterA）负责数据的写入，另一台（masterB）备用；</p>
+</li>
+<li><p>masterA是masterB的主库，masterB又是masterA的主库，它们互为主从；</p>
+</li>
+<li><p>两台主库之间做高可用,可以采用keepalived等方案（使用VIP对外提供服务）；</p>
+</li>
+<li><p>所有提供服务的从服务器与masterB进行主从同步（双主多从）;</p>
+</li>
+<li><p>建议采用高可用策略的时候，masterA或masterB均不因宕机恢复后而抢占VIP（非抢占模式）；</p>
+</li>
+</ol>
+<p>这样做可以在一定程度上保证主库的高可用,在一台主库down掉之后,可以在极短的时间内切换到另一台主库上（尽可能减少主库宕机对业务造成的影响），减少了主从同步给线上主库带来的压力；</p>
+<p>但是也有几个不足的地方:</p>
+<ol>
+<li><p>masterB可能会一直处于空闲状态（可以用它当从库，负责部分查询）；</p>
+</li>
+<li><p>主库后面提供服务的从库要等masterB先同步完了数据后才能去masterB上去同步数据，这样可能会造成一定程度的同步延时；</p>
+</li>
+</ol>
+<h2 id="搭建环境"><a href="#搭建环境" class="headerlink" title="搭建环境"></a>搭建环境</h2><table>
+<thead>
+<tr>
+<th>主机名称</th>
+<th>安装软件</th>
+<th>ip地址</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>mysql1</td>
+<td>mysql、mysql-server</td>
+<td>172.18.74.76</td>
+</tr>
+<tr>
+<td>mysql2</td>
+<td>mysql、mysql-server</td>
+<td>172.18.74.71</td>
+</tr>
+</tbody>
+</table>
+<h2 id="安装过程"><a href="#安装过程" class="headerlink" title="安装过程"></a>安装过程</h2><pre><code>wget http://repo.mysql.com/mysql-community-release-el7-5.noarch.rpm
+
+mv http://repo.mysql.com/mysql-community-release-el7-5.noarch.rpm /etc/yum.repo/
+
+rpm -ivh mysql.com/mysql-community-release-el7-5.noarch.rpm
+
+yum install -y mysql&amp;&amp;yum install mysql-server -y
+
+systemctl start mysql
+</code></pre><p><img src="1.png" alt="下"></p>
+<p>首先我们配置mysql双主模型，让其数据同步</p>
+<p><code>vim /etc.my.cnf</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">server-id=1</span><br><span class="line">log-bin=mysql-bin</span><br><span class="line">binlog_format=mixed</span><br><span class="line">relay-log=relay-bin</span><br><span class="line">relay-log-index=slave-relay-bin.index</span><br><span class="line">auto-increment-increment=2</span><br><span class="line">auto-increment-offset=1</span><br><span class="line">log-slave-updates</span><br></pre></td></tr></table></figure>
+<p><img src="2.png" alt="下"></p>
+<p>其中红框历史需要添加的内容</p>
+<p>粉框中是两个mysql不同的地方</p>
+<p>mysql2的粉框处是2</p>
+<p>然后重启mysql</p>
+<p><code>systemctl restart mysql</code></p>
+<p>auto-increment 两行的配置，使 masterA字段产生的数值是 奇数1，3，5，7 下面的masterB 产生的是 2，4，6，8 等，这样会避开双主 id 重复的问题</p>
+<h2 id="创建用户"><a href="#创建用户" class="headerlink" title="创建用户"></a>创建用户</h2><pre><code>grant replication slave on *.* to &apos;repl&apos;@&apos;172.18.74.71&apos; identified by &apos;123456&apos;; &apos;;
+
+flush privileges;
+</code></pre><p><img src="3.png" alt="下"></p>
+<h2 id="web服务器授权"><a href="#web服务器授权" class="headerlink" title="web服务器授权"></a>web服务器授权</h2><pre><code>mysql&gt; create database db_jd;
+Query OK, 1 row affected (0.00 sec)
+
+mysql&gt; create user web@localhost identified by &apos;123456&apos;;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql&gt; grant all privileges on *.* to web@localhost;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql&gt; create user web@172.18.74.66 identified by &apos;123456&apos;;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql&gt; create user web@172.18.74.69 identified by &apos;123456&apos;;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql&gt; GRANT ALL PRIVILEGES ON *.* TO &apos;web&apos;@&apos;%&apos; IDENTIFIED BY &apos;123456&apos; WITH GRANT OPTTION;
+--------------
+GRANT ALL PRIVILEGES ON *.* TO &apos;web&apos;@&apos;%&apos; IDENTIFIED BY &apos;123456&apos; WITH GRANT OPTION
+--------------
+Query OK, 0 rows affected (0.00 sec)
+mysql&gt; flush privileges;
+Query OK, 0 rows affected (0.01 sec)
+</code></pre><h2 id="查看主库的状态"><a href="#查看主库的状态" class="headerlink" title="查看主库的状态"></a>查看主库的状态</h2><p><img src="5.png" alt="Mysql"></p>
+<p><img src="7.png" alt="Mysql"></p>
+<h2 id="配置同步信息"><a href="#配置同步信息" class="headerlink" title="配置同步信息"></a>配置同步信息</h2><p>masterA上：</p>
+<pre><code>change master to master_host=&apos;172.18.74.71&apos;,master_port=3306,master_user=&apos;repl&apos;,master_password=&apos;123456&apos;,master_log_file=&apos;mysql-bin.000002&apos;,master_log_pos=632;
+
+start slave;
+
+show slave status\G
+</code></pre><p><img src="8.png" alt="Mysql"></p>
+<p>masterB上：</p>
+<pre><code>change master to master_host=&apos;172.18.74.76&apos;,master_port=3306,master_user=&apos;repl&apos;,master_password=&apos;123456&apos;,master_log_file=&apos;mysql-bin.000002&apos;,master_log_pos=632;
+
+start slave;
+
+show slave status\G
+</code></pre><p><img src="9.png" alt="Mysql"></p>
+<h2 id="测试主主同步"><a href="#测试主主同步" class="headerlink" title="测试主主同步"></a>测试主主同步</h2><p>在masterA上创建一个数据库测试同步效果</p>
+<pre><code>mysql&gt; create database myTest;
+Query OK, 1 row affected (0.00 sec)
+
+mysql&gt; show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| myTest             |
+| mysql              |
+| performance_schema |
++--------------------+
+4 rows in set (0.00 sec)
+</code></pre><p>到masterB查看是否已经同步创建数据库</p>
+<pre><code>mysql&gt; show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| myTest             |
+| mysql              |
+| performance_schema |
++--------------------+
+4 rows in set (0.00 sec)
+</code></pre><p>成功!</p>
+
       
     </div>
 
@@ -568,8 +721,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -693,6 +855,23 @@
       </div>
 
       
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#搭建环境"><span class="nav-number">2.</span> <span class="nav-text">搭建环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装过程"><span class="nav-number">3.</span> <span class="nav-text">安装过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建用户"><span class="nav-number">4.</span> <span class="nav-text">创建用户</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#web服务器授权"><span class="nav-number">5.</span> <span class="nav-text">web服务器授权</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看主库的状态"><span class="nav-number">6.</span> <span class="nav-text">查看主库的状态</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置同步信息"><span class="nav-number">7.</span> <span class="nav-text">配置同步信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试主主同步"><span class="nav-number">8.</span> <span class="nav-text">测试主主同步</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
 
       
 
@@ -719,7 +898,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">34k</span>
+    <span title="站点总字数">51k</span>
   
 
   
@@ -728,7 +907,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="站点阅读时长">31 分钟</span>
+    <span title="站点阅读时长">46 分钟</span>
   
 </div>
 
