@@ -114,9 +114,9 @@
 <meta property="og:image" content="http://yoursite.com/2019/08/20/Mysql（双主）主主架构配置/3.png">
 <meta property="og:image" content="http://yoursite.com/2019/08/20/Mysql（双主）主主架构配置/5.png">
 <meta property="og:image" content="http://yoursite.com/2019/08/20/Mysql（双主）主主架构配置/7.png">
-<meta property="og:image" content="http://yoursite.com/2019/08/20/Mysql（双主）主主架构配置/8.png">
 <meta property="og:image" content="http://yoursite.com/2019/08/20/Mysql（双主）主主架构配置/9.png">
-<meta property="og:updated_time" content="2019-08-22T12:47:49.145Z">
+<meta property="og:image" content="http://yoursite.com/2019/08/20/Mysql（双主）主主架构配置/8.png">
+<meta property="og:updated_time" content="2019-08-24T15:07:34.066Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mysql（双主）主主架构配置">
 <meta name="twitter:description" content="前言本次搭建Mysql主主架构基于我的keepalived+nginx+apache+mysql实现高可用、负载均衡的网站这篇文章 在搭建主主配置之前我们先介绍介绍mysql主从方案 mysql主从方案,有一主多从，读写分离等功能，但是单主存在单点故障，从库切换成主库需要作改动等缺点。 因此，如果是双主或者多主，就会增加mysql入口，增加高可用。 不过多主需要考虑自增长ID问题，这个需要特别设置">
@@ -415,7 +415,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-08-22 20:47:49" itemprop="dateModified" datetime="2019-08-22T20:47:49+08:00">2019-08-22</time>
+                <time title="修改时间：2019-08-24 23:07:34" itemprop="dateModified" datetime="2019-08-24T23:07:34+08:00">2019-08-24</time>
               </span>
             
           
@@ -596,14 +596,14 @@ Query OK, 0 rows affected (0.01 sec)
 start slave;
 
 show slave status\G
-</code></pre><p><img src="8.png" alt="Mysql"></p>
+</code></pre><p><img src="9.png" alt="Mysql"></p>
 <p>masterB上：</p>
 <pre><code>change master to master_host=&apos;172.18.74.76&apos;,master_port=3306,master_user=&apos;repl&apos;,master_password=&apos;123456&apos;,master_log_file=&apos;mysql-bin.000002&apos;,master_log_pos=632;
 
 start slave;
 
 show slave status\G
-</code></pre><p><img src="9.png" alt="Mysql"></p>
+</code></pre><p><img src="8.png" alt="Mysql"></p>
 <h2 id="测试主主同步"><a href="#测试主主同步" class="headerlink" title="测试主主同步"></a>测试主主同步</h2><p>在masterA上创建一个数据库测试同步效果</p>
 <pre><code>mysql&gt; create database myTest;
 Query OK, 1 row affected (0.00 sec)
