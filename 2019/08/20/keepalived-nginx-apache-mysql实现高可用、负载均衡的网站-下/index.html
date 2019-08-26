@@ -114,7 +114,7 @@
 <meta property="og:image" content="http://yoursite.com/2019/08/20/keepalived-nginx-apache-mysql实现高可用、负载均衡的网站-下/4.png">
 <meta property="og:image" content="http://yoursite.com/2019/08/20/keepalived-nginx-apache-mysql实现高可用、负载均衡的网站-下/10.png">
 <meta property="og:image" content="http://yoursite.com/2019/08/20/keepalived-nginx-apache-mysql实现高可用、负载均衡的网站-下/5.png">
-<meta property="og:updated_time" content="2019-08-22T12:47:48.381Z">
+<meta property="og:updated_time" content="2019-08-26T14:37:16.677Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="keepalived+nginx+apache+mysql实现高可用、负载均衡的网站(下)">
 <meta name="twitter:description" content="环境介绍   主机名称 安装软件 ip地址     nginx_mysql_m keepalived+nginx 172.18.74.77   nginx_mysql_s keepalived+nginx 172.18.74.70   mysql1 mysql、mysql-server 172.18.74.76   mysql2 mysql、mysql-server 172.18.74.71">
@@ -413,7 +413,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-08-22 20:47:48" itemprop="dateModified" datetime="2019-08-22T20:47:48+08:00">2019-08-22</time>
+                <time title="修改时间：2019-08-26 22:37:16" itemprop="dateModified" datetime="2019-08-26T22:37:16+08:00">2019-08-26</time>
               </span>
             
           
@@ -556,8 +556,7 @@
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    <span class="comment">//1、设置响应头信息</span></span><br><span class="line">    header(<span class="string">'Content-type:text/html; charset=utf-8'</span>);</span><br><span class="line">    <span class="comment">//2、submit安全判断</span></span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">isset</span>($_POST[<span class="string">'submit'</span>])) &#123;</span><br><span class="line">        <span class="comment">//3、接收数据</span></span><br><span class="line">        $title = $_POST[<span class="string">'title'</span>];</span><br><span class="line">        $price = $_POST[<span class="string">'price'</span>];</span><br><span class="line">        $market_price = $_POST[<span class="string">'market_price'</span>];</span><br><span class="line">        <span class="keyword">include</span> <span class="string">'coon.php'</span>;</span><br><span class="line">        <span class="comment">//9、定义SQL语句</span></span><br><span class="line">        $sql = <span class="string">"insert into tb_goods values ('$title','$price','$market_price')"</span>;</span><br><span class="line">        <span class="comment">//10、执行SQL语句</span></span><br><span class="line">        $result = mysql_query($sql);</span><br><span class="line">        <span class="keyword">if</span>($result) &#123;</span><br><span class="line">            <span class="keyword">echo</span> <span class="string">'添加成功'</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">echo</span> <span class="string">'添加失败'</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
 <h2 id="访问webvip的地址"><a href="#访问webvip的地址" class="headerlink" title="访问webvip的地址"></a>访问webvip的地址</h2><p>插入数据</p>
 <p><img src="4.png" alt="下"></p>
-<p><img src="10.png" alt="下"></p>
-<p>报错指南:</p>
+<h2 id><a href="#" class="headerlink" title></a><img src="10.png" alt="下"></h2><p>报错指南:</p>
 <p><img src="5.png" alt="下"></p>
 <p>原因： SELinux 不让 httpd 访问外网</p>
 <p>在本地可以连接成功但是外网访问不了</p>
@@ -603,8 +602,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/08/20/keepalived-nginx-apache-mysql实现高可用、负载均衡的网站/" rel="next" title="keepalived+nginx+apache+mysql实现高可用、负载均衡的网站(上)">
-                <i class="fa fa-chevron-left"></i> keepalived+nginx+apache+mysql实现高可用、负载均衡的网站(上)
+              <a href="/2019/08/20/keepalived-nginx-apache-mysql实现高可用、负载均衡的网站/" rel="next" title="keepalived+nginx+apache+mysql实现高可用、负载均衡的网站">
+                <i class="fa fa-chevron-left"></i> keepalived+nginx+apache+mysql实现高可用、负载均衡的网站
               </a>
             
           </div>
@@ -803,7 +802,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#环境介绍"><span class="nav-number">1.</span> <span class="nav-text">环境介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#keepalived配置"><span class="nav-number">2.</span> <span class="nav-text">keepalived配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#nginx的配置"><span class="nav-number">3.</span> <span class="nav-text">nginx的配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#修改nginx配置文件"><span class="nav-number">3.1.</span> <span class="nav-text">修改nginx配置文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#启动nginx"><span class="nav-number">3.2.</span> <span class="nav-text">启动nginx</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mysql数据库配置"><span class="nav-number">3.3.</span> <span class="nav-text">mysql数据库配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基于web页面的测试"><span class="nav-number">4.</span> <span class="nav-text">基于web页面的测试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#访问webvip的地址"><span class="nav-number">5.</span> <span class="nav-text">访问webvip的地址</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#环境介绍"><span class="nav-number">1.</span> <span class="nav-text">环境介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#keepalived配置"><span class="nav-number">2.</span> <span class="nav-text">keepalived配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#nginx的配置"><span class="nav-number">3.</span> <span class="nav-text">nginx的配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#修改nginx配置文件"><span class="nav-number">3.1.</span> <span class="nav-text">修改nginx配置文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#启动nginx"><span class="nav-number">3.2.</span> <span class="nav-text">启动nginx</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mysql数据库配置"><span class="nav-number">3.3.</span> <span class="nav-text">mysql数据库配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基于web页面的测试"><span class="nav-number">4.</span> <span class="nav-text">基于web页面的测试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#访问webvip的地址"><span class="nav-number">5.</span> <span class="nav-text">访问webvip的地址</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">6.</span> <span class="nav-text"></span></a></li></ol></div>
             
 
           </div>
