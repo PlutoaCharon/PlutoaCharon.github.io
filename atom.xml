@@ -142,33 +142,6 @@
   </entry>
   
   <entry>
-    <title>JobTracker和TaskTracker</title>
-    <link href="http://yoursite.com/2019/08/31/JobTracker%E5%92%8CTaskTracker/"/>
-    <id>http://yoursite.com/2019/08/31/JobTracker和TaskTracker/</id>
-    <published>2019-08-31T02:12:44.000Z</published>
-    <updated>2019-08-31T03:51:44.820Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>Hadoop MapReduce采用Master/Slave结构。</p><ul><li><p>Master：是整个集群的唯一的全局管理者，功能包括：作业管理、状态监控和任务调度等，即MapReduce中的JobTracker。</p></li><li><p>Slave：负责任务的执行和任务状态的回报，即MapReduce中的TaskTracker。</p></li></ul><h2 id="JobTracker剖析"><a href="#JobTracker剖析" class="headerlink" title="JobTracker剖析"></a>JobTracker剖析</h2><h3 id="概述：JobTracker是一个后台服务进程，启动之后，会一直监听并接收来自各个TaskTracker发送的心跳信息，包括资源使用情况和任务运行情况等信息"><a href="#概述：JobTracker是一个后台服务进程，启动之后，会一直监听并接收来自各个TaskTracker发送的心跳信息，包括资源使用情况和任务运行情况等信息" class="headerlink" title="概述：JobTracker是一个后台服务进程，启动之后，会一直监听并接收来自各个TaskTracker发送的心跳信息，包括资源使用情况和任务运行情况等信息"></a>概述：JobTracker是一个后台服务进程，启动之后，会一直监听并接收来自各个TaskTracker发送的心跳信息，包括资源使用情况和任务运行情况等信息</h3><h3 id="JobTracker的主要功能"><a href="#JobTracker的主要功能" class="headerlink" title="JobTracker的主要功能"></a>JobTracker的主要功能</h3><ul><li><p>作业控制：在hadoop中每个应用程序被表示成一个作业，每个作业又被分成多个任务，JobTracker的作业控制模块则负责作业的分解和状态监控。</p></li><li><p>最重要的是状态监控：主要包括TaskTracker状态监控、作业状态监控和任务状态监控。</p></li></ul><p>主要作用：</p><ul><li>容错和为任务调度提供决策依据</li><li>资源管理。</li></ul><h2 id="TaskTracker剖析"><a href="#TaskTracker剖析" class="headerlink" title="TaskTracker剖析"></a>TaskTracker剖析</h2><h3 id="TaskTracker概述"><a href="#TaskTracker概述" class="headerlink" title="TaskTracker概述"></a>TaskTracker概述</h3><p>TaskTracker是JobTracker和Task之间的桥梁：一方面，从JobTracker接收并执行各种命令：运行任务、提交任务、杀死任务等；另一方面，将本地节点上各个任务的状态通过心跳周期性汇报给JobTracker。TaskTracker与JobTracker和Task之间采用了RPC协议进行通信。</p><h3 id="TaskTracker的功能："><a href="#TaskTracker的功能：" class="headerlink" title="TaskTracker的功能："></a>TaskTracker的功能：</h3><ol><li>汇报心跳：Tracker周期性将所有节点上各种信息通过心跳机制汇报给<br>JobTracker。这些信息包括两部分：</li></ol><p>*机器级别信息：节点健康情况、资源使用情况等。</p><p>*任务级别信息：任务执行进度、任务运行状态等。</p><ol start="2"><li>执行命令：JobTracker会给TaskTracker下达各种命令，主要包括：启动任务(LaunchTaskAction)、提交任务(CommitTaskAction)、杀死任务(KillTaskAction)、杀死作业(KillJobAction)和重新初始化(TaskTrackerReinitAction)。</li></ol><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>JobTracker  对应于 NameNode</p><p>TaskTracker 对应于 DataNode</p><p>DataNode 和NameNode 是针对数据存放来而言的</p><p>JobTracker和TaskTracker是对于MapReduce执行而言的</p><p>mapreduce中几个主要概念，mapreduce整体上可以分为这么几条执行线索：</p><p>jobclient，JobTracker与TaskTracker。</p><ol><li>JobClient会在用户端通过JobClient类将应用已经配置参数打包成jar文件存储到hdfs，</li></ol><p>并把路径提交到Jobtracker,然后由JobTracker创建每一个Task（即MapTask和ReduceTask）</p><p>并将它们分发到各个TaskTracker服务中去执行</p><ol start="2"><li>JobTracker是一个master服务，软件启动之后JobTracker接收Job，负责调度Job的每一个子任务task运行于TaskTracker上，</li></ol><p>并监控它们，如果发现有失败的task就重新运行它。一般情况应该把JobTracker部署在单独的机器上。</p><ol start="3"><li>TaskTracker是运行在多个节点上的slaver服务。TaskTracker主动与JobTracker通信，接收作业，并负责直接执行每一个任务。</li></ol><p>TaskTracker都需要运行在HDFS的DataNode上.</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;概述&quot;&gt;&lt;a href=&quot;#概述&quot; class=&quot;headerlink&quot; title=&quot;概述&quot;&gt;&lt;/a&gt;概述&lt;/h2&gt;&lt;p&gt;Hadoop MapReduce采用Master/Slave结构。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;Master：是整个集群的唯一的全局管理
-      
-    
-    </summary>
-    
-      <category term="Hadoop" scheme="http://yoursite.com/categories/Hadoop/"/>
-    
-    
-      <category term="Hadoop" scheme="http://yoursite.com/tags/Hadoop/"/>
-    
-  </entry>
-  
-  <entry>
     <title>HDFS文件接口</title>
     <link href="http://yoursite.com/2019/08/31/HDFS%E6%96%87%E4%BB%B6%E6%8E%A5%E5%8F%A3/"/>
     <id>http://yoursite.com/2019/08/31/HDFS文件接口/</id>
@@ -184,6 +157,33 @@
         &lt;h2 id=&quot;命令基本格式&quot;&gt;&lt;a href=&quot;#命令基本格式&quot; class=&quot;headerlink&quot; title=&quot;命令基本格式:&quot;&gt;&lt;/a&gt;命令基本格式:&lt;/h2&gt;&lt;p&gt;&lt;code&gt;hadoop fs -cmd &amp;lt; args &amp;gt;&lt;/code&gt;&lt;/p&gt;
 &lt;hr&gt;
 
+      
+    
+    </summary>
+    
+      <category term="Hadoop" scheme="http://yoursite.com/categories/Hadoop/"/>
+    
+    
+      <category term="Hadoop" scheme="http://yoursite.com/tags/Hadoop/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>JobTracker和TaskTracker</title>
+    <link href="http://yoursite.com/2019/08/31/JobTracker%E5%92%8CTaskTracker/"/>
+    <id>http://yoursite.com/2019/08/31/JobTracker和TaskTracker/</id>
+    <published>2019-08-31T02:12:44.000Z</published>
+    <updated>2019-08-31T03:51:44.820Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>Hadoop MapReduce采用Master/Slave结构。</p><ul><li><p>Master：是整个集群的唯一的全局管理者，功能包括：作业管理、状态监控和任务调度等，即MapReduce中的JobTracker。</p></li><li><p>Slave：负责任务的执行和任务状态的回报，即MapReduce中的TaskTracker。</p></li></ul><h2 id="JobTracker剖析"><a href="#JobTracker剖析" class="headerlink" title="JobTracker剖析"></a>JobTracker剖析</h2><h3 id="概述：JobTracker是一个后台服务进程，启动之后，会一直监听并接收来自各个TaskTracker发送的心跳信息，包括资源使用情况和任务运行情况等信息"><a href="#概述：JobTracker是一个后台服务进程，启动之后，会一直监听并接收来自各个TaskTracker发送的心跳信息，包括资源使用情况和任务运行情况等信息" class="headerlink" title="概述：JobTracker是一个后台服务进程，启动之后，会一直监听并接收来自各个TaskTracker发送的心跳信息，包括资源使用情况和任务运行情况等信息"></a>概述：JobTracker是一个后台服务进程，启动之后，会一直监听并接收来自各个TaskTracker发送的心跳信息，包括资源使用情况和任务运行情况等信息</h3><h3 id="JobTracker的主要功能"><a href="#JobTracker的主要功能" class="headerlink" title="JobTracker的主要功能"></a>JobTracker的主要功能</h3><ul><li><p>作业控制：在hadoop中每个应用程序被表示成一个作业，每个作业又被分成多个任务，JobTracker的作业控制模块则负责作业的分解和状态监控。</p></li><li><p>最重要的是状态监控：主要包括TaskTracker状态监控、作业状态监控和任务状态监控。</p></li></ul><p>主要作用：</p><ul><li>容错和为任务调度提供决策依据</li><li>资源管理。</li></ul><h2 id="TaskTracker剖析"><a href="#TaskTracker剖析" class="headerlink" title="TaskTracker剖析"></a>TaskTracker剖析</h2><h3 id="TaskTracker概述"><a href="#TaskTracker概述" class="headerlink" title="TaskTracker概述"></a>TaskTracker概述</h3><p>TaskTracker是JobTracker和Task之间的桥梁：一方面，从JobTracker接收并执行各种命令：运行任务、提交任务、杀死任务等；另一方面，将本地节点上各个任务的状态通过心跳周期性汇报给JobTracker。TaskTracker与JobTracker和Task之间采用了RPC协议进行通信。</p><h3 id="TaskTracker的功能："><a href="#TaskTracker的功能：" class="headerlink" title="TaskTracker的功能："></a>TaskTracker的功能：</h3><ol><li>汇报心跳：Tracker周期性将所有节点上各种信息通过心跳机制汇报给<br>JobTracker。这些信息包括两部分：</li></ol><p>*机器级别信息：节点健康情况、资源使用情况等。</p><p>*任务级别信息：任务执行进度、任务运行状态等。</p><ol start="2"><li>执行命令：JobTracker会给TaskTracker下达各种命令，主要包括：启动任务(LaunchTaskAction)、提交任务(CommitTaskAction)、杀死任务(KillTaskAction)、杀死作业(KillJobAction)和重新初始化(TaskTrackerReinitAction)。</li></ol><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>JobTracker  对应于 NameNode</p><p>TaskTracker 对应于 DataNode</p><p>DataNode 和NameNode 是针对数据存放来而言的</p><p>JobTracker和TaskTracker是对于MapReduce执行而言的</p><p>mapreduce中几个主要概念，mapreduce整体上可以分为这么几条执行线索：</p><p>jobclient，JobTracker与TaskTracker。</p><ol><li>JobClient会在用户端通过JobClient类将应用已经配置参数打包成jar文件存储到hdfs，</li></ol><p>并把路径提交到Jobtracker,然后由JobTracker创建每一个Task（即MapTask和ReduceTask）</p><p>并将它们分发到各个TaskTracker服务中去执行</p><ol start="2"><li>JobTracker是一个master服务，软件启动之后JobTracker接收Job，负责调度Job的每一个子任务task运行于TaskTracker上，</li></ol><p>并监控它们，如果发现有失败的task就重新运行它。一般情况应该把JobTracker部署在单独的机器上。</p><ol start="3"><li>TaskTracker是运行在多个节点上的slaver服务。TaskTracker主动与JobTracker通信，接收作业，并负责直接执行每一个任务。</li></ol><p>TaskTracker都需要运行在HDFS的DataNode上.</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;概述&quot;&gt;&lt;a href=&quot;#概述&quot; class=&quot;headerlink&quot; title=&quot;概述&quot;&gt;&lt;/a&gt;概述&lt;/h2&gt;&lt;p&gt;Hadoop MapReduce采用Master/Slave结构。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Master：是整个集群的唯一的全局管理
       
     
     </summary>
