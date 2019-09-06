@@ -101,26 +101,17 @@
 
 
 
-  <meta name="description" content="原因我在Liunx安装Apache服务时，遇到  有进程存在，本进程原地等待 导致此状况原因可能是我一开始没有联网直接运行 yum install -y httpd 导致该进程一直占用资源，pid被锁定 解决方法常规篇首先，用ps查看进程，方法如下：  ps -ef查看详情  此时如果我想杀了yum的进程就在终端输入： kill -s 9 2457 其中-s 9 制定了传递给进程的信号是９，即强制">
-<meta name="keywords" content="Liunx">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Linux下进程kill掉的N种方法">
-<meta property="og:url" content="http://yoursite.com/2019/08/20/Linux下进程kill掉的N种方法/index.html">
+  <meta name="description" content="个人介绍大家好, 这里是我的个人博客空间, 博主目前是一名大三在读学生, 热爱学习,有积极进取的心态，努力拼搏. 性格沉稳内敛，个性坚韧，有很强进取心和团队协作精神，学习能力、适应能力、承受压力能力较强，善于挑战自我,善于在实践中不断学习进步. 现居于学校网络数据中心实验室学习, 主攻大数据与虚拟化云计算 大数据方面了解生态组件如Hive,Hbase,Zookeeper,Kafka,Flume等,">
+<meta property="og:type" content="website">
+<meta property="og:title" content="about">
+<meta property="og:url" content="http://yoursite.com/about/index.html">
 <meta property="og:site_name" content="浩翰Redamancy的博客">
-<meta property="og:description" content="原因我在Liunx安装Apache服务时，遇到  有进程存在，本进程原地等待 导致此状况原因可能是我一开始没有联网直接运行 yum install -y httpd 导致该进程一直占用资源，pid被锁定 解决方法常规篇首先，用ps查看进程，方法如下：  ps -ef查看详情  此时如果我想杀了yum的进程就在终端输入： kill -s 9 2457 其中-s 9 制定了传递给进程的信号是９，即强制">
+<meta property="og:description" content="个人介绍大家好, 这里是我的个人博客空间, 博主目前是一名大三在读学生, 热爱学习,有积极进取的心态，努力拼搏. 性格沉稳内敛，个性坚韧，有很强进取心和团队协作精神，学习能力、适应能力、承受压力能力较强，善于挑战自我,善于在实践中不断学习进步. 现居于学校网络数据中心实验室学习, 主攻大数据与虚拟化云计算 大数据方面了解生态组件如Hive,Hbase,Zookeeper,Kafka,Flume等,">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://yoursite.com/2019/08/20/Linux下进程kill掉的N种方法/image001.png">
-<meta property="og:image" content="http://yoursite.com/2019/08/20/Linux下进程kill掉的N种方法/image003.png">
-<meta property="og:image" content="http://yoursite.com/2019/08/20/Linux下进程kill掉的N种方法/image005.png">
-<meta property="og:image" content="http://yoursite.com/2019/08/20/Linux下进程kill掉的N种方法/image007.png">
-<meta property="og:image" content="http://yoursite.com/2019/08/20/Linux下进程kill掉的N种方法/image009.png">
-<meta property="og:image" content="http://yoursite.com/2019/08/20/Linux下进程kill掉的N种方法/image011.png">
-<meta property="og:image" content="http://yoursite.com/2019/08/20/Linux下进程kill掉的N种方法/image013.png">
-<meta property="og:updated_time" content="2019-08-31T02:45:28.419Z">
+<meta property="og:updated_time" content="2019-09-06T14:45:07.898Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Linux下进程kill掉的N种方法">
-<meta name="twitter:description" content="原因我在Liunx安装Apache服务时，遇到  有进程存在，本进程原地等待 导致此状况原因可能是我一开始没有联网直接运行 yum install -y httpd 导致该进程一直占用资源，pid被锁定 解决方法常规篇首先，用ps查看进程，方法如下：  ps -ef查看详情  此时如果我想杀了yum的进程就在终端输入： kill -s 9 2457 其中-s 9 制定了传递给进程的信号是９，即强制">
-<meta name="twitter:image" content="http://yoursite.com/2019/08/20/Linux下进程kill掉的N种方法/image001.png">
+<meta name="twitter:title" content="about">
+<meta name="twitter:description" content="个人介绍大家好, 这里是我的个人博客空间, 博主目前是一名大三在读学生, 热爱学习,有积极进取的心态，努力拼搏. 性格沉稳内敛，个性坚韧，有很强进取心和团队协作精神，学习能力、适应能力、承受压力能力较强，善于挑战自我,善于在实践中不断学习进步. 现居于学校网络数据中心实验室学习, 主攻大数据与虚拟化云计算 大数据方面了解生态组件如Hive,Hbase,Zookeeper,Kafka,Flume等,">
 
 
 
@@ -130,7 +121,7 @@
 
   
   
-  <link rel="canonical" href="http://yoursite.com/2019/08/20/Linux下进程kill掉的N种方法/">
+  <link rel="canonical" href="http://yoursite.com/about/">
 
 
 
@@ -140,7 +131,7 @@
   };
 </script>
 
-  <title>Linux下进程kill掉的N种方法 | 浩翰Redamancy的博客</title>
+  <title>about | 浩翰Redamancy的博客</title>
   
 
 
@@ -248,7 +239,7 @@
         
         
           
-          <li class="menu-item menu-item-about">
+          <li class="menu-item menu-item-about menu-item-active">
 
     
     
@@ -337,256 +328,89 @@
           
             
 
+    
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+    
+
+  
+
+
           
           <div id="content" class="content">
             
 
   <div id="posts" class="posts-expand">
     
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/20/Linux下进程kill掉的N种方法/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="精神小伙">
-      <meta itemprop="description" content="Just Do ‘IT’ .">
-      <meta itemprop="image" content="/images/Me.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="浩翰Redamancy的博客">
-    </span>
-
     
+    
+    <div class="post-block page">
       <header class="post-header">
 
-        
-        
-          <h1 class="post-title" itemprop="name headline">Linux下进程kill掉的N种方法
+<h1 class="post-title" itemprop="name headline">about
 
-              
-            
-          </h1>
-        
+</h1>
 
-        <div class="post-meta">
+<div class="post-meta">
+  
+  
 
-          
-          
-          
 
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
 
-              
-                
-              
+</div>
 
-              <time title="创建时间：2019-08-20 20:02:44" itemprop="dateCreated datePublished" datetime="2019-08-20T20:02:44+08:00">2019-08-20</time>
-            </span>
-          
-
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-08-31 10:45:28" itemprop="dateModified" datetime="2019-08-31T10:45:28+08:00">2019-08-31</time>
-              </span>
-            
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Liunx/" itemprop="url" rel="index"><span itemprop="name">Liunx</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-                 阅读次数： 
-                <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
-              </span>
-            </span>
-          
-
-          <br>
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">本文字数：</span>
-              
-              <span title="本文字数">415</span>
-            </span>
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              
-              <span title="阅读时长">1 分钟</span>
-            </span>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
+</header>
 
       
       
-
       
-        <h2 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h2><p>我在Liunx安装Apache服务时，遇到</p>
-<p><img src="image001.png" alt="Liunx"></p>
-<p>有进程存在，本进程原地等待</p>
-<p>导致此状况原因可能是我一开始没有联网直接运行</p>
-<p><code>yum install -y httpd</code></p>
-<p>导致该进程一直<strong>占用资源，pid被锁定</strong></p>
-<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><h3 id="常规篇"><a href="#常规篇" class="headerlink" title="常规篇"></a>常规篇</h3><p>首先，用ps查看进程，方法如下：</p>
-<p><img src="image003.png" alt="Liunx"></p>
-<p><code>ps -ef</code>查看详情</p>
-<p><img src="image005.png" alt="Liunx"></p>
-<p>此时如果我想杀了yum的进程就在终端输入：</p>
-<p><code>kill -s 9 2457</code></p>
-<p>其中-s 9 制定了传递给进程的信号是９，即强制、尽快终止进程。</p>
-<p>2457则是上面ps查到的yum的PID</p>
-<p><img src="image007.png" alt="Liunx"></p>
-<p>杀死其他yum进程后，yum便能正常运行</p>
-<p><img src="image009.png" alt="Liunx"></p>
-<h3 id="进阶篇"><a href="#进阶篇" class="headerlink" title="进阶篇"></a>进阶篇</h3><p>把ps的查询结果通过管道给grep查找包含特定字符串的进程。管道符“|”用来隔开两个命令，管道符左边命令的输出会作为管道符右边命令的输入。</p>
-<p><code>ps -ef | grep yum</code></p>
-<p>这样可以更加简洁的看到yum进程的信息</p>
-<p><img src="image011.png" alt="Liunx"></p>
-<p><strong>使用pgrep：</strong></p>
-<p>pgrep的p表明了这个命令是专门用于进程查询的grep。</p>
-<p><code>pgrep yum</code></p>
-<p><img src="image013.png" alt="Liunx"></p>
+      <div class="post-body">
+        
+        
+          <h2 id="个人介绍"><a href="#个人介绍" class="headerlink" title="个人介绍"></a>个人介绍</h2><p>大家好, 这里是我的个人博客空间, 博主目前是一名大三在读学生, 热爱学习,有积极进取的心态，努力拼搏.</p>
+<p>性格沉稳内敛，个性坚韧，有很强进取心和团队协作精神，学习能力、适应能力、承受压力能力较强，善于挑战自我,善于在实践中不断学习进步.</p>
+<p>现居于学校网络数据中心实验室学习, 主攻大数据与虚拟化云计算</p>
+<h3 id="大数据方面"><a href="#大数据方面" class="headerlink" title="大数据方面"></a>大数据方面</h3><pre><code>了解生态组件如Hive,Hbase,Zookeeper,Kafka,Flume等,熟悉Spark,Hadoop,搭建过各种组件的多节点环境.
 
+涉猎过机器学习的一些知识, 读过facenet人脸识别源码, 熟练使用GPU做机器学习计算
+
+做过一些爬虫项目,java,scala都有学习
+</code></pre><h3 id="虚拟化与云计算"><a href="#虚拟化与云计算" class="headerlink" title="虚拟化与云计算"></a>虚拟化与云计算</h3><pre><code>设计过不同Vlan下的高可用负载均衡集群搭建, 熟悉Docker,了解OpenStack,k8s等虚拟化平台
+
+在数据中心了解教学楼的网络构建走向,参与学校大数据平台与网络安全平台的搭建
+</code></pre><h2 id="如何联系"><a href="#如何联系" class="headerlink" title="如何联系"></a>如何联系</h2><pre><code>QQ : 1070481109
+Weixin : haohan991205
+Email : 1070481109@qq.com
+csdn : https://me.csdn.net/qq_43442524
+GitHub : https://github.com/PlutoaCharon
+</code></pre>
+        
+      </div>
+      
+      
       
     </div>
-
     
 
+
+
     
     
     
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-        
-          
-        
-        <div class="post-tags">
-          
-            <a href="/tags/Liunx/" rel="tag"><i class="fa fa-tag"></i> Liunx</a>
-          
-        </div>
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2019/08/20/Centos7-安装-php-和-php-fpm/" rel="next" title="Centos7 安装 php 和 php-fpm">
-                <i class="fa fa-chevron-left"></i> Centos7 安装 php 和 php-fpm
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/08/20/Centos7-防火墙关闭与nginx无法访问/" rel="prev" title="Centos7 防火墙关闭与nginx无法访问">
-                Centos7 防火墙关闭与nginx无法访问 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
   </div>
 
 
@@ -803,7 +627,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#原因"><span class="nav-number">1.</span> <span class="nav-text">原因</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决方法"><span class="nav-number">2.</span> <span class="nav-text">解决方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#常规篇"><span class="nav-number">2.1.</span> <span class="nav-text">常规篇</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#进阶篇"><span class="nav-number">2.2.</span> <span class="nav-text">进阶篇</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#个人介绍"><span class="nav-number">1.</span> <span class="nav-text">个人介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#大数据方面"><span class="nav-number">1.1.</span> <span class="nav-text">大数据方面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#虚拟化与云计算"><span class="nav-number">1.2.</span> <span class="nav-text">虚拟化与云计算</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何联系"><span class="nav-number">2.</span> <span class="nav-text">如何联系</span></a></li></ol></div>
             
 
           </div>
