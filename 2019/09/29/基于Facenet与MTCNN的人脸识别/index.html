@@ -1,0 +1,1118 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link rel="stylesheet" href="/lib/pace/pace-theme-barber-shop.min.css?v=1.0.2">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+<link rel="stylesheet" href="/css/main.css?v=7.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon1.ico?v=7.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.2.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.2.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.2.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="本文来自于中国科学院深圳先进技术研究院，目前发表在arXiv上，是2016年4月份的文章，算是比较新的文章。论文地址：https://kpzhang93.github.io/MTCNN_face_detection_alignment/ 概述相比于R-CNN系列通用检测方法，本文更加针对人脸检测这一专门的任务，速度和精度都有足够的提升。R-CNN，Fast R-CNN，FasterR-CNN这一系">
+<meta name="keywords" content="Python,机器学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于Facenet与MTCNN的人脸识别">
+<meta property="og:url" content="http://yoursite.com/2019/09/29/基于Facenet与MTCNN的人脸识别/index.html">
+<meta property="og:site_name" content="浩翰Redamancy的博客">
+<meta property="og:description" content="本文来自于中国科学院深圳先进技术研究院，目前发表在arXiv上，是2016年4月份的文章，算是比较新的文章。论文地址：https://kpzhang93.github.io/MTCNN_face_detection_alignment/ 概述相比于R-CNN系列通用检测方法，本文更加针对人脸检测这一专门的任务，速度和精度都有足够的提升。R-CNN，Fast R-CNN，FasterR-CNN这一系">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190925171034228.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190925171108487.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190925171501754.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190925171536641.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190925171840227.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190925172250628.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190925180412645.png">
+<meta property="og:updated_time" content="2019-09-29T15:14:36.190Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="基于Facenet与MTCNN的人脸识别">
+<meta name="twitter:description" content="本文来自于中国科学院深圳先进技术研究院，目前发表在arXiv上，是2016年4月份的文章，算是比较新的文章。论文地址：https://kpzhang93.github.io/MTCNN_face_detection_alignment/ 概述相比于R-CNN系列通用检测方法，本文更加针对人脸检测这一专门的任务，速度和精度都有足够的提升。R-CNN，Fast R-CNN，FasterR-CNN这一系">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20190925171034228.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="浩翰Redamancy的博客" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="http://yoursite.com/2019/09/29/基于Facenet与MTCNN的人脸识别/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>基于Facenet与MTCNN的人脸识别 | 浩翰Redamancy的博客</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+	
+	<a href="https://github.com/PlutoaCharon" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">浩翰Redamancy的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">一个爱学习的计算机菜鸟笔记</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/29/基于Facenet与MTCNN的人脸识别/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="精神小伙">
+      <meta itemprop="description" content="Just Do ‘IT’ .">
+      <meta itemprop="image" content="/images/Me.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="浩翰Redamancy的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">基于Facenet与MTCNN的人脸识别
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-09-29 23:14:15 / 修改时间：23:14:36" itemprop="dateCreated datePublished" datetime="2019-09-29T23:14:15+08:00">2019-09-29</time>
+            </span>
+          
+
+          
+            
+
+            
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/机器学习/" itemprop="url" rel="index"><span itemprop="name">机器学习</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+                 阅读次数： 
+                <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+              </span>
+            </span>
+          
+
+          <br>
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span title="本文字数">13k</span>
+            </span>
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span title="阅读时长">12 分钟</span>
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本文来自于中国科学院深圳先进技术研究院，目前发表在arXiv上，是2016年4月份的文章，算是比较新的文章。<br>论文地址：<br><a href="https://kpzhang93.github.io/MTCNN_face_detection_alignment/" target="_blank" rel="noopener">https://kpzhang93.github.io/MTCNN_face_detection_alignment/</a></p>
+<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>相比于R-CNN系列通用检测方法，本文更加针对人脸检测这一专门的任务，速度和精度都有足够的提升。R-CNN，Fast R-CNN，FasterR-CNN这一系列的方法不是一篇博客能讲清楚的，有兴趣可以找相关论文阅读。类似于TCDCN，本文提出了一种Multi-task的人脸检测框架，将人脸检测和人脸特征点检测同时进行。论文使用3个CNN级联的方式，和Viola-Jones类似，实现了coarse-to-fine的算法结构。</p>
+<h2 id="框架"><a href="#框架" class="headerlink" title="框架"></a>框架</h2><p>算法流程<br><img src="https://img-blog.csdnimg.cn/20190925171034228.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>当给定一张照片的时候，将其缩放到不同尺度形成图像金字塔，以达到尺度不变。</p>
+<p><strong>Stage 1</strong>：使用P-Net是一个全卷积网络，用来生成候选窗和边框回归向量(bounding box regression vectors)。使用Bounding box regression的方法来校正这些候选窗，使用非极大值抑制（NMS）合并重叠的候选框。全卷积网络和Faster R-CNN中的RPN一脉相承。</p>
+<p><strong>Stage 2</strong>：使用N-Net改善候选窗。将通过P-Net的候选窗输入R-Net中，拒绝掉大部分false的窗口，继续使用Bounding box regression和NMS合并。</p>
+<p><strong>Stage 3</strong>：最后使用O-Net输出最终的人脸框和特征点位置。和第二步类似，但是不同的是生成5个特征点位置</p>
+<h3 id="CNN结构"><a href="#CNN结构" class="headerlink" title="CNN结构"></a>CNN结构</h3><p>本文使用三个CNN，结构如图：<br><img src="https://img-blog.csdnimg.cn/20190925171108487.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h3 id="训练"><a href="#训练" class="headerlink" title="训练"></a>训练</h3><p>这个算法需要实现三个任务的学习：人脸非人脸的分类，bounding box regression和人脸特征点定位。</p>
+<p>(1)人脸检测<br>这就是一个分类任务，使用交叉熵损失函数即可：<br>(2)Bounding box regression<br>这是一个回归问题，使用平方和损失函数：<br>(3)人脸特征点定位<br>这也是一个回归问题，目标是5个特征点与标定好的数据的平方和损失：<br>(4)多任务训练<br>不是每个sample都要使用这三种损失函数的，比如对于背景只需要计算，不需要计算别的损失，这样就需要引入一个指示值指示样本是否需要计算某一项损失。最终的训练目标函数是：<br>N是训练样本的数量。表示任务的重要性。在P-Net和R-Net中，在O-Net中，<br>(5)online hard sample mining<br>传统的难例处理方法是检测过一次以后，手动检测哪些困难的样本无法被分类，本文采用online hard sample mining的方法。具体就是在每个mini-batch中，取loss最大的70%进行反向传播，忽略那些简单的样本。</p>
+<h3 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h3><p>本文主要使用三个数据集进行训练：FDDB，Wider Face，AFLW。<br>A、训练数据<br>本文将数据分成4种：<br>Negative：非人脸<br>Positive：人脸<br>Part faces：部分人脸<br>Landmark face：标记好特征点的人脸<br>分别用于训练三种不同的任务。Negative和Positive用于人脸分类，positive和part faces用于bounding box regression，landmark face用于特征点定位。<br>B、效果<br>本文的人脸检测和人脸特征点定位的效果都非常好。关键是这个算法速度很快，在2.6GHZ的CPU上达到16fps，在Nvidia Titan达到99fps。</p>
+<p>总结<br>本文使用一种级联的结构进行人脸检测和特征点检测，该方法速度快效果好，可以考虑在移动设备上使用。这种方法也是一种由粗到细的方法，和Viola-Jones的级联AdaBoost思路相似。<br>类似于Viola-Jones：1、如何选择待检测区域：图像金字塔+P-Net；2、如何提取目标特征：CNN；3、如何判断是不是指定目标：级联判断。</p>
+<h2 id="本次实验过程"><a href="#本次实验过程" class="headerlink" title="本次实验过程"></a>本次实验过程</h2><p>使用MTCNN将人脸选择出来（分割人脸），然后使用facenet训练（欧氏距离算法</p>
+<h3 id="compare-py源码如下"><a href="#compare-py源码如下" class="headerlink" title="compare.py源码如下"></a>compare.py源码如下</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""Performs face alignment and calculates L2 distance between the embeddings of images."""</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># MIT License</span></span><br><span class="line"><span class="comment"># </span></span><br><span class="line"><span class="comment"># Copyright (c) 2016 David Sandberg</span></span><br><span class="line"><span class="comment"># </span></span><br><span class="line"><span class="comment"># Permission is hereby granted, free of charge, to any person obtaining a copy</span></span><br><span class="line"><span class="comment"># of this software and associated documentation files (the "Software"), to deal</span></span><br><span class="line"><span class="comment"># in the Software without restriction, including without limitation the rights</span></span><br><span class="line"><span class="comment"># to use, copy, modify, merge, publish, distribute, sublicense, and/or sell</span></span><br><span class="line"><span class="comment"># copies of the Software, and to permit persons to whom the Software is</span></span><br><span class="line"><span class="comment"># furnished to do so, subject to the following conditions:</span></span><br><span class="line"><span class="comment"># </span></span><br><span class="line"><span class="comment"># The above copyright notice and this permission notice shall be included in all</span></span><br><span class="line"><span class="comment"># copies or substantial portions of the Software.</span></span><br><span class="line"><span class="comment"># </span></span><br><span class="line"><span class="comment"># THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR</span></span><br><span class="line"><span class="comment"># IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,</span></span><br><span class="line"><span class="comment"># FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE</span></span><br><span class="line"><span class="comment"># AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER</span></span><br><span class="line"><span class="comment"># LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,</span></span><br><span class="line"><span class="comment"># OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE</span></span><br><span class="line"><span class="comment"># SOFTWARE.</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> __future__ <span class="keyword">import</span> absolute_import</span><br><span class="line"><span class="keyword">from</span> __future__ <span class="keyword">import</span> division</span><br><span class="line"><span class="keyword">from</span> __future__ <span class="keyword">import</span> print_function</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> scipy <span class="keyword">import</span> misc</span><br><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> copy</span><br><span class="line"><span class="keyword">import</span> argparse</span><br><span class="line"><span class="keyword">import</span> facenet</span><br><span class="line"><span class="keyword">import</span> align.detect_face</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">(args)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">#使用MTCNN网络在原始图片中进行检测和对齐</span></span><br><span class="line">    images = load_and_align_data(args.image_files, args.image_size, args.margin, args.gpu_memory_fraction)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">with</span> tf.Graph().as_default():</span><br><span class="line"></span><br><span class="line">        <span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">      </span><br><span class="line">            <span class="comment"># Load the facenet  model</span></span><br><span class="line">            facenet.load_model(args.model)</span><br><span class="line">    </span><br><span class="line">            <span class="comment"># Get input and output tensors</span></span><br><span class="line">            <span class="comment"># 输入图像占位符</span></span><br><span class="line">            images_placeholder = tf.get_default_graph().get_tensor_by_name(<span class="string">"input:0"</span>)</span><br><span class="line">            <span class="comment">#卷及网络最后输出的"特征"</span></span><br><span class="line">            embeddings = tf.get_default_graph().get_tensor_by_name(<span class="string">"embeddings:0"</span>)</span><br><span class="line">            <span class="comment">#训练？</span></span><br><span class="line">            phase_train_placeholder = tf.get_default_graph().get_tensor_by_name(<span class="string">"phase_train:0"</span>)</span><br><span class="line"></span><br><span class="line">            <span class="comment"># Run forward pass to calculate embeddings </span></span><br><span class="line">            feed_dict = &#123; images_placeholder: images, phase_train_placeholder:<span class="literal">False</span> &#125;</span><br><span class="line">            emb = sess.run(embeddings, feed_dict=feed_dict)</span><br><span class="line">            </span><br><span class="line">            nrof_images = len(args.image_files)</span><br><span class="line"></span><br><span class="line">            print(<span class="string">'Images:'</span>)</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(nrof_images):</span><br><span class="line">                print(<span class="string">'%1d: %s'</span> % (i, args.image_files[i]))</span><br><span class="line">            print(<span class="string">''</span>)</span><br><span class="line">            </span><br><span class="line">            <span class="comment"># Print distance matrix</span></span><br><span class="line">            print(<span class="string">'Distance matrix'</span>)</span><br><span class="line">            print(<span class="string">'    '</span>, end=<span class="string">''</span>)</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(nrof_images):</span><br><span class="line">                print(<span class="string">'    %1d     '</span> % i, end=<span class="string">''</span>)</span><br><span class="line">            print(<span class="string">''</span>)</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(nrof_images):</span><br><span class="line">                print(<span class="string">'%1d  '</span> % i, end=<span class="string">''</span>)</span><br><span class="line">                <span class="keyword">for</span> j <span class="keyword">in</span> range(nrof_images):</span><br><span class="line">                    <span class="comment">#对特征计算两两之间的距离以得到人脸之间的相似度</span></span><br><span class="line">                    dist = np.sqrt(np.sum(np.square(np.subtract(emb[i,:], emb[j,:]))))</span><br><span class="line">                    print(<span class="string">'  %1.4f  '</span> % dist, end=<span class="string">''</span>)</span><br><span class="line">                print(<span class="string">''</span>)</span><br><span class="line">            </span><br><span class="line">            </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">load_and_align_data</span><span class="params">(image_paths, image_size, margin, gpu_memory_fraction)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    返回经过MTCNN处理后的人脸图像集合 [n,160,160,3]</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    minsize = <span class="number">20</span> <span class="comment"># minimum size of face</span></span><br><span class="line">    threshold = [ <span class="number">0.6</span>, <span class="number">0.7</span>, <span class="number">0.7</span> ]  <span class="comment"># three steps's threshold</span></span><br><span class="line">    factor = <span class="number">0.709</span> <span class="comment"># scale factor</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">#创建P-Net,R-Net,O-Net网络，并加载参数</span></span><br><span class="line">    print(<span class="string">'Creating networks and loading parameters'</span>)</span><br><span class="line">    <span class="keyword">with</span> tf.Graph().as_default():</span><br><span class="line">        gpu_options = tf.GPUOptions(per_process_gpu_memory_fraction=gpu_memory_fraction)</span><br><span class="line">        sess = tf.Session(config=tf.ConfigProto(gpu_options=gpu_options, log_device_placement=<span class="literal">False</span>))</span><br><span class="line">        <span class="keyword">with</span> sess.as_default():</span><br><span class="line">            pnet, rnet, onet = align.detect_face.create_mtcnn(sess, <span class="literal">None</span>)</span><br><span class="line">  </span><br><span class="line">    </span><br><span class="line">    tmp_image_paths=copy.copy(image_paths)</span><br><span class="line">    img_list = []</span><br><span class="line">    <span class="comment">#遍历测试图片</span></span><br><span class="line">    <span class="keyword">for</span> image <span class="keyword">in</span> tmp_image_paths:</span><br><span class="line">        img = misc.imread(os.path.expanduser(image), mode=<span class="string">'RGB'</span>)</span><br><span class="line">        img_size = np.asarray(img.shape)[<span class="number">0</span>:<span class="number">2</span>]</span><br><span class="line">        <span class="comment">#人脸检测 bounding_boxes：表示边界框 形状为[n,5] 5对应x1,y1,x2,y2,score</span></span><br><span class="line">        <span class="comment">#_：人脸关键点坐标 形状为 [n,10]</span></span><br><span class="line">        bounding_boxes, _ = align.detect_face.detect_face(img, minsize, pnet, rnet, onet, threshold, factor)</span><br><span class="line">        <span class="keyword">if</span> len(bounding_boxes) &lt; <span class="number">1</span>:</span><br><span class="line">          image_paths.remove(image)</span><br><span class="line">          print(<span class="string">"can't detect face, remove "</span>, image)</span><br><span class="line">          <span class="keyword">continue</span></span><br><span class="line">        <span class="comment">#对图像进行处理:扩展、裁切、缩放</span></span><br><span class="line">        det = np.squeeze(bounding_boxes[<span class="number">0</span>,<span class="number">0</span>:<span class="number">4</span>])</span><br><span class="line">        bb = np.zeros(<span class="number">4</span>, dtype=np.int32)</span><br><span class="line">        bb[<span class="number">0</span>] = np.maximum(det[<span class="number">0</span>]-margin/<span class="number">2</span>, <span class="number">0</span>)</span><br><span class="line">        bb[<span class="number">1</span>] = np.maximum(det[<span class="number">1</span>]-margin/<span class="number">2</span>, <span class="number">0</span>)</span><br><span class="line">        bb[<span class="number">2</span>] = np.minimum(det[<span class="number">2</span>]+margin/<span class="number">2</span>, img_size[<span class="number">1</span>])</span><br><span class="line">        bb[<span class="number">3</span>] = np.minimum(det[<span class="number">3</span>]+margin/<span class="number">2</span>, img_size[<span class="number">0</span>])</span><br><span class="line">        cropped = img[bb[<span class="number">1</span>]:bb[<span class="number">3</span>],bb[<span class="number">0</span>]:bb[<span class="number">2</span>],:]</span><br><span class="line">        aligned = misc.imresize(cropped, (image_size, image_size), interp=<span class="string">'bilinear'</span>)</span><br><span class="line">        <span class="comment">#归一化处理</span></span><br><span class="line">        prewhitened = facenet.prewhiten(aligned)</span><br><span class="line">        img_list.append(prewhitened)</span><br><span class="line">    <span class="comment">#[n,160,160,3]</span></span><br><span class="line">    images = np.stack(img_list)</span><br><span class="line">    <span class="keyword">return</span> images</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">parse_arguments</span><span class="params">(argv)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    参数解析</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    parser = argparse.ArgumentParser()</span><br><span class="line">    </span><br><span class="line">    parser.add_argument(<span class="string">'model'</span>, type=str, </span><br><span class="line">        help=<span class="string">'Could be either a directory containing the meta_file and ckpt_file or a model protobuf (.pb) file'</span>)</span><br><span class="line">    parser.add_argument(<span class="string">'image_files'</span>, type=str, nargs=<span class="string">'+'</span>, help=<span class="string">'Images to compare'</span>)</span><br><span class="line">    parser.add_argument(<span class="string">'--image_size'</span>, type=int,</span><br><span class="line">        help=<span class="string">'Image size (height, width) in pixels.'</span>, default=<span class="number">160</span>)</span><br><span class="line">    parser.add_argument(<span class="string">'--margin'</span>, type=int,</span><br><span class="line">        help=<span class="string">'Margin for the crop around the bounding box (height, width) in pixels.'</span>, default=<span class="number">44</span>)</span><br><span class="line">    parser.add_argument(<span class="string">'--gpu_memory_fraction'</span>, type=float,</span><br><span class="line">        help=<span class="string">'Upper bound on the amount of GPU memory that will be used by the process.'</span>, default=<span class="number">1.0</span>)</span><br><span class="line">    <span class="keyword">return</span> parser.parse_args(argv)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    main(parse_arguments(sys.argv[<span class="number">1</span>:]))</span><br></pre></td></tr></table></figure>
+<p><code>compare.py</code> 该py文件作用是用自己的图像上应用已有模型来计算人脸之间的距离，即欧氏距离。<br>当欧氏距离小于1时，我们可以看做输入的两个照片为同一个人。</p>
+<p>这三张照片分为起名为 img1.jpg,img2.jpg,img3.jpg。<br><img src="https://img-blog.csdnimg.cn/20190925171501754.png" alt="在这里插入图片描述"><br>在facenet目录下运行 </p>
+<p><code>python src/compare.py models/20180408-102900 src/img1.jpg  src/img2.jpg src/img3.jpg</code></p>
+<p>结果：<br><img src="https://img-blog.csdnimg.cn/20190925171536641.png" alt="在这里插入图片描述"><br>上面为官方的输入和输出</p>
+<p>但是在该比赛中，比赛评委要求输出：</p>
+<pre><code>（输出）检索结果：要求参评单位将检索结果整理为CSV文件。
+每一项用制表符&apos;\t&apos;分割，每一行具体格式如下：（所有输出以UTF-8无BOM格式编码）
+查询图像ID\t底库中对应top1相似度的人脸ID\t相似度\t底库中对应top2相似度的人脸ID\t相似度\t…\t底库中对应top50相似度的人脸ID\t相似度
+</code></pre><p>我尝试用compare.py文件的欧氏距离来计算出图片的相似度</p>
+<h2 id="开始修改源码"><a href="#开始修改源码" class="headerlink" title="开始修改源码"></a>开始修改源码</h2><p>（过程很痛苦，网上没有修改compare.py文件的例子）</p>
+<p>1.将矩阵输出为1行，即只取第一行矩阵。因为比赛只要求用QUERY _查询集唯一ID.jpg去DB库里比较所有图片</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">'Distance matrix'</span>)</span><br><span class="line">print(<span class="string">'    '</span>, end=<span class="string">''</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(nrof_images):</span><br><span class="line">    print(<span class="string">'    %1d     '</span> % i, end=<span class="string">''</span>)</span><br><span class="line">print(<span class="string">''</span>)</span><br><span class="line"></span><br><span class="line">print(<span class="string">'%1d  '</span> % <span class="number">0</span>, end=<span class="string">''</span>)</span><br><span class="line"></span><br><span class="line">list = []</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> j <span class="keyword">in</span> range(nrof_images):</span><br><span class="line">    dist = np.sqrt(np.sum(np.square(np.subtract(emb[<span class="number">0</span>, :], emb[j, :]))))   <span class="comment">#计算欧式距离</span></span><br><span class="line">    print(<span class="string">'  %1.4f  '</span> % dist, end=<span class="string">''</span>)</span><br><span class="line">    list.append(dist)</span><br><span class="line">print(<span class="string">''</span>)</span><br><span class="line">print(list[<span class="number">1</span>:])</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20190925171840227.png" alt="在这里插入图片描述"></p>
+<ol start="2">
+<li>将图片id与矩阵里的数据组成字典，并且按照比赛要求排序</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">list_images=[]  <span class="comment">#图片路径的列表</span></span><br><span class="line">print(<span class="string">'Images:'</span>)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(nrof_images):</span><br><span class="line">    print(<span class="string">'%1d: %s'</span> % (i, image_files[i]))</span><br><span class="line">    list_images.append(image_files[i])<span class="comment">#图片路径存入</span></span><br><span class="line">print(<span class="string">''</span>)</span><br><span class="line"></span><br><span class="line">print(<span class="string">'Distance matrix'</span>)</span><br><span class="line">print(<span class="string">'    '</span>, end=<span class="string">''</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(nrof_images):</span><br><span class="line">    print(<span class="string">'    %1d     '</span> % i, end=<span class="string">''</span>)</span><br><span class="line">print(<span class="string">''</span>)</span><br><span class="line"></span><br><span class="line">print(<span class="string">'%1d  '</span> % <span class="number">0</span>, end=<span class="string">''</span>)</span><br><span class="line"></span><br><span class="line">list_distance = []<span class="comment">#欧式距离的列表</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> j <span class="keyword">in</span> range(nrof_images):</span><br><span class="line">    dist = np.sqrt(np.sum(np.square(np.subtract(emb[<span class="number">0</span>, :], emb[j, :]))))</span><br><span class="line">    print(<span class="string">'  %1.4f  '</span> % dist, end=<span class="string">''</span>)</span><br><span class="line">    list_distance.append(dist)<span class="comment">#欧氏距离存入</span></span><br><span class="line">print(<span class="string">''</span>)</span><br><span class="line">print(list_distance[<span class="number">1</span>:])</span><br><span class="line">images_distance=dict(zip(list_images[<span class="number">1</span>:], list_distance[<span class="number">1</span>:]))<span class="comment">#用dict方法将list_images和list_distance存入字典</span></span><br><span class="line">result=sorted(images_distance.items(),key=<span class="keyword">lambda</span> item:item[<span class="number">1</span>])<span class="comment">#排序</span></span><br><span class="line">print(result)</span><br></pre></td></tr></table></figure>
+<p>知识点：</p>
+<p><strong>sorted函数</strong></p>
+<p>sorted(iterable,key,reverse)，sorted一共有iterable,key,reverse这三个参数;<br>其中iterable表示可以迭代的对象，例如可以是dict.items()、dict.keys()等<br>key是一个函数，用来选取参与比较的元素，reverse则是用来指定排序是倒序还是顺序，reverse=true则是倒序，<br>reverse=false时则是顺序，默认时reverse=false。</p>
+<p><strong>dict(zip)</strong><br>zip是Python中的一个内建函数，能够用来组合多个序列类型的数据。它会把传入的所有序列中下标相同的元素组成一个个元组，以最短的序列为基准。</p>
+<p>3.用QUERY里的照片去DB库找相似度前50的人脸照片，需要知道DB库中所有照片的路径</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> glob</span><br><span class="line">images_paths=glob.glob(<span class="string">r"./QUERY/raw/*/*.jpg"</span>)</span><br></pre></td></tr></table></figure>
+<p>4.用for循环将QUERY _查询集唯一ID.jpg与DB库中的照片每10张就比一次</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line">#set a b</span><br><span class="line">a = 0</span><br><span class="line">b = 9</span><br><span class="line"></span><br><span class="line">while True:</span><br><span class="line"></span><br><span class="line">    image_files = image_QUERY + images_DB[a:b]</span><br><span class="line"></span><br><span class="line">    if b &lt;= 20:</span><br><span class="line"></span><br><span class="line">        images = load_and_align_data(image_files, image_size, margin, gpu_memory_fraction)</span><br><span class="line"></span><br><span class="line">        images_placeholder = tf.get_default_graph().get_tensor_by_name(&quot;input:0&quot;)</span><br><span class="line"></span><br><span class="line">        embeddings = tf.get_default_graph().get_tensor_by_name(&quot;embeddings:0&quot;)</span><br><span class="line"></span><br><span class="line">        phase_train_placeholder = tf.get_default_graph().get_tensor_by_name(&quot;phase_train:0&quot;)</span><br><span class="line"></span><br><span class="line">        feed_dict = &#123;images_placeholder: images, phase_train_placeholder: False&#125;</span><br><span class="line">        emb = sess.run(embeddings, feed_dict=feed_dict)</span><br><span class="line"></span><br><span class="line">        nrof_images = len(image_files)</span><br><span class="line"></span><br><span class="line">        list_images=[]</span><br><span class="line">        print(&apos;Images:&apos;)</span><br><span class="line">        for i in range(nrof_images):</span><br><span class="line">            print(&apos;%1d: %s&apos; % (i, image_files[i]))</span><br><span class="line">            list_images.append(image_files[i])</span><br><span class="line">        print(&apos;&apos;)</span><br><span class="line"></span><br><span class="line">        print(&apos;Distance matrix&apos;)</span><br><span class="line">        print(&apos;    &apos;, end=&apos;&apos;)</span><br><span class="line"></span><br><span class="line">        for i in range(nrof_images):</span><br><span class="line">            print(&apos;    %1d     &apos; % i, end=&apos;&apos;)</span><br><span class="line">        print(&apos;&apos;)</span><br><span class="line"></span><br><span class="line">        print(&apos;%1d  &apos; % 0, end=&apos;&apos;)</span><br><span class="line"></span><br><span class="line">        list_distance = []</span><br><span class="line"></span><br><span class="line">        for j in range(nrof_images):</span><br><span class="line">            dist = np.sqrt(np.sum(np.square(np.subtract(emb[0, :], emb[j, :]))))</span><br><span class="line">            print(&apos;  %1.4f  &apos; % dist, end=&apos;&apos;)</span><br><span class="line">            list_distance.append(dist)</span><br><span class="line">        print(&apos;&apos;)</span><br><span class="line">        print(list_distance[1:])</span><br><span class="line">        images_distance=dict(zip(list_images[1:], list_distance[1:]))</span><br><span class="line">        result=sorted(images_distance.items(),key=lambda item:item[1])</span><br><span class="line">        print(result)</span><br><span class="line"></span><br><span class="line">    else:</span><br><span class="line"></span><br><span class="line">        break</span><br><span class="line"></span><br><span class="line">    a += 10</span><br><span class="line">    b += 10</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20190925172250628.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<ol start="5">
+<li>将数据写入列表，然后排出前50，并且写入csv文件</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> csv</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> open(<span class="string">"result.csv"</span>,<span class="string">"w"</span>) <span class="keyword">as</span> csvfile:</span><br><span class="line">    writer = csv.writer(csvfile)</span><br><span class="line"></span><br><span class="line">    <span class="comment">#先写入columns_name</span></span><br><span class="line">    writer.writerow([<span class="string">"查询图像ID"</span>,<span class="string">"t底库中对应top1相似度的人脸ID"</span>,<span class="string">"相似度"</span>,<span class="string">"底库中对应top2相似度的人脸ID"</span>,<span class="string">"相似度"</span>,<span class="string">"底库中对应top3相似度的人脸ID"</span>,<span class="string">"相似度"</span>,<span class="string">"底库中对应top4相似度的人脸ID"</span>,<span class="string">"相似度"</span>,<span class="string">"底库中对应top5相似度的人脸ID"</span>,<span class="string">"相似度"</span>,<span class="string">"底库中对应top6相似度的人脸ID"</span>,<span class="string">"相似度"</span>,<span class="string">"底库中对应top7相似度的人脸ID"</span>,<span class="string">"相似度"</span>,<span class="string">"底库中对应top8相似度的人脸ID"</span>,<span class="string">"相似度"</span>,<span class="string">"底库中对应top9相似度的人脸ID"</span>,<span class="string">"相似度"</span>,<span class="string">"底库中对应top10相似度的人脸ID"</span>,<span class="string">"相似度"</span>,<span class="string">"底库中对应top11相似度的人脸ID"</span>,<span class="string">"相似度"</span>,<span class="string">"底库中对应top12相似度的人脸ID"</span>,<span class="string">"相似度"</span>,<span class="string">"底库中对应top13相似度的人脸ID"</span>,<span class="string">"相似度"</span>,<span class="string">"底库中对应top14相似度的人脸ID"</span>,<span class="string">"相似度"</span>,<span class="string">"底库中对应top15相似度的人脸ID"</span>,<span class="string">"相似度"</span>,<span class="string">"底库中对应top16相似度的人脸ID"</span>,<span class="string">"相似度"</span>,<span class="string">"底库中对应top17相似度的人脸ID"</span>,<span class="string">"相似度"</span>,<span class="string">"底库中对应top18相似度的人脸ID"</span>,<span class="string">"相似度"</span>,<span class="string">"底库中对应top19相似度的人脸ID"</span>,<span class="string">"相似度"</span>,<span class="string">"底库中对应top20相似度的人脸ID"</span>,<span class="string">"相似度"</span>,<span class="string">"底库中对应top21相似度的人脸ID"</span>,<span class="string">"相似度"</span>,<span class="string">"底库中对应top22相似度的人脸ID"</span>,<span class="string">"相似度"</span>,<span class="string">"底库中对应top23相似度的人脸ID"</span>,<span class="string">"相似度"</span>,<span class="string">"底库中对应top24相似度的人脸ID"</span>,<span class="string">"相似度"</span>,<span class="string">"底库中对应top25相似度的人脸ID"</span>,<span class="string">"相似度"</span>,<span class="string">"底库中对应top26相似度的人脸ID"</span>,<span class="string">"相似度"</span>,<span class="string">"底库中对应top27相似度的人脸ID"</span>,<span class="string">"相似度"</span>,<span class="string">"底库中对应top28相似度的人脸ID"</span>,<span class="string">"相似度"</span>,<span class="string">"底库中对应top29相似度的人脸ID"</span>,<span class="string">"相似度"</span>,<span class="string">"底库中对应top30相似度的人脸ID"</span>,<span class="string">"相似度"</span>,<span class="string">"底库中对应top31相似度的人脸ID"</span>,<span class="string">"相似度"</span>,<span class="string">"底库中对应top32相似度的人脸ID"</span>,<span class="string">"相似度"</span>,<span class="string">"底库中对应top33相似度的人脸ID"</span>,<span class="string">"相似度"</span>,<span class="string">"底库中对应top34相似度的人脸ID"</span>,<span class="string">"相似度"</span>,<span class="string">"底库中对应top35相似度的人脸ID"</span>,<span class="string">"相似度"</span>,<span class="string">"底库中对应top36相似度的人脸ID"</span>,<span class="string">"相似度"</span>,<span class="string">"底库中对应top37相似度的人脸ID"</span>,<span class="string">"相似度"</span>,<span class="string">"底库中对应top38相似度的人脸ID"</span>,<span class="string">"相似度"</span>,<span class="string">"底库中对应top39相似度的人脸ID"</span>,<span class="string">"相似度"</span>,<span class="string">"底库中对应top40相似度的人脸ID"</span>,<span class="string">"相似度"</span>,<span class="string">"底库中对应top41相似度的人脸ID"</span>,<span class="string">"相似度"</span>,<span class="string">"底库中对应top42相似度的人脸ID"</span>,<span class="string">"相似度"</span>,<span class="string">"底库中对应top43相似度的人脸ID"</span>,<span class="string">"相似度"</span>,<span class="string">"底库中对应top44相似度的人脸ID"</span>,<span class="string">"相似度"</span>,<span class="string">"底库中对应top45相似度的人脸ID"</span>,<span class="string">"相似度"</span>,<span class="string">"底库中对应top46相似度的人脸ID"</span>,<span class="string">"相似度"</span>,<span class="string">"底库中对应top47相似度的人脸ID"</span>,<span class="string">"相似度"</span>,<span class="string">"底库中对应top48相似度的人脸ID"</span>,<span class="string">"相似度"</span>,<span class="string">"底库中对应top49相似度的人脸ID"</span>,<span class="string">"相似度"</span>,<span class="string">"底库中对应top50相似度的人脸ID"</span>,<span class="string">"相似度"</span>])</span><br><span class="line">    <span class="comment">#写入多行用writerows</span></span><br><span class="line">    writer.writerows([image_QUERY],result[<span class="number">50</span>])</span><br></pre></td></tr></table></figure>
+<p>1）将QUERY的照片一个一个与DB里所有的照片进行比对</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">image_QUERY_path = glob.glob(<span class="string">r"./QUERY/*.jpg"</span>)</span><br><span class="line">image_QUERY = image_QUERY_path</span><br><span class="line">i=<span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> image_QUERY <span class="keyword">in</span> image_QUERY[i]:</span><br><span class="line">    ...</span><br><span class="line">i+=<span class="number">1</span></span><br></pre></td></tr></table></figure>
+<p>将列表里的元组用逗号分开，并且消除括号<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">list_result=&apos;,&apos;.join(list_result[0:50])</span><br></pre></td></tr></table></figure></p>
+<p>报错：<br><img src="https://img-blog.csdnimg.cn/20190925180412645.png" alt="在这里插入图片描述"><br>原因：<br>list包含数字，不能直接转化成字符串。<br>解决办法：<code>&#39;,&#39;.join(&#39;%s&#39; %result for result in list_result)</code><br>即遍历list的元素，把它转化成字符串<br>运行后报错：<br><code>TypeError: not all arguments converted during string formatting</code></p>
+<p>原因: % 操作符只能直接用于字符串(‘123’)，列表([1,2,3])、元组</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        
+          
+        
+        <div class="post-tags">
+          
+            <a href="/tags/Python/" rel="tag"><i class="fa fa-tag"></i> Python</a>
+          
+            <a href="/tags/机器学习/" rel="tag"><i class="fa fa-tag"></i> 机器学习</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/09/29/python-字典列表相互转换与排序/" rel="next" title="python 字典列表相互转换与排序">
+                <i class="fa fa-chevron-left"></i> python 字典列表相互转换与排序
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/09/29/修改Compare-py报错时的解决方案/" rel="prev" title="修改Compare.py报错时的解决方案">
+                修改Compare.py报错时的解决方案 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/Me.jpg" alt="精神小伙">
+            
+              <p class="site-author-name" itemprop="name">精神小伙</p>
+              <div class="site-description motion-element" itemprop="description">Just Do ‘IT’ .</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">52</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">22</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/PlutoaCharon" title="GitHub &rarr; https://github.com/PlutoaCharon" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:1070481109@qq.com" title="E-Mail &rarr; mailto:1070481109@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.linkedin.com/in/%E6%B5%A9%E7%BF%B0-%E8%AE%B8-3918b0191/" title="https://www.linkedin.com/in/%E6%B5%A9%E7%BF%B0-%E8%AE%B8-3918b0191/" rel="noopener" target="_blank">LinkedIn</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://me.csdn.net/qq_43442524" title="https://me.csdn.net/qq_43442524" rel="noopener" target="_blank">CSDN</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#框架"><span class="nav-number">2.</span> <span class="nav-text">框架</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CNN结构"><span class="nav-number">2.1.</span> <span class="nav-text">CNN结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#训练"><span class="nav-number">2.2.</span> <span class="nav-text">训练</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实验"><span class="nav-number">2.3.</span> <span class="nav-text">实验</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#本次实验过程"><span class="nav-number">3.</span> <span class="nav-text">本次实验过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#compare-py源码如下"><span class="nav-number">3.1.</span> <span class="nav-text">compare.py源码如下</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开始修改源码"><span class="nav-number">4.</span> <span class="nav-text">开始修改源码</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">精神小伙</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+    <span title="站点总字数">137k</span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    
+    <span title="站点阅读时长">2:05</span>
+  
+</div>
+
+<!--
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.2.0</div>
+
+-->
+
+
+
+
+<div>
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("05/20/2019 00:00:00");
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+setInterval("createtime()",250);
+</script>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+      
+    
+  
+  <script color="0,0,255" opacity="0.5" zindex="-1" count="99" src="cdn.jsdelivr.net/gh/theme-next/theme-next-canvas-nest@1/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.2.0"></script>
+
+  <script src="/js/motion.js?v=7.2.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.2.0"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.2.0"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.2.0"></script>
+<script src="/js/post-details.js?v=7.2.0"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.2.0"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
