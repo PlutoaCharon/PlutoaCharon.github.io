@@ -1,0 +1,1337 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link rel="stylesheet" href="/lib/pace/pace-theme-barber-shop.min.css?v=1.0.2">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+<link rel="stylesheet" href="/css/main.css?v=7.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon1.ico?v=7.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.2.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.2.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.2.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="curl 是常用的命令行工具，用来请求 Web 服务器。它的名字就是客户端（client）的 URL 工具的意思。  它的功能非常强大，命令行参数多达几十种。如果熟练的话，完全可以取代 Postman 这一类的图形界面工具。    不带有任何参数时，curl 就是发出 GET 请求。  $ curl https://www.example.com  上面命令向www.example.com发出 G">
+<meta name="keywords" content="Liunx">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Liunx curl命令详解">
+<meta property="og:url" content="http://yoursite.com/2019/10/02/Liunx-curl命令详解/index.html">
+<meta property="og:site_name" content="浩翰Redamancy的博客">
+<meta property="og:description" content="curl 是常用的命令行工具，用来请求 Web 服务器。它的名字就是客户端（client）的 URL 工具的意思。  它的功能非常强大，命令行参数多达几十种。如果熟练的话，完全可以取代 Postman 这一类的图形界面工具。    不带有任何参数时，curl 就是发出 GET 请求。  $ curl https://www.example.com  上面命令向www.example.com发出 G">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://www.wangbase.com/blogimg/asset/201909/bg2019090501.jpg">
+<meta property="og:updated_time" content="2019-10-02T14:43:24.210Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Liunx curl命令详解">
+<meta name="twitter:description" content="curl 是常用的命令行工具，用来请求 Web 服务器。它的名字就是客户端（client）的 URL 工具的意思。  它的功能非常强大，命令行参数多达几十种。如果熟练的话，完全可以取代 Postman 这一类的图形界面工具。    不带有任何参数时，curl 就是发出 GET 请求。  $ curl https://www.example.com  上面命令向www.example.com发出 G">
+<meta name="twitter:image" content="https://www.wangbase.com/blogimg/asset/201909/bg2019090501.jpg">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="浩翰Redamancy的博客" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="http://yoursite.com/2019/10/02/Liunx-curl命令详解/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Liunx curl命令详解 | 浩翰Redamancy的博客</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+	
+	<a href="https://github.com/PlutoaCharon" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">浩翰Redamancy的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">文质彬彬 然后君子</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/02/Liunx-curl命令详解/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="😁">
+      <meta itemprop="description" content="Just Do ‘IT’ .">
+      <meta itemprop="image" content="/images/Me.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="浩翰Redamancy的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Liunx curl命令详解
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-10-02 22:43:03 / 修改时间：22:43:24" itemprop="dateCreated datePublished" datetime="2019-10-02T22:43:03+08:00">2019-10-02</time>
+            </span>
+          
+
+          
+            
+
+            
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Liunx/" itemprop="url" rel="index"><span itemprop="name">Liunx</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+                 阅读次数： 
+                <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+              </span>
+            </span>
+          
+
+          <br>
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span title="本文字数">5k</span>
+            </span>
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span title="阅读时长">5 分钟</span>
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>curl 是常用的命令行工具，用来请求 Web 服务器。它的名字就是客户端（client）的 URL 工具的意思。</p>
+
+<p>它的功能非常强大，命令行参数多达几十种。如果熟练的话，完全可以取代 Postman 这一类的图形界面工具。</p>
+
+<p><img src="https://www.wangbase.com/blogimg/asset/201909/bg2019090501.jpg" alt title></p>
+
+<p>不带有任何参数时，curl 就是发出 GET 请求。</p>
+
+<blockquote><pre class=" language-bash"><code class=" language-bash"><br>$ curl https<span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span>www<span class="token punctuation">.</span>example<span class="token punctuation">.</span>com<br></code></pre></blockquote>
+
+<p>上面命令向<code><a href="http://www.example.com" target="_blank" rel="noopener">www.example.com</a></code>发出 GET 请求，服务器返回的内容会在命令行输出。</p>
+
+<h2><strong>-A</strong></h2>
+
+<p><code>-A</code>参数指定客户端的用户代理标头，即<code>User-Agent</code>。curl 的默认用户代理字符串是<code>curl/[version]</code>。</p>
+
+<blockquote><pre class=" language-bash"><code class=" language-bash"><br>$ curl <span class="token operator">-</span>A <span class="token string">‘Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.100 Safari/537.36’</span> https<span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span>google<span class="token punctuation">.</span>com<br></code></pre></blockquote>
+
+<p>上面命令将<code>User-Agent</code>改成 Chrome 浏览器。</p>
+
+<blockquote><pre class=" language-bash"><code class=" language-bash"><br>$ curl <span class="token operator">-</span>A <span class="token string">‘’</span> https<span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span>google<span class="token punctuation">.</span>com<br></code></pre></blockquote>
+
+<p>上面命令会移除<code>User-Agent</code>标头。</p>
+
+<p>也可以通过<code>-H</code>参数直接指定标头，更改<code>User-Agent</code>。</p>
+
+<blockquote><pre class=" language-bash"><code class=" language-bash"><br>$ curl <span class="token operator">-</span>H <span class="token string">‘User-Agent: php/1.0’</span> https<span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span>google<span class="token punctuation">.</span>com<br></code></pre></blockquote>
+
+<h2><strong>-b</strong></h2>
+
+<p><code>-b</code>参数用来向服务器发送 Cookie。</p>
+
+<blockquote><pre class=" language-bash"><code class=" language-bash"><br>$ curl <span class="token operator">-</span>b <span class="token string">‘foo=bar’</span> https<span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span>google<span class="token punctuation">.</span>com<br></code></pre></blockquote>
+
+<p>上面命令会生成一个标头<code>Cookie: foo=bar</code>，向服务器发送一个名为<code>foo</code>、值为<code>bar</code>的 Cookie。</p>
+
+<blockquote><pre class=" language-bash"><code class=" language-bash"><br>$ curl <span class="token operator">-</span>b <span class="token string">‘foo1=bar’</span> <span class="token operator">-</span>b <span class="token string">‘foo2=baz’</span> https<span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span>google<span class="token punctuation">.</span>com<br></code></pre></blockquote>
+
+<p>上面命令发送两个 Cookie。</p>
+
+<blockquote><pre class=" language-bash"><code class=" language-bash"><br>$ curl <span class="token operator">-</span>b cookies<span class="token punctuation">.</span>txt https<span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span>www<span class="token punctuation">.</span>google<span class="token punctuation">.</span>com<br></code></pre></blockquote>
+
+<p>上面命令读取本地文件<code>cookies.txt</code>，里面是服务器设置的 Cookie（参见<code>-c</code>参数），将其发送到服务器。</p>
+
+<h2><strong>-c</strong></h2>
+
+<p><code>-c</code>参数将服务器设置的 Cookie 写入一个文件。</p>
+
+<blockquote><pre class=" language-bash"><code class=" language-bash"><br>$ curl <span class="token operator">-</span>c cookies<span class="token punctuation">.</span>txt https<span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span>www<span class="token punctuation">.</span>google<span class="token punctuation">.</span>com<br></code></pre></blockquote>
+
+<p>上面命令将服务器的 HTTP 回应所设置 Cookie 写入文本文件<code>cookies.txt</code>。</p>
+
+<h2><strong>-d</strong></h2>
+
+<p><code>-d</code>参数用于发送 POST 请求的数据体。</p>
+
+<blockquote><pre class=" language-bash"><code class=" language-bash"><br>$ curl <span class="token operator">-</span>d<span class="token string">‘login=emma＆password=123’</span><span class="token operator">-</span>X POST https<span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span>google<span class="token punctuation">.</span>com<span class="token operator">/</span>login<br><span class="token comment" spellcheck="true"># 或者<br></span>$ curl <span class="token operator">-</span>d <span class="token string">‘login=emma’</span> <span class="token operator">-</span>d <span class="token string">‘password=123’</span> <span class="token operator">-</span>X POST  https<span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span>google<span class="token punctuation">.</span>com<span class="token operator">/</span>login<br></code></pre></blockquote>
+
+<p>使用<code>-d</code>参数以后，HTTP 请求会自动加上标头<code>Content-Type : application/x-www-form-urlencoded</code>。并且会自动将请求转为 POST 方法，因此可以省略<code>-X POST</code>。</p>
+
+<p><code>-d</code>参数可以读取本地文本文件的数据，向服务器发送。</p>
+
+<blockquote><pre class=" language-bash"><code class=" language-bash"><br>$ curl <span class="token operator">-</span>d <span class="token string"><a href="mailto:&#39;@data.txt" target="_blank" rel="noopener">&#39;@data.txt</a>‘</span> https<span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span>google<span class="token punctuation">.</span>com<span class="token operator">/</span>login<br></code></pre></blockquote>
+
+<p>上面命令读取<code>data.txt</code>文件的内容，作为数据体向服务器发送。</p>
+
+<h2><strong>–data-urlencode</strong></h2>
+
+<p><code>–data-urlencode</code>参数等同于<code>-d</code>，发送 POST 请求的数据体，区别在于会自动将发送的数据进行 URL 编码。</p>
+
+<blockquote><pre class=" language-bash"><code class=" language-bash"><br>$ curl <span class="token operator">–</span>data<span class="token operator">-</span>urlencode <span class="token string">‘comment=hello world’</span> https<span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span>google<span class="token punctuation">.</span>com<span class="token operator">/</span>login<br></code></pre></blockquote>
+
+<p>上面代码中，发送的数据<code>hello world</code>之间有一个空格，需要进行 URL 编码。</p>
+
+<h2><strong>-e</strong></h2>
+
+<p><code>-e</code>参数用来设置 HTTP 的标头<code>Referer</code>，表示请求的来源。</p>
+
+<blockquote><pre class=" language-bash"><code class=" language-bash"><br>curl <span class="token operator">-</span>e <span class="token string">‘<a class="token url-link" href="https://google.com" target="_blank" rel="noopener">https://google.com</a>?q=example’</span> https<span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span>www<span class="token punctuation">.</span>example<span class="token punctuation">.</span>com<br></code></pre></blockquote>
+
+<p>上面命令将<code>Referer</code>标头设为<code><a href="https://google.com?q=example" target="_blank" rel="noopener">https://google.com?q=example</a></code>。</p>
+
+<p><code>-H</code>参数可以通过直接添加标头<code>Referer</code>，达到同样效果。</p>
+
+<blockquote><pre class=" language-bash"><code class=" language-bash"><br>curl <span class="token operator">-</span>H <span class="token string">‘Referer: <a class="token url-link" href="https://google.com" target="_blank" rel="noopener">https://google.com</a>?q=example’</span> https<span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span>www<span class="token punctuation">.</span>example<span class="token punctuation">.</span>com<br></code></pre></blockquote>
+
+<h2><strong>-F</strong></h2>
+
+<p><code>-F</code>参数用来向服务器上传二进制文件。</p>
+
+<blockquote><pre class=" language-bash"><code class=" language-bash"><br>$ curl <span class="token operator">-</span>F <span class="token string">‘<a class="token email-link" href="mailto:file=@photo.png" target="_blank" rel="noopener">file=@photo.png</a>‘</span> https<span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span>google<span class="token punctuation">.</span>com<span class="token operator">/</span>profile<br></code></pre></blockquote>
+
+<p>上面命令会给 HTTP 请求加上标头<code>Content-Type: multipart/form-data</code>，然后将文件<code>photo.png</code>作为<code>file</code>字段上传。</p>
+
+<p><code>-F</code>参数可以指定 MIME 类型。</p>
+
+<blockquote><pre class=" language-bash"><code class=" language-bash"><br>$ curl <span class="token operator">-</span>F <span class="token string">‘<a class="token email-link" href="mailto:file=@photo.png" target="_blank" rel="noopener">file=@photo.png</a>;type=image/png’</span> https<span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span>google<span class="token punctuation">.</span>com<span class="token operator">/</span>profile<br></code></pre></blockquote>
+
+<p>上面命令指定 MIME 类型为<code>image/png</code>，否则 curl 会把 MIME 类型设为<code>application/octet-stream</code>。</p>
+
+<p><code>-F</code>参数也可以指定文件名。</p>
+
+<blockquote><pre class=" language-bash"><code class=" language-bash"><br>$ curl <span class="token operator">-</span>F <span class="token string">‘<a class="token email-link" href="mailto:file=@photo.png" target="_blank" rel="noopener">file=@photo.png</a>;filename=me.png’</span> https<span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span>google<span class="token punctuation">.</span>com<span class="token operator">/</span>profile<br></code></pre></blockquote>
+
+<p>上面命令中，原始文件名为<code>photo.png</code>，但是服务器接收到的文件名为<code>me.png</code>。</p>
+
+<h2><strong>-G</strong></h2>
+
+<p><code>-G</code>参数用来构造 URL 的查询字符串。</p>
+
+<blockquote><pre class=" language-bash"><code class=" language-bash"><br>$ curl <span class="token operator">-</span>G <span class="token operator">-</span>d <span class="token string">‘q=kitties’</span> <span class="token operator">-</span>d <span class="token string">‘count=20’</span> https<span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span>google<span class="token punctuation">.</span>com<span class="token operator">/</span>search<br></code></pre></blockquote>
+
+<p>上面命令会发出一个 GET 请求，实际请求的 URL 为<code><a href="https://google.com/search?q=kitties&amp;count=20" target="_blank" rel="noopener">https://google.com/search?q=kitties&amp;count=20</a></code>。如果省略<code>–G</code>，会发出一个 POST 请求。</p>
+
+<p>如果数据需要 URL 编码，可以结合<code>–data–urlencode</code>参数。</p>
+
+<blockquote><pre class=" language-bash"><code class=" language-bash"><br>$ curl <span class="token operator">-</span>G <span class="token operator">–</span>data<span class="token operator">-</span>urlencode <span class="token string">‘comment=hello world’</span> https<span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span>www<span class="token punctuation">.</span>example<span class="token punctuation">.</span>com<br></code></pre></blockquote>
+
+<h2><strong>-H</strong></h2>
+
+<p><code>-H</code>参数添加 HTTP 请求的标头。</p>
+
+<blockquote><pre class=" language-bash"><code class=" language-bash"><br>$ curl <span class="token operator">-</span>H <span class="token string">‘Accept-Language: en-US’</span> https<span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span>google<span class="token punctuation">.</span>com<br></code></pre></blockquote>
+
+<p>上面命令添加 HTTP 标头<code>Accept-Language: en-US</code>。</p>
+
+<blockquote><pre class=" language-bash"><code class=" language-bash"><br>$ curl <span class="token operator">-</span>H <span class="token string">‘Accept-Language: en-US’</span> <span class="token operator">-</span>H <span class="token string">‘Secret-Message: xyzzy’</span> https<span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span>google<span class="token punctuation">.</span>com<br></code></pre></blockquote>
+
+<p>上面命令添加两个 HTTP 标头。</p>
+
+<blockquote><pre class=" language-bash"><code class=" language-bash"><br>$ curl <span class="token operator">-</span>d <span class="token string">‘{“login”: “emma”, “pass”: “123”}’</span> <span class="token operator">-</span>H <span class="token string">‘Content-Type: application/json’</span> https<span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span>google<span class="token punctuation">.</span>com<span class="token operator">/</span>login<br></code></pre></blockquote>
+
+<p>上面命令添加 HTTP 请求的标头是<code>Content-Type: application/json</code>，然后用<code>-d</code>参数发送 JSON 数据。</p>
+
+<h2><strong>-i</strong></h2>
+
+<p><code>-i</code>参数打印出服务器回应的 HTTP 标头。</p>
+
+<blockquote><pre class=" language-bash"><code class=" language-bash"><br>$ curl <span class="token operator">-</span>i https<span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span>www<span class="token punctuation">.</span>example<span class="token punctuation">.</span>com<br></code></pre></blockquote>
+
+<p>上面命令收到服务器回应后，先输出服务器回应的标头，然后空一行，再输出网页的源码。</p>
+
+<h2><strong>-I</strong></h2>
+
+<p><code>-I</code>参数向服务器发出 HEAD 请求，然会将服务器返回的 HTTP 标头打印出来。</p>
+
+<blockquote><pre class=" language-bash"><code class=" language-bash"><br>$ curl <span class="token operator">-</span>I https<span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span>www<span class="token punctuation">.</span>example<span class="token punctuation">.</span>com<br></code></pre></blockquote>
+
+<p>上面命令输出服务器对 HEAD 请求的回应。</p>
+
+<p><code>–head</code>参数等同于<code>-I</code>。</p>
+
+<blockquote><pre class=" language-bash"><code class=" language-bash"><br>$ curl <span class="token operator">–</span>head https<span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span>www<span class="token punctuation">.</span>example<span class="token punctuation">.</span>com<br></code></pre></blockquote>
+
+<h2><strong>-k</strong></h2>
+
+<p><code>-k</code>参数指定跳过 SSL 检测。</p>
+
+<blockquote><pre class=" language-bash"><code class=" language-bash"><br>$ curl <span class="token operator">-</span>k https<span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span>www<span class="token punctuation">.</span>example<span class="token punctuation">.</span>com<br></code></pre></blockquote>
+
+<p>上面命令不会检查服务器的 SSL 证书是否正确。</p>
+
+<h2><strong>-L</strong></h2>
+
+<p><code>-L</code>参数会让 HTTP 请求跟随服务器的重定向。curl 默认不跟随重定向。</p>
+
+<blockquote><pre class=" language-bash"><code class=" language-bash"><br>$ curl <span class="token operator">-</span>L <span class="token operator">-</span>d <span class="token string">‘tweet=hi’</span> https<span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span>api<span class="token punctuation">.</span>twitter<span class="token punctuation">.</span>com<span class="token operator">/</span>tweet<br></code></pre></blockquote>
+
+<h2><strong>–limit-rate</strong></h2>
+
+<p><code>–limit-rate</code>用来限制 HTTP 请求和回应的带宽，模拟慢网速的环境。</p>
+
+<blockquote><pre class=" language-bash"><code class=" language-bash"><br>$ curl <span class="token operator">–</span>limit<span class="token operator">-</span>rate 200k https<span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span>google<span class="token punctuation">.</span>com<br></code></pre></blockquote>
+
+<p>上面命令将带宽限制在每秒 200K 字节。</p>
+
+<h2><strong>-o</strong></h2>
+
+<p><code>-o</code>参数将服务器的回应保存成文件，等同于<code>wget</code>命令。</p>
+
+<blockquote><pre class=" language-bash"><code class=" language-bash"><br>$ curl <span class="token operator">-</span>o example<span class="token punctuation">.</span>html https<span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span>www<span class="token punctuation">.</span>example<span class="token punctuation">.</span>com<br></code></pre></blockquote>
+
+<p>上面命令将<code><a href="http://www.example.com" target="_blank" rel="noopener">www.example.com</a></code>保存成<code>example.html</code>。</p>
+
+<h2><strong>-O</strong></h2>
+
+<p><code>-O</code>参数将服务器回应保存成文件，并将 URL 的最后部分当作文件名。</p>
+
+<blockquote><pre class=" language-bash"><code class=" language-bash"><br>$ curl <span class="token operator">-</span>O https<span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span>www<span class="token punctuation">.</span>example<span class="token punctuation">.</span>com<span class="token operator">/</span>foo<span class="token operator">/</span>bar<span class="token punctuation">.</span>html<br></code></pre></blockquote>
+
+<p>上面命令将服务器回应保存成文件，文件名为<code>bar.html</code>。</p>
+
+<h2><strong>-s</strong></h2>
+
+<p><code>-s</code>参数将不输出错误和进度信息。</p>
+
+<blockquote><pre class=" language-bash"><code class=" language-bash"><br>$ curl <span class="token operator">-</span>s https<span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span>www<span class="token punctuation">.</span>example<span class="token punctuation">.</span>com<br></code></pre></blockquote>
+
+<p>上面命令一旦发生错误，不会显示错误信息。不发生错误的话，会正常显示运行结果。</p>
+
+<p>如果想让 curl 不产生任何输出，可以使用下面的命令。</p>
+
+<blockquote><pre class=" language-bash"><code class=" language-bash"><br>$ curl <span class="token operator">-</span>s <span class="token operator">-</span>o <span class="token operator">/</span>dev<span class="token operator">/</span>null https<span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span>google<span class="token punctuation">.</span>com<br></code></pre></blockquote>
+
+<h2><strong>-S</strong></h2>
+
+<p><code>-S</code>参数指定只输出错误信息，通常与<code>-s</code>一起使用。</p>
+
+<blockquote><pre class=" language-bash"><code class=" language-bash"><br>$ curl <span class="token operator">-</span>s <span class="token operator">-</span>o <span class="token operator">/</span>dev<span class="token operator">/</span>null https<span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span>google<span class="token punctuation">.</span>com<br></code></pre></blockquote>
+
+<p>上面命令没有任何输出，除非发生错误。</p>
+
+<h2><strong>-u</strong></h2>
+
+<p><code>-u</code>参数用来设置服务器认证的用户名和密码。</p>
+
+<blockquote><pre class=" language-bash"><code class=" language-bash"><br>$ curl <span class="token operator">-</span>u <span class="token string">‘bob:12345’</span> https<span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span>google<span class="token punctuation">.</span>com<span class="token operator">/</span>login<br></code></pre></blockquote>
+
+<p>上面命令设置用户名为<code>bob</code>，密码为<code>12345</code>，然后将其转为 HTTP 标头<code>Authorization: Basic Ym9iOjEyMzQ1</code>。</p>
+
+<p>curl 能够识别 URL 里面的用户名和密码。</p>
+
+<blockquote><pre class=" language-bash"><code class=" language-bash"><br>$ curl https<span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span>bob<span class="token punctuation">:</span><span class="token number">12345</span>@google<span class="token punctuation">.</span>com<span class="token operator">/</span>login<br></code></pre></blockquote>
+
+<p>上面命令能够识别 URL 里面的用户名和密码，将其转为上个例子里面的 HTTP 标头。</p>
+
+<blockquote><pre class=" language-bash"><code class=" language-bash"><br>$ curl <span class="token operator">-</span>u <span class="token string">‘bob’</span> https<span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span>google<span class="token punctuation">.</span>com<span class="token operator">/</span>login<br></code></pre></blockquote>
+
+<p>上面命令只设置了用户名，执行后，curl 会提示用户输入密码。</p>
+
+<h2><strong>-v</strong></h2>
+
+<p><code>-v</code>参数输出通信的整个过程，用于调试。</p>
+
+<blockquote><pre class=" language-bash"><code class=" language-bash"><br>$ curl <span class="token operator">-</span>v https<span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span>www<span class="token punctuation">.</span>example<span class="token punctuation">.</span>com<br></code></pre></blockquote>
+
+<p><code>–trace</code>参数也可以用于调试，还会输出原始的二进制数据。</p>
+
+<blockquote><pre class=" language-bash"><code class=" language-bash"><br>$ curl <span class="token operator">–</span>trace <span class="token operator">-</span> https<span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span>www<span class="token punctuation">.</span>example<span class="token punctuation">.</span>com<br></code></pre></blockquote>
+
+<h2><strong>-x</strong></h2>
+
+<p><code>-x</code>参数指定 HTTP 请求的代理。</p>
+
+<blockquote><pre class=" language-bash"><code class=" language-bash"><br>$ curl <span class="token operator">-</span>x socks5<span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span>james<span class="token punctuation">:</span><a class="token email-link" href="mailto:cats@myproxy" target="_blank" rel="noopener">cats@myproxy</a><span class="token punctuation">.</span>com<span class="token punctuation">:</span><span class="token number">8080</span> https<span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span>www<span class="token punctuation">.</span>example<span class="token punctuation">.</span>com<br></code></pre></blockquote>
+
+<p>上面命令指定 HTTP 请求通过<code>myproxy.com:8080</code>的 socks5 代理发出。</p>
+
+<p>如果没有指定代理协议，默认为 HTTP。</p>
+
+<blockquote><pre class=" language-bash"><code class=" language-bash"><br>$ curl <span class="token operator">-</span>x james<span class="token punctuation">:</span><a class="token email-link" href="mailto:cats@myproxy" target="_blank" rel="noopener">cats@myproxy</a><span class="token punctuation">.</span>com<span class="token punctuation">:</span><span class="token number">8080</span> https<span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span>www<span class="token punctuation">.</span>example<span class="token punctuation">.</span>com<br></code></pre></blockquote>
+
+<p>上面命令中，请求的代理使用 HTTP 协议。</p>
+
+<h2><strong>-X</strong></h2>
+
+<p><code>-X</code>参数指定 HTTP 请求的方法。</p>
+
+<blockquote><pre class=" language-bash"><code class=" language-bash"><br>$ curl <span class="token operator">-</span>X POST https<span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span>www<span class="token punctuation">.</span>example<span class="token punctuation">.</span>com<br></code></pre></blockquote>
+
+<p>上面命令对<code><a href="https://www.example.com" target="_blank" rel="noopener">https://www.example.com</a></code>发出 POST 请求。</p>
+
+<h2>参考链接</h2>
+
+<ul><br><li><a href="https://catonmat.net/cookbooks/curl" target="_blank">Curl Cookbook</a></li><br></ul>
+
+
+<p>文章转自:</p>
+<p><a href="http://www.ruanyifeng.com/blog/2019/09/curl-reference.html" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2019/09/curl-reference.html</a></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        
+          
+        
+        <div class="post-tags">
+          
+            <a href="/tags/Liunx/" rel="tag"><i class="fa fa-tag"></i> Liunx</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/10/02/Python-爬取Boos直聘/" rel="next" title="Python 爬取Boos直聘">
+                <i class="fa fa-chevron-left"></i> Python 爬取Boos直聘
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/10/02/Linux-crontab命令详解/" rel="prev" title="Linux crontab命令详解">
+                Linux crontab命令详解 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/Me.jpg" alt="😁">
+            
+              <p class="site-author-name" itemprop="name">😁</p>
+              <div class="site-description motion-element" itemprop="description">Just Do ‘IT’ .</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">58</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">13</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">24</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/PlutoaCharon" title="GitHub &rarr; https://github.com/PlutoaCharon" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:1070481109@qq.com" title="E-Mail &rarr; mailto:1070481109@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.linkedin.com/in/%E6%B5%A9%E7%BF%B0-%E8%AE%B8-3918b0191/" title="https://www.linkedin.com/in/%E6%B5%A9%E7%BF%B0-%E8%AE%B8-3918b0191/" rel="noopener" target="_blank">LinkedIn</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://me.csdn.net/qq_43442524" title="https://me.csdn.net/qq_43442524" rel="noopener" target="_blank">CSDN</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">-A</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">-b</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">-c</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">4.</span> <span class="nav-text">-d</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">5.</span> <span class="nav-text">–data-urlencode</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">6.</span> <span class="nav-text">-e</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">7.</span> <span class="nav-text">-F</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">8.</span> <span class="nav-text">-G</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">9.</span> <span class="nav-text">-H</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">10.</span> <span class="nav-text">-i</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">11.</span> <span class="nav-text">-I</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">12.</span> <span class="nav-text">-k</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">13.</span> <span class="nav-text">-L</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">14.</span> <span class="nav-text">–limit-rate</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">15.</span> <span class="nav-text">-o</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">16.</span> <span class="nav-text">-O</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">17.</span> <span class="nav-text">-s</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">18.</span> <span class="nav-text">-S</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">19.</span> <span class="nav-text">-u</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">20.</span> <span class="nav-text">-v</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">21.</span> <span class="nav-text">-x</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">22.</span> <span class="nav-text">-X</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">23.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">😁</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+    <span title="站点总字数">159k</span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    
+    <span title="站点阅读时长">2:24</span>
+  
+</div>
+
+<!--
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.2.0</div>
+
+-->
+
+
+
+
+<div>
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("05/20/2019 00:00:00");
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+setInterval("createtime()",250);
+</script>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+      
+    
+  
+  <script color="0,0,255" opacity="0.5" zindex="-1" count="99" src="cdn.jsdelivr.net/gh/theme-next/theme-next-canvas-nest@1/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.2.0"></script>
+
+  <script src="/js/motion.js?v=7.2.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.2.0"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.2.0"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.2.0"></script>
+<script src="/js/post-details.js?v=7.2.0"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.2.0"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
