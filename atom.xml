@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-10-02T14:45:14.264Z</updated>
+  <updated>2019-10-03T13:53:57.241Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,151 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>centos7 使用vi编辑器配置网络环境</title>
+    <link href="http://yoursite.com/2019/10/03/centos7-%E4%BD%BF%E7%94%A8vi%E7%BC%96%E8%BE%91%E5%99%A8%E9%85%8D%E7%BD%AE%E7%BD%91%E7%BB%9C%E7%8E%AF%E5%A2%83/"/>
+    <id>http://yoursite.com/2019/10/03/centos7-使用vi编辑器配置网络环境/</id>
+    <published>2019-10-03T13:50:11.000Z</published>
+    <updated>2019-10-03T13:53:57.241Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h2><table><thead><tr><th>命令和路径</th><th>描述</th></tr></thead><tbody><tr><td>ifconfig</td><td>改变网卡地址，启用禁用网卡</td></tr><tr><td>route</td><td>管理本机路由表</td></tr><tr><td>hostname</td><td>设置本机主机名</td></tr></tbody></table><h2 id="一-使用ifconfig命令改变网卡IP地址"><a href="#一-使用ifconfig命令改变网卡IP地址" class="headerlink" title="一 使用ifconfig命令改变网卡IP地址"></a>一 使用ifconfig命令改变网卡IP地址</h2><ol><li>使用ifconfig命令查看虚拟机的IP地址<br><img src="https://img-blog.csdnimg.cn/20191003182737246.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li><li><p>使用ifconfig命令把虚拟机的地址设成192.168.238.7</p><blockquote><p>注意:这里我修改了静态,所以使用该命令的时候需要是DHCP才可以更改成功</p></blockquote></li></ol><p><img src="https://img-blog.csdnimg.cn/20191003182741787.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><ol start="3"><li>使用ping命令检查虚拟机到主机的互通性<br><img src="https://img-blog.csdnimg.cn/2019100318274835.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li><li>使用route命令查看本机的路由表</li></ol><p><img src="https://img-blog.csdnimg.cn/20191003182955697.png" alt="在这里插入图片描述"></p><h2 id="二-熟悉vi的基本命令"><a href="#二-熟悉vi的基本命令" class="headerlink" title="二 熟悉vi的基本命令"></a>二 熟悉vi的基本命令</h2><h3 id="编辑作业2任务二的命令行到一个文件中"><a href="#编辑作业2任务二的命令行到一个文件中" class="headerlink" title="编辑作业2任务二的命令行到一个文件中"></a>编辑作业2任务二的命令行到一个文件中</h3><pre><code>1.    vi的三种模式的特点、如何切换i                进入插入模式esc                进入命令模式：              进入末行模式2.    vi  &lt;文件名&gt;        打开文件:q                结束编辑:q!                不存盘退出:w                存盘后退出:wq                强制存盘后退出3.    vi基本编辑（命令模式下）dd                删除光标所在行yy                复制光标所在行nyy                复制光标所在n行p                粘贴</code></pre><p> <img src="https://img-blog.csdnimg.cn/20191003183021603.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><h2 id="三-编辑网卡配置文件配置IP地址和网关以及DNS"><a href="#三-编辑网卡配置文件配置IP地址和网关以及DNS" class="headerlink" title="三 编辑网卡配置文件配置IP地址和网关以及DNS"></a>三 编辑网卡配置文件配置IP地址和网关以及DNS</h2><p>配置文件|    描述<br>|–|–|<br>/ect/sysconfig/network-scripts/ifcfg-ens*|    第一块以太网卡的配置文件<br>/etc/resolv.conf|    域名服务器配置文件</p><ol><li>打开vmware虚拟网络编辑器，查看vmnet8的地址和网关<br><img src="https://img-blog.csdnimg.cn/2019100318313638.png" alt="在这里插入图片描述"></li><li>使用vi编辑/etc/sysconfig/network-scripts/ifcfg-ens，把地址设置为vmnet8的同一网段，网关地址相同，编辑好的ifcfg-ens*文件<br><img src="https://img-blog.csdnimg.cn/20191003183139842.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li><li>使用systemctl  restart  network  重启网络服务<br><img src="https://img-blog.csdnimg.cn/20191003183143937.png" alt="在这里插入图片描述"></li><li>使用ifconfig检查IP地址配置，ping <a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a><br><img src="https://img-blog.csdnimg.cn/20191003183159206.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li><li>使用vi编辑/etc/resolv.conf，ping <a href="http://www.baidu.com，" target="_blank" rel="noopener">www.baidu.com，</a><br><img src="https://img-blog.csdnimg.cn/20191003183203873.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20191003183212607.png" alt="在这里插入图片描述"><h2 id="四-使用SSH远程管理linux服务器"><a href="#四-使用SSH远程管理linux服务器" class="headerlink" title="四 使用SSH远程管理linux服务器"></a>四 使用SSH远程管理linux服务器</h2></li><li>使用netstat -antp 查看虚拟机开放端口，标出sshd<br><img src="https://img-blog.csdnimg.cn/20191003183836361.png" alt="在这里插入图片描述"></li><li>使用systemctl  stop  sshd 停止服务，再查看虚拟机开放端口<br><img src="https://img-blog.csdnimg.cn/20191003183840555.png" alt="在这里插入图片描述"></li><li><p>查看sshd的配置文件，/etc/ssh/ sshd_config; /etc/ssh/ ssh_config<br><code>grep  -v  ^#  /etc/ssh/sshd_config | grep  -v  ^$</code><br><img src="https://img-blog.csdnimg.cn/20191003183845300.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p></li><li><p>查看sshd的密钥文件，/etc/ssh/ ssh_host_rsa_key; /etc/ssh/ ssh_host_rsa_key.pub<br><img src="https://img-blog.csdnimg.cn/20191003183849314.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20191003183855234.png" alt="在这里插入图片描述"></p></li><li>使用systemctl  start  sshd启动服务，再查看虚拟机开放端口<br><img src="https://img-blog.csdnimg.cn/20191003183858775.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li><li><p>在主机使用xshell连接虚拟机<br><img src="https://img-blog.csdnimg.cn/20191003183928447.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><img src="https://img-blog.csdnimg.cn/20191003183932718.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p></li><li><p>在主机和虚拟机分别使用netstat命令查看网络连接状况<br><img src="https://img-blog.csdnimg.cn/20191003184059531.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p></li></ol><h2 id="五-配置SSH免密码登录"><a href="#五-配置SSH免密码登录" class="headerlink" title="五 配置SSH免密码登录"></a>五 配置SSH免密码登录</h2><ol><li>克隆并启动两台linux虚拟机ssh-client和ssh-server<br><img src="https://img-blog.csdnimg.cn/20191003184112185.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li><li>在ssh-server上启动sshd服务<br><img src="https://img-blog.csdnimg.cn/20191003184209275.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li><li><p>在ssh-client上创建rsa密钥对，查看密钥对<img src="https://img-blog.csdnimg.cn/20191003184117552.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p></li><li><p>使用scp命令把ssh-client的公钥拷贝到ssh-server上的认证文件中<br>这里我是使用了 cat命令查看公钥 然后复制到client机器上的认证文件中,效果跟scp一样,只不过省去了一部分<br><img src="https://img-blog.csdnimg.cn/20191003184121597.png" alt="在这里插入图片描述"><br>将master节点上的公钥复制到authorized_keys中<br><img src="https://img-blog.csdnimg.cn/2019100318414544.png" alt="在这里插入图片描述"><br>然后将slave1复制到master的authorized_keys中</p></li></ol><p><img src="https://img-blog.csdnimg.cn/20191003184310310.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>将authorized_keys文件复制到其他机器</p><p><img src="https://img-blog.csdnimg.cn/20191003184322481.png" alt="在这里插入图片描述"></p><ol start="5"><li>在ssh-client使用ssh登录ssh-serve</li></ol><p><img src="https://img-blog.csdnimg.cn/20191003184326605.png" alt="在这里插入图片描述"></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;命令&quot;&gt;&lt;a href=&quot;#命令&quot; class=&quot;headerlink&quot; title=&quot;命令&quot;&gt;&lt;/a&gt;命令&lt;/h2&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;命令和路径&lt;/th&gt;
+&lt;th&gt;描述&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;t
+      
+    
+    </summary>
+    
+      <category term="Liunx" scheme="http://yoursite.com/categories/Liunx/"/>
+    
+    
+      <category term="Liunx" scheme="http://yoursite.com/tags/Liunx/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>centos7 挂载使用外部存储系统</title>
+    <link href="http://yoursite.com/2019/10/03/centos7-%E6%8C%82%E8%BD%BD%E4%BD%BF%E7%94%A8%E5%A4%96%E9%83%A8%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F/"/>
+    <id>http://yoursite.com/2019/10/03/centos7-挂载使用外部存储系统/</id>
+    <published>2019-10-03T13:49:11.000Z</published>
+    <updated>2019-10-03T13:54:57.568Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h2><table><thead><tr><th>命令</th><th>描述</th></tr></thead><tbody><tr><td>fdisk</td><td>管理磁盘分区</td></tr><tr><td>mkfs</td><td>创建文件系统</td></tr><tr><td>mount</td><td>挂载文件系统</td></tr><tr><td>umount</td><td>卸载文件系统</td></tr><tr><td>du</td><td>统计目录的磁盘使用情况</td></tr><tr><td>df</td><td>统计未使用的磁盘空间</td></tr></tbody></table><h2 id="一-在linux系统中挂载使用光盘"><a href="#一-在linux系统中挂载使用光盘" class="headerlink" title="一 在linux系统中挂载使用光盘"></a>一 在linux系统中挂载使用光盘</h2><ol><li><p>在vmware虚拟机中配置光驱使用ISO光盘映像</p></li><li><p>使用mount命令把光盘挂载到/mnt/cdrom<br><img src="https://img-blog.csdnimg.cn/20191003174739273.png" alt="在这里插入图片描述"></p></li><li>查看光盘内容<br><img src="https://img-blog.csdnimg.cn/20191003174739273.png" alt="在这里插入图片描述"></li><li>使用umonut命令卸载光盘<br><img src="https://img-blog.csdnimg.cn/20191003174743314.png" alt="在这里插入图片描述"></li><li>使用mount命令挂载linux系统中的ISO光盘映像<br><img src="https://img-blog.csdnimg.cn/20191003180100401.png" alt="在这里插入图片描述"></li></ol><h2 id="二-在linux系统中挂载使用U盘"><a href="#二-在linux系统中挂载使用U盘" class="headerlink" title="二 在linux系统中挂载使用U盘"></a>二 在linux系统中挂载使用U盘</h2><ol><li><p>在主机上插入U盘<br><img src="https://img-blog.csdnimg.cn/20191003180116393.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p></li><li><p>在linux系统中，fdisk -l 查看U盘分区信息</p></li></ol><p><img src="https://img-blog.csdnimg.cn/20191003180125299.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><ol start="3"><li>使用mount命令把U盘分区挂载到/mnt/u<br><img src="https://img-blog.csdnimg.cn/20191003180132245.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li><li>查看U盘内容</li></ol><p><img src="https://img-blog.csdnimg.cn/20191003180208845.png" alt="在这里插入图片描述"></p><ol start="5"><li>使用umonut命令卸载U盘<br><img src="https://img-blog.csdnimg.cn/20191003180152568.png" alt="在这里插入图片描述"></li></ol><h2 id="三-在linux系统中增加新硬盘，对硬盘分区并创建文件系统，挂载文件系统"><a href="#三-在linux系统中增加新硬盘，对硬盘分区并创建文件系统，挂载文件系统" class="headerlink" title="三 在linux系统中增加新硬盘，对硬盘分区并创建文件系统，挂载文件系统"></a>三 在linux系统中增加新硬盘，对硬盘分区并创建文件系统，挂载文件系统</h2><ol><li>在虚拟机中增加一块硬盘，容量1GB<br><img src="https://img-blog.csdnimg.cn/20191003180222581.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li><li>使用fdisk查看两块硬盘的分区情况<br><img src="https://img-blog.csdnimg.cn/20191003180230436.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li><li>使用fdisk对新硬盘分区，划分两个主分区各300MB<br><img src="https://img-blog.csdnimg.cn/20191003180234147.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20191003180254635.png" alt="在这里插入图片描述"></li><li>使用mkfs对其中一个分区格式化创建文件系统<br><img src="https://img-blog.csdnimg.cn/20191003180310409.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li><li>建立/mnt/new目录，使用mount把分区挂载到目录下<br><img src="https://img-blog.csdnimg.cn/20191003180315213.png" alt="在这里插入图片描述"></li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;命令&quot;&gt;&lt;a href=&quot;#命令&quot; class=&quot;headerlink&quot; title=&quot;命令&quot;&gt;&lt;/a&gt;命令&lt;/h2&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;命令&lt;/th&gt;
+&lt;th&gt;描述&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+
+      
+    
+    </summary>
+    
+      <category term="Liunx" scheme="http://yoursite.com/categories/Liunx/"/>
+    
+    
+      <category term="Liunx" scheme="http://yoursite.com/tags/Liunx/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>centos7 使用linux命令管理目录和文件</title>
+    <link href="http://yoursite.com/2019/10/03/centos7-%E4%BD%BF%E7%94%A8linux%E5%91%BD%E4%BB%A4%E7%AE%A1%E7%90%86%E7%9B%AE%E5%BD%95%E5%92%8C%E6%96%87%E4%BB%B6/"/>
+    <id>http://yoursite.com/2019/10/03/centos7-使用linux命令管理目录和文件/</id>
+    <published>2019-10-03T13:48:25.000Z</published>
+    <updated>2019-10-03T13:54:59.233Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="一-使用命令查看系统基本信息"><a href="#一-使用命令查看系统基本信息" class="headerlink" title="一 使用命令查看系统基本信息"></a>一 使用命令查看系统基本信息</h2><ol><li>uname命令查看内核版本、硬件平台<br><img src="https://img-blog.csdnimg.cn/20191003172243802.png" alt="在这里插入图片描述"></li><li>hostname查看修改主机名<br><img src="https://img-blog.csdnimg.cn/2019100317225087.png" alt="在这里插入图片描述"></li><li>ifconfig查看修改IP地址<br><img src="https://img-blog.csdnimg.cn/20191003172256862.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li><li>df查看磁盘空间占用情况<br><img src="https://img-blog.csdnimg.cn/20191003172302486.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li><li><p>free查看内存空间占用情况<br><img src="https://img-blog.csdnimg.cn/20191003172309641.png" alt="在这里插入图片描述"></p><h2 id="二-使用linux命令完成如下目录和文件操作"><a href="#二-使用linux命令完成如下目录和文件操作" class="headerlink" title="二 使用linux命令完成如下目录和文件操作"></a>二 使用linux命令完成如下目录和文件操作</h2><p>|命令|描述  |<br>|–|–|<br>| ls | 列出目录下的文件 |<br>|mkdir、cd、rmdir、pwd|目录操作命令|<br>|rm、mv、cp|文件操作命令|</p></li><li><p>在/root目录下建立temp目录<br><img src="https://img-blog.csdnimg.cn/2019100317355813.png" alt="在这里插入图片描述"></p></li><li>把/bin目录下的a开头的文件拷贝到/root/temp目录<br><img src="https://img-blog.csdnimg.cn/20191003173615706.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li><li>把/etc/httpd/目录下所有文件和子目录拷贝到/root/temp目录<br><img src="https://img-blog.csdnimg.cn/20191003173626272.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li><li>给/sbin/ifconfig建立符号链接ipconfig放到/root/temp目录</li></ol><p><img src="https://img-blog.csdnimg.cn/20191003173654467.png" alt="在这里插入图片描述"><img src="https://img-blog.csdnimg.cn/20191003173657588.png" alt="在这里插入图片描述"></p><ol start="5"><li><p>查找名字为yum的文件，拷贝到/root/temp目录<br>使用cp命令</p><p><img src="https://img-blog.csdnimg.cn/20191003173838831.png" alt="在这里插入图片描述"></p></li><li>删除/root/temp目录，命令及执行结果截图<br><img src="https://img-blog.csdnimg.cn/20191003173844236.png" alt="在这里插入图片描述"></li></ol><h2 id="三-使用linux命令查看检索文件内容"><a href="#三-使用linux命令查看检索文件内容" class="headerlink" title="三 使用linux命令查看检索文件内容"></a>三 使用linux命令查看检索文件内容</h2><table><thead><tr><th>命令</th><th>描述</th></tr></thead><tbody><tr><td>cat、less、more、head、tail</td><td>查看文件内容</td></tr><tr><td>wc、grep</td><td>统计文件内容、检索文件内容</td></tr></tbody></table><p>1．    cat /proc/cpuinfo查看CPU信息<br> <img src="https://img-blog.csdnimg.cn/20191003173855417.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>2．    cat  /etc/passwd查看系统用户信息<br> <img src="https://img-blog.csdnimg.cn/20191003173907762.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>3．    tail  /var/log/message 查看日志信息<br> <img src="https://img-blog.csdnimg.cn/20191003173916172.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>4．    more  /etc/passwd查看系统用户信息<br> <img src="https://img-blog.csdnimg.cn/2019100317392025.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>5．    more  /var/log/message 查看日志信息<br> <img src="https://img-blog.csdnimg.cn/20191003173923639.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>6．    wc  /etc/passwd统计文件的行数<br> <img src="https://img-blog.csdnimg.cn/20191003173930278.png" alt="在这里插入图片描述"><br>7．    使用grep命令检索/etc/passwd中包含root的行和以root开头的行<br>   <img src="https://img-blog.csdnimg.cn/2019100317393672.png" alt="在这里插入图片描述"></p><h2 id="四-使用linux命令打包、压缩、备份、还原文件"><a href="#四-使用linux命令打包、压缩、备份、还原文件" class="headerlink" title="四 使用linux命令打包、压缩、备份、还原文件"></a>四 使用linux命令打包、压缩、备份、还原文件</h2><table><thead><tr><th>命令</th><th>描述</th></tr></thead><tbody><tr><td>tar、gzip、bzip2</td><td>归档和压缩</td></tr></tbody></table><p>1．    在/root建立目录temp<br> <img src="https://img-blog.csdnimg.cn/20191003174001833.png" alt="在这里插入图片描述"><br>2．    把/bin目录下所有字母n开头的文件拷贝过来<br> <img src="https://img-blog.csdnimg.cn/20191003174006549.png" alt="在这里插入图片描述"><br>3．    把/下所有http开头的文件拷贝过来</p><p> <img src="https://img-blog.csdnimg.cn/20191003174011592.png" alt="在这里插入图片描述"><br> <img src="https://img-blog.csdnimg.cn/20191003174032932.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>4．    打包压缩/root/temp</p><p> <img src="https://img-blog.csdnimg.cn/20191003174037958.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>5．    删除/root/temp目录及文件<br> <img src="https://img-blog.csdnimg.cn/20191003174041681.png" alt="在这里插入图片描述"><br>6．    还原/root/temp<br> <img src="https://img-blog.csdnimg.cn/20191003174044445.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;一-使用命令查看系统基本信息&quot;&gt;&lt;a href=&quot;#一-使用命令查看系统基本信息&quot; class=&quot;headerlink&quot; title=&quot;一 使用命令查看系统基本信息&quot;&gt;&lt;/a&gt;一 使用命令查看系统基本信息&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;uname命令查看内核版本、硬件
+      
+    
+    </summary>
+    
+      <category term="Liunx" scheme="http://yoursite.com/categories/Liunx/"/>
+    
+    
+      <category term="Liunx" scheme="http://yoursite.com/tags/Liunx/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Centos7 图形化安装,分区,网络设置</title>
+    <link href="http://yoursite.com/2019/10/03/Centos7-%E5%9B%BE%E5%BD%A2%E5%8C%96%E5%AE%89%E8%A3%85-%E5%88%86%E5%8C%BA-%E7%BD%91%E7%BB%9C%E8%AE%BE%E7%BD%AE/"/>
+    <id>http://yoursite.com/2019/10/03/Centos7-图形化安装-分区-网络设置/</id>
+    <published>2019-10-03T13:47:20.000Z</published>
+    <updated>2019-10-03T13:53:55.787Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="一-使用vmware建立新的虚拟机"><a href="#一-使用vmware建立新的虚拟机" class="headerlink" title="一 使用vmware建立新的虚拟机"></a>一 使用vmware建立新的虚拟机</h2><p><img src="https://img-blog.csdnimg.cn/20191003171132945.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20191003171139898.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><p><img src="https://img-blog.csdnimg.cn/20191003171152516.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><h2 id="二-安装CentOS7-4系统"><a href="#二-安装CentOS7-4系统" class="headerlink" title="二 安装CentOS7.4系统"></a>二 安装CentOS7.4系统</h2><p> 使用安装光盘映像引导系统，进入安装界面</p><p> <img src="https://img-blog.csdnimg.cn/20191003171241712.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>重新划分磁盘分区，交换分区swap为2G，“/boot”分区512M，其余的划为根分区，分区表</p><p><img src="https://img-blog.csdnimg.cn/20191003171249308.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>选择DeskTop安装<br> <img src="https://img-blog.csdnimg.cn/20191003171256101.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>配置root密码为123456<br> <img src="https://img-blog.csdnimg.cn/20191003171300520.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>安装完成重新启动系统并登录</p><p><img src="https://img-blog.csdnimg.cn/20191003171304866.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><h2 id="三-系统登录、控制台切换、图形界面操作"><a href="#三-系统登录、控制台切换、图形界面操作" class="headerlink" title="三 系统登录、控制台切换、图形界面操作"></a>三 系统登录、控制台切换、图形界面操作</h2><ol><li>图形界面root超级用户的登陆<br><img src="https://img-blog.csdnimg.cn/20191003171319265.png" alt="在这里插入图片描述"></li><li>控制台切换快捷键，切换到字符界面登录<br>使用 init 3 命令切换到命令行界面<br><img src="https://img-blog.csdnimg.cn/20191003171336781.png" alt="在这里插入图片描述"></li><li><p>切换回图形界面，打开终端<br>使用 init 5 命令切换到命令行界面<br><img src="https://img-blog.csdnimg.cn/20191003171341254.png" alt="在这里插入图片描述"></p></li><li><p>使用图形界面设置桌面、网络ip和dns、设置root密码<br>我的网关是192.168.238.2 所以静态的设置网关填写应该按照标准来</p><p><img src="https://img-blog.csdnimg.cn/20191003171347855.png" alt="在这里插入图片描述"></p></li></ol><p><img src="https://img-blog.csdnimg.cn/20191003171353386.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>设置静态<br><img src="https://img-blog.csdnimg.cn/20191003171405643.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>重启网卡<br><img src="https://img-blog.csdnimg.cn/20191003171414179.png" alt="在这里插入图片描述"></p><p><img src="https://img-blog.csdnimg.cn/20191003171428425.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>Ping通证明有网!!!</p><h2 id="关机、重启"><a href="#关机、重启" class="headerlink" title="关机、重启"></a>关机、重启</h2><ol><li><p>使用shutdown命令关机</p></li><li><p>使用shutdown命令重启</p></li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;一-使用vmware建立新的虚拟机&quot;&gt;&lt;a href=&quot;#一-使用vmware建立新的虚拟机&quot; class=&quot;headerlink&quot; title=&quot;一 使用vmware建立新的虚拟机&quot;&gt;&lt;/a&gt;一 使用vmware建立新的虚拟机&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;
+      
+    
+    </summary>
+    
+      <category term="Liunx" scheme="http://yoursite.com/categories/Liunx/"/>
+    
+    
+      <category term="Liunx" scheme="http://yoursite.com/tags/Liunx/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>yum更新报错 您可以尝试添加 --skip-broken 选项来解决该问题</title>
+    <link href="http://yoursite.com/2019/10/03/yum%E6%9B%B4%E6%96%B0%E6%8A%A5%E9%94%99-%E6%82%A8%E5%8F%AF%E4%BB%A5%E5%B0%9D%E8%AF%95%E6%B7%BB%E5%8A%A0-skip-broken-%E9%80%89%E9%A1%B9%E6%9D%A5%E8%A7%A3%E5%86%B3%E8%AF%A5%E9%97%AE%E9%A2%98/"/>
+    <id>http://yoursite.com/2019/10/03/yum更新报错-您可以尝试添加-skip-broken-选项来解决该问题/</id>
+    <published>2019-10-03T13:46:37.000Z</published>
+    <updated>2019-10-03T13:46:59.412Z</updated>
+    
+    <content type="html"><![CDATA[<p>在centos7 中执行 <code>yum -y update</code>时系统报错:</p><pre><code>错误：软件包：kernel-3.10.0-1062.1.2.el7.x86_64 (updates)          需要：linux-firmware &gt;= 20190429-72          正在删除: linux-firmware-20160830-49.git7534e19.el7.noarch (@anaconda)              linux-firmware = 20160830-49.git7534e19.el7          更新，由: linux-firmware-20180911-69.git85c5d90.el7.noarch (base)              linux-firmware = 20180911-69.git85c5d90.el7 您可以尝试添加 --skip-broken 选项来解决该问题 您可以尝试执行：rpm -Va --nofiles --nodigest</code></pre><p>尝试使用<code>yum -y update --skip-broken</code>解决</p><pre><code>跳过（依赖问题）:  grubby.x86_64 0:8.28-25.el7                        kernel.x86_64 0:3.10.0-1062.1.2.el7                        microcode_ctl.x86_64 2:2.1-47.el7  替代:  NetworkManager.x86_64 1:1.4.0-12.el7    grub2.x86_64 1:2.02-0.44.el7.centos    grub2-tools.x86_64 1:2.02-0.44.el7.centos    pygobject3-base.x86_64 0:3.14.0-3.el7     rdma.noarch 0:7.3_4.7_rc2-5.el7        完毕！</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;在centos7 中执行 &lt;code&gt;yum -y update&lt;/code&gt;时系统报错:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;错误：软件包：kernel-3.10.0-1062.1.2.el7.x86_64 (updates)
+          需要：linux-firmwa
+      
+    
+    </summary>
+    
+      <category term="Liunx" scheme="http://yoursite.com/categories/Liunx/"/>
+    
+    
+      <category term="Liunx" scheme="http://yoursite.com/tags/Liunx/"/>
+    
+  </entry>
   
   <entry>
     <title>Nmap工具命令详解</title>
@@ -409,134 +554,6 @@
     
     
       <category term="Zookeeper" scheme="http://yoursite.com/tags/Zookeeper/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Sqoop学习笔记</title>
-    <link href="http://yoursite.com/2019/09/29/Sqoop%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-    <id>http://yoursite.com/2019/09/29/Sqoop学习笔记/</id>
-    <published>2019-09-29T15:09:15.000Z</published>
-    <updated>2019-09-29T15:09:41.922Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="数据转移工具Sqoop"><a href="#数据转移工具Sqoop" class="headerlink" title="数据转移工具Sqoop"></a>数据转移工具Sqoop</h2><p>Sqoop是一款开源的工具，主要用于在Hadoop(Hive)与传统的数据库(mysql、postgresql…)间进行数据的传递，可以将一个关系型数据库（例如 ： MySQL ,Oracle ,Postgres等）中的数据导进到Hadoop的HDFS中，也可以将HDFS的数据导进到关系型数据库中。Apache框架Hadoop是一个越来越通用的分布式计算环境，主要用来处理大数据。随着云提供商利用这个框架，更多的用户将数据集在Hadoop和传统数据库之间转移，Sqoop这个帮助数据传输的工具变得更加重要。</p><p><img src="https://img-blog.csdnimg.cn/20190918202837182.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>Sqoop是一款开源的工具，主要用于在Hadoop(Hive)与传统的数据库(Mysql、Oracle…)间进行数据的传递，可以将一个关系型数据库中的数据导入到Hadoop的HDFS中，也可以将HDFS的数据导入到关系型数据库中。</p><p><strong>特点：</strong></p><ul><li>可导入单个或者所有数据库中的表格</li><li>可以通过WHERE指定导入的行 列</li><li>可以提供任意的SELECT语句</li><li>可以自动生成一个Hive表格, 根据输入的数据</li><li>可以支持增长性的数据导入</li><li>可以将HDFS导出到其他数据库</li><li>支持文本文件(–as-textfile)、avro(–as-avrodatafile)、SequenceFiles(–as-sequencefile)。</li></ul><h2 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h2><p><strong>Sqoop检查每一个table并且自动生成一个Java class来导入数据到HDFS</strong></p><p>Sqoop会产生和运行一个Map-only的MapReduce job来导入数据</p><p><code>默认会有4个Mapper连接到RDBMS, 每一个导入1/4数据</code><br><img src="https://img-blog.csdnimg.cn/20190918203137452.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><h3 id="Sqoop-Connectors"><a href="#Sqoop-Connectors" class="headerlink" title="Sqoop Connectors"></a>Sqoop Connectors</h3><p>自定义Sqoop connectors提供更高速的访问;<br>目前支持Netezza, Teradata, Oracle Database</p><h2 id="Sqoop2："><a href="#Sqoop2：" class="headerlink" title="Sqoop2："></a>Sqoop2：</h2><p><img src="https://img-blog.csdnimg.cn/20190918203213985.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><h2 id="sqoop和sqoop2的区别"><a href="#sqoop和sqoop2的区别" class="headerlink" title="sqoop和sqoop2的区别:"></a>sqoop和sqoop2的区别:</h2><p><img src="https://img-blog.csdnimg.cn/20190918203244206.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><pre><code>当HDFS有数据写入时, NameNode会把文件标记为存在, 但是size = 0当每一份block写入后, 其他的clients会看到block为了避免多人同时访问同一份数据, 最好是先将数据导入到一个临时目录;当文件完全写入后, 将其一直目标文件夹(atomic操作), 因为这个操作只需要NameNode更新一下metaData, 所以也很快;一些机构标准的注释方式:./incoming/..../for_processing/..../completed/...</code></pre><p>REST接口也可以访问HDFS<br>WebHDFS, HttpFS</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;数据转移工具Sqoop&quot;&gt;&lt;a href=&quot;#数据转移工具Sqoop&quot; class=&quot;headerlink&quot; title=&quot;数据转移工具Sqoop&quot;&gt;&lt;/a&gt;数据转移工具Sqoop&lt;/h2&gt;&lt;p&gt;Sqoop是一款开源的工具，主要用于在Hadoop(Hive)与传统
-      
-    
-    </summary>
-    
-      <category term="Hadoop" scheme="http://yoursite.com/categories/Hadoop/"/>
-    
-    
-      <category term="Sqoop" scheme="http://yoursite.com/tags/Sqoop/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Flume学习笔记</title>
-    <link href="http://yoursite.com/2019/09/29/Flume%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-    <id>http://yoursite.com/2019/09/29/Flume学习笔记/</id>
-    <published>2019-09-29T15:08:31.000Z</published>
-    <updated>2019-09-29T15:08:56.396Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="为什么用Flume："><a href="#为什么用Flume：" class="headerlink" title="为什么用Flume："></a>为什么用Flume：</h2><p><img src="https://img-blog.csdnimg.cn/20190918202234865.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><h3 id="可靠性："><a href="#可靠性：" class="headerlink" title="可靠性："></a>可靠性：</h3><p><img src="https://img-blog.csdnimg.cn/20190918202256888.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>Flume是Cloudera公司的一款高性能、高可用的分布式日志收集系统。</p><p>Flume的核心是把数据从数据源收集过来再送到目的地。为了保证输送一定成功，在送到目的地之前，会先缓存数据，待数据真正到达目的地后，再删除缓存的数据。</p><p>Flume传输数据的基本单位是event，如果是文本文件，通常是一行记录，这也是事务的基本单位。</p><p>Flume运行的核心是Agent。它是一个完整的数据收集工具，含有三个核心组件，分别是Source、Channel、Sink。</p><p><img src="https://img-blog.csdnimg.cn/20190918202319133.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><ol><li><p>Source组件是专门用于收集日志的，可以处理各种类型各种格式的日志数据，包括Avro、Thrift、Exec、Jms、Spooling directory、Netcat、Sequence Generator、Syslog、HTTP、Legacy、自定义。</p></li><li><p>Source组件把数据收集来以后，临时存放在Channel中。</p></li><li><p>Channel组件是在Agent中专门用于临时存储数据的，Source收集的数据将临时储蓄于此，可以存放在Memory、Jdbc、File、自定义。</p></li><li><p>Channel中的数据只有在Sink发送成功之后才会被删除。</p></li><li><p>Sink组件是用于把Channel中数据发送到目的地的组件，目的地包括HDFS、Logger、Avro、Thrift、Ipc、File、Null、HBase、Solr、自定义。</p></li></ol><p>在整个数据传输过程中，流动的是event。事务保证是在event级别。</p><p>Flume配置：Source、Channel、Sink</p><p>Source的类型主要有：Exec、Avro、Netcat、Spooldir、 Http 、Syslogtcp 、Seq、Thrift等。</p><p><img src="https://img-blog.csdnimg.cn/20190918202357364.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>Channel的类型主要有File、 Memory 、JDBC等。</p><p><img src="https://img-blog.csdnimg.cn/20190918202410988.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>Sink的类型主要有：Null、HDFS、 HBase、 Hive、Thrift、 Avro、Logger等。</p><p><img src="https://img-blog.csdnimg.cn/20190918202451290.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><p>执行代码：<br>下面我们令Source为exec类型，搭配Channel的memory或file类型，Sink的logger或hdfs类型进行Flume配置实验。</p><p><img src="https://img-blog.csdnimg.cn/2019091820250514.png" alt="在这里插入图片描述"><br>实验一：exec_mem_logger.conf</p><pre><code>#定义各个组件agent1.sources  = srcagent1.channels = chagent1.sinks    = des#配置sourceagent1.sources.src.type = execagent1.sources.src.command = tail -n 20 /data/flume2/goods#配置channelagent1.channels.ch.type = memory#配置sinkagent1.sinks.des.type = logger##下面是把上面设置的组件关联起来（把点用线连起来）agent1.sources.src.channels = chagent1.sinks.des.channel    = ch</code></pre><p>启动flume命令：</p><p><code>flume-ng agent -c /conf -f /apps/flume/conf/exec_mem_logger.conf -n agent1 -Dflume.root.logger=DEBUG,console</code></p><p>参数说明：</p><p>#source:exec、channel:memory、 sink:logger<br>-c 配置文件存放的目录<br>-f 所使用的配置文件路径<br>-n agent的名称</p><p>开启flume后，查看输出效果<br><img src="https://img-blog.csdnimg.cn/20190918202555606.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>source:exec，channel:memory，sink:hdfs。 相对于上一个实验，它的Sink类型发生了变化，变成了hdfs型。其结构中定义的各组件，Source配置没有变，在配置Channel时最大容量capacity为100000，通信的最大容量为100，在配置Sink时类型变为hdfs，/%Y/%m/%d，里面的%Y/%m/%d代表年月日，数据类型为文本型，写入格式为Text格式，写入hdfs的文件是否新建有几种判断方式：rollInterval表示基于时间判断，单位是秒，当为0时，表示不基于时间判断。rollSize表示基于文件大小判断，单位是B，当为0时表示不基于大小判断，rollCount表示基于写入记录的条数来判断，当为0时，表示不基于条数来判断。idleTimeout表示基于空闲时间来判断，单位是秒，当为0时，代表不基于空闲时间来判断。最后上次一样通过设置Source和Sink的Channel都为ch，把Source、Channel和Sink三个组件关联起来。</p><p>实验二：exec_mem_hdfs.conf</p><pre><code>#定义各个组件agent1.sources  = srcagent1.channels = chagent1.sinks    = des#配置sourceagent1.sources.src.type = execagent1.sources.src.command = tail -n 20 /data/flume2/goods#配置channelagent1.channels.ch.type = memoryagent1.channels.ch.keep-alive = 30agnet1.channels.ch.capacity = 1000000agent1.channels.ch.transactionCapacity = 100#配置sinkagent1.sinks.des.type = hdfsagent1.sinks.des.hdfs.path = hdfs://localhost:9000/myflume2/exec_mem_hdfs/%Y%m%d/agent1.sinks.des.hdfs.useLocalTimeStamp = true#设置flume临时文件的前缀为 . 或 _ 在hive加载时，会忽略此文件。agent1.sinks.des.hdfs.inUsePrefix=_#设置flume写入文件的前缀是什么agent1.sinks.des.hdfs.filePrefix = abcagent1.sinks.des.hdfs.fileType = DataStreamagent1.sinks.des.hdfs.writeFormat = Text#hdfs创建多久会新建一个文件，0为不基于时间判断,单位为秒agent1.sinks.des.hdfs.rollInterval = 30#hdfs写入的文件达到多大时，创建新文件 0为不基于空间大小,单位Bagent1.sinks.des.hdfs.rollSize = 100000#hdfs有多少条消息记录时，创建文件，0为不基于条数判断agent1.sinks.des.hdfs.rollCount = 10000#hdfs空闲多久就新建一个文件,单位秒agent1.sinks.des.hdfs.idleTimeout = 30##下面是把上面设置的组件关联起来（把点用线连起来）agent1.sources.src.channels = chagent1.sinks.des.channel    = ch</code></pre><p>启动flume命令：</p><p><code>flume-ng agent -c /conf -f /apps/flume/conf/exec_mem_hdfs.conf -n agent1 -Dflume.root.logger=DEBUG,console</code></p><p>在另一窗口，查看HDFS上的输出<br><code>hadoop fs -ls -R /myflume2</code><br><img src="https://img-blog.csdnimg.cn/20190918202648957.png" alt="在这里插入图片描述"></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;为什么用Flume：&quot;&gt;&lt;a href=&quot;#为什么用Flume：&quot; class=&quot;headerlink&quot; title=&quot;为什么用Flume：&quot;&gt;&lt;/a&gt;为什么用Flume：&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://img-blog.csdnimg.cn/
-      
-    
-    </summary>
-    
-      <category term="Hadoop" scheme="http://yoursite.com/categories/Hadoop/"/>
-    
-    
-      <category term="Flume" scheme="http://yoursite.com/tags/Flume/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Flume多source，多sink组合框架搭建</title>
-    <link href="http://yoursite.com/2019/09/29/Flume%E5%A4%9Asource%EF%BC%8C%E5%A4%9Asink%E7%BB%84%E5%90%88%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA/"/>
-    <id>http://yoursite.com/2019/09/29/Flume多source，多sink组合框架搭建/</id>
-    <published>2019-09-29T15:08:01.000Z</published>
-    <updated>2019-09-29T15:08:18.134Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="Flume多source，多sink组合框架搭建"><a href="#Flume多source，多sink组合框架搭建" class="headerlink" title="Flume多source，多sink组合框架搭建"></a>Flume多source，多sink组合框架搭建</h2><p>Flume运行的核心是Agent。它是一个完整的数据收集工具，含有三个核心组件，分别是Source、Channel、Sink。通过这些组件，Event可以从一个地方流向另一个地方。</p><p>Source可以接收外部源发送过来的数据。不同的Source可以接受不同的数据格式。</p><p>Channel是一个存储地，接收Source的输出，直到有Sink消费掉Channel中的数据。</p><p>Sink消费Channel中的数据，将数据推送给外部源或者其他Source。当Sink写入失败后，可以自动重启，不会造成数据丢失，因此很可靠。</p><p>在实际生产环境中，Flume允许多个Agent连在一起，形成前后相连的多级跳。Flume有多种组合方式。比如多个Source收集不同格式的数据输出到同一个Sink中，或者一个Source收集的数据输出到多个Sink中去。</p><p>现在有三台机器，分别是：Hadoop1，Hadoop2，Hadoop3，以Hadoop1为日志汇总</p><p><img src="https://img-blog.csdnimg.cn/20190918202103648.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>Hadoop1汇总的同时往多个目标进行输出<br><img src="https://img-blog.csdnimg.cn/20190918202118491.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><code>syslog_mem_hdfsandlogger.conf</code>文件</p><pre><code>#定义各个组件agent1.sources  = srcagent1.channels = ch1 ch2agent1.sinks    = des1 des2#配置sourceagent1.sources.src.type = syslogtcpagent1.sources.src.bind = localhostagent1.sources.src.port = 6868#配置channelagent1.channels.ch1.type = memoryagent1.channels.ch2.type = memory#配置hdfs sinkagent1.sinks.des1.type = hdfsagent1.sinks.des1.hdfs.path = hdfs://localhost:9000/myflume4/syslog_mem_hdfsandlogger/agent1.sinks.des1.hdfs.useLocalTimeStamp = true#设置flume临时文件的前缀为 . 或 _ 在hive加载时，会忽略此文件。agent1.sinks.des1.hdfs.inUsePrefix=_#设置flume写入文件的前缀是什么agent1.sinks.des1.hdfs.filePrefix = q7agent1.sinks.des1.hdfs.fileType = DataStreamagent1.sinks.des1.hdfs.writeFormat = Text#hdfs创建多久会新建一个文件，0为不基于时间判断,单位为秒agent1.sinks.des1.hdfs.rollInterval = 20#hdfs写入的文件达到多大时，创建新文件 0为不基于空间大小,单位Bagent1.sinks.des1.hdfs.rollSize = 10#hdfs有多少条消息记录时，创建文件，0为不基于条数判断agent1.sinks.des1.hdfs.rollCount = 5#hdfs空闲多久就新建一个文件,单位秒agent1.sinks.des1.hdfs.idleTimeout = 20#配置logger sinkagent1.sinks.des2.type = logger</code></pre><p>.启动Flume，执行收集工作</p><pre><code>cd /apps/flume  flume-ng agent -c /conf -f /apps/flume/conf/syslog_mem_hdfsandlogger.conf -n agent1 -Dflume.root.logger=DEBUG,console  </code></pre>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;Flume多source，多sink组合框架搭建&quot;&gt;&lt;a href=&quot;#Flume多source，多sink组合框架搭建&quot; class=&quot;headerlink&quot; title=&quot;Flume多source，多sink组合框架搭建&quot;&gt;&lt;/a&gt;Flume多source，多
-      
-    
-    </summary>
-    
-      <category term="Hadoop" scheme="http://yoursite.com/categories/Hadoop/"/>
-    
-    
-      <category term="Flume" scheme="http://yoursite.com/tags/Flume/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Flume传输数据给Kafka</title>
-    <link href="http://yoursite.com/2019/09/29/Flume%E4%BC%A0%E8%BE%93%E6%95%B0%E6%8D%AE%E7%BB%99Kafka/"/>
-    <id>http://yoursite.com/2019/09/29/Flume传输数据给Kafka/</id>
-    <published>2019-09-29T15:07:18.000Z</published>
-    <updated>2019-09-29T15:07:48.218Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="Flume"><a href="#Flume" class="headerlink" title="Flume"></a>Flume</h2><p>Flume是一个海量日志采集、聚合和传输的日志收集系统。</p><p>Kafka是一个可持久化的分布式的消息队列。</p><p>由于采集和处理数据的速度不一定同步，所以使用Kafka这个消息中间件来缓冲，如果你收集了日志后，想输出到多个业务方也可结合Kafka，Kafka支持多个业务来读取数据。<img src="https://img-blog.csdnimg.cn/20190918201857107.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>上图中Kafka生产的数据，是由Flume提供的，这里我们需要用到Flume集群，通过Flume集群将Agent的日志收集分发到Kafka（供实时计算处理）和HDFS（离线计算处理）。<br><img src="https://img-blog.csdnimg.cn/20190918201918836.png" alt="在这里插入图片描述"><br>Flume将收集到的数据输送到Kafka中间件，以供Storm去实时消费计算，整个流程从各个Web节点上，通过Flume的Agent代理收集日志，然后汇总到Flume集群，再由Flume的Sink将日志输送到Kafka集群，完成数据的传输流程。</p><pre><code>#定义各个组件  agent1.sources  = src  agent1.channels = ch_hdfs ch_kafka  agent1.sinks    = des_hdfs des_kafka  #配置source  agent1.sources.src.type = syslogtcp  agent1.sources.src.bind = localhost  agent1.sources.src.port = 6666  #配置channel  agent1.channels.ch_hdfs.type = memory  agent1.channels.ch_kafka.type = memory  #配置hdfs sink  agent1.sinks.des_hdfs.type = hdfs  agent1.sinks.des_hdfs.hdfs.path = hdfs://localhost:9000/myflume/syslog_mem_hdfsandkafka/  agent1.sinks.des_hdfs.hdfs.useLocalTimeStamp = true  #设置flume临时文件的前缀为 . 或 _ 在hive加载时，会忽略此文件。  agent1.sinks.des_hdfs.hdfs.inUsePrefix=_  #设置flume写入文件的前缀是什么  agent1.sinks.des_hdfs.hdfs.filePrefix = q7  agent1.sinks.des_hdfs.hdfs.fileType = DataStream  agent1.sinks.des_hdfs.hdfs.writeFormat = Text  #hdfs创建多久会新建一个文件，0为不基于时间判断,单位为秒  agent1.sinks.des_hdfs.hdfs.rollInterval = 20  #hdfs写入的文件达到多大时，创建新文件 0为不基于空间大小,单位B  agent1.sinks.des_hdfs.hdfs.rollSize = 10  #hdfs有多少条消息记录时，创建文件，0为不基于条数判断  agent1.sinks.des_hdfs.hdfs.rollCount = 5  #hdfs空闲多久就新建一个文件,单位秒  agent1.sinks.des_hdfs.hdfs.idleTimeout = 20  #配置kafka sink  agent1.sinks.des_kafka.type = org.apache.flume.sink.kafka.KafkaSink  agent1.sinks.des_kafka.brokerList = localhost:9092  agent1.sinks.des_kafka.topic = flumekafka  agent1.sinks.des_kafka.batchSize=100  agent1.sinks.des_kafka.requiredAcks=1  ##下面是把上面设置的组件关联起来（把点用线连起来）  agent1.sources.src.channels = ch_hdfs ch_kafka  agent1.sinks.des_hdfs.channel    = ch_hdfs  agent1.sinks.des_kafka.channel   = ch_kafka  </code></pre><p>启动kafka-server</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;Flume&quot;&gt;&lt;a href=&quot;#Flume&quot; class=&quot;headerlink&quot; title=&quot;Flume&quot;&gt;&lt;/a&gt;Flume&lt;/h2&gt;&lt;p&gt;Flume是一个海量日志采集、聚合和传输的日志收集系统。&lt;/p&gt;
-&lt;p&gt;Kafka是一个可持久化的分布式的消息队列。
-      
-    
-    </summary>
-    
-      <category term="Hadoop" scheme="http://yoursite.com/categories/Hadoop/"/>
-    
-    
-      <category term="Flume" scheme="http://yoursite.com/tags/Flume/"/>
-    
-      <category term="Kafka" scheme="http://yoursite.com/tags/Kafka/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Hive学习笔记</title>
-    <link href="http://yoursite.com/2019/09/29/Hive%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-    <id>http://yoursite.com/2019/09/29/Hive学习笔记/</id>
-    <published>2019-09-29T15:06:44.000Z</published>
-    <updated>2019-09-29T15:06:59.991Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="Hive内部是什么"><a href="#Hive内部是什么" class="headerlink" title="Hive内部是什么"></a>Hive内部是什么</h1><p>Hive二进制分支版本核心包含3个部分。主要部分是Java代码本身。在$HIVE_HOME/lib 目录下发现有众多的jar包文件。</p><p>所有的Hive客户端都需要一个metastoreservice（元数据服务），Hive使用这个服务来存储表模式信息和其他元数据信息。通常情况下会使用一个关系型数据库中的表来存储这些信息。默认情况下，Hive会使用内置的Derby sql服务器，  我这里使用的是MySQL</p><p>最后，Hive还提供了一个简单的网页界面，也就是Hive网页界面，提供了远程访问的Hive服务</p><p>conf目录下存放了配置Hive的配置文件。Hive具有非常多的配置属性，根据需要后面我们会进行介绍。</p><h2 id="启动Hive"><a href="#启动Hive" class="headerlink" title="启动Hive"></a>启动Hive</h2><p>在bin目录下 运行<br><code>./hive</code><br>字符串hive&gt;是Hive的提示符：</p><h3 id="使用JDBC连接元数据"><a href="#使用JDBC连接元数据" class="headerlink" title="使用JDBC连接元数据"></a>使用JDBC连接元数据</h3><p>Hive所需要的组件中只有一个外部组件是Hadoop没有的，那就是metastore（元数据存储）组件。元数据存储中存储了如表的模式和分区信息等元数据信息。</p><h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><h2 id="什么是Hive"><a href="#什么是Hive" class="headerlink" title="什么是Hive"></a>什么是Hive</h2><p>Hive是基于Hadoop的一个数据仓库工具，可以将结构化的数据文件映射为一张数据库表，并提供类SQL查询功能。</p><h2 id="为什么使用Hive"><a href="#为什么使用Hive" class="headerlink" title="为什么使用Hive"></a>为什么使用Hive</h2><ul><li><p>直接使用Hadoop所面临的问题<br>– 学习成本高<br>– 一般项目周期要求短<br>– MapReduce实现复杂的查询呢逻辑开发难度较大</p></li><li><p>为什么要使用Hive<br>– 操作接口采用类SQL语法，可以快速开发<br>– 避免编写MR，减少学习成本<br>– 扩展功能很方便</p></li></ul><p>Hive的特点</p><ul><li>可扩展： Hive可以自由的扩展集群规模，一般情况下不需要重启服务</li><li>延展性： Hive支持用户自定义函数，用户可以根据自己的需求来实现自己的函数</li><li>容错： 良好的容错性，节点出现问题SQL仍然可以完成执行<h2 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h2><img src="https://img-blog.csdnimg.cn/20190918195755411.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>JobTracker是Hadoop1.x中的ResouceManager + AppMaster</li></ul><p>TaskTracker相当于NodeManager + YarnChild</p><h3 id="基本组成"><a href="#基本组成" class="headerlink" title="基本组成"></a>基本组成</h3><ul><li>用户接口：CLI、JDBC/ODBC、WebGUI<br>– CLI是SHELL命令行<br>– JDBC、ODBC是Hive的Java实现，与传统的JDBC类似<br>– WebGUI是通过浏览器访问Hive</li><li>元数据存储：Mysql、Derby等<br>– Hive将元数据存储在数据库中。Hive中的元数据包括表名、列、分区及其属性、表的属性（是否为外部表等）、表数据所在目录等。</li><li>解释器、编译器、优化器、执行器<br>– 完成HQL查询语句 词法分析、语法分析、编译、优化以及查询计划的生成。生成的查询计划存储在HDFS中，并在随后由MapReduce调用执行。<h3 id="Hive与Hadoop的关系"><a href="#Hive与Hadoop的关系" class="headerlink" title="Hive与Hadoop的关系"></a>Hive与Hadoop的关系</h3><img src="https://img-blog.csdnimg.cn/20190918195918115.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><h3 id="Hive与传统数据库对比"><a href="#Hive与传统数据库对比" class="headerlink" title="Hive与传统数据库对比"></a>Hive与传统数据库对比</h3>Hive具有SQL数据库的外表，但应用应用场景完全不同，Hive只适合用来做批量的数据统计分析</li></ul><p><img src="https://img-blog.csdnimg.cn/20190918200059180.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><h3 id="Hive的数据存储"><a href="#Hive的数据存储" class="headerlink" title="Hive的数据存储"></a>Hive的数据存储</h3><p>Hive中所有的数据都存储在HDFS中，没有专门的数据存储格式（可支持Text，SequenceFile，ParquetFile，RCFILE等）</p><p>只需要在创建表的时候告诉Hive数据中的列分隔符和行分隔符，Hive就可以解析数据。</p><p>Hive中包含以下数据模型：DB、Table、External Table、Partition、Bucket</p><pre><code>DB：在HDFS中表现为 ${hive.metastore.warehouse.dir} 目录下的文件夹Table：在HDFS中表现所属DB目录下的文件夹External Table：外部表，与Table类似，不过其数据存放的位置可以在任意指定路径。Table表：删除表后，HDFS上的文件都删除了External外部表：删除表后，HDFS上的文件没有删除，只是把表删除了Partition：在HDFS中表现为Table目录下的子目录Bucket：桶，在HDFS中表现为同一个表目录下根据Hash散列之后的多个文件，会根据不同的文件把数据放到不同的文件夹中</code></pre><h2 id="Hive基本操作"><a href="#Hive基本操作" class="headerlink" title="Hive基本操作"></a>Hive基本操作</h2><h3 id="DDL操作"><a href="#DDL操作" class="headerlink" title="DDL操作"></a>DDL操作</h3><h4 id="创建表"><a href="#创建表" class="headerlink" title="创建表"></a>创建表</h4><p>建表语法:</p><pre><code>CREATE [EXTERNAL] TABLE [IF NOT EXISTS] table_name     [(col_name data_type [COMMENT col_comment], ...)]     [COMMENT table_comment]    [PARTITIONED BY (col_name data_type [COMMENT col_comment], ...)]    [CLUSTERED BY (col_name, col_name, ...)    [SORTED BY (col_name [ASC|DESC], ...)] INTO num_buckets BUCKETS]    [ROW FORMAT row_format]    [STORED AS file_format]    [LOCATION hdfs_path]</code></pre><p>说明：</p><p><code>CREATE TABLE</code> 创建一个指定名字的表。如果相同名字的表已经存在，则抛出异常；用户可以用 IF NOT EXISTS 选项来忽略这个异常。</p><p><code>EXTERNAL</code>关键字可以让用户创建一个外部表，在建表的同时指定一个指向实际数据的路径（LOCATION），Hive 创建内部表时，会将数据移动到数据仓库指向的路径；若创建外部表，仅记录数据所在的路径，不对数据的位置做任何改变。在删除表的时候，内部表的元数据和数据会被一起删除，而外部表只删除元数据，不删除数据。</p><p><code>PARTITIONED</code> 表示根据某一个key(不在create table里面)对数据进行分区，体现在HDFS上就是 table目录下有n个不同的分区文件夹(country=China,country=USA)</p><p><code>ROW FORMATDELIMITED [FIELDS TERMINATED BY char] [COLLECTION ITEMS TERMINATED BY char][MAP KEYS TERMINATED BY char] [LINES TERMINATED BY char]| SERDE serde_name [WITH SERDEPROPERTIES (property_name=property_value, property_name=property_value, …)]</code></p><p>用户在建表的时候可以自定义 SerDe 或者使用自带的 SerDe。如果没有指定 ROW FORMAT 或者 ROW FORMAT DELIMITED，将会使用自带的 SerDe。在建表的时候，用户还需要为表指定列，用户在指定表的列的同时也会指定自定义的 SerDe，Hive通过 SerDe 确定表的具体的列的数据。</p><p><code>STORED AS</code><br>SEQUENCEFILE|TEXTFILE|RCFILE<br>如果文件数据是纯文本，可以使用 STORED AS TEXTFILE。如果数据需要压缩，使用 STORED AS SEQUENCEFILE。</p><p><code>CLUSTERED BY</code><br>对于每一个表（table）或者分区， Hive可以进一步组织成桶，也就是说桶是更为细粒度的数据范围划分。Hive也是 针对某一列进行桶的组织。Hive采用对列值哈希，然后除以桶的个数求余的方式决定该条记录存放在哪个桶当中。<br>把表（或者分区）组织成桶（Bucket）有两个理由：</p><p>（1）获得更高的查询处理效率。桶为表加上了额外的结构，Hive 在处理有些查询时能利用这个结构。具体而言，连接两个在（包含连接列的）相同列上划分了桶的表，可以使用 Map 端连接 （Map-side join）高效的实现。比如JOIN操作。对于JOIN操作两个表有一个相同的列，如果对这两个表都进行了桶操作。那么将保存相同列值的桶进行JOIN操作就可以，可以大大较少JOIN的数据量。<br>（2）使取样（sampling）更高效。在处理大规模数据集时，在开发和修改查询的阶段，如果能在数据集的一小部分数据上试运行查询，会带来很多方便。</p><pre><code>show databases;use hive_test_db;create table stu_buck(Sno int,Sname string,Sex string,Sage int,Sdept string)clustered by(Sno) sorted by(Sno DESC)into 4 bucketsrow format delimitedfields terminated by &apos;,&apos;;</code></pre><p>设置变量,设置分桶为true, 设置reduce数量是分桶的数量个数</p><pre><code>set hive.enforce.bucketing = true;set mapreduce.job.reduces=4;</code></pre><h4 id="修改表"><a href="#修改表" class="headerlink" title="修改表"></a>修改表</h4><p>增加/删除分区</p><p><code>ALTER TABLE table_name ADD [IF NOT EXISTS] partition_spec [ LOCATION &#39;location1&#39; ] partition_spec [ LOCATION &#39;location2&#39; ] ...partition_spec:: PARTITION (partition_col = partition_col_value, partition_col = partiton_col_value, ...)ALTER TABLE table_name DROP partition_spec, partition_spec,...</code></p><p>实例：</p><p><code>alter table student_p add partition(part=&#39;a&#39;) partition(part=&#39;b&#39;);</code></p><p>重命名表</p><p><code>ALTER TABLE table_name RENAME TO new_table_name</code></p><p>增加/更新列</p><p><code>ALTER TABLE table_name ADD|REPLACE COLUMNS (col_name data_type [COMMENT col_comment], ...)</code></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;Hive内部是什么&quot;&gt;&lt;a href=&quot;#Hive内部是什么&quot; class=&quot;headerlink&quot; title=&quot;Hive内部是什么&quot;&gt;&lt;/a&gt;Hive内部是什么&lt;/h1&gt;&lt;p&gt;Hive二进制分支版本核心包含3个部分。主要部分是Java代码本身。在$HIVE_H
-      
-    
-    </summary>
-    
-      <category term="Hadoop" scheme="http://yoursite.com/categories/Hadoop/"/>
-    
-    
-      <category term="Hive" scheme="http://yoursite.com/tags/Hive/"/>
     
   </entry>
   
