@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-10-03T13:53:57.241Z</updated>
+  <updated>2019-10-06T13:09:45.234Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,183 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>思科模拟器 使用IOS配置启用ospf路由</title>
+    <link href="http://yoursite.com/2019/10/06/%E6%80%9D%E7%A7%91%E6%A8%A1%E6%8B%9F%E5%99%A8-%E4%BD%BF%E7%94%A8IOS%E9%85%8D%E7%BD%AE%E5%90%AF%E7%94%A8ospf%E8%B7%AF%E7%94%B1/"/>
+    <id>http://yoursite.com/2019/10/06/思科模拟器-使用IOS配置启用ospf路由/</id>
+    <published>2019-10-06T13:04:17.000Z</published>
+    <updated>2019-10-06T13:09:45.234Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="网络拓扑如下"><a href="#网络拓扑如下" class="headerlink" title="网络拓扑如下"></a>网络拓扑如下</h2><p><img src="https://img-blog.csdnimg.cn/20191006185700373.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><h3 id="IP地址分配表"><a href="#IP地址分配表" class="headerlink" title="IP地址分配表"></a>IP地址分配表</h3><table><thead><tr><th>设备名</th><th>端口/接口</th><th>IP地址</th><th>掩码长度</th><th>网关</th></tr></thead><tbody><tr><td>PC0</td><td>Fa0</td><td>172.16.1.2</td><td>24</td><td>172.16.1.1</td></tr><tr><td>PC1</td><td>Fa0</td><td>7.0.0.2</td><td>30</td><td>7.0.0.1</td></tr><tr><td>Inter-Srv</td><td>Fa0</td><td>6.0.0.2</td><td>8</td><td>6.0.0.1</td></tr><tr><td>FireWall</td><td>Fa0/0</td><td>172.16.1.1</td><td>24</td></tr><tr><td>FireWall</td><td>Gig0/3/0</td><td>2.0.0.2</td><td>30</td></tr><tr><td>ISP1</td><td>Fa0/0</td><td>5.0.0.1</td><td>8</td></tr><tr><td>ISP1</td><td>Fa0/1</td><td>3.0.0.1</td><td>8</td></tr><tr><td>ISP1</td><td>Gig0/3/0</td><td>2.0.0.0</td><td>30</td></tr><tr><td>ISP2</td><td>Fa0/0</td><td>5.0.0.2</td><td>8</td></tr><tr><td>ISP2</td><td>Fa0/1</td><td>4.0.0.2</td><td>8</td></tr><tr><td>ISP2</td><td>Fa1/0</td><td>7.0.0.1</td><td>30</td></tr><tr><td>ISP3</td><td>Fa0/0</td><td>3.0.0.2</td><td>8</td></tr><tr><td>ISP3</td><td>Fa0/1</td><td>4.0.0.1</td><td>8</td></tr><tr><td>ISP3</td><td>Fa1/0</td><td>6.0.0.1</td><td>8</td></tr></tbody></table><h3 id="静态路由表"><a href="#静态路由表" class="headerlink" title="静态路由表"></a>静态路由表</h3><h4 id="FireWall"><a href="#FireWall" class="headerlink" title="FireWall"></a>FireWall</h4><table><thead><tr><th>目的网络</th><th>掩码</th><th>下一跳地址</th><th>说明</th></tr></thead><tbody><tr><td>6.0.0.0</td><td>255.0.0.0</td><td>2.0.0.1</td></tr><tr><td>7.0.0.0</td><td>255.255.255.252</td><td>2.0.0.1</td></tr></tbody></table><h4 id="ISP1"><a href="#ISP1" class="headerlink" title="ISP1"></a>ISP1</h4><table><thead><tr><th>目的网络</th><th>掩码</th><th>下一跳地址</th><th>说明</th></tr></thead><tbody><tr><td>6.0.0.0</td><td>255.0.0.0</td><td>3.0.0.2</td></tr><tr><td>7.0.0.0</td><td>255.0.0.0</td><td>5.0.0.2</td></tr><tr><td>172.16.1.0</td><td>255.255.255.0</td><td>2.0.0.2</td></tr></tbody></table><h4 id="ISP2"><a href="#ISP2" class="headerlink" title="ISP2"></a>ISP2</h4><table><thead><tr><th>目的网络</th><th>掩码</th><th>下一跳地址</th><th>说明</th></tr></thead><tbody><tr><td>172.16.1.0</td><td>255.255.255.0</td><td>5.0.0.1</td></tr><tr><td>6.0.0.0</td><td>55.0.0.0</td><td>6.0.0.1</td></tr></tbody></table><h4 id="ISP3"><a href="#ISP3" class="headerlink" title="ISP3"></a>ISP3</h4><table><thead><tr><th>目的网络</th><th>掩码</th><th>下一跳地址</th><th>说明</th></tr></thead><tbody><tr><td>7.0.0.0</td><td>255.255.255.252</td><td>4.0.0.2</td></tr><tr><td>172.16.1.0</td><td>255.255.255.0</td><td>3.0.0.1</td></tr></tbody></table><p><strong>删除ISP1、ISP2、ISP3、FireWall上的静态路由表</strong><br>例如:<br><img src="https://img-blog.csdnimg.cn/20191006185721994.png" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20191006185623206.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><h2 id="在ISP1、ISP2、ISP3上配置ospf动态路由"><a href="#在ISP1、ISP2、ISP3上配置ospf动态路由" class="headerlink" title="在ISP1、ISP2、ISP3上配置ospf动态路由"></a>在ISP1、ISP2、ISP3上配置ospf动态路由</h2><ol><li>在ISP1上启用ospf路由，宣告网络<br><img src="https://img-blog.csdnimg.cn/20191006185749608.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/201910061858454.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li><li>在ISP2上启用ospf路由，宣告网络<br><img src="https://img-blog.csdnimg.cn/20191006190130949.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li></ol><p><img src="https://img-blog.csdnimg.cn/20191006190205761.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><ol start="3"><li><p>在ISP3上启用ospf路由，宣告网络<img src="https://img-blog.csdnimg.cn/20191006185927707.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20191006185936819.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p></li><li><p>在ISP1上使用<code>show ip route</code> 查看路由表<br><img src="https://img-blog.csdnimg.cn/20191006190236476.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p></li><li>使用ping命令检查PC1到inter-Srv的连通性<br><img src="https://img-blog.csdnimg.cn/20191006191029621.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li></ol><h3 id="在FireWall上配置静态默认路由"><a href="#在FireWall上配置静态默认路由" class="headerlink" title="在FireWall上配置静态默认路由"></a>在FireWall上配置静态默认路由</h3><ol><li>在FireWall上查看路由表，<br><img src="https://img-blog.csdnimg.cn/2019100619105616.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li><li>在FireWall上配置默认路由指向ISP1<br><img src="https://img-blog.csdnimg.cn/20191006191208613.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li><li>ping命令检查PC0到PC1和inter-Srv的连通性<blockquote><p>说明: 这里肯定是不通的 因为作业要求使用不给Firewall配置ospf路由<br>想要PC0到PC1和inter-Srv互通需要设置Firewall到ISP1网段掩码由30改为8,再给Firewall配上ospf路由即可通讯</p></blockquote></li></ol><h4 id="原因"><a href="#原因" class="headerlink" title="原因:"></a>原因:</h4><p><img src="https://img-blog.csdnimg.cn/20191006191539673.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20191006191620318.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><p>Server1到firewall不通</p><p>我尝试从pc1与ISP3进行连接发现也是不通,我认为应该是ISP3路由没有与172.16.1.0网段建立连接</p><p>解决:因此我尝试在ISP1上添加了静态默认路由<br><img src="https://img-blog.csdnimg.cn/20191006191639676.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>并且也在ISP2与ISP3中建立了与172.16.1.0网段的连接</p><p>尝试PC0与PC1,Server的连接</p><p><img src="https://img-blog.csdnimg.cn/20191006191656972.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20191006191706489.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><p>成功!</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;网络拓扑如下&quot;&gt;&lt;a href=&quot;#网络拓扑如下&quot; class=&quot;headerlink&quot; title=&quot;网络拓扑如下&quot;&gt;&lt;/a&gt;网络拓扑如下&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://img-blog.csdnimg.cn/2019100618570037
+      
+    
+    </summary>
+    
+      <category term="网络" scheme="http://yoursite.com/categories/%E7%BD%91%E7%BB%9C/"/>
+    
+    
+      <category term="网络" scheme="http://yoursite.com/tags/%E7%BD%91%E7%BB%9C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>payload、shellcode、exp、poc区分方法</title>
+    <link href="http://yoursite.com/2019/10/06/payload%E3%80%81shellcode%E3%80%81exp%E3%80%81poc%E5%8C%BA%E5%88%86%E6%96%B9%E6%B3%95/"/>
+    <id>http://yoursite.com/2019/10/06/payload、shellcode、exp、poc区分方法/</id>
+    <published>2019-10-06T13:02:58.000Z</published>
+    <updated>2019-10-06T13:03:48.193Z</updated>
+    
+    <content type="html"><![CDATA[<p>在学习网络安全的过程中经常会听到几个名词,例如</p><p><code>payload、shellcode、exp、poc</code>等</p><p>碰见不懂的东西就要去搞懂,于是动手查了查资料</p><h2 id="Payload是什么？"><a href="#Payload是什么？" class="headerlink" title="Payload是什么？"></a>Payload是什么？</h2><p>是包含在你用于一次漏洞利用（<strong>exploit</strong>）中的<strong>ShellCode</strong>中的主要功能代码</p><p>对于一个漏洞，他可以被利用（<strong>exploit</strong>），利用有一个完整的解决方案你可以把这个看作是名词的（<strong>exploit</strong>），然后利用必然有目的，而你的目的就是通过<strong>Payload</strong>来实现的，比如开3389，创建用户，修改密码等等等。</p><p><strong>Payload</strong>是可以被模块化的，一个<strong>Payload</strong>可以稍作修改就用于各种漏洞，同时，对于一个漏洞，他的利用方式必然要涉及到<strong>ShellCode</strong>，因为<strong>Payload</strong>是包含在<strong>ShellCode</strong>中的，<strong>ShellCode</strong>是真正的被输入到存在漏洞的程序中的，并且<strong>ShellCode</strong>负责把程序的流程最终转移到你的<strong>Payload代码</strong>中。所以对于一个漏洞来说，<strong>ShellCode</strong>就是一个用于某个漏洞的二进制代码框架，有了这个框架你可以在这个<strong>ShellCode</strong>中包含你需要的<strong>Payload</strong>来做一些事情。</p><p>然后你整理这个过程，把<strong>Crash</strong>的原因和导致的结果分析写出文章，然后附上你上面写的<strong>ShellCode</strong>，这就是一个<strong>POC</strong>（Proof of Concept概念证明）。</p><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>payload:翻译过来是有效载荷</p><p>通常在传输数据时，为了使数据传输更可靠，要把原始数据分批传输，并且在每一批数据的头和尾都加上一定的辅助信息，比如数据量的大小、校验位等，这样就相当于给已经分批的原始数据加一些外套，这些外套起标示作用，使得原始数据不易丢失，一批数据加上“外套”就形成了传输通道的基本传输单元，叫做数据帧或数据包，而其中的原始数据就是payload</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;在学习网络安全的过程中经常会听到几个名词,例如&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;payload、shellcode、exp、poc&lt;/code&gt;等&lt;/p&gt;
+&lt;p&gt;碰见不懂的东西就要去搞懂,于是动手查了查资料&lt;/p&gt;
+&lt;h2 id=&quot;Payload是什么？&quot;&gt;&lt;a href=&quot;#P
+      
+    
+    </summary>
+    
+      <category term="CTF" scheme="http://yoursite.com/categories/CTF/"/>
+    
+    
+      <category term="安全" scheme="http://yoursite.com/tags/%E5%AE%89%E5%85%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Kali apt-get报E: 无法打开锁文件 /var/lib/dpkg/lock-frontend - open (2: 没有那个文件或目录)</title>
+    <link href="http://yoursite.com/2019/10/06/Kali-apt-get%E6%8A%A5E-%E6%97%A0%E6%B3%95%E6%89%93%E5%BC%80%E9%94%81%E6%96%87%E4%BB%B6-var-lib-dpkg-lock-frontend-open-2-%E6%B2%A1%E6%9C%89%E9%82%A3%E4%B8%AA%E6%96%87%E4%BB%B6%E6%88%96%E7%9B%AE%E5%BD%95/"/>
+    <id>http://yoursite.com/2019/10/06/Kali-apt-get报E-无法打开锁文件-var-lib-dpkg-lock-frontend-open-2-没有那个文件或目录/</id>
+    <published>2019-10-06T13:02:29.000Z</published>
+    <updated>2019-10-06T13:02:44.156Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="Kali-apt-get报E-无法打开锁文件-var-lib-dpkg-lock-frontend-open-2-没有那个文件或目录"><a href="#Kali-apt-get报E-无法打开锁文件-var-lib-dpkg-lock-frontend-open-2-没有那个文件或目录" class="headerlink" title="Kali apt-get报E: 无法打开锁文件 /var/lib/dpkg/lock-frontend - open (2: 没有那个文件或目录)"></a>Kali apt-get报E: 无法打开锁文件 /var/lib/dpkg/lock-frontend - open (2: 没有那个文件或目录)</h2><p>由于使用apt安装时一直报错,所以把文件夹直接删除</p><p>删除一时爽,删完毁断肠</p><p>解决办法：</p><pre><code>sudo mkdir -p /var/lib/dpkg/{alternatives,info,parts,triggers,updates}sudo cp /var/backups/dpkg.status.0 /var/lib/dpkg/statusapt-get download dpkgsudo dpkg -i dpkg*.debapt-get download base-filessudo dpkg -i base-files*.debsudo apt-get updatesudo apt-get check</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;Kali-apt-get报E-无法打开锁文件-var-lib-dpkg-lock-frontend-open-2-没有那个文件或目录&quot;&gt;&lt;a href=&quot;#Kali-apt-get报E-无法打开锁文件-var-lib-dpkg-lock-frontend-open
+      
+    
+    </summary>
+    
+      <category term="Liunx" scheme="http://yoursite.com/categories/Liunx/"/>
+    
+    
+      <category term="Kali" scheme="http://yoursite.com/tags/Kali/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Kali apt报错E: 无法获得锁 /var/cache/apt/archives/lock - open (11: 资源暂时不可用)</title>
+    <link href="http://yoursite.com/2019/10/06/Kali-apt%E6%8A%A5%E9%94%99E-%E6%97%A0%E6%B3%95%E8%8E%B7%E5%BE%97%E9%94%81-var-cache-apt-archives-lock-open-11-%E8%B5%84%E6%BA%90%E6%9A%82%E6%97%B6%E4%B8%8D%E5%8F%AF%E7%94%A8/"/>
+    <id>http://yoursite.com/2019/10/06/Kali-apt报错E-无法获得锁-var-cache-apt-archives-lock-open-11-资源暂时不可用/</id>
+    <published>2019-10-06T13:01:48.000Z</published>
+    <updated>2019-10-06T13:02:13.214Z</updated>
+    
+    <content type="html"><![CDATA[<p>kali apt时报错:</p><pre><code>root@kali:~# apt-get clean &amp;&amp; apt-get update &amp;&amp; apt-get upgrade -y &amp;&amp; apt-get dist-upgrade -y E: 无法获得锁 /var/cache/apt/archives/lock - open (11: 资源暂时不可用)E: 无法对目录 /var/cache/apt/archives/ 加锁</code></pre><p>解决:</p><p>将/var/cache/apt/archives/lock删除</p><p><code>rm -rf /var/cache/apt/archives/lock</code></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;kali apt时报错:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;root@kali:~# apt-get clean &amp;amp;&amp;amp; apt-get update &amp;amp;&amp;amp; apt-get upgrade -y &amp;amp;&amp;amp; apt-get dist-up
+      
+    
+    </summary>
+    
+      <category term="CTF" scheme="http://yoursite.com/categories/CTF/"/>
+    
+    
+      <category term="Kali" scheme="http://yoursite.com/tags/Kali/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>kali20119最新更新源</title>
+    <link href="http://yoursite.com/2019/10/06/kali20119%E6%9C%80%E6%96%B0%E6%9B%B4%E6%96%B0%E6%BA%90/"/>
+    <id>http://yoursite.com/2019/10/06/kali20119最新更新源/</id>
+    <published>2019-10-06T13:00:55.000Z</published>
+    <updated>2019-10-06T13:01:32.403Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="查看添加更新源"><a href="#查看添加更新源" class="headerlink" title="查看添加更新源"></a>查看添加更新源</h2><h3 id="编辑sources-list-将kali更新源加入其中"><a href="#编辑sources-list-将kali更新源加入其中" class="headerlink" title="编辑sources.list,将kali更新源加入其中"></a>编辑sources.list,将kali更新源加入其中</h3><p><code>sudo vim /etc/apt/sources.list</code></p><pre><code>#中科大deb http://mirrors.ustc.edu.cn/kali kali-rolling main non-free contribdeb-src http://mirrors.ustc.edu.cn/kali kali-rolling main non-free contrib#阿里云deb http://mirrors.aliyun.com/kali kali-rolling main non-free contribdeb-src http://mirrors.aliyun.com/kali kali-rolling main non-free contrib#清华大学deb http://mirrors.tuna.tsinghua.edu.cn/kali kali-rolling main contrib non-freedeb-src https://mirrors.tuna.tsinghua.edu.cn/kali kali-rolling main contrib non-free#浙大deb http://mirrors.zju.edu.cn/kali kali-rolling main contrib non-freedeb-src http://mirrors.zju.edu.cn/kali kali-rolling main contrib non-freedeb http://mirrors.163.com/debian/ jessie main non-free contribdeb http://mirrors.163.com/debian/ jessie-updates main non-free contribdeb http://mirrors.163.com/debian/ jessie-backports main non-free contribdeb-src http://mirrors.163.com/debian/ jessie main non-free contribdeb-src http://mirrors.163.com/debian/ jessie-updates main non-free contribdeb-src http://mirrors.163.com/debian/ jessie-backports main non-free contribdeb http://mirrors.163.com/debian-security/ jessie/updates main non-free contribdeb-src http://mirrors.163.com/debian-security/ jessie/updates main non-free contrib</code></pre><blockquote><p>注：由于kali官方源较慢非常卡，所以可以换成国内更新源，并且国内更新源也不宜添加过多！</p></blockquote><h2 id="更新"><a href="#更新" class="headerlink" title="更新"></a>更新</h2><p><code>apt-get clean &amp;&amp; apt-get update &amp;&amp; apt-get upgrade -y &amp;&amp; apt-get dist-upgrade -y</code></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;查看添加更新源&quot;&gt;&lt;a href=&quot;#查看添加更新源&quot; class=&quot;headerlink&quot; title=&quot;查看添加更新源&quot;&gt;&lt;/a&gt;查看添加更新源&lt;/h2&gt;&lt;h3 id=&quot;编辑sources-list-将kali更新源加入其中&quot;&gt;&lt;a href=&quot;#编辑sour
+      
+    
+    </summary>
+    
+      <category term="CTF" scheme="http://yoursite.com/categories/CTF/"/>
+    
+    
+      <category term="Kali" scheme="http://yoursite.com/tags/Kali/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Liunx提权常用命令</title>
+    <link href="http://yoursite.com/2019/10/06/Liunx%E6%8F%90%E6%9D%83%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"/>
+    <id>http://yoursite.com/2019/10/06/Liunx提权常用命令/</id>
+    <published>2019-10-06T13:00:13.000Z</published>
+    <updated>2019-10-06T13:00:30.902Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="操作系统信息收集"><a href="#操作系统信息收集" class="headerlink" title="操作系统信息收集"></a>操作系统信息收集</h2><h3 id="如何查看服务器的版本"><a href="#如何查看服务器的版本" class="headerlink" title="如何查看服务器的版本"></a>如何查看服务器的版本</h3><pre><code>cat /etc/issuecat /etc/*-releasecat /etc/lsb-release # 基于 Debiancat /etc/redhat-release # 基于 Redhat</code></pre><h3 id="如何查看内核的版本信息？"><a href="#如何查看内核的版本信息？" class="headerlink" title="如何查看内核的版本信息？"></a>如何查看内核的版本信息？</h3><pre><code>cat /proc/versionuname -auname -mrsrpm -q kerneldmesg | grep Linuxls /boot | grep vmlinuz-</code></pre><h2 id="应用和服务信息"><a href="#应用和服务信息" class="headerlink" title="应用和服务信息"></a>应用和服务信息</h2><h3 id="有什么服务在运行？是以什么样的权限在运行？"><a href="#有什么服务在运行？是以什么样的权限在运行？" class="headerlink" title="有什么服务在运行？是以什么样的权限在运行？"></a>有什么服务在运行？是以什么样的权限在运行？</h3><pre><code>ps auxps -eftopcat /etc/services</code></pre><h2 id="有什么工作任务计划？"><a href="#有什么工作任务计划？" class="headerlink" title="有什么工作任务计划？"></a>有什么工作任务计划？</h2><pre><code>crontab -lls -alh /var/spool/cronls -al /etc/ | grep cronls -al /etc/cron*cat /etc/cron*cat /etc/at.allowcat /etc/at.denycat /etc/cron.allowcat /etc/cron.denycat /etc/crontabcat /etc/anacrontabcat /var/spool/cron/crontabs/root</code></pre><h2 id="跟用户相关的信息"><a href="#跟用户相关的信息" class="headerlink" title="跟用户相关的信息"></a>跟用户相关的信息</h2><h3 id="我是谁？谁登入了？谁登入过？等"><a href="#我是谁？谁登入了？谁登入过？等" class="headerlink" title="我是谁？谁登入了？谁登入过？等"></a>我是谁？谁登入了？谁登入过？等</h3><pre><code>idwhowlastcat /etc/passwd | cut -d: -f1 # 列出用户grep -v -E &quot;^#&quot; /etc/passwd | awk -F: &apos;$3 == 0 { print $1}&apos; # 列出超级用户awk -F: &apos;($3 == &quot;0&quot;) {print}&apos; /etc/passwd # 列出超级用户cat /etc/sudoerssudo -l</code></pre><p>有哪些敏感文件？</p><pre><code>cat /etc/passwdcat /etc/groupcat /etc/shadowls -alh /var/mail/</code></pre><p>转自: </p><p>cnblogs.com/-qing-/p/10610827.html</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;操作系统信息收集&quot;&gt;&lt;a href=&quot;#操作系统信息收集&quot; class=&quot;headerlink&quot; title=&quot;操作系统信息收集&quot;&gt;&lt;/a&gt;操作系统信息收集&lt;/h2&gt;&lt;h3 id=&quot;如何查看服务器的版本&quot;&gt;&lt;a href=&quot;#如何查看服务器的版本&quot; class=&quot;
+      
+    
+    </summary>
+    
+      <category term="Liunx" scheme="http://yoursite.com/categories/Liunx/"/>
+    
+    
+      <category term="Liunx" scheme="http://yoursite.com/tags/Liunx/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>MobaXterm汉化以及解决中文乱码问题</title>
+    <link href="http://yoursite.com/2019/10/06/MobaXterm%E6%B1%89%E5%8C%96%E4%BB%A5%E5%8F%8A%E8%A7%A3%E5%86%B3%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81%E9%97%AE%E9%A2%98/"/>
+    <id>http://yoursite.com/2019/10/06/MobaXterm汉化以及解决中文乱码问题/</id>
+    <published>2019-10-06T12:59:30.000Z</published>
+    <updated>2019-10-06T12:59:52.851Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="https://img-blog.csdnimg.cn/2019100419570919.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><p>在使用MobaXterm过程中会遇到中文乱码的问题,这时候我们需要设置一下编码<br>点击鼠标右键<br><img src="https://img-blog.csdnimg.cn/20191004195814767.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>选择第二个ISO选项<br><img src="https://img-blog.csdnimg.cn/2019100419584583.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><p>再次输入出现乱码的命令<br><img src="https://img-blog.csdnimg.cn/20191004195923291.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>修改成功!</p><hr><p>如果设置完以后使用其他命令出现乱码,则修改回UTF-8编码即可</p><h2 id="汉化包下载"><a href="#汉化包下载" class="headerlink" title="汉化包下载:"></a>汉化包下载:</h2><p>链接: <a href="https://pan.baidu.com/s/1UAxKfsSj9OOpC3ojaLN5IQ" target="_blank" rel="noopener">https://pan.baidu.com/s/1UAxKfsSj9OOpC3ojaLN5IQ</a> 提取码: myi3</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;&lt;img src=&quot;https://img-blog.csdnimg.cn/2019100419570919.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6
+      
+    
+    </summary>
+    
+      <category term="其他" scheme="http://yoursite.com/categories/%E5%85%B6%E4%BB%96/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>centos7 使用vi编辑器配置网络环境</title>
@@ -378,182 +555,6 @@
       <category term="Python" scheme="http://yoursite.com/tags/Python/"/>
     
       <category term="机器学习" scheme="http://yoursite.com/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>python 字典列表相互转换与排序</title>
-    <link href="http://yoursite.com/2019/09/29/python-%E5%AD%97%E5%85%B8%E5%88%97%E8%A1%A8%E7%9B%B8%E4%BA%92%E8%BD%AC%E6%8D%A2%E4%B8%8E%E6%8E%92%E5%BA%8F/"/>
-    <id>http://yoursite.com/2019/09/29/python-字典列表相互转换与排序/</id>
-    <published>2019-09-29T15:13:46.000Z</published>
-    <updated>2019-09-29T15:14:03.707Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="列表-元组-字典-集合的区别"><a href="#列表-元组-字典-集合的区别" class="headerlink" title="列表 元组 字典 集合的区别"></a>列表 元组 字典 集合的区别</h2><p>列表：清单可重复，类型可不同 list<br>元组: 类似列表不可修改类型  tuple<br>集合：就是我们数学学的集合应用是去重 set<br>字典：字典存储键值对数据价值是查询，通过键，查找值 dict</p><h3 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h3><p>列表的特点：可重复，类型可不同，这是与数组最本质的区别。<br>python中的列表用“[]”表示</p><p>list=[‘asd’,123]</p><p>向list中添加项有两种方法：append和extend。append<br>使用append可能会出现下面的这种情况<br><img src="https://img-blog.csdnimg.cn/20190925165015933.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>列表里会叠加列表<br>这是使用extend就不会出现这种问题</p><h3 id="元组"><a href="#元组" class="headerlink" title="元组"></a>元组</h3><p>元组和列表在结构上没有什么区别，唯一的差异在于元组是只读的，不能修改。<br>元组用“()”表示，如：<br>tup =(‘asd’,123)<br>元组可以使用切片，例如tup[0]</p><h3 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h3><p>集合就是我们数学学的集合，没有什么特殊的定义。集合最好的应用是去重。<br>list = [ 1, 11, 1]<br>list_set = set( list )  #lst_set 为1 , 11</p><h3 id="字典"><a href="#字典" class="headerlink" title="字典"></a>字典</h3><p>最后一个是字典。字典存储键值对数据，{key:value}，如：<br>{1:a,2:b,3:c}<br>      字典最外面用大括号，每一组用冒号连起来，然后各组用逗号隔开。<br>　   字典最大的价值是查询，通过key，查找value。</p><h2 id="转换"><a href="#转换" class="headerlink" title="转换"></a>转换</h2><h3 id="字典-1"><a href="#字典-1" class="headerlink" title="字典"></a>字典</h3><p>dict = {‘a’: ‘1’, ‘b’: 2, ‘c’: ‘3’}<br>将该字典转换为字符串<br>str(dict)<br>返回：<br> {‘a’: ‘1’, ‘b’: 2, ‘c’: ‘3’}（注：这里虽然看着一样，但其实字典已经变为字符串，可以使用type(dict)查看）<br>将该字典转为元组<br>tuple(dict)<br>返回：<br>(‘a’,’b’,’c’)<br>将该字典values值转为元组<br>tuple(dict.values())<br>返回:<br>(‘1’,’2’,’3’)<br>将该字典转为列表<br>(list(dict))<br>[‘a’,’b’,’c’]</p><h3 id="元组-1"><a href="#元组-1" class="headerlink" title="元组"></a>元组</h3><p>tup=(1, 2, 3, 4, 5)<br>将元组转为字符串，返回：(1, 2, 3, 4, 5)<br>(tup.<strong>str</strong>()<br>将元组转为列表，返回：[1, 2, 3, 4, 5]<br>list(tup)<br>元组不可以转为字典</p><h3 id="列表-1"><a href="#列表-1" class="headerlink" title="列表"></a>列表</h3><p>nums=[1, 3, 5, 7, 8, 13, 20]<br>将列表转为字符串，返回：[1, 3, 5, 7, 8, 13, 20]<br>str(nums)<br>将列表转为元组，返回：(1, 3, 5, 7, 8, 13, 20)<br>tuple(nums)<br>列表不可以转为字典</p><h3 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h3><p>将字符串转为元组，返回：(1, 2, 3)<br>tuple(eval(“(1,2,3)”))<br>将字符串转为列表，返回：[1, 2, 3]<br>list(eval(“(1,2,3)”))</p><p>#字符串转为字典，返回：<type 'dict'><br>type(eval(“{‘name’:’ljq’, ‘age’:24}”))</type></p><h2 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h2><h3 id="字典-2"><a href="#字典-2" class="headerlink" title="字典"></a>字典</h3><p>创建一个字典</p><p>dict1={‘a’:2,’b’:3,’c’:8,’d’:4}</p><p>1、取字典的所有键，所有的值，利用dict1.keys()，dict1.vaules()，</p><p>由于键，值有很多个，所以要加s，另外注意这里要加括号，这样的小细节不注意，很容易犯错。</p><p>结果：<br>dict_values([4, 2, 8, 3]) dict_keys([‘d’, ‘a’, ‘c’, ‘b’])<br>可以看出，返回的是列表的形式</p><p>2、同时取字典的键、值，dict1.items()，这里同样加s和括号</p><p>print(dict1.items())<br>结果：</p><p>dict_items([(‘d’, 4), (‘a’, 2), (‘c’, 8), (‘b’, 3)])<br>可以看出，返回的结果是元组组成的列表</p><p>也就是说，通过dict1.items()这个函数，把字典形式的键、值，存在了一个元组内。</p><p>3、对字典进行排序</p><p>3.1 先看一下，直接用sorted()排序的情况。</p><p>dict1={‘a’:2,’e’:3,’f’:8,’d’:4}<br>dict2 = sorted(dict1)<br>print(dict2)<br>结果：</p><p>[‘a’, ‘d’, ‘e’, ‘f’]<br>sorted()默认是对字典的键，从小到大进行排序</p><p>3.2 、对键值进行反向（从大到小）排序</p><p>dict1={‘a’:2,’e’:3,’f’:8,’d’:4}<br>dict2 = sorted(dict1,reverse=True)<br>print(dict2)<br>结果：[‘f’, ‘e’, ‘d’, ‘a’]<br>像这种对键进行排序，往往是为了得到 值（value）</p><p>拿到键最大，对应的值，如：</p><p>print(dict1[dict2[0]])#结果为8<br>当然我们也可以先拿到所有的key，然后再对key排序</p><p>dict1={‘a’:2,’e’:3,’f’:8,’d’:4}<br>list1= sorted(dict1.keys(),reverse=True)<br>print(list1)    # 结果：[‘f’, ‘e’, ‘d’, ‘a’]<br>3.3、对value进行排序</p><p>同样，用dict1.values()得到所有的values，然后对value排序</p><p>dict1={‘a’:2,’e’:3,’f’:8,’d’:4}<br>list1= sorted(dict1.values())<br>print(list1)    #结果：[2, 3, 4, 8]<br>设值reverse=True 进行反向排序</p><p>也可以用dict1.items()，得到包含键，值的元组</p><p>由于迭代对象是元组，返回值自然是元组组成的列表</p><p>这里对排序的规则进行了定义，x指元组，x[1]是值，x[0]是键</p><p>dict1={‘a’:2,’e’:3,’f’:8,’d’:4}<br>list1= sorted(dict1.items(),key=lambda x:x[1])<br>print(list1)<br>结果：</p><p>[(‘a’, 2), (‘e’, 3), (‘d’, 4), (‘f’, 8)]<br>对键进行排序：</p><p>dict1={‘a’:2,’e’:3,’f’:8,’d’:4}<br>list1= sorted(dict1.items(),key=lambda x:x[0])<br>print(list1)<br>结果：</p><p>[(‘a’, 2), (‘d’, 4), (‘e’, 3), (‘f’, 8)]</p><h3 id="列表-2"><a href="#列表-2" class="headerlink" title="列表"></a>列表</h3><p>基本的列表排序</p><p>1.list.sort()排序</p><p>data = [5, 7, 9, 3, -6, -7, -8, -9, 3, -8]<br>result = data.sort()<br>print(data) #结果为 [-9, -8, -8, -7, -6, 3, 3, 5, 7, 9]<br>print(result) #结果为None<br>1<br>2<br>3<br>4<br>2.sorted()排序</p><p>data = [5, 7, 9, 3, -6, -7, -8, -9, 3, -8]<br>result = sorted(data)<br>print(data) #结果为 [5, 7, 9, 3, -6, -7, -8, -9, 3, -8]<br>print(result) #结果为 [-9, -8, -8, -7, -6, 3, 3, 5, 7, 9]</p><p>当元组最为list的元素时</p><p>在默认情况下sort和sorted函数接收的参数是元组时，它将会先按元组的第一个元素进行排序再按第二个元素进行排序，再按第三个、第四个…依次排序。<br>我们通过一个简单的例子来了解它，以下面这个list为例：<br><code>data = [(1, &#39;B&#39;), (1, &#39;A&#39;), (2, &#39;A&#39;), (0, &#39;B&#39;), (0, &#39;a&#39;)]</code><br>我们通过sorted()对它进行排序<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">data = [(1, &apos;B&apos;), (1, &apos;A&apos;), (2, &apos;A&apos;), (0, &apos;B&apos;), (0, &apos;a&apos;)]</span><br><span class="line">result = sorted(data)</span><br><span class="line">print(data) #结果为 [(1, &apos;B&apos;), (1, &apos;A&apos;), (2, &apos;A&apos;), (0, &apos;B&apos;), (0, &apos;a&apos;)]</span><br><span class="line">print(result) #结果为 [(0, &apos;B&apos;), (0, &apos;a&apos;), (1, &apos;A&apos;), (1, &apos;B&apos;), (2, &apos;A&apos;)]</span><br></pre></td></tr></table></figure></p><p>会发现排序后的结果中(0, ‘B’)在(0, ‘a’)的前面。这是因为在按元组第一个元素排好之后，将(0, ‘B’), (0, ‘a’)再按第二个元素进行排序了，而’B’的ASCII编码比’a’小，所以(0, ‘B’)就排在(0, ‘a’)的前面了。</p><p>那如何想要让它排序时不分大小写呢？</p><p>这就要用到sort方法和sorted方法里的key参数了。<br>我们来看一下具体的实现：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">data = [(1, &apos;B&apos;), (1, &apos;A&apos;), (2, &apos;A&apos;), (0, &apos;B&apos;), (0, &apos;a&apos;)]</span><br><span class="line">#利用参数key来规定排序的规则</span><br><span class="line">result = sorted(data,key=lambda x:(x[0],x[1].lower()))</span><br><span class="line"></span><br><span class="line">print(data) #结果为 [(1, &apos;B&apos;), (1, &apos;A&apos;), (2, &apos;A&apos;), (0, &apos;B&apos;), (0, &apos;a&apos;)]</span><br><span class="line">print(result) #结果为 [(0, &apos;a&apos;), (0, &apos;B&apos;), (1, &apos;A&apos;), (1, &apos;B&apos;), (2, &apos;A&apos;)]</span><br></pre></td></tr></table></figure></p><p>其中的lambda x:(x[0],x[1].lower())可以理解为一个匿名函数；<br>其功能类似于:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">def fun(x)</span><br><span class="line">    return(x[0],x[1].lower())</span><br></pre></td></tr></table></figure></p><p>如果想要以字母作为第一排序规则,并且字母大小写不敏感，该怎么实现？<br>这就能要运用到之前所讲到的</p><p>在默认情况下sort和sorted函数接收的参数是元组时，它将会先按元组的第一个元素进行排序再按第二个元素进行排序，再按第三个、第四个…依次排序。</p><p>再配合lambda返回一个自定义tuple；代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">data = [(1, &apos;B&apos;), (1, &apos;A&apos;), (2, &apos;A&apos;), (0, &apos;B&apos;), (0, &apos;a&apos;)]</span><br><span class="line">将x[1].lower()作为返回元组里的第一个元素,按照sorted的排序规律,就会先按字母排序,再按数字排序了</span><br><span class="line">result = sorted(data,key=lambda x:(x[1].lower(),x[0]))</span><br><span class="line"></span><br><span class="line">print(data) #结果为 [(1, &apos;B&apos;), (1, &apos;A&apos;), (2, &apos;A&apos;), (0, &apos;B&apos;), (0, &apos;a&apos;)] </span><br><span class="line">print(result) #结果为 [(0, &apos;a&apos;), (1, &apos;A&apos;), (2, &apos;A&apos;), (0, &apos;B&apos;), (1, &apos;B&apos;)]</span><br></pre></td></tr></table></figure></p><h3 id="当字典作为列表的元素时"><a href="#当字典作为列表的元素时" class="headerlink" title="当字典作为列表的元素时"></a>当字典作为列表的元素时</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">data = [&#123;&apos;name&apos;: &apos;张三&apos;, &apos;height&apos;: 175&#125;, &#123;&apos;name&apos;: &apos;李四&apos;, &apos;height&apos;: 165&#125;, &#123;&apos;name&apos;: &apos;王五&apos;, &apos;height&apos;: 185&#125;]</span><br><span class="line">#将x[&apos;height&apos;]最为返回tuple的第个一元素</span><br><span class="line">result = sorted(data,key=lambda x:(x[&apos;height&apos;],x[&apos;name&apos;]))</span><br><span class="line">print(data) #结果为 </span><br><span class="line">print(result)</span><br><span class="line">#data   结果:[&#123;&apos;name&apos;: &apos;张三&apos;, &apos;height&apos;: 175&#125;, &#123;&apos;name&apos;: &apos;李四&apos;, &apos;height&apos;: 165&#125;, &#123;&apos;name&apos;: &apos;王五&apos;, &apos;height&apos;: 185&#125;]</span><br><span class="line">#result 结果:[&#123;&apos;name&apos;: &apos;李四&apos;, &apos;height&apos;: 165&#125;, &#123;&apos;name&apos;: &apos;张三&apos;, &apos;height&apos;: 175&#125;, &#123;&apos;name&apos;: &apos;王五&apos;, &apos;height&apos;: 185&#125;]</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;列表-元组-字典-集合的区别&quot;&gt;&lt;a href=&quot;#列表-元组-字典-集合的区别&quot; class=&quot;headerlink&quot; title=&quot;列表 元组 字典 集合的区别&quot;&gt;&lt;/a&gt;列表 元组 字典 集合的区别&lt;/h2&gt;&lt;p&gt;列表：清单可重复，类型可不同 list&lt;br
-      
-    
-    </summary>
-    
-      <category term="Python" scheme="http://yoursite.com/categories/Python/"/>
-    
-    
-      <category term="Python" scheme="http://yoursite.com/tags/Python/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>python 读写csv数据</title>
-    <link href="http://yoursite.com/2019/09/29/python-%E8%AF%BB%E5%86%99csv%E6%95%B0%E6%8D%AE/"/>
-    <id>http://yoursite.com/2019/09/29/python-读写csv数据/</id>
-    <published>2019-09-29T15:13:17.000Z</published>
-    <updated>2019-09-29T15:13:35.374Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="CSV文件简介"><a href="#CSV文件简介" class="headerlink" title="CSV文件简介"></a>CSV文件简介</h2><p>CSV(Comma-Separated Values，逗号分隔值)，是一种纯文本形式存储表格数据的文件。该文件由任意数目的记录组成，每条记录被分隔符分隔为字段（最常见的分隔符是逗号或制表符），且每条记录都有相同的字段序列，因此csv相当于一个结构化表的纯文本形式。从直观上看，它比Excel文件更加简洁，然而它不包含诸如XLS电子表格的数值、公式和格式等内容，它仅仅为一个结构化的纯文本。</p><h2 id="CSV文件读取和写入"><a href="#CSV文件读取和写入" class="headerlink" title="CSV文件读取和写入"></a>CSV文件读取和写入</h2><p>在CSV文件读写操作中，常用两种读写方式是列表读写和字典读写，下面我们分别来对此进行介绍。</p><h3 id="文件读取"><a href="#文件读取" class="headerlink" title="文件读取"></a>文件读取</h3><p>csv文件读取主要是使用reader()和DictReader()方法，二者均接收一个csv文件参数，并返回一个用于文件读取迭代器。这两个方法的区别是：reader()方法获取的是一行行列表数据的迭代器，每行的数据可通过下标来获取，而DictReader()方法获取的是一行行字典数据的迭代器，每行的数据可通过键来获取。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">##CSV文件读取的两种方式</span></span><br><span class="line"><span class="keyword">import</span> csv</span><br><span class="line"></span><br><span class="line"><span class="comment"># 列表读取</span></span><br><span class="line"><span class="keyword">with</span> open(<span class="string">'data.csv'</span>, <span class="string">'r'</span>) <span class="keyword">as</span> fp:</span><br><span class="line">    reader = csv.reader(fp)   <span class="comment">#返回读取迭代器</span></span><br><span class="line">    titles = next(reader)     <span class="comment">#提取出文件记录标题</span></span><br><span class="line">    print(type(titles))       <span class="comment">#&lt;class 'list'&gt;</span></span><br><span class="line">    print(titles)             <span class="comment">#['id', 'name', 'city']</span></span><br><span class="line">    <span class="keyword">for</span> x <span class="keyword">in</span> reader:          <span class="comment">#遍历向下迭代</span></span><br><span class="line">        print(x)              <span class="comment">#['001', 'Mike', 'Beijing']...</span></span><br><span class="line">        id = x[<span class="number">0</span>]</span><br><span class="line">        name = x[<span class="number">1</span>]</span><br><span class="line">        city = x[<span class="number">2</span>]</span><br><span class="line">        print(&#123;<span class="string">'id'</span>: id, <span class="string">'name'</span>: name, <span class="string">'city'</span>: city&#125;)    <span class="comment">#&#123;'id': '001', 'name': 'Mike', 'city': 'Beijing'&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 字典读取</span></span><br><span class="line"><span class="keyword">with</span> open(<span class="string">'data.csv'</span>, <span class="string">'r'</span>) <span class="keyword">as</span> fp:</span><br><span class="line">    reader = csv.DictReader(fp)     <span class="comment">#迭代器，但不包含标题数据(第0行)</span></span><br><span class="line">    <span class="keyword">for</span> x <span class="keyword">in</span> reader:</span><br><span class="line">        print(type(x))              <span class="comment">#&lt;class 'collections.OrderedDict'&gt;</span></span><br><span class="line">        print(x)                    <span class="comment">#OrderedDict([('id', '001'), ('name', 'Mike'), ('city', 'Beijing')])...</span></span><br><span class="line">        id = x[<span class="string">'id'</span>]</span><br><span class="line">        name = x[<span class="string">'name'</span>]</span><br><span class="line">        city = x[<span class="string">'city'</span>]</span><br><span class="line">        print(&#123;<span class="string">'id'</span>: id, <span class="string">'name'</span>: name, <span class="string">'city'</span>: city&#125;)    <span class="comment">#&#123;'id': '001', 'name': 'Mike', 'city': 'Beijing'&#125;</span></span><br></pre></td></tr></table></figure><h3 id="文件写入"><a href="#文件写入" class="headerlink" title="文件写入"></a>文件写入</h3><p>同文件读取一样，文件的写入也有两种方法——writer()和DictWriter()，其含义和reader()/DictReader()相类似，writer()用于列表数据写入，而DictWriter()用于字典数据写入。二者使用方法也比较简单，但需要注意的是由于是写入文件，需要指明文件的编码方式(特别是需要写入中文字符时)，具体的用法如下所示。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">##CSV文件写入的两种方式</span></span><br><span class="line"><span class="keyword">import</span> csv</span><br><span class="line"></span><br><span class="line"><span class="comment"># 列表写入</span></span><br><span class="line"><span class="comment"># 设置记录标题(列表)和记录值(一个嵌套元组集或列表集的列表)</span></span><br><span class="line">headers = [<span class="string">'id'</span>,<span class="string">'name'</span>,<span class="string">'province'</span>]</span><br><span class="line">values = [</span><br><span class="line">    (<span class="string">'001'</span>,<span class="string">'ShenZhen'</span>,<span class="string">'GuangDong'</span>),</span><br><span class="line">    (<span class="string">'002'</span>, <span class="string">'WuHan'</span>, <span class="string">'HuBei'</span>),</span><br><span class="line">    (<span class="string">'003'</span>, <span class="string">'ChengDu'</span>, <span class="string">'SiChuan'</span>)</span><br><span class="line">]</span><br><span class="line"><span class="comment"># 使用open函数时设置参数encoding以防止乱码</span></span><br><span class="line"><span class="keyword">with</span> open(<span class="string">'citylist.csv'</span>,<span class="string">'w'</span>,encoding=<span class="string">'utf-8'</span>,newline=<span class="string">''</span>) <span class="keyword">as</span> fp:</span><br><span class="line">    writer = csv.writer(fp)    <span class="comment">#获取文件</span></span><br><span class="line">    writer.writerow(headers)   <span class="comment">#写入一行记录</span></span><br><span class="line">    writer.writerows(values)   <span class="comment">#写入多行记录，传入的参数为列表结构</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 字典写入</span></span><br><span class="line"><span class="comment"># 设置记录标题(列表)和记录值(一个嵌套字典集的列表)</span></span><br><span class="line">headers = [<span class="string">'id'</span>, <span class="string">'name'</span>, <span class="string">'province'</span>]</span><br><span class="line">values = [</span><br><span class="line">    &#123;<span class="string">'id'</span>: <span class="string">'001'</span>, <span class="string">'name'</span>: <span class="string">'ShenZhen'</span>, <span class="string">'province'</span>: <span class="string">'GuangDong'</span>&#125;,</span><br><span class="line">    &#123;<span class="string">'id'</span>: <span class="string">'002'</span>, <span class="string">'name'</span>: <span class="string">'WuHan'</span>, <span class="string">'province'</span>: <span class="string">'HuBei'</span>&#125;,</span><br><span class="line">    &#123;<span class="string">'id'</span>: <span class="string">'003'</span>, <span class="string">'name'</span>: <span class="string">'ChengDu'</span>, <span class="string">'province'</span>: <span class="string">'SiChuan'</span>&#125;</span><br><span class="line">]</span><br><span class="line"><span class="keyword">with</span> open(<span class="string">'citydict.csv'</span>, <span class="string">'w'</span>, encoding=<span class="string">'utf-8'</span>, newline=<span class="string">''</span>) <span class="keyword">as</span> fp:</span><br><span class="line">    writer = csv.DictWriter(fp,headers)    <span class="comment">#获取文件，注意参数还需传递记录标题以映射，注意此时并不会真正写入标题</span></span><br><span class="line">    writer.writeheader()                   <span class="comment">#写入记录标题</span></span><br><span class="line">    writer.writerows(values)               <span class="comment">#写入多行记录</span></span><br></pre></td></tr></table></figure><p>在打开待写入CSV文件时，这里我们还传入了一个newline参数，并且其值为空字符串，这么做是为了防止在每次写完一行后其会自动再写入一个换行符，如下图为设置和不设置newline的文件写入对应结果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">设置了newline的文件写入结果：</span><br><span class="line">“””</span><br><span class="line">id,name,province</span><br><span class="line">001,ShenZhen,GuangDong</span><br><span class="line">002,WuHan,HuBei</span><br><span class="line">003,ChengDu,SiChuan</span><br><span class="line">“””</span><br><span class="line">未设置newline的文件写入结果：</span><br><span class="line">“””</span><br><span class="line">id,name,province</span><br><span class="line"> </span><br><span class="line">001,ShenZhen,GuangDong</span><br><span class="line"> </span><br><span class="line">002,WuHan,HuBei</span><br><span class="line"> </span><br><span class="line">003,ChengDu,SiChuan</span><br><span class="line"> </span><br><span class="line">“””</span><br></pre></td></tr></table></figure></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;CSV文件简介&quot;&gt;&lt;a href=&quot;#CSV文件简介&quot; class=&quot;headerlink&quot; title=&quot;CSV文件简介&quot;&gt;&lt;/a&gt;CSV文件简介&lt;/h2&gt;&lt;p&gt;CSV(Comma-Separated Values，逗号分隔值)，是一种纯文本形式存储表格数据的文
-      
-    
-    </summary>
-    
-      <category term="Python" scheme="http://yoursite.com/categories/Python/"/>
-    
-    
-      <category term="Python" scheme="http://yoursite.com/tags/Python/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>在Ubuntu的Anaconda环境下创建深度学习环境</title>
-    <link href="http://yoursite.com/2019/09/29/%E5%9C%A8Ubuntu%E7%9A%84Anaconda%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%88%9B%E5%BB%BA%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%8E%AF%E5%A2%83/"/>
-    <id>http://yoursite.com/2019/09/29/在Ubuntu的Anaconda环境下创建深度学习环境/</id>
-    <published>2019-09-29T15:12:50.000Z</published>
-    <updated>2019-09-29T15:13:05.053Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h2><p>首先在所在系统中安装Anaconda。可以打开命令行输入conda -V检验是否安装以及当前conda的版本<br>conda版本为4.5.11</p><p><img src="https://img-blog.csdnimg.cn/20190925163611459.png" alt="在这里插入图片描述"><br><strong>conda常用的命令</strong></p><ol><li><code>conda list</code> 查看安装了哪些包<br><img src="https://img-blog.csdnimg.cn/20190925163712758.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li><li><code>conda env list</code>或 <code>conda info -e</code> 查看当前存在哪些虚拟环境<br><img src="https://img-blog.csdnimg.cn/2019092516375094.png" alt="在这里插入图片描述"><ol start="3"><li>conda update conda 检查更新当前conda</li></ol></li></ol><h3 id="创建python虚拟环境"><a href="#创建python虚拟环境" class="headerlink" title="创建python虚拟环境"></a>创建python虚拟环境</h3><p>使用 conda create -n your_env_name python=X.X（2.7、3.6等)命令创建python版本为X.X、名字为your_env_name的虚拟环境。your_env_name文件可以在Anaconda安装目录envs文件下找到</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/home/cuda/.conda/envs/comp_face_recognition/lib/python3.6/site-packages</span><br></pre></td></tr></table></figure><p>创建了一个名为comp_face_recognition python版本为3.6的环境</p><p><code>conda create -n comp_face_recognition pip python=3.6</code></p><p><img src="https://img-blog.csdnimg.cn/20190925163915330.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><h3 id="在虚拟环境中安装cuda和cudnn"><a href="#在虚拟环境中安装cuda和cudnn" class="headerlink" title="在虚拟环境中安装cuda和cudnn"></a>在虚拟环境中安装cuda和cudnn</h3><p>注意：当你的系统中已经安装了cuda和cudnn这一步就不需要了，虚拟环境中需要使用的cuda和cudnn会自动调用系统中的。但是如果你的系统的cudnn和cuda版本和所要安装的tensorflow或者pytorch不匹配，就需要在虚拟环境中安装。</p><p>由于该系统中已经安装了cuda和cudnn，所以不需要安装这些</p><h3 id="使用激活-或切换不同python版本-的虚拟环境"><a href="#使用激活-或切换不同python版本-的虚拟环境" class="headerlink" title="使用激活(或切换不同python版本)的虚拟环境"></a>使用激活(或切换不同python版本)的虚拟环境</h3><p>打开命令行输入python –version可以检查当前python的版本。</p><pre><code>使用如下命令即可 激活你的虚拟环境(即将python的版本改变)。Linux:  source activate your_env_name(虚拟环境名称)Windows: activate your_env_name(虚拟环境名称)</code></pre><p>  这是再使用python –version可以检查当前python版本是否为想要的<br><code>conda activate comp_face_recognition</code><br><img src="https://img-blog.csdnimg.cn/2019092516401230.png" alt="在这里插入图片描述"></p><h3 id="安装TensorFlow-Gpu与keras"><a href="#安装TensorFlow-Gpu与keras" class="headerlink" title="安装TensorFlow-Gpu与keras"></a>安装TensorFlow-Gpu与keras</h3><p><code>conda install tensorflow-gpu keras</code></p><p><code>conda list</code><br><img src="https://img-blog.csdnimg.cn/20190925164036932.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><h3 id="关闭虚拟环境-即从当前环境退出返回使用PATH环境中的默认python版本"><a href="#关闭虚拟环境-即从当前环境退出返回使用PATH环境中的默认python版本" class="headerlink" title="关闭虚拟环境(即从当前环境退出返回使用PATH环境中的默认python版本)"></a>关闭虚拟环境(即从当前环境退出返回使用PATH环境中的默认python版本)</h3><p>  使用如下命令即可。</p><pre><code>Linux: source deactivateWindows: deactivate</code></pre><h3 id="删除虚拟环境"><a href="#删除虚拟环境" class="headerlink" title="删除虚拟环境"></a>删除虚拟环境</h3><p>   使用命令<code>conda remove -n your_env_name(虚拟环境名称) --all</code>， 即可删除。</p><h3 id="删除环境中的某个包"><a href="#删除环境中的某个包" class="headerlink" title="删除环境中的某个包"></a>删除环境中的某个包</h3><p>   使用命令<code>conda remove --name your_env_name  package_name</code> 即可</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;环境准备&quot;&gt;&lt;a href=&quot;#环境准备&quot; class=&quot;headerlink&quot; title=&quot;环境准备&quot;&gt;&lt;/a&gt;环境准备&lt;/h2&gt;&lt;p&gt;首先在所在系统中安装Anaconda。可以打开命令行输入conda -V检验是否安装以及当前conda的版本&lt;br&gt;cond
-      
-    
-    </summary>
-    
-      <category term="机器学习" scheme="http://yoursite.com/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-      <category term="机器学习" scheme="http://yoursite.com/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>centos7 访问php 该网页无法正常运作 目前无法处理此请求</title>
-    <link href="http://yoursite.com/2019/09/29/centos7-%E8%AE%BF%E9%97%AEphp-%E8%AF%A5%E7%BD%91%E9%A1%B5%E6%97%A0%E6%B3%95%E6%AD%A3%E5%B8%B8%E8%BF%90%E4%BD%9C-%E7%9B%AE%E5%89%8D%E6%97%A0%E6%B3%95%E5%A4%84%E7%90%86%E6%AD%A4%E8%AF%B7%E6%B1%82/"/>
-    <id>http://yoursite.com/2019/09/29/centos7-访问php-该网页无法正常运作-目前无法处理此请求/</id>
-    <published>2019-09-29T15:11:43.000Z</published>
-    <updated>2019-09-29T15:12:31.616Z</updated>
-    
-    <content type="html"><![CDATA[<p>修改php.ini文件<br>文件在<code>/etc/php.ini</code></p><p>由于php.ini配置文件中错误显示关闭导致.<br>将下值由Off 变更为 On<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">display_errors = On</span><br><span class="line">display_startup_errors = On</span><br></pre></td></tr></table></figure></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;修改php.ini文件&lt;br&gt;文件在&lt;code&gt;/etc/php.ini&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;由于php.ini配置文件中错误显示关闭导致.&lt;br&gt;将下值由Off 变更为 On&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;t
-      
-    
-    </summary>
-    
-      <category term="Liunx" scheme="http://yoursite.com/categories/Liunx/"/>
-    
-    
-      <category term="PHP" scheme="http://yoursite.com/tags/PHP/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>分布式消息系统Kafka</title>
-    <link href="http://yoursite.com/2019/09/29/%E5%88%86%E5%B8%83%E5%BC%8F%E6%B6%88%E6%81%AF%E7%B3%BB%E7%BB%9FKafka/"/>
-    <id>http://yoursite.com/2019/09/29/分布式消息系统Kafka/</id>
-    <published>2019-09-29T15:11:05.000Z</published>
-    <updated>2019-09-29T15:11:28.861Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="分布式消息系统Kafka"><a href="#分布式消息系统Kafka" class="headerlink" title="分布式消息系统Kafka"></a>分布式消息系统Kafka</h1><p>Kafka可以处理消费者规模的网站中的所有动作流数据。 对于像Hadoop的一样的日志数据和离线分析系统，但又要求实时处理的限制，Kafka的目的是通过Hadoop的并行加载机制来统一线上和离线的消息处理，也是为了通过集群来提供实时的消息</p><p>kafka是一个分布式的、可分区的、可复制的消息系统；</p><p>kafka是由LinkedIn开发，使用Scala编写；</p><p>支持水平拓展和高吞吐率；</p><p>可与Apache Storm、Spark等多种开源分布式处理系统集成。</p><h2 id="相关知识"><a href="#相关知识" class="headerlink" title="相关知识:"></a>相关知识:</h2><p>（1）以时间复杂度为O(1)的方式提供消息持久化能力，即使对TB级以上数据也能保证常数时间复杂度的访问性能<br>（2）高吞吐率。即使在非常廉价的商用机器上也能做到单机支持每秒100K条以上消息的传输<br>（3）支持Kafka Server间的消息分区，及分布式消费，同时保证每个Partition内的消息顺序传输<br>（4）同时支持离线数据处理和实时数据处理<br>（5）Scale out：支持在线水平扩展<br>Kafka中各个组件的功能：<br>（1）Broker： Kafka集群包含一个或多个服务器，这种服务器被称为broker<br>（2）Topic：每条发布到Kafka集群的消息都有一个类别，这个类别被称为Topic。（物理上不同Topic的消息分开存储，逻辑上一个Topic的消息虽然保存于一个或多个broker上，但用户只需指定消息的Topic即可生产或消费数据，不必关心数据存于何处）<br>（3）Partition：Parition是物理上的概念，每个Topic包含一个或多个Partition<br>（4）Producer：负责发布消息到Kafka broker<br>（5）Consumer：消息消费者，向Kafka broker读取消息的客户端<br>（6）Consumer Group：每个Consumer属于一个特定的Consumer Group（可为每个Consumer指定group name，若不指定group name则属于默认的group）</p><h2 id="Kafka应用场景"><a href="#Kafka应用场景" class="headerlink" title="Kafka应用场景"></a>Kafka应用场景</h2><p>活动数据包括页面访问量、被查看内容方面的信息以及搜索情况等内容<br>构建应用系统和分析系统的桥梁，并将它们之间的关联解耦；<br>支持近实时的在线分析系统和类似于Hadoop之类的离线分析系统；<br>具有高可扩展性。即：当数据量增加时，可以通过增加节点进行水平扩展。</p><h2 id="Kafka与Flume"><a href="#Kafka与Flume" class="headerlink" title="Kafka与Flume"></a>Kafka与Flume</h2><p><img src="https://img-blog.csdnimg.cn/20190918211151591.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><h2 id="Kafka与Flume联用"><a href="#Kafka与Flume联用" class="headerlink" title="Kafka与Flume联用"></a>Kafka与Flume联用</h2><p><img src="https://img-blog.csdnimg.cn/20190918211211321.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><h2 id="Kafka的模型"><a href="#Kafka的模型" class="headerlink" title="Kafka的模型"></a>Kafka的模型</h2><p><img src="https://img-blog.csdnimg.cn/20190918211231876.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><h2 id="Kafka的名词说明"><a href="#Kafka的名词说明" class="headerlink" title="Kafka的名词说明"></a>Kafka的名词说明</h2><p><img src="https://img-blog.csdnimg.cn/20190918211257634.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><h2 id="生产者-消费者模式"><a href="#生产者-消费者模式" class="headerlink" title="生产者/消费者模式"></a>生产者/消费者模式</h2><p><img src="https://img-blog.csdnimg.cn/20190918211308167.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><h2 id="发布-订阅模式"><a href="#发布-订阅模式" class="headerlink" title="发布/订阅模式"></a>发布/订阅模式</h2><p><img src="https://img-blog.csdnimg.cn/20190918211331492.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><h2 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h2><p><img src="https://img-blog.csdnimg.cn/20190918211345337.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>Push和Pull（拉数据）<br>Consumer自己选择拉数据</p><h2 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h2><p><img src="https://img-blog.csdnimg.cn/20190918211406734.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><h2 id="环境部署"><a href="#环境部署" class="headerlink" title="环境部署"></a>环境部署</h2><p><img src="https://img-blog.csdnimg.cn/20190918211421457.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20190918211430563.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20190918211440934.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;分布式消息系统Kafka&quot;&gt;&lt;a href=&quot;#分布式消息系统Kafka&quot; class=&quot;headerlink&quot; title=&quot;分布式消息系统Kafka&quot;&gt;&lt;/a&gt;分布式消息系统Kafka&lt;/h1&gt;&lt;p&gt;Kafka可以处理消费者规模的网站中的所有动作流数据。 对于
-      
-    
-    </summary>
-    
-      <category term="Hadoop" scheme="http://yoursite.com/categories/Hadoop/"/>
-    
-    
-      <category term="Kafka" scheme="http://yoursite.com/tags/Kafka/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>ZooKeeper学习笔记</title>
-    <link href="http://yoursite.com/2019/09/29/ZooKeeper%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-    <id>http://yoursite.com/2019/09/29/ZooKeeper学习笔记/</id>
-    <published>2019-09-29T15:10:30.000Z</published>
-    <updated>2019-09-29T15:10:54.622Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="一-什么是-ZooKeeper"><a href="#一-什么是-ZooKeeper" class="headerlink" title="一 什么是 ZooKeeper"></a>一 什么是 ZooKeeper</h1><h2 id="ZooKeeper-的由来"><a href="#ZooKeeper-的由来" class="headerlink" title="ZooKeeper 的由来"></a>ZooKeeper 的由来</h2><p>Zookeeper最早起源于雅虎研究院的一个研究小组。在当时，研究人员发现，在雅虎内部很多大型系统基本都需要依赖一个类似的系统来进行分布式协调，但是这些系统往往都存在分布式单点问题。所以，雅虎的开发人员就试图开发一个通用的无单点问题的分布式协调框架，以便让开发人员将精力集中在处理业务逻辑上。</p><p>关于“ZooKeeper”这个项目的名字，其实也有一段趣闻。在立项初期，考虑到之前内部很多项目都是使用动物的名字来命名的（例如著名的Pig项目),雅虎的工程师希望给这个项目也取一个动物的名字。时任研究院的首席科学家RaghuRamakrishnan开玩笑地说：“在这样下去，我们这儿就变成动物园了！”此话一出，大家纷纷表示就叫动物园管理员吧一一一因为各个以动物命名的分布式组件放在一起，雅虎的整个分布式系统看上去就像一个大型的动物园了，而Zookeeper正好要用来进行分布式环境的协调一一于是，Zookeeper的名字也就由此诞生了。</p><blockquote><p>内容摘自《从Paxos到Zookeeper 》第四章第一节</p></blockquote><h2 id="ZooKeeper-概览"><a href="#ZooKeeper-概览" class="headerlink" title="ZooKeeper 概览"></a>ZooKeeper 概览</h2><p>ZooKeeper 是一个开源的分布式协调服务，ZooKeeper框架最初是在“Yahoo!”上构建的，用于以简单而稳健的方式访问他们的应用程序。 后来，Apache ZooKeeper成为Hadoop，HBase和其他分布式框架使用的有组织服务的标准。 例如，Apache HBase使用ZooKeeper跟踪分布式数据的状态。ZooKeeper 的设计目标是将那些复杂且容易出错的分布式一致性服务封装起来，构成一个高效可靠的原语集，并以一系列简单易用的接口提供给用户使用。</p><p>原语： 操作系统或计算机网络用语范畴。是由若干条指令组成的，用于完成一定功能的一个过程。具有不可分割性·即原语的执行必须是连续的，在执行过程中不允许被中断。</p><p>ZooKeeper 是一个典型的分布式数据一致性解决方案，分布式应用程序可以基于ZooKeeper 实现诸如数据发布/订阅、负载均衡、命名服务、分布式协调/通知、集群管理、Master 选举、分布式锁和分布式队列等功能。</p><p>Zookeeper 一个最常用的使用场景就是用于担任服务生产者和服务消费者的注册中心。 服务生产者将自己提供的服务注册到Zookeeper中心，服务的消费者在进行服务调用的时候先到Zookeeper中查找服务，获取到服务生产者的详细信息之后，再去调用服务生产者的内容与数据。如下图所示，在 Dubbo架构中 Zookeeper 就担任了注册中心这一角色。</p><h2 id="结合个人使用情况的讲一下-ZooKeeper"><a href="#结合个人使用情况的讲一下-ZooKeeper" class="headerlink" title="结合个人使用情况的讲一下 ZooKeeper"></a>结合个人使用情况的讲一下 ZooKeeper</h2><p>在我自己做过的项目中，主要使用到了 ZooKeeper 作为 Dubbo 的注册中心(Dubbo 官方推荐使用 ZooKeeper注册中心)。另外在搭建 solr 集群的时候，我使用 ZooKeeper 作为 solr 集群的管理工具。这时，ZooKeeper 主要提供下面几个功能：1、集群管理：容错、负载均衡。2、配置文件的集中管理3、集群的入口。<br>我个人觉得在使用 ZooKeeper 的时候，最好是使用 集群版的 ZooKeeper 而不是单机版的。官网给出的架构图就描述的是一个集群版的 ZooKeeper 。通常 3 台服务器就可以构成一个 ZooKeeper 集群了。</p><p>为什么最好使用奇数台服务器构成 ZooKeeper 集群？</p><p>我们知道在Zookeeper中 Leader 选举算法采用了Zab协议。Zab核心思想是当多数 Server 写成功，则任务数据写成功。<br>①如果有3个Server，则最多允许1个Server 挂掉。<br>②如果有4个Server，则同样最多允许1个Server挂掉。<br>既然3个或者4个Server，同样最多允许1个Server挂掉，那么它们的可靠性是一样的，所以选择奇数个ZooKeeper Server即可，这里选择3个Server。12341234</p><h2 id="关于-ZooKeeper-的一些重要概念"><a href="#关于-ZooKeeper-的一些重要概念" class="headerlink" title="关于 ZooKeeper 的一些重要概念"></a>关于 ZooKeeper 的一些重要概念</h2><h3 id="重要概念总结"><a href="#重要概念总结" class="headerlink" title="重要概念总结"></a>重要概念总结</h3><p>ZooKeeper 本身就是一个分布式程序（只要半数以上节点存活，ZooKeeper 就能正常服务）。</p><p>为了保证高可用，最好是以集群形态来部署 ZooKeeper，这样只要集群中大部分机器是可用的（能够容忍一定的机器故障），那么 ZooKeeper 本身仍然是可用的。</p><p>ZooKeeper 将数据保存在内存中，这也就保证了 高吞吐量和低延迟（但是内存限制了能够存储的容量不太大，此限制也是保持znode中存储的数据量较小的进一步原因）。</p><p>ZooKeeper 是高性能的。 在“读”多于“写”的应用程序中尤其地高性能，因为“写”会导致所有的服务器间同步状态。（“读”多于“写”是协调服务的典型场景。）</p><p>ZooKeeper有临时节点的概念。 当创建临时节点的客户端会话一直保持活动，瞬时节点就一直存在。而当会话终结时，瞬时节点被删除。持久节点是指一旦这个ZNode被创建了，除非主动进行ZNode的移除操作，否则这个ZNode将一直保存在Zookeeper上。</p><p>ZooKeeper 底层其实只提供了两个功能：①管理（存储、读取）用户程序提交的数据；②为用户程序提交数据节点监听服务。</p><p>下面关于会话（Session）、 Znode、版本、Watcher、ACL概念的总结都在《从Paxos到Zookeeper 》第四章第一节以及第七章第八节有提到，感兴趣的可以看看！</p><h3 id="会话（Session）"><a href="#会话（Session）" class="headerlink" title="会话（Session）"></a>会话（Session）</h3><p>Session 指的是 ZooKeeper 服务器与客户端会话。在 ZooKeeper 中，一个客户端连接是指客户端和服务器之间的一个 TCP 长连接。客户端启动的时候，首先会与服务器建立一个 TCP 连接，从第一次连接建立开始，客户端会话的生命周期也开始了。通过这个连接，客户端能够通过心跳检测与服务器保持有效的会话，也能够向Zookeeper服务器发送请求并接受响应，同时还能够通过该连接接收来自服务器的Watch事件通知。Session的sessionTimeout值用来设置一个客户端会话的超时时间。当由于服务器压力太大、网络故障或是客户端主动断开连接等各种原因导致客户端连接断开时，只要在sessionTimeout规定的时间内能够重新连接上集群中任意一台服务器，那么之前创建的会话仍然有效。</p><p>在为客户端创建会话之前，服务端首先会为每个客户端都分配一个sessionID。由于 sessionID 是 Zookeeper 会话的一个重要标识，许多与会话相关的运行机制都是基于这个 sessionID 的，因此，无论是哪台服务器为客户端分配的 sessionID，都务必保证全局唯一。</p><h3 id="Znode"><a href="#Znode" class="headerlink" title="Znode"></a>Znode</h3><p>在谈到分布式的时候，我们通常说的“节点”是指组成集群的每一台机器。然而，在Zookeeper中，“节点”分为两类，第一类同样是指构成集群的机器，我们称之为机器节点；第二类则是指数据模型中的数据单元，我们称之为数据节点一一ZNode。</p><p>Zookeeper将所有数据存储在内存中，数据模型是一棵树（Znode Tree)，由斜杠（/）的进行分割的路径，就是一个Znode，例如/foo/path1。每个上都会保存自己的数据内容，同时还会保存一系列属性信息。</p><p>在Zookeeper中，node可以分为持久节点和临时节点两类。所谓持久节点是指一旦这个ZNode被创建了，除非主动进行ZNode的移除操作，否则这个ZNode将一直保存在Zookeeper上。而临时节点就不一样了，它的生命周期和客户端会话绑定，一旦客户端会话失效，那么这个客户端创建的所有临时节点都会被移除。另外，ZooKeeper还允许用户为每个节点添加一个特殊的属性：SEQUENTIAL.一旦节点被标记上这个属性，那么在这个节点被创建的时候，Zookeeper会自动在其节点名后面追加上一个整型数字，这个整型数字是一个由父节点维护的自增数字。</p><h3 id="版本"><a href="#版本" class="headerlink" title="版本"></a>版本</h3><p>在前面我们已经提到，Zookeeper 的每个 ZNode 上都会存储数据，对应于每个ZNode，Zookeeper 都会为其维护一个叫作 Stat 的数据结构，Stat中记录了这个 ZNode 的三个数据版本，分别是version（当前ZNode的版本）、cversion（当前ZNode子节点的版本）和 cversion（当前ZNode的ACL版本）。</p><h3 id="Watcher"><a href="#Watcher" class="headerlink" title="Watcher"></a>Watcher</h3><p>Watcher（事件监听器），是Zookeeper中的一个很重要的特性。Zookeeper允许用户在指定节点上注册一些Watcher，并且在一些特定事件触发的时候，ZooKeeper服务端会将事件通知到感兴趣的客户端上去，该机制是Zookeeper实现分布式协调服务的重要特性。</p><h3 id="ACL"><a href="#ACL" class="headerlink" title="ACL"></a>ACL</h3><p>Zookeeper采用ACL（AccessControlLists）策略来进行权限控制，类似于 UNIX 文件系统的权限控制。Zookeeper 定义了如下5种权限。<br><img src="https://img-blog.csdnimg.cn/20190918210828982.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>其中尤其需要注意的是，CREATE和DELETE这两种权限都是针对子节点的权限控制。</p><h2 id="ZooKeeper-特点"><a href="#ZooKeeper-特点" class="headerlink" title="ZooKeeper 特点"></a>ZooKeeper 特点</h2><p>顺序一致性： 从同一客户端发起的事务请求，最终将会严格地按照顺序被应用到 ZooKeeper 中去。</p><p>原子性： 所有事务请求的处理结果在整个集群中所有机器上的应用情况是一致的，也就是说，要么整个集群中所有的机器都成功应用了某一个事务，要么都没有应用。</p><p>单一系统映像 ： 无论客户端连到哪一个 ZooKeeper 服务器上，其看到的服务端数据模型都是一致的。</p><p>可靠性： 一旦一次更改请求被应用，更改的结果就会被持久化，直到被下一次更改覆盖。</p><p>四 ZooKeeper 设计目标</p><h2 id="简单的数据模型"><a href="#简单的数据模型" class="headerlink" title="简单的数据模型"></a>简单的数据模型</h2><p>ZooKeeper 允许分布式进程通过共享的层次结构命名空间进行相互协调，这与标准文件系统类似。 名称空间由 ZooKeeper 中的数据寄存器组成 - 称为znode，这些类似于文件和目录。 与为存储设计的典型文件系统不同，ZooKeeper数据保存在内存中，这意味着ZooKeeper可以实现高吞吐量和低延迟。</p><p><img src="https://img-blog.csdnimg.cn/20190918210848500.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><h2 id="可构建集群"><a href="#可构建集群" class="headerlink" title="可构建集群"></a>可构建集群</h2><p>为了保证高可用，最好是以集群形态来部署 ZooKeeper，这样只要集群中大部分机器是可用的（能够容忍一定的机器故障），那么zookeeper本身仍然是可用的。 客户端在使用 ZooKeeper 时，需要知道集群机器列表，通过与集群中的某一台机器建立 TCP 连接来使用服务，客户端使用这个TCP链接来发送请求、获取结果、获取监听事件以及发送心跳包。如果这个连接异常断开了，客户端可以连接到另外的机器上。<br>ZooKeeper 官方提供的架构图：</p><p><img src="https://img-blog.csdnimg.cn/20190918210906519.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><p>上图中每一个Server代表一个安装Zookeeper服务的服务器。组成 ZooKeeper 服务的服务器都会在内存中维护当前的服务器状态，并且每台服务器之间都互相保持着通信。集群间通过 Zab 协议（Zookeeper Atomic Broadcast）来保持数据的一致性。</p><h3 id="顺序访问"><a href="#顺序访问" class="headerlink" title="顺序访问"></a>顺序访问</h3><p>对于来自客户端的每个更新请求，ZooKeeper 都会分配一个全局唯一的递增编号，这个编号反应了所有事务操作的先后顺序，应用程序可以使用 ZooKeeper 这个特性来实现更高层次的同步原语。 这个编号也叫做时间戳——zxid（Zookeeper Transaction Id）</p><h3 id="高性能"><a href="#高性能" class="headerlink" title="高性能"></a>高性能</h3><p>ZooKeeper 是高性能的。 在“读”多于“写”的应用程序中尤其地高性能，因为“写”会导致所有的服务器间同步状态。（“读”多于“写”是协调服务的典型场景。）</p><h2 id="ZooKeeper-集群角色介绍"><a href="#ZooKeeper-集群角色介绍" class="headerlink" title="ZooKeeper 集群角色介绍"></a>ZooKeeper 集群角色介绍</h2><p>最典型集群模式： Master/Slave 模式（主备模式）。在这种模式中，通常 Master服务器作为主服务器提供写服务，其他的 Slave 服务器从服务器通过异步复制的方式获取 Master 服务器最新的数据提供读服务。</p><p>但是，在 ZooKeeper 中没有选择传统的 Master/Slave 概念，而是引入了Leader、Follower 和 Observer 三种角色。如下图所示</p><p><img src="https://img-blog.csdnimg.cn/20190918210920322.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><p>ZooKeeper 集群中的所有机器通过一个 Leader 选举过程来选定一台称为 “Leader” 的机器，Leader 既可以为客户端提供写服务又能提供读服务。除了 Leader 外，Follower 和 Observer 都只能提供读服务。Follower 和 Observer 唯一的区别在于 Observer 机器不参与 Leader 的选举过程，也不参与写操作的“过半写成功”策略，因此 Observer 机器可以在不影响写性能的情况下提升集群的读性能。</p><p><img src="https://img-blog.csdnimg.cn/20190918210942763.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><h2 id="ZooKeeper-amp-ZAB-协议-amp-Paxos算法"><a href="#ZooKeeper-amp-ZAB-协议-amp-Paxos算法" class="headerlink" title="ZooKeeper &amp;ZAB 协议&amp;Paxos算法"></a>ZooKeeper &amp;ZAB 协议&amp;Paxos算法</h2><h3 id="ZAB-协议-amp-Paxos算法"><a href="#ZAB-协议-amp-Paxos算法" class="headerlink" title="ZAB 协议&amp;Paxos算法"></a>ZAB 协议&amp;Paxos算法</h3><p>Paxos 算法应该可以说是 ZooKeeper 的灵魂了。但是，ZooKeeper 并没有完全采用 Paxos算法 ，而是使用 ZAB 协议作为其保证数据一致性的核心算法。另外，在ZooKeeper的官方文档中也指出，ZAB协议并不像 Paxos 算法那样，是一种通用的分布式一致性算法，它是一种特别为Zookeeper设计的崩溃可恢复的原子消息广播算法。</p><h3 id="ZAB-协议介绍"><a href="#ZAB-协议介绍" class="headerlink" title="ZAB 协议介绍"></a>ZAB 协议介绍</h3><p>ZAB（ZooKeeper Atomic Broadcast 原子广播） 协议是为分布式协调服务 ZooKeeper 专门设计的一种支持崩溃恢复的原子广播协议。 在 ZooKeeper 中，主要依赖 ZAB 协议来实现分布式数据一致性，基于该协议，ZooKeeper 实现了一种主备模式的系统架构来保持集群中各个副本之间的数据一致性。</p><h3 id="ZAB-协议两种基本的模式：崩溃恢复和消息广播"><a href="#ZAB-协议两种基本的模式：崩溃恢复和消息广播" class="headerlink" title="ZAB 协议两种基本的模式：崩溃恢复和消息广播"></a>ZAB 协议两种基本的模式：崩溃恢复和消息广播</h3><p>ZAB协议包括两种基本的模式，分别是 崩溃恢复和消息广播。当整个服务框架在启动过程中，或是当 Leader 服务器出现网络中断、崩溃退出与重启等异常情况时，ZAB 协议就会进人恢复模式并选举产生新的Leader服务器。当选举产生了新的 Leader 服务器，同时集群中已经有过半的机器与该Leader服务器完成了状态同步之后，ZAB协议就会退出恢复模式。其中，所谓的状态同步是指数据同步，用来保证集群中存在过半的机器能够和Leader服务器的数据状态保持一致。</p><p>当集群中已经有过半的Follower服务器完成了和Leader服务器的状态同步，那么整个服务框架就可以进人消息广播模式了。 当一台同样遵守ZAB协议的服务器启动后加人到集群中时，如果此时集群中已经存在一个Leader服务器在负责进行消息广播，那么新加人的服务器就会自觉地进人数据恢复模式：找到Leader所在的服务器，并与其进行数据同步，然后一起参与到消息广播流程中去。正如上文介绍中所说的，ZooKeeper设计成只允许唯一的一个Leader服务器来进行事务请求的处理。Leader服务器在接收到客户端的事务请求后，会生成对应的事务提案并发起一轮广播协议；而如果集群中的其他机器接收到客户端的事务请求，那么这些非Leader服务器会首先将这个事务请求转发给Leader服务器。</p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>通过阅读本文，想必大家已从 ①ZooKeeper的由来。 -&gt; ②ZooKeeper 到底是什么 。-&gt; ③ ZooKeeper 的一些重要概念（会话（Session）、 Znode、版本、Watcher、ACL）-&gt; ④ZooKeeper 的特点。 -&gt; ⑤ZooKeeper 的设计目标。-&gt; ⑥ ZooKeeper 集群角色介绍 （Leader、Follower 和 Observer 三种角色）-&gt; ⑦ZooKeeper &amp;ZAB 协议&amp;Paxos算法。 这七点了解了 ZooKeeper 。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;一-什么是-ZooKeeper&quot;&gt;&lt;a href=&quot;#一-什么是-ZooKeeper&quot; class=&quot;headerlink&quot; title=&quot;一 什么是 ZooKeeper&quot;&gt;&lt;/a&gt;一 什么是 ZooKeeper&lt;/h1&gt;&lt;h2 id=&quot;ZooKeeper-的由来
-      
-    
-    </summary>
-    
-      <category term="Hadoop" scheme="http://yoursite.com/categories/Hadoop/"/>
-    
-    
-      <category term="ZooKeeper" scheme="http://yoursite.com/tags/ZooKeeper/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Zookeeper环境搭建</title>
-    <link href="http://yoursite.com/2019/09/29/Zookeeper%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"/>
-    <id>http://yoursite.com/2019/09/29/Zookeeper环境搭建/</id>
-    <published>2019-09-29T15:09:58.000Z</published>
-    <updated>2019-09-29T15:10:14.818Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="zookeeper集群安装"><a href="#zookeeper集群安装" class="headerlink" title="zookeeper集群安装"></a>zookeeper集群安装</h2><p><strong>在master，slave1，slave2上安装</strong></p><p><strong>hadoop用户进入master</strong></p><p><code>cd /opt/hadoop/</code></p><p><code>tar -zxvf zookeeper-3.4.8.tar.gz</code></p><p><code>vim /etc/profile</code></p><pre><code>#zookeeperexport ZOOKEEPER_HOME=/opt/hadoop/zookeeper-3.4.8export PATH=$ZOOKEEPER_HOME/bin:$PATH</code></pre><hr><pre><code>cd zookeeper-3.4.8/confcp zoo_sample.cfg zoo.cfg</code></pre><p>修改配置文件 zoo.cfg</p><pre><code># The number of milliseconds of each ticktickTime=2000# The number of ticks that the initial# synchronization phase can takeinitLimit=10# The number of ticks that can pass between# sending a request and getting an acknowledgementsyncLimit=5# the directory where the snapshot is stored.# do not use /tmp for storage, /tmp here is just# example sakes.dataDir=/opt/hadoop/zookeeper-3.4.8/datadataLogDir=/opt/hadoop/zookeeper-3.4.8/logs# the port at which the clients will connectclientPort=2181# the maximum number of client connections.# increase this if you need to handle more clients#maxClientCnxns=60# Be sure to read the maintenance section of the# administrator guide before turning on autopurge.## http://zookeeper.apache.org/doc/current/zookeeperAdmin.html#sc_maintenance# The number of snapshots to retain in dataDir#autopurge.snapRetainCount=3# Purge task interval in hours# Set to &quot;0&quot; to disable auto purge feature#autopurge.purgeInterval=1#写入节点ip与端口server.4=master:2888:3888server.2=slave1:2888:3888server.3=slave2:2888:3888</code></pre><p>保存退出</p><pre><code>cd /opt/hadoop/zookeeper-3.4.8mkdir datamkdir logscd datavim myid4保存退出</code></pre><p>将zookeeper文件传到salve1与slave2中</p><pre><code>scp -r zooker-3.4.8 root@slave1:/opt/hadoop/scp -r zooker-3.4.8 root@slave2:/opt/hadoop/</code></pre><p>在salve1与slave2中分别将myid修改为2 3 </p><p>在bin目录下</p><pre><code>./zkServer.sh start./zkServer.sh status</code></pre><hr><pre><code>./zkServer.sh start-foregroundzookeeper启动不了可以使用该命令查看报错</code></pre><p><img src="https://img-blog.csdnimg.cn/20190918203802544.png" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20190918203818791.png" alt="在这里插入图片描述"></p><p><img src="https://img-blog.csdnimg.cn/20190918203828217.png" alt="在这里插入图片描述"></p><h2 id="问题：为什么master不是leader"><a href="#问题：为什么master不是leader" class="headerlink" title="问题：为什么master不是leader"></a>问题：为什么master不是leader</h2><p>先以一个简单的例子来说明zookeeper整个选举的过程：</p><p>假设有五台服务器组成的zookeeper集群,它们的id从1-5（对应的是zoo.cfg中的server.serverID值，同时对应myid文件的值）<br><img src="https://img-blog.csdnimg.cn/20190918203855267.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>同时它们都是最新启动的,也就是没有历史数据,在存放数据量这一点上,都是一样的.假设这些服务器依序启动,来看看会发生什么.<br>1) 服务器1启动,此时只有它一台服务器启动了,它发出去的信息没有任何响应,所以它的选举状态一直是LOOKING状态<br>2) 服务器2启动,它与最开始启动的服务器1进行通信,互相交换自己的选举结果,由于两者都没有历史数据,所以id值较大的服务器2胜出,但是由于没有达到超过半数以上的服务器都同意选举它(这个例子中的半数以上是3),所以服务器1,2还是继续保持LOOKING状态.</p><p>注：每台zookeeper服务器启动时都是先选举自己然后再去对比ID值</p><p>3) 服务器3启动,根据前面的理论分析,服务器3成为服务器1,2,3中的老大,而与上面不同的是,此时有三台服务器选举了它,所以它成为了这次选举的leader.<br>4) 服务器4启动,根据前面的分析,理论上服务器4应该是服务器1,2,3,4中最大的,但是由于前面已经有半数以上的服务器选举了服务器3,所以它只能接收当小弟的命了.<br>5) 服务器5启动,同4一样,当小弟.</p><p>总结：从以上的例子可以看出leader的选举不仅跟ID的大小有关系，还跟启动的顺序有关系，因为ID的值越大而且还第一个启动，那它就可以被选举为leader。</p><p>现在大家就应该清楚如何自定义leader了，只要把你想要自定义为leader机器的ID值设置比其他的值都要大，并且先启动你要自定义leader的机器，这样就可以自定义成功了。</p><p>自定义过程中有可能会出现的问题：</p><p>按照以上的做法去操作但是想要自定义的机器没有变为leader却是follower，原因是因为在你启动自定义机器时它还没有完全启动成功就启动了其他的机器，这样等自定义机器启动完之后其余的机器已经选好了leader，所以就只能成为follower。又或者自定义机器启动失败也会造成以上原因</p><p>将master的值修改为4后<br><img src="https://img-blog.csdnimg.cn/20190918203925384.png" alt="在这里插入图片描述"></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;zookeeper集群安装&quot;&gt;&lt;a href=&quot;#zookeeper集群安装&quot; class=&quot;headerlink&quot; title=&quot;zookeeper集群安装&quot;&gt;&lt;/a&gt;zookeeper集群安装&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;在master，slave1，sla
-      
-    
-    </summary>
-    
-      <category term="Hadoop" scheme="http://yoursite.com/categories/Hadoop/"/>
-    
-    
-      <category term="Zookeeper" scheme="http://yoursite.com/tags/Zookeeper/"/>
     
   </entry>
   
