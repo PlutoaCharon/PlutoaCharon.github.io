@@ -74,7 +74,7 @@
     <link href="http://yoursite.com/2019/10/06/Kali-apt-get%E6%8A%A5E-%E6%97%A0%E6%B3%95%E6%89%93%E5%BC%80%E9%94%81%E6%96%87%E4%BB%B6-var-lib-dpkg-lock-frontend-open-2-%E6%B2%A1%E6%9C%89%E9%82%A3%E4%B8%AA%E6%96%87%E4%BB%B6%E6%88%96%E7%9B%AE%E5%BD%95/"/>
     <id>http://yoursite.com/2019/10/06/Kali-apt-get报E-无法打开锁文件-var-lib-dpkg-lock-frontend-open-2-没有那个文件或目录/</id>
     <published>2019-10-06T13:02:29.000Z</published>
-    <updated>2019-10-06T13:02:44.156Z</updated>
+    <updated>2019-10-06T13:25:54.088Z</updated>
     
     <content type="html"><![CDATA[<h2 id="Kali-apt-get报E-无法打开锁文件-var-lib-dpkg-lock-frontend-open-2-没有那个文件或目录"><a href="#Kali-apt-get报E-无法打开锁文件-var-lib-dpkg-lock-frontend-open-2-没有那个文件或目录" class="headerlink" title="Kali apt-get报E: 无法打开锁文件 /var/lib/dpkg/lock-frontend - open (2: 没有那个文件或目录)"></a>Kali apt-get报E: 无法打开锁文件 /var/lib/dpkg/lock-frontend - open (2: 没有那个文件或目录)</h2><p>由于使用apt安装时一直报错,所以把文件夹直接删除</p><p>删除一时爽,删完毁断肠</p><p>解决办法：</p><pre><code>sudo mkdir -p /var/lib/dpkg/{alternatives,info,parts,triggers,updates}sudo cp /var/backups/dpkg.status.0 /var/lib/dpkg/statusapt-get download dpkgsudo dpkg -i dpkg*.debapt-get download base-filessudo dpkg -i base-files*.debsudo apt-get updatesudo apt-get check</code></pre>]]></content>
     
