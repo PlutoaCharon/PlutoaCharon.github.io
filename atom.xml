@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://plutoacharon.github.io/"/>
-  <updated>2019-10-14T10:49:37.319Z</updated>
+  <updated>2019-10-16T09:21:14.548Z</updated>
   <id>https://plutoacharon.github.io/</id>
   
   <author>
@@ -15,6 +15,60 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>解决httpd: Could not reliably determine the server&#39;s fully qualified domain name</title>
+    <link href="https://plutoacharon.github.io/2019/10/16/%E8%A7%A3%E5%86%B3httpd-Could-not-reliably-determine-the-server-s-fully-qualified-domain-name/"/>
+    <id>https://plutoacharon.github.io/2019/10/16/解决httpd-Could-not-reliably-determine-the-server-s-fully-qualified-domain-name/</id>
+    <published>2019-10-16T09:20:51.000Z</published>
+    <updated>2019-10-16T09:21:14.548Z</updated>
+    
+    <content type="html"><![CDATA[<p>修改<code>httpd.conf</code></p><p><code>vim /etc/httpd/conf/httpd.conf</code></p><p>将里面的 #ServerName localhost:80 注释去掉即可。</p><p>再执行 <code>systemclt restart httpd</code></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;修改&lt;code&gt;httpd.conf&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;vim /etc/httpd/conf/httpd.conf&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;将里面的 #ServerName localhost:80 注释去掉即可。&lt;/p&gt;
+&lt;p&gt;再执行 &lt;cod
+      
+    
+    </summary>
+    
+      <category term="Liunx" scheme="https://plutoacharon.github.io/categories/Liunx/"/>
+    
+    
+      <category term="Liunx" scheme="https://plutoacharon.github.io/tags/Liunx/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Centos7 bg与fg命令</title>
+    <link href="https://plutoacharon.github.io/2019/10/16/Centos7-bg%E4%B8%8Efg%E5%91%BD%E4%BB%A4/"/>
+    <id>https://plutoacharon.github.io/2019/10/16/Centos7-bg与fg命令/</id>
+    <published>2019-10-16T09:20:09.000Z</published>
+    <updated>2019-10-16T09:20:26.519Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="fg-和-bg-命令"><a href="#fg-和-bg-命令" class="headerlink" title="fg 和 bg 命令"></a>fg 和 bg 命令</h2><p> 调度正在运行的任务</p><p> 假设你发现前台运行的一个程序需要很长的时间，但是需要干其他的事情，你就可以用 Ctrl-Z ，挂起这个程序，然后可以看到系统提示（方括号中的是作业号）：</p><p>这里拿<code>top</code>举个例子</p><p><code>[1]+  已停止               top</code></p><p>关于:</p><p><code>&amp;</code> </p><p>这个用在一个命令的最后，可以把这个命令放到后台执行</p><p><code>ctrl + z</code></p><p>可以将一个正在前台执行的命令放到后台，并且暂停</p><p><code>jobs</code></p><p>查看当前有多少在后台运行的命令</p><p><code>fg</code></p><p>将后台中的命令调至前台继续运行</p><p><code>bg</code></p><p>将一个在后台暂停的命令，变成继续执行</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># bg 1</span></span><br><span class="line">[1]+ top &amp;</span><br><span class="line">psoot@localhost ~]<span class="comment"># </span></span><br><span class="line">ps</span><br><span class="line">   PID TTY          TIME CMD</span><br><span class="line"> 10045 pts/2    00:00:00 bash</span><br><span class="line"> 11347 pts/2    00:00:00 top</span><br><span class="line"> 11356 pts/2    00:00:00 ps</span><br><span class="line"></span><br><span class="line">[1]+  已停止               top</span><br><span class="line">[root@localhost ~]<span class="comment"># kill -s 9 11347</span></span><br><span class="line">[root@localhost ~]<span class="comment"># ps</span></span><br><span class="line">   PID TTY          TIME CMD</span><br><span class="line"> 10045 pts/2    00:00:00 bash</span><br><span class="line"> 11357 pts/2    00:00:00 ps</span><br><span class="line">[1]+  已杀死               top</span><br><span class="line">[root@localhost ~]<span class="comment">#</span></span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;fg-和-bg-命令&quot;&gt;&lt;a href=&quot;#fg-和-bg-命令&quot; class=&quot;headerlink&quot; title=&quot;fg 和 bg 命令&quot;&gt;&lt;/a&gt;fg 和 bg 命令&lt;/h2&gt;&lt;p&gt; 调度正在运行的任务&lt;/p&gt;
+&lt;p&gt; 假设你发现前台运行的一个程序需要很长的
+      
+    
+    </summary>
+    
+      <category term="Liunx" scheme="https://plutoacharon.github.io/categories/Liunx/"/>
+    
+    
+      <category term="Liunx" scheme="https://plutoacharon.github.io/tags/Liunx/"/>
+    
+  </entry>
   
   <entry>
     <title>大数据环境准备-搭建数据仓库</title>
@@ -472,66 +526,6 @@
 &lt;/thead&gt;
 &lt;tbody&gt;
 &lt;t
-      
-    
-    </summary>
-    
-      <category term="Liunx" scheme="https://plutoacharon.github.io/categories/Liunx/"/>
-    
-    
-      <category term="Liunx" scheme="https://plutoacharon.github.io/tags/Liunx/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>centos7 挂载使用外部存储系统</title>
-    <link href="https://plutoacharon.github.io/2019/10/03/centos7-%E6%8C%82%E8%BD%BD%E4%BD%BF%E7%94%A8%E5%A4%96%E9%83%A8%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F/"/>
-    <id>https://plutoacharon.github.io/2019/10/03/centos7-挂载使用外部存储系统/</id>
-    <published>2019-10-03T13:49:11.000Z</published>
-    <updated>2019-10-03T13:54:57.568Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h2><table><thead><tr><th>命令</th><th>描述</th></tr></thead><tbody><tr><td>fdisk</td><td>管理磁盘分区</td></tr><tr><td>mkfs</td><td>创建文件系统</td></tr><tr><td>mount</td><td>挂载文件系统</td></tr><tr><td>umount</td><td>卸载文件系统</td></tr><tr><td>du</td><td>统计目录的磁盘使用情况</td></tr><tr><td>df</td><td>统计未使用的磁盘空间</td></tr></tbody></table><h2 id="一-在linux系统中挂载使用光盘"><a href="#一-在linux系统中挂载使用光盘" class="headerlink" title="一 在linux系统中挂载使用光盘"></a>一 在linux系统中挂载使用光盘</h2><ol><li><p>在vmware虚拟机中配置光驱使用ISO光盘映像</p></li><li><p>使用mount命令把光盘挂载到/mnt/cdrom<br><img src="https://img-blog.csdnimg.cn/20191003174739273.png" alt="在这里插入图片描述"></p></li><li>查看光盘内容<br><img src="https://img-blog.csdnimg.cn/20191003174739273.png" alt="在这里插入图片描述"></li><li>使用umonut命令卸载光盘<br><img src="https://img-blog.csdnimg.cn/20191003174743314.png" alt="在这里插入图片描述"></li><li>使用mount命令挂载linux系统中的ISO光盘映像<br><img src="https://img-blog.csdnimg.cn/20191003180100401.png" alt="在这里插入图片描述"></li></ol><h2 id="二-在linux系统中挂载使用U盘"><a href="#二-在linux系统中挂载使用U盘" class="headerlink" title="二 在linux系统中挂载使用U盘"></a>二 在linux系统中挂载使用U盘</h2><ol><li><p>在主机上插入U盘<br><img src="https://img-blog.csdnimg.cn/20191003180116393.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p></li><li><p>在linux系统中，fdisk -l 查看U盘分区信息</p></li></ol><p><img src="https://img-blog.csdnimg.cn/20191003180125299.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><ol start="3"><li>使用mount命令把U盘分区挂载到/mnt/u<br><img src="https://img-blog.csdnimg.cn/20191003180132245.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li><li>查看U盘内容</li></ol><p><img src="https://img-blog.csdnimg.cn/20191003180208845.png" alt="在这里插入图片描述"></p><ol start="5"><li>使用umonut命令卸载U盘<br><img src="https://img-blog.csdnimg.cn/20191003180152568.png" alt="在这里插入图片描述"></li></ol><h2 id="三-在linux系统中增加新硬盘，对硬盘分区并创建文件系统，挂载文件系统"><a href="#三-在linux系统中增加新硬盘，对硬盘分区并创建文件系统，挂载文件系统" class="headerlink" title="三 在linux系统中增加新硬盘，对硬盘分区并创建文件系统，挂载文件系统"></a>三 在linux系统中增加新硬盘，对硬盘分区并创建文件系统，挂载文件系统</h2><ol><li>在虚拟机中增加一块硬盘，容量1GB<br><img src="https://img-blog.csdnimg.cn/20191003180222581.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li><li>使用fdisk查看两块硬盘的分区情况<br><img src="https://img-blog.csdnimg.cn/20191003180230436.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li><li>使用fdisk对新硬盘分区，划分两个主分区各300MB<br><img src="https://img-blog.csdnimg.cn/20191003180234147.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20191003180254635.png" alt="在这里插入图片描述"></li><li>使用mkfs对其中一个分区格式化创建文件系统<br><img src="https://img-blog.csdnimg.cn/20191003180310409.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li><li>建立/mnt/new目录，使用mount把分区挂载到目录下<br><img src="https://img-blog.csdnimg.cn/20191003180315213.png" alt="在这里插入图片描述"></li></ol>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;命令&quot;&gt;&lt;a href=&quot;#命令&quot; class=&quot;headerlink&quot; title=&quot;命令&quot;&gt;&lt;/a&gt;命令&lt;/h2&gt;&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;命令&lt;/th&gt;
-&lt;th&gt;描述&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-
-      
-    
-    </summary>
-    
-      <category term="Liunx" scheme="https://plutoacharon.github.io/categories/Liunx/"/>
-    
-    
-      <category term="Liunx" scheme="https://plutoacharon.github.io/tags/Liunx/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>centos7 使用linux命令管理目录和文件</title>
-    <link href="https://plutoacharon.github.io/2019/10/03/centos7-%E4%BD%BF%E7%94%A8linux%E5%91%BD%E4%BB%A4%E7%AE%A1%E7%90%86%E7%9B%AE%E5%BD%95%E5%92%8C%E6%96%87%E4%BB%B6/"/>
-    <id>https://plutoacharon.github.io/2019/10/03/centos7-使用linux命令管理目录和文件/</id>
-    <published>2019-10-03T13:48:25.000Z</published>
-    <updated>2019-10-03T13:54:59.233Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="一-使用命令查看系统基本信息"><a href="#一-使用命令查看系统基本信息" class="headerlink" title="一 使用命令查看系统基本信息"></a>一 使用命令查看系统基本信息</h2><ol><li>uname命令查看内核版本、硬件平台<br><img src="https://img-blog.csdnimg.cn/20191003172243802.png" alt="在这里插入图片描述"></li><li>hostname查看修改主机名<br><img src="https://img-blog.csdnimg.cn/2019100317225087.png" alt="在这里插入图片描述"></li><li>ifconfig查看修改IP地址<br><img src="https://img-blog.csdnimg.cn/20191003172256862.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li><li>df查看磁盘空间占用情况<br><img src="https://img-blog.csdnimg.cn/20191003172302486.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li><li><p>free查看内存空间占用情况<br><img src="https://img-blog.csdnimg.cn/20191003172309641.png" alt="在这里插入图片描述"></p><h2 id="二-使用linux命令完成如下目录和文件操作"><a href="#二-使用linux命令完成如下目录和文件操作" class="headerlink" title="二 使用linux命令完成如下目录和文件操作"></a>二 使用linux命令完成如下目录和文件操作</h2><p>|命令|描述  |<br>|–|–|<br>| ls | 列出目录下的文件 |<br>|mkdir、cd、rmdir、pwd|目录操作命令|<br>|rm、mv、cp|文件操作命令|</p></li><li><p>在/root目录下建立temp目录<br><img src="https://img-blog.csdnimg.cn/2019100317355813.png" alt="在这里插入图片描述"></p></li><li>把/bin目录下的a开头的文件拷贝到/root/temp目录<br><img src="https://img-blog.csdnimg.cn/20191003173615706.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li><li>把/etc/httpd/目录下所有文件和子目录拷贝到/root/temp目录<br><img src="https://img-blog.csdnimg.cn/20191003173626272.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li><li>给/sbin/ifconfig建立符号链接ipconfig放到/root/temp目录</li></ol><p><img src="https://img-blog.csdnimg.cn/20191003173654467.png" alt="在这里插入图片描述"><img src="https://img-blog.csdnimg.cn/20191003173657588.png" alt="在这里插入图片描述"></p><ol start="5"><li><p>查找名字为yum的文件，拷贝到/root/temp目录<br>使用cp命令</p><p><img src="https://img-blog.csdnimg.cn/20191003173838831.png" alt="在这里插入图片描述"></p></li><li>删除/root/temp目录，命令及执行结果截图<br><img src="https://img-blog.csdnimg.cn/20191003173844236.png" alt="在这里插入图片描述"></li></ol><h2 id="三-使用linux命令查看检索文件内容"><a href="#三-使用linux命令查看检索文件内容" class="headerlink" title="三 使用linux命令查看检索文件内容"></a>三 使用linux命令查看检索文件内容</h2><table><thead><tr><th>命令</th><th>描述</th></tr></thead><tbody><tr><td>cat、less、more、head、tail</td><td>查看文件内容</td></tr><tr><td>wc、grep</td><td>统计文件内容、检索文件内容</td></tr></tbody></table><p>1．    cat /proc/cpuinfo查看CPU信息<br> <img src="https://img-blog.csdnimg.cn/20191003173855417.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>2．    cat  /etc/passwd查看系统用户信息<br> <img src="https://img-blog.csdnimg.cn/20191003173907762.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>3．    tail  /var/log/message 查看日志信息<br> <img src="https://img-blog.csdnimg.cn/20191003173916172.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>4．    more  /etc/passwd查看系统用户信息<br> <img src="https://img-blog.csdnimg.cn/2019100317392025.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>5．    more  /var/log/message 查看日志信息<br> <img src="https://img-blog.csdnimg.cn/20191003173923639.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>6．    wc  /etc/passwd统计文件的行数<br> <img src="https://img-blog.csdnimg.cn/20191003173930278.png" alt="在这里插入图片描述"><br>7．    使用grep命令检索/etc/passwd中包含root的行和以root开头的行<br>   <img src="https://img-blog.csdnimg.cn/2019100317393672.png" alt="在这里插入图片描述"></p><h2 id="四-使用linux命令打包、压缩、备份、还原文件"><a href="#四-使用linux命令打包、压缩、备份、还原文件" class="headerlink" title="四 使用linux命令打包、压缩、备份、还原文件"></a>四 使用linux命令打包、压缩、备份、还原文件</h2><table><thead><tr><th>命令</th><th>描述</th></tr></thead><tbody><tr><td>tar、gzip、bzip2</td><td>归档和压缩</td></tr></tbody></table><p>1．    在/root建立目录temp<br> <img src="https://img-blog.csdnimg.cn/20191003174001833.png" alt="在这里插入图片描述"><br>2．    把/bin目录下所有字母n开头的文件拷贝过来<br> <img src="https://img-blog.csdnimg.cn/20191003174006549.png" alt="在这里插入图片描述"><br>3．    把/下所有http开头的文件拷贝过来</p><p> <img src="https://img-blog.csdnimg.cn/20191003174011592.png" alt="在这里插入图片描述"><br> <img src="https://img-blog.csdnimg.cn/20191003174032932.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>4．    打包压缩/root/temp</p><p> <img src="https://img-blog.csdnimg.cn/20191003174037958.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>5．    删除/root/temp目录及文件<br> <img src="https://img-blog.csdnimg.cn/20191003174041681.png" alt="在这里插入图片描述"><br>6．    还原/root/temp<br> <img src="https://img-blog.csdnimg.cn/20191003174044445.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;一-使用命令查看系统基本信息&quot;&gt;&lt;a href=&quot;#一-使用命令查看系统基本信息&quot; class=&quot;headerlink&quot; title=&quot;一 使用命令查看系统基本信息&quot;&gt;&lt;/a&gt;一 使用命令查看系统基本信息&lt;/h2&gt;&lt;ol&gt;
-&lt;li&gt;uname命令查看内核版本、硬件
       
     
     </summary>
