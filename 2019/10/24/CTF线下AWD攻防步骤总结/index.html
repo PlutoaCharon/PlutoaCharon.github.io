@@ -1,0 +1,2856 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <!-- title -->
+
+
+
+
+<!-- keywords -->
+
+
+
+
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="author" content="浩翰">
+    <meta name="renderer" content="webkit">
+    <meta name="copyright" content="浩翰">
+    
+    <meta name="keywords" content="hexo,hexo-theme,hexo-blog">
+    
+    <meta name="description" content="Just Do ‘IT’ .">
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>CTF线下AWD攻防步骤总结 · 浩翰Redamancy的博客</title>
+    <style type="text/css">
+    @font-face {
+        font-family: 'Oswald-Regular';
+        src: url("/font/Oswald-Regular.ttf");
+    }
+
+    body {
+        margin: 0;
+    }
+
+    header,
+    footer,
+    .back-top,
+    .sidebar,
+    .container,
+    .site-intro-meta,
+    .toc-wrapper {
+        display: none;
+    }
+
+    .site-intro {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        /* height: 50vh; */
+        overflow: hidden;
+    }
+
+    .site-intro-placeholder {
+        position: absolute;
+        z-index: -2;
+        top: 0;
+        left: 0;
+        width: calc(100% + 300px);
+        height: 100%;
+        background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
+        background-position: center center;
+        transform: translate3d(-226px, 0, 0);
+        animation: gradient-move 2.5s ease-out 0s infinite;
+    }
+
+    @keyframes gradient-move {
+        0% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        100% {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+</style>
+
+    <link rel="preload" href="/css/style.css?v=20180824" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="stylesheet" href="/css/mobile.css?v=20180824" media="(max-width: 980px)">
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    
+    <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
+/* This file is meant as a standalone workflow for
+- testing support for link[rel=preload]
+- enabling async CSS loading in browsers that do not support rel=preload
+- applying rel preload css once loaded, whether supported or not.
+*/ -->
+<script>
+(function( w ){
+	"use strict";
+	// rel=preload support test
+	if( !w.loadCSS ){
+		w.loadCSS = function(){};
+	}
+	// define on the loadCSS obj
+	var rp = loadCSS.relpreload = {};
+	// rel=preload feature support test
+	// runs once and returns a function for compat purposes
+	rp.support = (function(){
+		var ret;
+		try {
+			ret = w.document.createElement( "link" ).relList.supports( "preload" );
+		} catch (e) {
+			ret = false;
+		}
+		return function(){
+			return ret;
+		};
+	})();
+
+	// if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+	// then change that media back to its intended value on load
+	rp.bindMediaToggle = function( link ){
+		// remember existing media attr for ultimate state, or default to 'all'
+		var finalMedia = link.media || "all";
+
+		function enableStylesheet(){
+			link.media = finalMedia;
+		}
+
+		// bind load handlers to enable media
+		if( link.addEventListener ){
+			link.addEventListener( "load", enableStylesheet );
+		} else if( link.attachEvent ){
+			link.attachEvent( "onload", enableStylesheet );
+		}
+
+		// Set rel and non-applicable media type to start an async request
+		// note: timeout allows this to happen async to let rendering continue in IE
+		setTimeout(function(){
+			link.rel = "stylesheet";
+			link.media = "only x";
+		});
+		// also enable media after 3 seconds,
+		// which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+		setTimeout( enableStylesheet, 3000 );
+	};
+
+	// loop through link elements in DOM
+	rp.poly = function(){
+		// double check this to prevent external calls from running
+		if( rp.support() ){
+			return;
+		}
+		var links = w.document.getElementsByTagName( "link" );
+		for( var i = 0; i < links.length; i++ ){
+			var link = links[ i ];
+			// qualify links to those with rel=preload and as=style attrs
+			if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
+				// prevent rerunning on link
+				link.setAttribute( "data-loadcss", true );
+				// bind listeners to toggle media back
+				rp.bindMediaToggle( link );
+			}
+		}
+	};
+
+	// if unsupported, run the polyfill
+	if( !rp.support() ){
+		// run once at least
+		rp.poly();
+
+		// rerun poly on an interval until onload
+		var run = w.setInterval( rp.poly, 500 );
+		if( w.addEventListener ){
+			w.addEventListener( "load", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		} else if( w.attachEvent ){
+			w.attachEvent( "onload", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		}
+	}
+
+
+	// commonjs
+	if( typeof exports !== "undefined" ){
+		exports.loadCSS = loadCSS;
+	}
+	else {
+		w.loadCSS = loadCSS;
+	}
+}( typeof global !== "undefined" ? global : this ) );
+</script>
+
+    <link rel="icon" href="/assets/favicon.ico">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js" as="script">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" as="script">
+    <link rel="preload" href="/scripts/main.js" as="script">
+    <link rel="preload" as="font" href="/font/Oswald-Regular.ttf" crossorigin>
+    <link rel="preload" as="font" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" crossorigin>
+    
+    <!-- fancybox -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script>
+    <!-- 百度统计  -->
+    
+    <!-- 谷歌统计  -->
+    
+</head>
+
+    
+        <body class="post-body">
+    
+    
+<header class="header">
+
+    <div class="read-progress"></div>
+    <div class="header-sidebar-menu">&#xe775;</div>
+    <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/">Just Do IT !</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">CTF线下AWD攻防步骤总结</a>
+            </div>
+    </div>
+    
+    <a class="home-link" href="/">Just Do IT !</a>
+</header>
+    <div class="wrapper">
+        <div class="site-intro" style="
+
+
+
+
+
+
+
+height:50vh;
+">
+    
+    <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
+            
+    <div class="site-intro-placeholder"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
+    <div class="site-intro-meta">
+        <!-- 标题  -->
+        <h1 class="intro-title">
+            <!-- 主页  -->
+            
+            CTF线下AWD攻防步骤总结
+            <!-- 404 -->
+            
+        </h1>
+        <!-- 副标题 -->
+        <p class="intro-subtitle">
+            <!-- 主页副标题  -->
+            
+            
+            <!-- 404 -->
+            
+        </p>
+        <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class="post-intro-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="AWD">AWD</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>字数统计: <span class="post-count word-count">2.7k</span>阅读时长: <span class="post-count reading-time">12 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2019/10/24</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
+        
+    </div>
+</div>
+        <script>
+ 
+  // get user agent
+  var browser = {
+    versions: function () {
+      var u = window.navigator.userAgent;
+      return {
+        userAgent: u,
+        trident: u.indexOf('Trident') > -1, //IE内核
+        presto: u.indexOf('Presto') > -1, //opera内核
+        webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+        gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+        mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+        ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+        android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+        iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
+        iPad: u.indexOf('iPad') > -1, //是否为iPad
+        webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
+        weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
+        uc: u.indexOf('UCBrowser') > -1 //是否为android下的UC浏览器
+      };
+    }()
+  }
+  console.log("userAgent:" + browser.versions.userAgent);
+
+  // callback
+  function fontLoaded() {
+    console.log('font loaded');
+    if (document.getElementsByClassName('site-intro-meta')) {
+      document.getElementsByClassName('intro-title')[0].classList.add('intro-fade-in');
+      document.getElementsByClassName('intro-subtitle')[0].classList.add('intro-fade-in');
+      var postIntros = document.getElementsByClassName('post-intros')[0]
+      if (postIntros) {
+        postIntros.classList.add('post-fade-in');
+      }
+    }
+  }
+
+  // UC不支持跨域，所以直接显示
+  function asyncCb(){
+    if (browser.versions.uc) {
+      console.log("UCBrowser");
+      fontLoaded();
+    } else {
+      WebFont.load({
+        custom: {
+          families: ['Oswald-Regular']
+        },
+        loading: function () {  //所有字体开始加载
+          // console.log('loading');
+        },
+        active: function () {  //所有字体已渲染
+          fontLoaded();
+        },
+        inactive: function () { //字体预加载失败，无效字体或浏览器不支持加载
+          console.log('inactive: timeout');
+          fontLoaded();
+        },
+        timeout: 5000 // Set the timeout to two seconds
+      });
+    }
+  }
+
+  function asyncErr(){
+    console.warn('script load from CDN failed, will load local script')
+  }
+
+  // load webfont-loader async, and add callback function
+  function async(u, cb, err) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (cb) { o.addEventListener('load', function (e) { cb(null, e); }, false); }
+    if (err) { o.addEventListener('error', function (e) { err(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+
+  var asyncLoadWithFallBack = function(arr, success, reject) {
+      var currReject = function(){
+        reject()
+        arr.shift()
+        if(arr.length)
+          async(arr[0], success, currReject)
+        }
+
+      async(arr[0], success, currReject)
+  }
+
+  asyncLoadWithFallBack([
+    "https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js", 
+    "https://cdn.bootcss.com/webfont/1.6.28/webfontloader.js",
+    "/lib/webfontloader.min.js"
+  ], asyncCb, asyncErr)
+</script>        
+        <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
+        <div class="container container-unloaded">
+            <main class="main post-page">
+    <article class="article-entry">
+        <h2 id="AWD竞赛"><a href="#AWD竞赛" class="headerlink" title="AWD竞赛"></a>AWD竞赛</h2><p><img src="https://img-blog.csdn.net/20180920140411443?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyMTE0OTE4/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="image"></p>
+<p>前半个小时应熟悉配置环境。准备网线、网线转接口</p>
+<p>最好的防御就是攻击，一定要做好安全加固</p>
+<p>本次记录的目的是为了给自己一个月来的准备弄个交代,感觉自己跟大佬们差的很远,只拿了三等,往后的路还很长,还是需要亿点点的努力,无限进步.</p>
+<h2 id="赛前准备"><a href="#赛前准备" class="headerlink" title="赛前准备"></a>赛前准备</h2><p>常用工具：</p>
+<ul>
+<li>Burpsuite</li>
+<li>sqlmap</li>
+<li>nmap、masscan</li>
+<li>nc</li>
+<li>D盾</li>
+<li>Xshell、Xftp</li>
+<li>菜刀或蚁剑</li>
+<li>Chrome、Firefox各类插件</li>
+</ul>
+<p>一句话木马：</p>
+<ul>
+<li>php</li>
+<li>asp</li>
+<li>aspx</li>
+<li>jsp</li>
+<li>内存马</li>
+</ul>
+<p>代码比较工具:</p>
+<p>BeyondCompare(windows)</p>
+<p>Kaleidoscope(mac)</p>
+<p><strong>提前准备好各种cms的poc exp （因为你们不允许联网）phpwin phpcms dz</strong></p>
+<p><a href="https://github.com/Mr5m1th/POC-Collect" target="_blank" rel="noopener">CMS_POC</a></p>
+<h2 id="防守步骤"><a href="#防守步骤" class="headerlink" title="防守步骤"></a>防守步骤</h2><h3 id="0x00-ssh登陆，修改密码"><a href="#0x00-ssh登陆，修改密码" class="headerlink" title="0x00 ssh登陆，修改密码"></a>0x00 ssh登陆，修改密码</h3><p>普通用户提权成root，根据kernel版本号找到对应的poc，exp提权</p>
+<h3 id="0x01-下载源码，备份，-var-www-html-目录"><a href="#0x01-下载源码，备份，-var-www-html-目录" class="headerlink" title="0x01 下载源码，备份，/var/www/html 目录"></a>0x01 下载源码，备份，/var/www/html 目录</h3><p>定时备份源码:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="keyword">while</span> [ 1 ]</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">time=`/bin/date +%H-%M-%S`</span><br><span class="line">bak_file=<span class="string">"/var/www/<span class="variable">$time</span>.tar.gz"</span></span><br><span class="line">webdir=<span class="string">"/var/www/html"</span></span><br><span class="line">tar zcvf <span class="variable">$bak_file</span> <span class="variable">$webdir</span> &gt;/dev/null 2&gt;&amp;1 &amp;</span><br><span class="line">sleep 60                               //一分钟备份一次</span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="备份数据库"><a href="#备份数据库" class="headerlink" title="备份数据库"></a>备份数据库</h4><p>1、找数据库配置文件，找到<code>db_name、db_user</code>和<code>db_passwd</code></p>
+<p>2、登陆数据库，命令备份数据库:</p>
+<p><code>mysqldump -u db_user -p db_passwd db_name &gt; bak.sql//备份指定数据库</code></p>
+<p><code>cd /var/lib/mysql</code></p>
+<p><code>mysqldump -u db_user -p db_passwd &gt; bak.sql//先进入数据库目录再备份</code></p>
+<p><code>mysqldump --all-databases &gt; bak.sql //备份所有数据库</code></p>
+<p>3、还原数据库：</p>
+<p><code>mysql -u db_user -p db_passwd db_name &lt; bak.sql //还原指定数据库</code></p>
+<p><code>cd /var/lib/mysql</code></p>
+<p><code>mysql -u db_user db_passwd &lt; bak.sql //先进入数据库目录再还原</code></p>
+<p>还有一种方法：</p>
+<pre><code>mysql -u db_name -p
+input passwd 进入mysql控制台mysql&gt;
+mysql&gt; show databases;看看有哪些数据库
+mysql&gt; create database test ; 建立要还原的数据库
+mysql&gt; use test;切换到刚创建的数据库
+mysql&gt; source test.sql; 导入数据库
+</code></pre><p>关闭 MySQL 远程登录</p>
+<pre><code># mysql -u root -p
+mysql&gt; use mysql;
+mysql&gt; update user set host = &apos;localhost&apos; where user=&apos;root&apos; and host=&apos;%&apos;;
+mysql&gt; flush privileges;
+mysql&gt; exit;
+</code></pre><p>隐藏用户</p>
+<pre><code>查看home目录下是否有其他用户
+/etc/passwd是否有/bin/bash的用户
+</code></pre><h3 id="0x02-扫描预留后门，御剑，k8飞刀，D盾，扫描目录，发现后门，注释代码"><a href="#0x02-扫描预留后门，御剑，k8飞刀，D盾，扫描目录，发现后门，注释代码" class="headerlink" title="0x02 扫描预留后门，御剑，k8飞刀，D盾，扫描目录，发现后门，注释代码"></a>0x02 扫描预留后门，御剑，k8飞刀，D盾，扫描目录，发现后门，注释代码</h3><pre><code># 简单的查找后门
+find . -name &apos;*.php&apos; | xargs grep -n &apos;eval(&apos;
+find . -name &apos;*.php&apos; | xargs grep -n &apos;assert(&apos;
+find . -name &apos;*.php&apos; | xargs grep -n &apos;system(&apos;
+</code></pre><h3 id="0x03-修改数据库密码"><a href="#0x03-修改数据库密码" class="headerlink" title="0x03 修改数据库密码"></a>0x03 修改数据库密码</h3><pre><code>mysql -u root -p
+Show databases;
+use mysql;
+set password for root@localhost = password(&apos;123&apos;); 或者
+update user set password = PASSWORD(&apos;要更换的密码&apos;) where user = &apos;root&apos;;
+flush privileges；
+show tables；可能有flag。
+select * from typecho_flag;
+</code></pre><h3 id="0x04-关闭不必要的端口，要求的服务端口不能关"><a href="#0x04-关闭不必要的端口，要求的服务端口不能关" class="headerlink" title="0x04 关闭不必要的端口，要求的服务端口不能关"></a>0x04 关闭不必要的端口，要求的服务端口不能关</h3><p><code>netstat -napt ，lsof -i</code> 查看端口，<br><code>kill -9 PID</code> 杀掉进程<br><code>nmap -sV ip地址</code>（-sV参数可以探测目标主机的服务器版本）<br><code>nmap</code>扫描对方开启的端口，21,22，21,3306，进行爆破</p>
+<p><code>msfconsole</code>进入<code>metasploit</code>,<code>hydra</code>可以对22端口进行爆破</p>
+<h3 id="0x05-代码审计，使用seay源代码审计，或者Rips代码审计"><a href="#0x05-代码审计，使用seay源代码审计，或者Rips代码审计" class="headerlink" title="0x05 代码审计，使用seay源代码审计，或者Rips代码审计"></a>0x05 代码审计，使用seay源代码审计，或者Rips代码审计</h3><p>可以参考我写的这篇博客</p>
+<p><a href="https://blog.csdn.net/qq_43442524/article/details/101934481" target="_blank" rel="noopener">Rips工具使用</a></p>
+<h3 id="0x06-木马查杀"><a href="#0x06-木马查杀" class="headerlink" title="0x06 木马查杀"></a>0x06 木马查杀</h3><p>关于木马</p>
+<ul>
+<li>关注服务的可用性状况</li>
+<li>查看文件监控情况</li>
+<li>在被攻击的时候进行响应，保存相应的流量，查找/清除后门</li>
+</ul>
+<blockquote>
+<p>建议使用apache用户来删除</p>
+</blockquote>
+<h4 id="通过文件监控查看系统异常情况"><a href="#通过文件监控查看系统异常情况" class="headerlink" title="通过文件监控查看系统异常情况"></a>通过文件监控查看系统异常情况</h4><p>文件监控脚本<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="comment">#use: python file_check.py ./</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"><span class="keyword">import</span> shutil</span><br><span class="line"><span class="keyword">import</span> ntpath</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line">CWD = os.getcwd()</span><br><span class="line">FILE_MD5_DICT = &#123;&#125;      <span class="comment"># 文件MD5字典</span></span><br><span class="line">ORIGIN_FILE_LIST = []</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 特殊文件路径字符串</span></span><br><span class="line">Special_path_str = <span class="string">'drops_JWI96TY7ZKNMQPDRUOSG0FLH41A3C5EXVB82'</span></span><br><span class="line">bakstring = <span class="string">'bak_EAR1IBM0JT9HZ75WU4Y3Q8KLPCX26NDFOGVS'</span></span><br><span class="line">logstring = <span class="string">'log_WMY4RVTLAJFB28960SC3KZX7EUP1IHOQN5GD'</span></span><br><span class="line">webshellstring = <span class="string">'webshell_WMY4RVTLAJFB28960SC3KZX7EUP1IHOQN5GD'</span></span><br><span class="line">difffile = <span class="string">'diff_UMTGPJO17F82K35Z0LEDA6QB9WH4IYRXVSCN'</span></span><br><span class="line"></span><br><span class="line">Special_string = <span class="string">'drops_log'</span>  <span class="comment"># 免死金牌</span></span><br><span class="line">UNICODE_ENCODING = <span class="string">"utf-8"</span></span><br><span class="line">INVALID_UNICODE_CHAR_FORMAT = <span class="string">r"\?%02x"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 文件路径字典</span></span><br><span class="line">spec_base_path = os.path.realpath(os.path.join(CWD, Special_path_str))</span><br><span class="line">Special_path = &#123;</span><br><span class="line">    <span class="string">'bak'</span> : os.path.realpath(os.path.join(spec_base_path, bakstring)),</span><br><span class="line">    <span class="string">'log'</span> : os.path.realpath(os.path.join(spec_base_path, logstring)),</span><br><span class="line">    <span class="string">'webshell'</span> : os.path.realpath(os.path.join(spec_base_path, webshellstring)),</span><br><span class="line">    <span class="string">'difffile'</span> : os.path.realpath(os.path.join(spec_base_path, difffile)),</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">isListLike</span><span class="params">(value)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> isinstance(value, (list, tuple, set))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取Unicode编码</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getUnicode</span><span class="params">(value, encoding=None, noneToNull=False)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> noneToNull <span class="keyword">and</span> value <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">        <span class="keyword">return</span> NULL</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> isListLike(value):</span><br><span class="line">        value = list(getUnicode(_, encoding, noneToNull) <span class="keyword">for</span> _ <span class="keyword">in</span> value)</span><br><span class="line">        <span class="keyword">return</span> value</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> isinstance(value, unicode):</span><br><span class="line">        <span class="keyword">return</span> value</span><br><span class="line">    <span class="keyword">elif</span> isinstance(value, basestring):</span><br><span class="line">        <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">            <span class="keyword">try</span>:</span><br><span class="line">                <span class="keyword">return</span> unicode(value, encoding <span class="keyword">or</span> UNICODE_ENCODING)</span><br><span class="line">            <span class="keyword">except</span> UnicodeDecodeError, ex:</span><br><span class="line">                <span class="keyword">try</span>:</span><br><span class="line">                    <span class="keyword">return</span> unicode(value, UNICODE_ENCODING)</span><br><span class="line">                <span class="keyword">except</span>:</span><br><span class="line">                    value = value[:ex.start] + <span class="string">""</span>.join(INVALID_UNICODE_CHAR_FORMAT % ord(_) <span class="keyword">for</span> _ <span class="keyword">in</span> value[ex.start:ex.end]) + value[ex.end:]</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            <span class="keyword">return</span> unicode(value)</span><br><span class="line">        <span class="keyword">except</span> UnicodeDecodeError:</span><br><span class="line">            <span class="keyword">return</span> unicode(str(value), errors=<span class="string">"ignore"</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 目录创建</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">mkdir_p</span><span class="params">(path)</span>:</span></span><br><span class="line">    <span class="keyword">import</span> errno</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        os.makedirs(path)</span><br><span class="line">    <span class="keyword">except</span> OSError <span class="keyword">as</span> exc:</span><br><span class="line">        <span class="keyword">if</span> exc.errno == errno.EEXIST <span class="keyword">and</span> os.path.isdir(path):</span><br><span class="line">            <span class="keyword">pass</span></span><br><span class="line">        <span class="keyword">else</span>: <span class="keyword">raise</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取当前所有文件路径</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getfilelist</span><span class="params">(cwd)</span>:</span></span><br><span class="line">    filelist = []</span><br><span class="line">    <span class="keyword">for</span> root,subdirs, files <span class="keyword">in</span> os.walk(cwd):</span><br><span class="line">        <span class="keyword">for</span> filepath <span class="keyword">in</span> files:</span><br><span class="line">            originalfile = os.path.join(root, filepath)</span><br><span class="line">            <span class="keyword">if</span> Special_path_str <span class="keyword">not</span> <span class="keyword">in</span> originalfile:</span><br><span class="line">                filelist.append(originalfile)</span><br><span class="line">    <span class="keyword">return</span> filelist</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 计算机文件MD5值</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">calcMD5</span><span class="params">(filepath)</span>:</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="keyword">with</span> open(filepath,<span class="string">'rb'</span>) <span class="keyword">as</span> f:</span><br><span class="line">            md5obj = hashlib.md5()</span><br><span class="line">            md5obj.update(f.read())</span><br><span class="line">            hash = md5obj.hexdigest()</span><br><span class="line">            <span class="keyword">return</span> hash</span><br><span class="line">    <span class="keyword">except</span> Exception, e:</span><br><span class="line">        <span class="keyword">print</span> <span class="string">u'[!] getmd5_error : '</span> + getUnicode(filepath)</span><br><span class="line">        <span class="keyword">print</span> getUnicode(e)</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            ORIGIN_FILE_LIST.remove(filepath)</span><br><span class="line">            FILE_MD5_DICT.pop(filepath, <span class="literal">None</span>)</span><br><span class="line">        <span class="keyword">except</span> KeyError, e:</span><br><span class="line">            <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取所有文件MD5</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getfilemd5dict</span><span class="params">(filelist = [])</span>:</span></span><br><span class="line">    filemd5dict = &#123;&#125;</span><br><span class="line">    <span class="keyword">for</span> ori_file <span class="keyword">in</span> filelist:</span><br><span class="line">        <span class="keyword">if</span> Special_path_str <span class="keyword">not</span> <span class="keyword">in</span> ori_file:</span><br><span class="line">            md5 = calcMD5(os.path.realpath(ori_file))</span><br><span class="line">            <span class="keyword">if</span> md5:</span><br><span class="line">                filemd5dict[ori_file] = md5</span><br><span class="line">    <span class="keyword">return</span> filemd5dict</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 备份所有文件</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">backup_file</span><span class="params">(filelist=[])</span>:</span></span><br><span class="line">    <span class="comment"># if len(os.listdir(Special_path['bak'])) == 0:</span></span><br><span class="line">    <span class="keyword">for</span> filepath <span class="keyword">in</span> filelist:</span><br><span class="line">        <span class="keyword">if</span> Special_path_str <span class="keyword">not</span> <span class="keyword">in</span> filepath:</span><br><span class="line">            shutil.copy2(filepath, Special_path[<span class="string">'bak'</span>])</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    <span class="keyword">print</span> <span class="string">u'---------start------------'</span></span><br><span class="line">    <span class="keyword">for</span> value <span class="keyword">in</span> Special_path:</span><br><span class="line">        mkdir_p(Special_path[value])</span><br><span class="line">    <span class="comment"># 获取所有文件路径，并获取所有文件的MD5，同时备份所有文件</span></span><br><span class="line">    ORIGIN_FILE_LIST = getfilelist(CWD)</span><br><span class="line">    FILE_MD5_DICT = getfilemd5dict(ORIGIN_FILE_LIST)</span><br><span class="line">    backup_file(ORIGIN_FILE_LIST) <span class="comment"># TODO 备份文件可能会产生重名BUG</span></span><br><span class="line">    <span class="keyword">print</span> <span class="string">u'[*] pre work end!'</span></span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        file_list = getfilelist(CWD)</span><br><span class="line">        <span class="comment"># 移除新上传文件</span></span><br><span class="line">        diff_file_list = list(set(file_list) ^ set(ORIGIN_FILE_LIST))</span><br><span class="line">        <span class="keyword">if</span> len(diff_file_list) != <span class="number">0</span>:</span><br><span class="line">            <span class="comment"># import pdb;pdb.set_trace()</span></span><br><span class="line">            <span class="keyword">for</span> filepath <span class="keyword">in</span> diff_file_list:</span><br><span class="line">                <span class="keyword">try</span>:</span><br><span class="line">                    f = open(filepath, <span class="string">'r'</span>).read()</span><br><span class="line">                <span class="keyword">except</span> Exception, e:</span><br><span class="line">                    <span class="keyword">break</span></span><br><span class="line">                <span class="keyword">if</span> Special_string <span class="keyword">not</span> <span class="keyword">in</span> f:</span><br><span class="line">                    <span class="keyword">try</span>:</span><br><span class="line">                        <span class="keyword">print</span> <span class="string">u'[*] webshell find : '</span> + getUnicode(filepath)</span><br><span class="line">                        shutil.move(filepath, os.path.join(Special_path[<span class="string">'webshell'</span>], ntpath.basename(filepath) + <span class="string">'.txt'</span>))</span><br><span class="line">                    <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">                        <span class="keyword">print</span> <span class="string">u'[!] move webshell error, "%s" maybe is webshell.'</span>%getUnicode(filepath)</span><br><span class="line">                    <span class="keyword">try</span>:</span><br><span class="line">                        f = open(os.path.join(Special_path[<span class="string">'log'</span>], <span class="string">'log.txt'</span>), <span class="string">'a'</span>)</span><br><span class="line">                        f.write(<span class="string">'newfile: '</span> + getUnicode(filepath) + <span class="string">' : '</span> + str(time.ctime()) + <span class="string">'\n'</span>)</span><br><span class="line">                        f.close()</span><br><span class="line">                    <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">                        <span class="keyword">print</span> <span class="string">u'[-] log error : file move error: '</span> + getUnicode(e)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 防止任意文件被修改,还原被修改文件</span></span><br><span class="line">        md5_dict = getfilemd5dict(ORIGIN_FILE_LIST)</span><br><span class="line">        <span class="keyword">for</span> filekey <span class="keyword">in</span> md5_dict:</span><br><span class="line">            <span class="keyword">if</span> md5_dict[filekey] != FILE_MD5_DICT[filekey]:</span><br><span class="line">                <span class="keyword">try</span>:</span><br><span class="line">                    f = open(filekey, <span class="string">'r'</span>).read()</span><br><span class="line">                <span class="keyword">except</span> Exception, e:</span><br><span class="line">                    <span class="keyword">break</span></span><br><span class="line">                <span class="keyword">if</span> Special_string <span class="keyword">not</span> <span class="keyword">in</span> f:</span><br><span class="line">                    <span class="keyword">try</span>:</span><br><span class="line">                        <span class="keyword">print</span> <span class="string">u'[*] file had be change : '</span> + getUnicode(filekey)</span><br><span class="line">                        shutil.move(filekey, os.path.join(Special_path[<span class="string">'difffile'</span>], ntpath.basename(filekey) + <span class="string">'.txt'</span>))</span><br><span class="line">                        shutil.move(os.path.join(Special_path[<span class="string">'bak'</span>], ntpath.basename(filekey)), filekey)</span><br><span class="line">                    <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">                        <span class="keyword">print</span> <span class="string">u'[!] move webshell error, "%s" maybe is webshell.'</span>%getUnicode(filekey)</span><br><span class="line">                    <span class="keyword">try</span>:</span><br><span class="line">                        f = open(os.path.join(Special_path[<span class="string">'log'</span>], <span class="string">'log.txt'</span>), <span class="string">'a'</span>)</span><br><span class="line">                        f.write(<span class="string">'diff_file: '</span> + getUnicode(filekey) + <span class="string">' : '</span> + getUnicode(time.ctime()) + <span class="string">'\n'</span>)</span><br><span class="line">                        f.close()</span><br><span class="line">                    <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">                        <span class="keyword">print</span> <span class="string">u'[-] log error : done_diff: '</span> + getUnicode(filekey)</span><br><span class="line">                        <span class="keyword">pass</span></span><br><span class="line">        time.sleep(<span class="number">2</span>)</span><br><span class="line">        <span class="comment"># print '[*] ' + getUnicode(time.ctime())</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="不死马清理："><a href="#不死马清理：" class="headerlink" title="不死马清理："></a>不死马清理：</h4><p><code>ps aux www|grep shell.php</code></p>
+<p>找到pid后杀掉进程就可以，你删掉脚本是起不了作用的，因为php执行的时候已经把脚本读进去解释成opcode运行了</p>
+<p>重启php等web服务</p>
+<p>用一个<code>ignore_user_abort(true)</code>脚本，一直竞争写入（断断续续）。usleep要低于对方不死马设置的值。</p>
+<p>创建一个和不死马生成的马一样名字的文件夹。</p>
+<h4 id="不死马、waf、抓流量的waf"><a href="#不死马、waf、抓流量的waf" class="headerlink" title="不死马、waf、抓流量的waf"></a>不死马、waf、抓流量的waf</h4><pre><code>不死马使用原理就是不断将的自己写入，造成进程占用，被删除后一秒就已经生成新的了，还有就是.XXX文件建立隐藏文件不死马。
+waf，脚本waf可以防止一般情况下的危险字符，但是不能报太大希望，
+</code></pre><p><code>require_once(&#39;waf.php&#39;);</code></p>
+<pre><code>抓流量waf，挂载后可以让防守队员_实时关注日志，一旦发现被getflag了，就通过日志相应的手法攻击别人
+</code></pre><p><strong>waf脚本</strong></p>
+<blockquote>
+<p>PHPWaf用来记录访问请求，通过分析访问请求来判断对方的攻击方式，作用是感知漏洞，判断攻击方式，从而修复漏洞。</p>
+</blockquote>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"> //部署waf可能会导致服务不可用，需要谨慎部署。</span><br><span class="line">    error_reporting(<span class="number">0</span>);</span><br><span class="line">    define(<span class="string">'LOG_FILENAME'</span>,<span class="string">'log.txt'</span>);</span><br><span class="line">    function waf()</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (!function_exists(<span class="string">'getallheaders'</span>)) &#123;</span><br><span class="line">            function getallheaders() &#123;</span><br><span class="line">                foreach ($_SERVER as $name =&gt; $value) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (substr($name, <span class="number">0</span>, <span class="number">5</span>) == <span class="string">'HTTP_'</span>)</span><br><span class="line">                        $headers[str_replace(<span class="string">' '</span>, <span class="string">'-'</span>, ucwords(strtolower(str_replace(<span class="string">'_'</span>, <span class="string">' '</span>, substr($name, <span class="number">5</span>)))))] = $value;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">return</span> $headers;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        $get = $_GET;</span><br><span class="line">        $post = $_POST;</span><br><span class="line">        $cookie = $_COOKIE;</span><br><span class="line">        $header = getallheaders();</span><br><span class="line">        $files = $_FILES;</span><br><span class="line">        $ip = $_SERVER[<span class="string">"REMOTE_ADDR"</span>];</span><br><span class="line">        $method = $_SERVER[<span class="string">'REQUEST_METHOD'</span>];</span><br><span class="line">        $filepath = $_SERVER[<span class="string">"SCRIPT_NAME"</span>];</span><br><span class="line">        </span><br><span class="line">        //rewirte shell which uploaded by others, you can do more</span><br><span class="line">        foreach ($_FILES as $key =&gt; $value) &#123;</span><br><span class="line">            $files[$key][<span class="string">'content'</span>] = file_get_contents($_FILES[$key][<span class="string">'tmp_name'</span>]);</span><br><span class="line">            file_put_contents($_FILES[$key][<span class="string">'tmp_name'</span>], <span class="string">"virink"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        unset($header[<span class="string">'Accept'</span>]);//fix a bug</span><br><span class="line">        $input = array("Get"=&gt;$get, "Post"=&gt;$post, "Cookie"=&gt;$cookie, "File"=&gt;$files, "Header"=&gt;$header);</span><br><span class="line">        //deal <span class="keyword">with</span></span><br><span class="line">        $pattern = <span class="string">"select|insert|update|delete|and|or|\'|\/\*|\*|\.\.\/|\.\/|union|into|load_file|outfile|dumpfile|sub|hex"</span>;</span><br><span class="line">        $pattern .= <span class="string">"|file_put_contents|fwrite|curl|system|eval|assert"</span>;</span><br><span class="line">        $pattern .=<span class="string">"|passthru|exec|system|chroot|scandir|chgrp|chown|shell_exec|proc_open|proc_get_status|popen|ini_alter|ini_restore"</span>;</span><br><span class="line">        $pattern .=<span class="string">"|`|dl|openlog|syslog|readlink|symlink|popepassthru|stream_socket_server|assert|pcntl_exec"</span>;</span><br><span class="line">        $vpattern = explode(<span class="string">"|"</span>,$pattern);</span><br><span class="line">        $bool = false;</span><br><span class="line">        foreach ($input as $k =&gt; $v) &#123;</span><br><span class="line">            foreach($vpattern <span class="keyword">as</span> $value)&#123;</span><br><span class="line">                foreach ($v as $kk =&gt; $vv) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (preg_match( <span class="string">"/$value/i"</span>, $vv ))&#123;</span><br><span class="line">                        $bool = true;</span><br><span class="line">                        logging($input);</span><br><span class="line">                        <span class="keyword">break</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span>($bool) <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>($bool) <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    function logging($var)&#123;</span><br><span class="line">        file_put_contents(LOG_FILENAME, <span class="string">"\r\n"</span>.time().<span class="string">"\r\n"</span>.print_r($var, true), FILE_APPEND);</span><br><span class="line">        // die() <span class="keyword">or</span> unset($_GET) <span class="keyword">or</span> unset($_POST) <span class="keyword">or</span> unset($_COOKIE);</span><br><span class="line">    &#125;</span><br><span class="line">    waf();</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p>waf的激活方式：</p>
+<pre><code>1. php.ini选项：auto_prepend_file =与auto_append_file =包含waf，需要权限较高。
+
+2. config.php 中包含waf
+
+3. 让所有的文件都包含waf
+</code></pre><h3 id="0x07流量分析"><a href="#0x07流量分析" class="headerlink" title="0x07流量分析"></a>0x07流量分析</h3><ol>
+<li>查看当前访问量前十的链接</li>
+</ol>
+<p><code>cat /var/log/apache2/access.log | cut -f4 -d   | sort | uniq -c | sort -k  -r | head -</code>　</p>
+<ol start="2">
+<li><p>文件监控增删改查的文件使用脚本Monitor（一个简单的文件监控示例脚本，可以监控创建、删除、移动、属性修改操作，自动删除新增文件或目录。已使用pyinstaller打包成了linux可执行程序）</p>
+</li>
+<li><p>chattr +i 命令锁死网站目录和文件，防止其他队伍删除网站宕机。注：添加后不取消特殊权限 即使是root用户也无法删除/修改文件</p>
+</li>
+</ol>
+<pre><code>chattr -R +i /var/www/html  
+chattr -R +i /var/www/html/*   
+(取消命令将+号改成-   chattr -R -i /var/www/html）
+</code></pre><ol start="4">
+<li>使用waf全局包含waf，注意waf的日志和weblogger日志与第二项文件监控冲突，建议建立文件夹将日志和weblogger日志放到指定文件夹中，避开文件监控，</li>
+</ol>
+<pre><code>sudo find /var/www/html/path_you_want -type f -path &quot;*.php&quot; | xargs sed -i &quot;s/&lt;?php/&lt;?php\nrequire_once(&apos;\/tmp\/waf.php&apos;);\n/g&quot;
+#意思就是查找需要加waf的目录下所有php文件，在头部添加一句，用require_once函数引入/tmp/waf.php文件。因为sed命令利用 / 区分文件中的原字符串和修改的字符串，所以我们要对 / 进行转义。类似于在单引号中再次使用单引号时我们也要用反斜杠转义。
+</code></pre><ol start="5">
+<li>后台一定要登陆后台，有没有弱口令，修改成强口令。</li>
+</ol>
+<ol start="6">
+<li>不只是后台，phpmyadmin、测试页面容易出现sql注入，rce之类的这些</li>
+</ol>
+<h2 id="AWD资源小合集"><a href="#AWD资源小合集" class="headerlink" title="AWD资源小合集:"></a>AWD资源小合集:</h2><p><a href="https://neversec.top/20190415/how-to-awd.html" target="_blank" rel="noopener">https://neversec.top/20190415/how-to-awd.html</a></p>
+<p><strong>参考网站：</strong></p>
+<p><a href="https://blog.csdn.net/qq_42114918/article/details/82785960#comments" target="_blank" rel="noopener">https://blog.csdn.net/qq_42114918/article/details/82785960#comments</a></p>
+<p><a href="https://blog.csdn.net/qq_43625917/article/details/96158713" target="_blank" rel="noopener">https://blog.csdn.net/qq_43625917/article/details/96158713</a></p>
+<p><a href="http://www.admintony.com/AWD%E8%A5%BF%E7%9F%B3%E6%B2%B9%E7%BA%BF%E4%B8%8B%E8%B5%9B%E6%80%BB%E7%BB%93.html" target="_blank" rel="noopener">http://www.admintony.com/AWD%E8%A5%BF%E7%9F%B3%E6%B2%B9%E7%BA%BF%E4%B8%8B%E8%B5%9B%E6%80%BB%E7%BB%93.html</a></p>
+<p><a href="https://blog.csdn.net/like98k/article/details/80261603" target="_blank" rel="noopener">https://blog.csdn.net/like98k/article/details/80261603</a></p>
+<p><a href="http://www.8sec.cc/index.php/archives/97/" target="_blank" rel="noopener">http://www.8sec.cc/index.php/archives/97/</a></p>
+
+    </article>
+    <!-- license  -->
+    
+        <div class="license-wrapper">
+            <p>原文作者：<a href="https://plutoacharon.github.io">浩翰</a>
+            </p><p>原文链接：<a href="https://plutoacharon.github.io/2019/10/24/CTF线下AWD攻防步骤总结/">https://plutoacharon.github.io/2019/10/24/CTF线下AWD攻防步骤总结/</a>
+            </p><p>发表日期：<a href="https://plutoacharon.github.io/2019/10/24/CTF线下AWD攻防步骤总结/">October 24th 2019, 2:32:46 pm</a>
+            </p><p>更新日期：<a href="https://plutoacharon.github.io/2019/10/24/CTF线下AWD攻防步骤总结/">October 24th 2019, 2:34:31 pm</a>
+            </p><p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
+        </div>
+    
+    <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+                <div class="nextSlogan">Next Post</div>
+                <a href="/2019/10/24/ctf线下AWD攻防赛学习笔记/" title="ctf线下AWD攻防赛学习笔记">
+                    <div class="nextTitle">ctf线下AWD攻防赛学习笔记</div>
+                </a>
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href="/2019/10/16/解决httpd-Could-not-reliably-determine-the-server-s-fully-qualified-domain-name/" title="解决httpd: Could not reliably determine the server's fully qualified domain name">
+                    <div class="prevTitle">解决httpd: Could not reliably determine the server's fully qualified domain name</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
+    
+    
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
+</main>
+            <!-- profile -->
+            
+        </div>
+        <footer class="footer footer-unloaded">
+    <!-- social  -->
+    
+    <div class="social">
+        
+    
+        
+            
+                <a href="mailto:thishaohan@foxmail.com" class="iconfont-archer email" title="email"></a>
+            
+        
+    
+        
+            
+                <a href="https://github.com/PlutoaCharon" class="iconfont-archer github" target="_blank" title="github"></a>
+            
+        
+    
+        
+            
+                <span class="iconfont-archer wechat" title="wechat">
+                  
+                  <img class="profile-qr" src="/assets/mmqrcode1570781814268.png">
+                </span>
+            
+        
+    
+        
+            
+                <span class="iconfont-archer qq" title="qq">
+                  
+                  <img class="profile-qr" src="/assets/qrcode_1570781828190.jpg">
+                </span>
+            
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+            
+                <a href="/atom.xml" class="iconfont-archer rss" target="_blank" title="rss"></a>
+            
+        
+    
+
+    </div>
+    
+    <!-- powered by Hexo  -->
+    <div class="copyright">
+        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">Archer</a></span>
+    </div>
+    <!-- 不蒜子  -->
+    
+    <div class="busuanzi-container">
+    
+     
+    <span id="busuanzi_container_site_pv">PV: <span id="busuanzi_value_site_pv"></span> :)</span>
+    
+    </div>
+    
+</footer>
+    </div>
+    <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#AWD竞赛"><span class="toc-number">1.</span> <span class="toc-text">AWD竞赛</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#赛前准备"><span class="toc-number">2.</span> <span class="toc-text">赛前准备</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#防守步骤"><span class="toc-number">3.</span> <span class="toc-text">防守步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#0x00-ssh登陆，修改密码"><span class="toc-number">3.1.</span> <span class="toc-text">0x00 ssh登陆，修改密码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x01-下载源码，备份，-var-www-html-目录"><span class="toc-number">3.2.</span> <span class="toc-text">0x01 下载源码，备份，/var/www/html 目录</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#备份数据库"><span class="toc-number">3.2.1.</span> <span class="toc-text">备份数据库</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x02-扫描预留后门，御剑，k8飞刀，D盾，扫描目录，发现后门，注释代码"><span class="toc-number">3.3.</span> <span class="toc-text">0x02 扫描预留后门，御剑，k8飞刀，D盾，扫描目录，发现后门，注释代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x03-修改数据库密码"><span class="toc-number">3.4.</span> <span class="toc-text">0x03 修改数据库密码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x04-关闭不必要的端口，要求的服务端口不能关"><span class="toc-number">3.5.</span> <span class="toc-text">0x04 关闭不必要的端口，要求的服务端口不能关</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x05-代码审计，使用seay源代码审计，或者Rips代码审计"><span class="toc-number">3.6.</span> <span class="toc-text">0x05 代码审计，使用seay源代码审计，或者Rips代码审计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x06-木马查杀"><span class="toc-number">3.7.</span> <span class="toc-text">0x06 木马查杀</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#通过文件监控查看系统异常情况"><span class="toc-number">3.7.1.</span> <span class="toc-text">通过文件监控查看系统异常情况</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#不死马清理："><span class="toc-number">3.7.2.</span> <span class="toc-text">不死马清理：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#不死马、waf、抓流量的waf"><span class="toc-number">3.7.3.</span> <span class="toc-text">不死马、waf、抓流量的waf</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x07流量分析"><span class="toc-number">3.8.</span> <span class="toc-text">0x07流量分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AWD资源小合集"><span class="toc-number">4.</span> <span class="toc-text">AWD资源小合集:</span></a></li></ol>
+    </div>
+    
+    <div class="back-top iconfont-archer">&#xe639;</div>
+    <div class="sidebar sidebar-hide">
+    <ul class="sidebar-tabs sidebar-tabs-active-0">
+        <li class="sidebar-tab-archives"><span class="iconfont-archer">&#xe67d;</span><span class="tab-name">Archive</span></li>
+        <li class="sidebar-tab-tags"><span class="iconfont-archer">&#xe61b;</span><span class="tab-name">Tag</span></li>
+        <li class="sidebar-tab-categories"><span class="iconfont-archer">&#xe666;</span><span class="tab-name">Cate</span></li>
+    </ul>
+    <div class="sidebar-content sidebar-content-show-archive">
+          <div class="sidebar-panel-archives">
+    <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="total-and-search">
+        <div class="total-archive">
+        Total : 88
+        </div>
+        <!-- search  -->
+        
+    </div>
+    
+    <div class="post-archive">
+    
+    
+    
+    
+    <div class="archive-year"> 2019 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/24</span><a class="archive-post-title" href="/2019/10/24/vsphere报错-连接到虚拟机控制台失败并显示错误：VMRC-控制台的连接已断开。正在尝试重新连接/">vsphere报错: 连接到虚拟机控制台失败并显示错误：VMRC 控制台的连接已断开。正在尝试重新连接</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/24</span><a class="archive-post-title" href="/2019/10/24/源码安装httpd报错-checking-for-APR-configure-error-the-with-apr-parameter-is-incorrect/">源码安装httpd报错: checking for APR... configure: error: the --with-apr parameter is incorrect.</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/24</span><a class="archive-post-title" href="/2019/10/24/CTF线下AWD攻防步骤总结/">CTF线下AWD攻防步骤总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/24</span><a class="archive-post-title" href="/2019/10/24/ctf线下AWD攻防赛学习笔记/">ctf线下AWD攻防赛学习笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/24</span><a class="archive-post-title" href="/2019/10/24/Hive报错-javax-jdo-JDOFatalDataStoreException-Unable-to-open-a-test-connection-to-the-given-database/">Hive报错:javax.jdo.JDOFatalDataStoreException: Unable to open a test connection to the given database.</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/24</span><a class="archive-post-title" href="/2019/10/24/Hive启动报错-Could-not-create-ServerSocket-on-address-0-0-0-0-0-0-0-0-9083/">Hive启动报错 Could not create ServerSocket on address 0.0.0.0/0.0.0.0:9083</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/16</span><a class="archive-post-title" href="/2019/10/16/解决httpd-Could-not-reliably-determine-the-server-s-fully-qualified-domain-name/">解决httpd: Could not reliably determine the server's fully qualified domain name</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/16</span><a class="archive-post-title" href="/2019/10/16/Centos7-bg与fg命令/">Centos7 bg与fg命令</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/14</span><a class="archive-post-title" href="/2019/10/14/大数据基础环境搭建/">大数据基础环境搭建</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/14</span><a class="archive-post-title" href="/2019/10/14/大数据环境准备-搭建数据仓库/">大数据环境准备-搭建数据仓库</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/14</span><a class="archive-post-title" href="/2019/10/14/Centos7配置yum源安装Mysql/">Centos7配置yum源安装Mysql</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/14</span><a class="archive-post-title" href="/2019/10/14/Centos7配置时间同步/">Centos7配置时间同步</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/10</span><a class="archive-post-title" href="/2019/10/10/Liunx-管理用户、组及权限/">Liunx 管理用户、组及权限</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/10</span><a class="archive-post-title" href="/2019/10/10/CTF-河北大赛AWD简单的代码审计/">CTF 河北大赛AWD简单的代码审计</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/10</span><a class="archive-post-title" href="/2019/10/10/Centos7安装Anaconda详细版/">Centos7安装Anaconda详细版</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/10</span><a class="archive-post-title" href="/2019/10/10/基于PySpark的电影推荐引擎/">基于PySpark的电影推荐引擎</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/10</span><a class="archive-post-title" href="/2019/10/10/PHP代码审计工具Rips的使用/">PHP代码审计工具Rips的使用</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/10</span><a class="archive-post-title" href="/2019/10/10/使用PySpark对招聘信息数据进行分析/">使用PySpark对招聘信息数据进行分析</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/06</span><a class="archive-post-title" href="/2019/10/06/kali20119最新更新源/">kali20119最新更新源</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/06</span><a class="archive-post-title" href="/2019/10/06/payload、shellcode、exp、poc区分方法/">payload、shellcode、exp、poc区分方法</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/06</span><a class="archive-post-title" href="/2019/10/06/Liunx提权常用命令/">Liunx提权常用命令</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/06</span><a class="archive-post-title" href="/2019/10/06/思科模拟器-使用IOS配置启用ospf路由/">思科模拟器 使用IOS配置启用ospf路由</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/06</span><a class="archive-post-title" href="/2019/10/06/Kali-apt-get报E-无法打开锁文件-var-lib-dpkg-lock-frontend-open-2-没有那个文件或目录/">Kali apt-get报E: 无法打开锁文件 /var/lib/dpkg/lock-frontend - open (2: 没有那个文件或目录)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/06</span><a class="archive-post-title" href="/2019/10/06/Kali-apt报错E-无法获得锁-var-cache-apt-archives-lock-open-11-资源暂时不可用/">Kali apt报错E: 无法获得锁 /var/cache/apt/archives/lock - open (11: 资源暂时不可用)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/06</span><a class="archive-post-title" href="/2019/10/06/MobaXterm汉化以及解决中文乱码问题/">MobaXterm汉化以及解决中文乱码问题</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/03</span><a class="archive-post-title" href="/2019/10/03/centos7-使用vi编辑器配置网络环境/">centos7 使用vi编辑器配置网络环境</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/03</span><a class="archive-post-title" href="/2019/10/03/yum更新报错-您可以尝试添加-skip-broken-选项来解决该问题/">yum更新报错 您可以尝试添加 --skip-broken 选项来解决该问题</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/03</span><a class="archive-post-title" href="/2019/10/03/Centos7-图形化安装-分区-网络设置/">Centos7 图形化安装,分区,网络设置</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/03</span><a class="archive-post-title" href="/2019/10/03/centos7-挂载使用外部存储系统/">centos7 挂载使用外部存储系统</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/03</span><a class="archive-post-title" href="/2019/10/03/centos7-使用linux命令管理目录和文件/">centos7 使用linux命令管理目录和文件</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/02</span><a class="archive-post-title" href="/2019/10/02/Liunx-curl命令详解/">Liunx curl命令详解</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/02</span><a class="archive-post-title" href="/2019/10/02/Python-爬取Boos直聘/">Python 爬取Boos直聘</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/02</span><a class="archive-post-title" href="/2019/10/02/Nmap工具命令详解/">Nmap工具命令详解</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/02</span><a class="archive-post-title" href="/2019/10/02/CTF隐写总结/">CTF隐写总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/02</span><a class="archive-post-title" href="/2019/10/02/Linux-crontab命令详解/">Linux crontab命令详解</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/02</span><a class="archive-post-title" href="/2019/10/02/Linux下查看用户列表/">Linux下查看用户列表</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/Flume学习笔记/">Flume学习笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/centos7-访问php-该网页无法正常运作-目前无法处理此请求/">centos7 访问php 该网页无法正常运作 目前无法处理此请求</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/python-字典列表相互转换与排序/">python 字典列表相互转换与排序</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/在Ubuntu的Anaconda环境下创建深度学习环境/">在Ubuntu的Anaconda环境下创建深度学习环境</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/Hive学习笔记/">Hive学习笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/Hive报错记录/">Hive报错记录</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/Spark-2-4-2的环境搭建/">Spark 2.4.2的环境搭建</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/分布式消息系统Kafka/">分布式消息系统Kafka</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/ZooKeeper学习笔记/">ZooKeeper学习笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/Hive2-3-0的环境搭建/">Hive2.3.0的环境搭建</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/基于Facenet与MTCNN的人脸识别/">基于Facenet与MTCNN的人脸识别</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/python-读写csv数据/">python 读写csv数据</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/Flume多source，多sink组合框架搭建/">Flume多source，多sink组合框架搭建</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/修改Compare-py报错时的解决方案/">修改Compare.py报错时的解决方案</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/Hive-beeline-Hiveserver2/">Hive beeline Hiveserver2</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/Flume传输数据给Kafka/">Flume传输数据给Kafka</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/Zookeeper环境搭建/">Zookeeper环境搭建</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/VMware-Workstation-14运行虚拟机黑屏时的解决方案/">VMware Workstation 14运行虚拟机黑屏时的解决方案</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/Sqoop学习笔记/">Sqoop学习笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/Esxi-centos7搭建NAT和DHCP服务器/">Esxi centos7搭建NAT和DHCP服务器</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/06</span><a class="archive-post-title" href="/2019/09/06/Liunx中etc下的passwd与shadow文件详解/">Liunx中etc下的passwd与shadow文件详解</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/05</span><a class="archive-post-title" href="/2019/09/05/tracert命令详解/">tracert命令详解</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/win10下用IDEA-Hadoop运行时的环境搭建/">win10下用IDEA+Hadoop运行时的环境搭建</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/Windows下的MapReduce编程实现/">Windows下的MapReduce编程实现</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/JobTracker和TaskTracker/">JobTracker和TaskTracker</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/在Centos 7下安装PHP 7/">在Centos 7下安装PHP 7</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/解决vmware（vsphere）部署linux系统模板后无法联网问题/">解决vmware（vsphere）部署linux系统模板后无法联网问题</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/HDFS文件接口/">HDFS文件接口</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/CentOS7关闭SELinux/">CentOS7关闭SELinux</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/20</span><a class="archive-post-title" href="/2019/08/20/Mysql（双主）主主架构配置/">Mysql（双主）主主架构配置</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/20</span><a class="archive-post-title" href="/2019/08/20/Linux下进程kill掉的N种方法/">Linux下进程kill掉的N种方法</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/20</span><a class="archive-post-title" href="/2019/08/20/Centos7-防火墙关闭与nginx无法访问/">Centos7 防火墙关闭与nginx无法访问</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/20</span><a class="archive-post-title" href="/2019/08/20/keepalived+nginx+apache+mysql实现高可用、负载均衡的网站(上)/">keepalived+nginx+apache+mysql实现高可用、负载均衡的网站(上)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/20</span><a class="archive-post-title" href="/2019/08/20/Centos7-安装-php-和-php-fpm/">Centos7 安装 php 和 php-fpm</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/20</span><a class="archive-post-title" href="/2019/08/20/keepalived-nginx-apache-mysql实现高可用、负载均衡的网站-下/">keepalived+nginx+apache+mysql实现高可用、负载均衡的网站(下)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/17</span><a class="archive-post-title" href="/2019/08/17/本地安装maven库与IDEA安装本地maven库/">本地安装maven库与IDEA安装本地maven库</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/17</span><a class="archive-post-title" href="/2019/08/17/IDEA使用Git将项目上传到Github/">IDEA使用Git将项目上传到Github</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/13</span><a class="archive-post-title" href="/2019/08/13/初识Spark/">初识Spark</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/13</span><a class="archive-post-title" href="/2019/08/13/Java中“-”与equeals的区别/">Java中“==”与equeals的区别</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/10</span><a class="archive-post-title" href="/2019/08/10/Java编程思想学习笔记/">Java编程思想学习笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/10</span><a class="archive-post-title" href="/2019/08/10/Java编程思想学习笔记-二/">Java编程思想学习笔记(二)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/09</span><a class="archive-post-title" href="/2019/08/09/Hadoop2-8-0的环境搭建/">Hadoop2.8.0的环境搭建</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/08</span><a class="archive-post-title" href="/2019/08/08/初识Scala/">初识Scala</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/08</span><a class="archive-post-title" href="/2019/08/08/Liunx中tar命令的使用/">Liunx中tar命令的使用</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/08</span><a class="archive-post-title" href="/2019/08/08/Scala的安装/">Scala的安装</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/02</span><a class="archive-post-title" href="/2019/08/02/什么是环境变量/">什么是环境变量</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/02</span><a class="archive-post-title" href="/2019/08/02/Java变量类型/">Java变量类型</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/31</span><a class="archive-post-title" href="/2019/07/31/Centos7下的JDK安装/">Centos7下的JDK安装</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/30</span><a class="archive-post-title" href="/2019/07/30/Centos7下NAT设置静态ip/">Centos7下NAT设置静态ip</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/17</span><a class="archive-post-title" href="/2019/07/17/Github学习笔记/">Github学习笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/21</span><a class="archive-post-title" href="/2019/05/21/hexo搭建个人博客（二）/">hexo搭建个人博客（二）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/20</span><a class="archive-post-title" href="/2019/05/20/hexo搭建个人博客（一）/">hexo搭建个人博客（一）</a>
+        </li>
+    
+    </ul></div>
+  </div>
+        <div class="sidebar-panel-tags">
+    <div class="sidebar-tags-name">
+    
+        <span class="sidebar-tag-name" data-tags="CTF"><span class="iconfont-archer">&#xe606;</span>CTF</span>
+    
+        <span class="sidebar-tag-name" data-tags="Liunx"><span class="iconfont-archer">&#xe606;</span>Liunx</span>
+    
+        <span class="sidebar-tag-name" data-tags="高可用负载均衡"><span class="iconfont-archer">&#xe606;</span>高可用负载均衡</span>
+    
+        <span class="sidebar-tag-name" data-tags="Java"><span class="iconfont-archer">&#xe606;</span>Java</span>
+    
+        <span class="sidebar-tag-name" data-tags="Hadoop"><span class="iconfont-archer">&#xe606;</span>Hadoop</span>
+    
+        <span class="sidebar-tag-name" data-tags="Esxi"><span class="iconfont-archer">&#xe606;</span>Esxi</span>
+    
+        <span class="sidebar-tag-name" data-tags="Flume"><span class="iconfont-archer">&#xe606;</span>Flume</span>
+    
+        <span class="sidebar-tag-name" data-tags="Kafka"><span class="iconfont-archer">&#xe606;</span>Kafka</span>
+    
+        <span class="sidebar-tag-name" data-tags="GitHub"><span class="iconfont-archer">&#xe606;</span>GitHub</span>
+    
+        <span class="sidebar-tag-name" data-tags="Hive"><span class="iconfont-archer">&#xe606;</span>Hive</span>
+    
+        <span class="sidebar-tag-name" data-tags="Git"><span class="iconfont-archer">&#xe606;</span>Git</span>
+    
+        <span class="sidebar-tag-name" data-tags="Kali"><span class="iconfont-archer">&#xe606;</span>Kali</span>
+    
+        <span class="sidebar-tag-name" data-tags="Scala"><span class="iconfont-archer">&#xe606;</span>Scala</span>
+    
+        <span class="sidebar-tag-name" data-tags="Sqoop"><span class="iconfont-archer">&#xe606;</span>Sqoop</span>
+    
+        <span class="sidebar-tag-name" data-tags="Spark"><span class="iconfont-archer">&#xe606;</span>Spark</span>
+    
+        <span class="sidebar-tag-name" data-tags="VMware"><span class="iconfont-archer">&#xe606;</span>VMware</span>
+    
+        <span class="sidebar-tag-name" data-tags="Zookeeper"><span class="iconfont-archer">&#xe606;</span>Zookeeper</span>
+    
+        <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
+    
+        <span class="sidebar-tag-name" data-tags="hexo"><span class="iconfont-archer">&#xe606;</span>hexo</span>
+    
+        <span class="sidebar-tag-name" data-tags="安全"><span class="iconfont-archer">&#xe606;</span>安全</span>
+    
+        <span class="sidebar-tag-name" data-tags="Python"><span class="iconfont-archer">&#xe606;</span>Python</span>
+    
+        <span class="sidebar-tag-name" data-tags="PySpark"><span class="iconfont-archer">&#xe606;</span>PySpark</span>
+    
+        <span class="sidebar-tag-name" data-tags="机器学习"><span class="iconfont-archer">&#xe606;</span>机器学习</span>
+    
+        <span class="sidebar-tag-name" data-tags="网络"><span class="iconfont-archer">&#xe606;</span>网络</span>
+    
+        <span class="sidebar-tag-name" data-tags="Maven"><span class="iconfont-archer">&#xe606;</span>Maven</span>
+    
+        <span class="sidebar-tag-name" data-tags="Vmware"><span class="iconfont-archer">&#xe606;</span>Vmware</span>
+    
+        <span class="sidebar-tag-name" data-tags="数据采集"><span class="iconfont-archer">&#xe606;</span>数据采集</span>
+    
+        <span class="sidebar-tag-name" data-tags="AWD"><span class="iconfont-archer">&#xe606;</span>AWD</span>
+    
+        <span class="sidebar-tag-name" data-tags="ZooKeeper"><span class="iconfont-archer">&#xe606;</span>ZooKeeper</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
+    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+    缺失模块。<br>
+    1、请确保node版本大于6.2<br>
+    2、在博客根目录（注意不是archer根目录）执行以下命令：<br>
+    <span style="color: #f75357; font-size: 1rem; line-height: 2rem;">npm i hexo-generator-json-content --save</span><br>
+    3、在根目录_config.yml里添加配置：
+    <pre style="color: #787878; font-size: 0.6rem;">
+jsonContent:
+  meta: false
+  pages: false
+  posts:
+    title: true
+    date: true
+    path: true
+    text: false
+    raw: false
+    content: false
+    slug: false
+    updated: false
+    comments: false
+    link: false
+    permalink: false
+    excerpt: false
+    categories: true
+    tags: true</pre>
+    </div> 
+    <div class="sidebar-tags-list"></div>
+</div>
+        <div class="sidebar-panel-categories">
+    <div class="sidebar-categories-name">
+    
+        <span class="sidebar-category-name" data-categories="CTF"><span class="iconfont-archer">&#xe60a;</span>CTF</span>
+    
+        <span class="sidebar-category-name" data-categories="Liunx"><span class="iconfont-archer">&#xe60a;</span>Liunx</span>
+    
+        <span class="sidebar-category-name" data-categories="Hadoop"><span class="iconfont-archer">&#xe60a;</span>Hadoop</span>
+    
+        <span class="sidebar-category-name" data-categories="GitHub"><span class="iconfont-archer">&#xe60a;</span>GitHub</span>
+    
+        <span class="sidebar-category-name" data-categories="Java"><span class="iconfont-archer">&#xe60a;</span>Java</span>
+    
+        <span class="sidebar-category-name" data-categories="其他"><span class="iconfont-archer">&#xe60a;</span>其他</span>
+    
+        <span class="sidebar-category-name" data-categories="高可用负载均衡"><span class="iconfont-archer">&#xe60a;</span>高可用负载均衡</span>
+    
+        <span class="sidebar-category-name" data-categories="Scala"><span class="iconfont-archer">&#xe60a;</span>Scala</span>
+    
+        <span class="sidebar-category-name" data-categories="Spark"><span class="iconfont-archer">&#xe60a;</span>Spark</span>
+    
+        <span class="sidebar-category-name" data-categories="博客"><span class="iconfont-archer">&#xe60a;</span>博客</span>
+    
+        <span class="sidebar-category-name" data-categories="Python"><span class="iconfont-archer">&#xe60a;</span>Python</span>
+    
+        <span class="sidebar-category-name" data-categories="网络"><span class="iconfont-archer">&#xe60a;</span>网络</span>
+    
+        <span class="sidebar-category-name" data-categories="VMware"><span class="iconfont-archer">&#xe60a;</span>VMware</span>
+    
+        <span class="sidebar-category-name" data-categories="机器学习"><span class="iconfont-archer">&#xe60a;</span>机器学习</span>
+    
+        <span class="sidebar-category-name" data-categories="Vmware"><span class="iconfont-archer">&#xe60a;</span>Vmware</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
+    <div class="sidebar-categories-list"></div>
+</div>
+    </div>
+</div> 
+    <script>
+    var siteMeta = {
+        root: "/",
+        author: "浩翰"
+    }
+</script>
+    <!-- CDN failover -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+        if (typeof window.$ === 'undefined')
+        {
+            console.warn('jquery load from jsdelivr failed, will load local script')
+            document.write('<script src="/lib/jquery.min.js">\x3C/script>')
+        }
+    </script>
+    <script src="/scripts/main.js"></script>
+    <!-- algolia -->
+    
+    <!-- busuanzi  -->
+    
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+    <!-- CNZZ  -->
+    
+    </div>
+    <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
+     
+    </body>
+</html>
+
+
