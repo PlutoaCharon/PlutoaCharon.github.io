@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://plutoacharon.github.io/"/>
-  <updated>2019-10-24T06:39:48.953Z</updated>
+  <updated>2019-11-04T09:54:07.725Z</updated>
   <id>https://plutoacharon.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>win10 Git修改打开时的路径与上传文件夹到GitHub</title>
+    <link href="https://plutoacharon.github.io/2019/11/04/win10-Git%E4%BF%AE%E6%94%B9%E6%89%93%E5%BC%80%E6%97%B6%E7%9A%84%E8%B7%AF%E5%BE%84%E4%B8%8E%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6%E5%A4%B9%E5%88%B0GitHub/"/>
+    <id>https://plutoacharon.github.io/2019/11/04/win10-Git修改打开时的路径与上传文件夹到GitHub/</id>
+    <published>2019-11-04T09:49:44.000Z</published>
+    <updated>2019-11-04T09:54:07.725Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="修改git快捷方式"><a href="#修改git快捷方式" class="headerlink" title="修改git快捷方式"></a>修改git快捷方式</h2><p>将Git快捷方式发送到桌面上,打开属性设置<br><img src="https://img-blog.csdnimg.cn/2019102821140853.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20191029171202330.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><h2 id="上传文件夹到GitHub"><a href="#上传文件夹到GitHub" class="headerlink" title="上传文件夹到GitHub"></a>上传文件夹到GitHub</h2><h3 id="配置免密"><a href="#配置免密" class="headerlink" title="配置免密"></a>配置免密</h3><p><code>ssh-keygen -t rsa</code><br><img src="https://img-blog.csdnimg.cn/20191029174217106.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20191029174146399.png" alt="在这里插入图片描述"></p><p>接下来，切换到个人github账号里，点击右上角用户头像下的小三角，找到setting，在右侧菜单栏中找到SSH and GPG keys，选择new SSH key，输入title，下面key的内容就是本机ssh key 公钥，直接将id_rsa.pub中的内容粘贴过来就可以，然后点击下面的add SSH key即可完成。<br><img src="https://img-blog.csdnimg.cn/20191029193345318.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><h3 id="上传文件"><a href="#上传文件" class="headerlink" title="上传文件"></a>上传文件</h3><ol><li><p>进入要上传的文件夹</p></li><li><p>执行指令进行初始化，会在原始文件夹中生成一个隐藏的文件夹.git：<br><code>git init</code></p></li><li><p>执行指令将文件添加到本地仓库<br><code>git add .</code>  //添加当前文件夹下的所有文件</p></li><li><p>输入本次的提交说明，准备提交暂存区中的更改的已跟踪文件，单引号内为说明内容：<br><code>git commit -m &quot; &quot;</code><br><img src="https://img-blog.csdnimg.cn/20191029194129759.png" alt="在这里插入图片描述"></p><h3 id="关联github仓库"><a href="#关联github仓库" class="headerlink" title="关联github仓库"></a>关联github仓库</h3></li></ol><h4 id="新建仓库"><a href="#新建仓库" class="headerlink" title="新建仓库:"></a>新建仓库:</h4><p>这里我已经创建好了,就不再进行创建了<br>具体的创建仓库可以参考我的<a href="https://plutoacharon.github.io/2019/07/17/Github%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">GitHub学习笔记</a>这篇文章<br><img src="https://img-blog.csdnimg.cn/20191029194331232.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><h4 id="执行命令"><a href="#执行命令" class="headerlink" title="执行命令"></a>执行命令</h4><p><code>git remote add origin https://github.com/仓库地址</code><br><img src="https://img-blog.csdnimg.cn/20191029194617782.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><blockquote><p>注意：</p></blockquote><p>如果出现错误：fatal: remote origin already exists，则执行以下语句：<br> <code>git remote rm origin</code><br>再重新执行：<br><code>git remote add origin https://github.com/XX</code></p><p>然后执行命令：</p><p><code>git push origin master</code></p><p>如果出现错误failed to push som refs to…….，则执行以下语句，先把远程服务器github上面的文件拉先来，再push 上去</p><p><code>git pull origin master</code><br><img src="https://img-blog.csdnimg.cn/20191029200416294.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;修改git快捷方式&quot;&gt;&lt;a href=&quot;#修改git快捷方式&quot; class=&quot;headerlink&quot; title=&quot;修改git快捷方式&quot;&gt;&lt;/a&gt;修改git快捷方式&lt;/h2&gt;&lt;p&gt;将Git快捷方式发送到桌面上,打开属性设置&lt;br&gt;&lt;img src=&quot;https:/
+      
+    
+    </summary>
+    
+      <category term="GitHub" scheme="https://plutoacharon.github.io/categories/GitHub/"/>
+    
+    
+      <category term="Git" scheme="https://plutoacharon.github.io/tags/Git/"/>
+    
+  </entry>
   
   <entry>
     <title>vsphere报错: 连接到虚拟机控制台失败并显示错误：VMRC 控制台的连接已断开。正在尝试重新连接</title>
@@ -502,34 +527,6 @@
     
     
       <category term="网络" scheme="https://plutoacharon.github.io/tags/%E7%BD%91%E7%BB%9C/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>payload、shellcode、exp、poc区分方法</title>
-    <link href="https://plutoacharon.github.io/2019/10/06/payload%E3%80%81shellcode%E3%80%81exp%E3%80%81poc%E5%8C%BA%E5%88%86%E6%96%B9%E6%B3%95/"/>
-    <id>https://plutoacharon.github.io/2019/10/06/payload、shellcode、exp、poc区分方法/</id>
-    <published>2019-10-06T13:02:58.000Z</published>
-    <updated>2019-10-06T13:03:48.193Z</updated>
-    
-    <content type="html"><![CDATA[<p>在学习网络安全的过程中经常会听到几个名词,例如</p><p><code>payload、shellcode、exp、poc</code>等</p><p>碰见不懂的东西就要去搞懂,于是动手查了查资料</p><h2 id="Payload是什么？"><a href="#Payload是什么？" class="headerlink" title="Payload是什么？"></a>Payload是什么？</h2><p>是包含在你用于一次漏洞利用（<strong>exploit</strong>）中的<strong>ShellCode</strong>中的主要功能代码</p><p>对于一个漏洞，他可以被利用（<strong>exploit</strong>），利用有一个完整的解决方案你可以把这个看作是名词的（<strong>exploit</strong>），然后利用必然有目的，而你的目的就是通过<strong>Payload</strong>来实现的，比如开3389，创建用户，修改密码等等等。</p><p><strong>Payload</strong>是可以被模块化的，一个<strong>Payload</strong>可以稍作修改就用于各种漏洞，同时，对于一个漏洞，他的利用方式必然要涉及到<strong>ShellCode</strong>，因为<strong>Payload</strong>是包含在<strong>ShellCode</strong>中的，<strong>ShellCode</strong>是真正的被输入到存在漏洞的程序中的，并且<strong>ShellCode</strong>负责把程序的流程最终转移到你的<strong>Payload代码</strong>中。所以对于一个漏洞来说，<strong>ShellCode</strong>就是一个用于某个漏洞的二进制代码框架，有了这个框架你可以在这个<strong>ShellCode</strong>中包含你需要的<strong>Payload</strong>来做一些事情。</p><p>然后你整理这个过程，把<strong>Crash</strong>的原因和导致的结果分析写出文章，然后附上你上面写的<strong>ShellCode</strong>，这就是一个<strong>POC</strong>（Proof of Concept概念证明）。</p><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>payload:翻译过来是有效载荷</p><p>通常在传输数据时，为了使数据传输更可靠，要把原始数据分批传输，并且在每一批数据的头和尾都加上一定的辅助信息，比如数据量的大小、校验位等，这样就相当于给已经分批的原始数据加一些外套，这些外套起标示作用，使得原始数据不易丢失，一批数据加上“外套”就形成了传输通道的基本传输单元，叫做数据帧或数据包，而其中的原始数据就是payload</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;在学习网络安全的过程中经常会听到几个名词,例如&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;payload、shellcode、exp、poc&lt;/code&gt;等&lt;/p&gt;
-&lt;p&gt;碰见不懂的东西就要去搞懂,于是动手查了查资料&lt;/p&gt;
-&lt;h2 id=&quot;Payload是什么？&quot;&gt;&lt;a href=&quot;#P
-      
-    
-    </summary>
-    
-      <category term="CTF" scheme="https://plutoacharon.github.io/categories/CTF/"/>
-    
-    
-      <category term="安全" scheme="https://plutoacharon.github.io/tags/%E5%AE%89%E5%85%A8/"/>
     
   </entry>
   
