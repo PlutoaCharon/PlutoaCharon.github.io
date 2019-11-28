@@ -346,23 +346,25 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2019/11/04/hbase-shell报错-zookeeper-RecoverableZooKeeper-ZooKeeper-exists-failed-after-4-attempts/">
+        <a class="abstract-title" href="/2019/11/28/Spark-Shell操作/">
             
-                <span>hbase shell报错:zookeeper.RecoverableZooKeeper: ZooKeeper exists failed after 4 attempts</span>
+                <span>Spark Shell操作</span>
         </a>
         <div class="abstract-content">
-            1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253542019-11-04 16:03:02,954 ERROR [main] zookeeper.RecoverableZooKeeper: ZooKeeper exists failed after 4 attempts2019-11-04 16:03:02,956 WARN  [main] zookeeper.ZKUtil: hconnection-0x7412ed6b0x0, quorum=...
+            Spark 简介Spark shell是一个特别适合快速开发Spark程序的工具。即使你对Scala不熟悉，仍然可以使用这个工具快速应用Scala操作Spark。
+Spark shell使得用户可以和Spark集群交互，提交查询，这便于调试，也便于初学者使用Spark。
+Spark shell是非常方便的，因为它很大程度上基于Scala REPL(Scala交互式shell，即Scala解释器)，并继承了Scala REPL(读取-求值-打印-循环)(Read-Evaluate-Print-Loop)的所有功能。运行spark-shell，则会运行spark-submit，spark-s...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/11/04</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/11/28</span>
             </div>
             <!-- tags  -->
             
             <div class="abstract-tags">
     
-        <a class="post-tag" href="javascript:void(0);" data-tags="Hadoop">Hadoop</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags="Spark">Spark</a>
     
 </div>
             
@@ -375,38 +377,24 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2019/11/04/Docker数据管理-实现将主机目录挂载到容器中并共享/">
+        <a class="abstract-title" href="/2019/11/28/使用etree与xpath爬取Discuz论坛/">
             
-                <span>Docker数据管理:实现将主机目录挂载到容器中并共享</span>
+                <span>使用etree与xpath爬取Discuz论坛</span>
         </a>
         <div class="abstract-content">
-            Docker 数据管理Docker    内部以及容器之间管理数据，在容器中管理数据主要有两种方式：
-
-数据卷（Data    volumes）
-数据卷容器（Data    volume    containers）
-
-数据卷数据卷是一个可供一个或多个容器使用的特殊目录，它绕过    UFS，可以提供很多有用的特性：
-
-数据卷可以在容器之间共享和重用
-对数据卷的修改会立马生效
-对数据卷的更新，不会影响镜像
-卷会一直存在，直到没有容器使用
-
-
-数据卷的使用类似于liunx下的mount操作
-
-创建一个数据卷在用        docker    run        命令的时候，使用   ...
+            引入模块在pycharm中下载lxml库通过from lxml import etree引入模块
+测试12345678import requestsfrom lxml import etreeurl = "https://www.discuz.net/forum-developer-1.html"text = requests.get(url).texthtml = etree.HTML(text)context = etree.tostring(html).decode()print(html.xpath('//div[@id="threadlist"]/div[2]/form/tab...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/11/04</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/11/28</span>
             </div>
             <!-- tags  -->
             
             <div class="abstract-tags">
     
-        <a class="post-tag" href="javascript:void(0);" data-tags="Docker">Docker</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags="Python">Python</a>
     
 </div>
             
@@ -419,25 +407,31 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2019/11/04/Centos7-Docker基本命令详解/">
+        <a class="abstract-title" href="/2019/11/28/WindowsServer2016-Anaconda下TensorFlow-GPU环境搭建详细教程（包含CUDA-cuDNN安装过程）/">
             
-                <span>Centos7 Docker基本命令详解</span>
+                <span>WindowsServer2016 Anaconda下TensorFlow-GPU环境搭建详细教程（包含CUDA+cuDNN安装过程）</span>
         </a>
         <div class="abstract-content">
-            Docker安装Ubuntu    14.04    版本系统中已经自带了    Docker    包，可以直接安装。1234$	sudo	apt-get	update$	sudo	apt-get	install	-y	docker.io$	sudo	ln	-sf	/usr/bin/docker.io	/usr/local/bin/docker$	sudo	sed	-i	&apos;$acomplete	-F	_docker	docker&apos;	/etc/bash_completion.d/docker.io
-这里咱们重点讲述Centos7的Docker安装
-一、检查系统内核Do...
+            记一次为GPU服务器搭建机器学习平台的操作
+安装Anaconda去官网安装Anaconda
+添加环境变量以后,创建TensorFlow环境将以下三个路径加入，注意这里要换成你自己的安装路径。123C:\Users\xxx\anaconda3C:\Users\xxx\anaconda3\ScriptsC:\Users\xxx\anaconda3\Library\bin
+
+安装gpu版本的TensorFlow激活TensorFlow环境activate tensorflow
+
+注意: 如果出现报错先运行conda init初始化,关闭cmd重新打开即可运行
+
+pip install tens...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/11/04</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/11/28</span>
             </div>
             <!-- tags  -->
             
             <div class="abstract-tags">
     
-        <a class="post-tag" href="javascript:void(0);" data-tags="Docker">Docker</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags="机器学习">机器学习</a>
     
 </div>
             
@@ -450,30 +444,20 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2019/11/04/Docker入门详解笔记/">
+        <a class="abstract-title" href="/2019/11/28/WindowsServer-2016-最新激活方法/">
             
-                <span>Docker入门详解笔记</span>
+                <span>WindowsServer 2016 最新激活方法</span>
         </a>
         <div class="abstract-content">
-            什么是DockerDocker是一个开源项目，诞生于    2013年初，最初是dotCloud公司内部的一个业余项目。它基于Google公司推出的Go语言实现。
-Docker项目的目标是实现轻量级的操作系统虚拟化解决方案。Docker的基础是Linux容器（LXC）等技术
-在LXC的基础上Docker进行了进一步的封装，让用户不需要去关心容器的管理，使得操作更为简便。用户操作Docker的容器就像操作一个快速轻量级的虚拟机一样简单
-特点容器是在操作系统层面上实现虚拟化，直接复用本地主机的操作系统，而传统方式则是在硬件层面实现。
-
-为什么要使用Docker首先，Docker容器的启动可以...
+            命令行操作用管理员身份打开Powershall,输入:123slmgr.vbs -ipk W269N-WFGWX-YVC9B-4J6C9-T83GXslmgr.vbs -skms kms.srv.crsoo.comslmgr.vbs -ato
+输入要激活的系统秘钥12Windows Server 2016| Operating system edition | KMS Client Setup Key | | —————————————– | —————————– | | Windows Server 2016 Datacenter | CB7KF-BWN84-R7R2Y-793K2-8...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/11/04</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/11/28</span>
             </div>
             <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Docker">Docker</a>
-    
-</div>
             
         </div>
     </article>
@@ -484,120 +468,20 @@ Docker项目的目标是实现轻量级的操作系统虚拟化解决方案。Do
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2019/11/04/win10-Git修改打开时的路径与上传文件夹到GitHub/">
+        <a class="abstract-title" href="/2019/11/28/Ubuntu-18-04-2-LTS网络设置/">
             
-                <span>win10 Git修改打开时的路径与上传文件夹到GitHub</span>
+                <span>Ubuntu 18.04.2 LTS网络设置</span>
         </a>
         <div class="abstract-content">
-            修改git快捷方式将Git快捷方式发送到桌面上,打开属性设置
-上传文件夹到GitHub配置免密ssh-keygen -t rsa
-接下来，切换到个人github账号里，点击右上角用户头像下的小三角，找到setting，在右侧菜单栏中找到SSH and GPG keys，选择new SSH key，输入title，下面key的内容就是本机ssh key 公钥，直接将id_rsa.pub中的内容粘贴过来就可以，然后点击下面的add SSH key即可完成。
-上传文件
-进入要上传的文件夹
-
-执行指令进行初始化，会在原始文件夹中生成一个隐藏的文件夹.git：git init
-
-执行指令将文件添加...
+            与Ubuntu16的对比ubuntu16.04TLS的网络配置文件为/etc/network/interfaces，我们通过在该文件中写入配置对网卡进行IP设置。并且然后通过网卡的重启来加载该配置
+ubuntu18.04TLS中，其引入了一个新的工具netplan来进行网络设备的管理，对其进行设置。
+netplan的配置文件位于/etc/netplan文件夹下面
+对Ubuntu 18.04的网络配置1234cuda@cuda1:~$ cd /etc/netplan/cuda@cuda1:/etc/netplan$ ls50-cloud-init.yamlcuda@cuda1:/etc/n...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/11/04</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Git">Git</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/10/24/vsphere报错-连接到虚拟机控制台失败并显示错误：VMRC-控制台的连接已断开。正在尝试重新连接/">
-            
-                <span>vsphere报错: 连接到虚拟机控制台失败并显示错误：VMRC 控制台的连接已断开。正在尝试重新连接</span>
-        </a>
-        <div class="abstract-content">
-            解决:
-从 Windows 任务管理器停止 vmware-vmrc.exe *32 服务
-
-卸载然后重新安装 vSphere Client
-
-重启电脑
-
-
-
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/10/24</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="VMware">VMware</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/10/24/Hive报错-javax-jdo-JDOFatalDataStoreException-Unable-to-open-a-test-connection-to-the-given-database/">
-            
-                <span>Hive报错:javax.jdo.JDOFatalDataStoreException: Unable to open a test connection to the given database.</span>
-        </a>
-        <div class="abstract-content">
-            12345678910111213141516171819202122232425262728293031Starting Hive Metastore ServerSLF4J: Class path contains multiple SLF4J bindings.SLF4J: Found binding in [jar:file:/usr/hive/apache-hive-2.1.1-bin/lib/log4j-slf4j-impl-2.4.1.jar!/org/slf4j/impl/StaticLoggerBinder.class]SLF4J: Found binding in [...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/10/24</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Hive">Hive</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/10/24/源码安装httpd报错-checking-for-APR-configure-error-the-with-apr-parameter-is-incorrect/">
-            
-                <span>源码安装httpd报错: checking for APR... configure: error: the --with-apr parameter is incorrect.</span>
-        </a>
-        <div class="abstract-content">
-            使用源码安装httpd时,执行命令./configure --prefix=/usr/local/apache12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758configure: creating ./config.statusconfig.status: creating Makefileconfig.status: creating include/apr.hconfig.status: creating build/a...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/10/24</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/11/28</span>
             </div>
             <!-- tags  -->
             
@@ -616,17 +500,86 @@ Docker项目的目标是实现轻量级的操作系统虚拟化解决方案。Do
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2019/10/24/Hive启动报错-Could-not-create-ServerSocket-on-address-0-0-0-0-0-0-0-0-9083/">
+        <a class="abstract-title" href="/2019/11/28/华为服务器H22H-03的Windows-Server2012安装/">
             
-                <span>Hive启动报错 Could not create ServerSocket on address 0.0.0.0/0.0.0.0:9083</span>
+                <span>华为服务器H22H-03的Windows Server2012安装</span>
         </a>
         <div class="abstract-content">
-            123456789101112Exception in thread &quot;main&quot; org.apache.thrift.transport.TTransportException: Could not create ServerSocket on address 0.0.0.0/0.0.0.0:9083. at org.apache.thrift.transport.TServerSocket.&lt;init&gt;(TServerSocket.java:93) at org.apache.thrift.transport.TServerSocket.&lt;ini...
+            前期准备镜像可以从MSDN中下载
+使用软碟通制作一个Windows Server2012的U盘启动器
+设置BIOS把USB设置第一启动重启服务器,在启动页面的时候多按几次del键
+华为服务器默认密码Huawei12@#
+设置第一启动项为USB设备
+在“UEFI”或“Boot Device Priority”界面中选择“Others”并按“Enter”。
+通过“F5”、“F6”将USB设备调整到列表的第一行
+或者按’+’ -‘号将other选项调整到第一行
+保存重新启动
+
+
+安装WindowsServer如果安装windows server 2008r2/2012r2时提示：无法在此驱动器...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/10/24</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/11/28</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2019/11/28/Hbase-Java-API接口/">
+            
+                <span>Hbase Java API接口</span>
+        </a>
+        <div class="abstract-content">
+            实验环境Hadoop2.8.0
+Hbase-1.4.9
+Centos7.2
+Java代码123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111package pers.haohan.bigdata....
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/11/28</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Hbase">Hbase</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2019/11/28/Hive-java-API接口/">
+            
+                <span>Hive java API接口</span>
+        </a>
+        <div class="abstract-content">
+            实验环境Hadoop2.8.0
+Hbase-1.4.9
+Centos7.2
+pom.xml123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;project xmlns="http://maven.apache.org/POM/4.0.0"         xmlns:xsi="http://www.w3.org/...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/11/28</span>
             </div>
             <!-- tags  -->
             
@@ -645,32 +598,62 @@ Docker项目的目标是实现轻量级的操作系统虚拟化解决方案。Do
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2019/10/24/ctf线下AWD攻防赛学习笔记/">
+        <a class="abstract-title" href="/2019/11/28/Hive基本命令操作/">
             
-                <span>ctf线下AWD攻防赛学习笔记</span>
+                <span>Hive基本命令操作</span>
         </a>
         <div class="abstract-content">
-            ctf线下AWD攻防赛学习笔记CTF线下攻防赛主要以攻防模式（Attack &amp; Defense）来呈现。一般在这种模式下，一支参赛队伍有三名队员，所有的参赛队伍都会有同样的初始环境，包含若干台服务器。参赛队伍挖掘漏洞，通过攻击对手的服务器获取Flag来得分，以修补自身服务器的漏洞防止扣分。
-在这种赛制中，不仅仅是比参赛队员的智力和技术，同时也比团队之间的分工配合与合作。
-
-题目类型
-语言常见漏洞题目
-
-PHP语言居多
-Python 模板注入(SSTI)：直接利用漏洞执行命令获得Flag、绕过关键字限制。
-Nodejs 任意文件读取：直接读取Flag。
-PHP 各类漏洞：文件包含、...
+            基本介绍Hive定义了一套自己的SQL，简称HQL，它与关系型数据库的SQL略有不同，但支持了绝大多数的语句如DDL、DML以及常见的聚合函数、连接查询、条件查询。
+DDL操作（数据定义语言）包括：Create、Alter、Show、Drop等。
+（1）create database- 创建新数据库
+（2）alter database - 修改数据库
+（3）drop database - 删除数据库
+（4）create table - 创建新表
+（5）alter table - 变更（改变）数据库表
+（6）drop table - 删除表
+（7）create index - 创建索引（搜...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/10/24</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/11/28</span>
             </div>
             <!-- tags  -->
             
             <div class="abstract-tags">
     
-        <a class="post-tag" href="javascript:void(0);" data-tags="AWD">AWD</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags="Hive">Hive</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2019/11/28/Docker实战-创建支持SSH服务的镜像-超详细/">
+            
+                <span>Docker实战 创建支持SSH服务的镜像(超详细)</span>
+        </a>
+        <div class="abstract-content">
+            基于docker commit命令创建Docker提供了docker commit命令，支持用户提交自己对定制容器的修改，并生成新的镜像。
+命令格式为：docker commit CONTAINER [REPOSITORY[:TAG]]
+准备工作利用ubuntu:14.04镜像创建一个容器：12345678[root@node1 ~]# docker imagesREPOSITORY              TAG                 IMAGE ID            CREATED             SIZEdocker.io/ubuntu        la...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/11/28</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Docker">Docker</a>
     
 </div>
             
@@ -680,7 +663,7 @@ PHP 各类漏洞：文件包含、...
     <!-- paginator  -->
     
     <nav class="page-nav">
-        <span class="page-number current">1</span><a class="page-number" href="/archives/2019/page/2/">2</a><a class="page-number" href="/archives/2019/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/archives/2019/page/10/">10</a><a class="extend next" rel="next" href="/archives/2019/page/2/">NEXT &#62;</a>
+        <span class="page-number current">1</span><a class="page-number" href="/archives/2019/page/2/">2</a><a class="page-number" href="/archives/2019/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/archives/2019/page/11/">11</a><a class="extend next" rel="next" href="/archives/2019/page/2/">NEXT &#62;</a>
     </nav>
     
 </main>
@@ -2622,9 +2605,67 @@ PHP 各类漏洞：文件包含、...
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 93
+        Total : 103
         </div>
         <!-- search  -->
         
@@ -2640,7 +2681,52 @@ PHP 各类漏洞：文件包含、...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">11/04</span><a class="archive-post-title" href="/2019/11/04/Docker数据管理-实现将主机目录挂载到容器中并共享/">Docker数据管理:实现将主机目录挂载到容器中并共享</a>
+            <span class="archive-post-date">11/28</span><a class="archive-post-title" href="/2019/11/28/Spark-Shell操作/">Spark Shell操作</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/28</span><a class="archive-post-title" href="/2019/11/28/WindowsServer2016-Anaconda下TensorFlow-GPU环境搭建详细教程（包含CUDA-cuDNN安装过程）/">WindowsServer2016 Anaconda下TensorFlow-GPU环境搭建详细教程（包含CUDA+cuDNN安装过程）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/28</span><a class="archive-post-title" href="/2019/11/28/Hbase-Java-API接口/">Hbase Java API接口</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/28</span><a class="archive-post-title" href="/2019/11/28/Hive-java-API接口/">Hive java API接口</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/28</span><a class="archive-post-title" href="/2019/11/28/Ubuntu-18-04-2-LTS网络设置/">Ubuntu 18.04.2 LTS网络设置</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/28</span><a class="archive-post-title" href="/2019/11/28/WindowsServer-2016-最新激活方法/">WindowsServer 2016 最新激活方法</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/28</span><a class="archive-post-title" href="/2019/11/28/华为服务器H22H-03的Windows-Server2012安装/">华为服务器H22H-03的Windows Server2012安装</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/28</span><a class="archive-post-title" href="/2019/11/28/Docker实战-创建支持SSH服务的镜像-超详细/">Docker实战 创建支持SSH服务的镜像(超详细)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/28</span><a class="archive-post-title" href="/2019/11/28/Hive基本命令操作/">Hive基本命令操作</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/28</span><a class="archive-post-title" href="/2019/11/28/使用etree与xpath爬取Discuz论坛/">使用etree与xpath爬取Discuz论坛</a>
         </li>
     
     
@@ -2650,7 +2736,7 @@ PHP 各类漏洞：文件包含、...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">11/04</span><a class="archive-post-title" href="/2019/11/04/Docker入门详解笔记/">Docker入门详解笔记</a>
+            <span class="archive-post-date">11/04</span><a class="archive-post-title" href="/2019/11/04/Docker数据管理-实现将主机目录挂载到容器中并共享/">Docker数据管理:实现将主机目录挂载到容器中并共享</a>
         </li>
     
     
@@ -2660,22 +2746,22 @@ PHP 各类漏洞：文件包含、...
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">11/04</span><a class="archive-post-title" href="/2019/11/04/Docker入门详解笔记/">Docker入门详解笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">11/04</span><a class="archive-post-title" href="/2019/11/04/win10-Git修改打开时的路径与上传文件夹到GitHub/">win10 Git修改打开时的路径与上传文件夹到GitHub</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/24</span><a class="archive-post-title" href="/2019/10/24/CTF线下AWD攻防步骤总结/">CTF线下AWD攻防步骤总结</a>
+            <span class="archive-post-date">10/24</span><a class="archive-post-title" href="/2019/10/24/Hive启动报错-Could-not-create-ServerSocket-on-address-0-0-0-0-0-0-0-0-9083/">Hive启动报错 Could not create ServerSocket on address 0.0.0.0/0.0.0.0:9083</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">10/24</span><a class="archive-post-title" href="/2019/10/24/源码安装httpd报错-checking-for-APR-configure-error-the-with-apr-parameter-is-incorrect/">源码安装httpd报错: checking for APR... configure: error: the --with-apr parameter is incorrect.</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">10/24</span><a class="archive-post-title" href="/2019/10/24/Hive启动报错-Could-not-create-ServerSocket-on-address-0-0-0-0-0-0-0-0-9083/">Hive启动报错 Could not create ServerSocket on address 0.0.0.0/0.0.0.0:9083</a>
         </li>
     
     
@@ -2686,6 +2772,11 @@ PHP 各类漏洞：文件包含、...
     
         <li class="archive-post-item">
             <span class="archive-post-date">10/24</span><a class="archive-post-title" href="/2019/10/24/vsphere报错-连接到虚拟机控制台失败并显示错误：VMRC-控制台的连接已断开。正在尝试重新连接/">vsphere报错: 连接到虚拟机控制台失败并显示错误：VMRC 控制台的连接已断开。正在尝试重新连接</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/24</span><a class="archive-post-title" href="/2019/10/24/CTF线下AWD攻防步骤总结/">CTF线下AWD攻防步骤总结</a>
         </li>
     
     
@@ -2705,7 +2796,7 @@ PHP 各类漏洞：文件包含、...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/14</span><a class="archive-post-title" href="/2019/10/14/Centos7配置时间同步/">Centos7配置时间同步</a>
+            <span class="archive-post-date">10/14</span><a class="archive-post-title" href="/2019/10/14/大数据环境准备-搭建数据仓库/">大数据环境准备-搭建数据仓库</a>
         </li>
     
     
@@ -2715,7 +2806,7 @@ PHP 各类漏洞：文件包含、...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/14</span><a class="archive-post-title" href="/2019/10/14/大数据环境准备-搭建数据仓库/">大数据环境准备-搭建数据仓库</a>
+            <span class="archive-post-date">10/14</span><a class="archive-post-title" href="/2019/10/14/Centos7配置时间同步/">Centos7配置时间同步</a>
         </li>
     
     
@@ -2725,17 +2816,7 @@ PHP 各类漏洞：文件包含、...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/10</span><a class="archive-post-title" href="/2019/10/10/Centos7安装Anaconda详细版/">Centos7安装Anaconda详细版</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">10/10</span><a class="archive-post-title" href="/2019/10/10/CTF-河北大赛AWD简单的代码审计/">CTF 河北大赛AWD简单的代码审计</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">10/10</span><a class="archive-post-title" href="/2019/10/10/PHP代码审计工具Rips的使用/">PHP代码审计工具Rips的使用</a>
         </li>
     
     
@@ -2745,27 +2826,22 @@ PHP 各类漏洞：文件包含、...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/10</span><a class="archive-post-title" href="/2019/10/10/使用PySpark对招聘信息数据进行分析/">使用PySpark对招聘信息数据进行分析</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">10/10</span><a class="archive-post-title" href="/2019/10/10/基于PySpark的电影推荐引擎/">基于PySpark的电影推荐引擎</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/06</span><a class="archive-post-title" href="/2019/10/06/思科模拟器-使用IOS配置启用ospf路由/">思科模拟器 使用IOS配置启用ospf路由</a>
+            <span class="archive-post-date">10/10</span><a class="archive-post-title" href="/2019/10/10/使用PySpark对招聘信息数据进行分析/">使用PySpark对招聘信息数据进行分析</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/06</span><a class="archive-post-title" href="/2019/10/06/Kali-apt-get报E-无法打开锁文件-var-lib-dpkg-lock-frontend-open-2-没有那个文件或目录/">Kali apt-get报E: 无法打开锁文件 /var/lib/dpkg/lock-frontend - open (2: 没有那个文件或目录)</a>
+            <span class="archive-post-date">10/10</span><a class="archive-post-title" href="/2019/10/10/PHP代码审计工具Rips的使用/">PHP代码审计工具Rips的使用</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/06</span><a class="archive-post-title" href="/2019/10/06/Kali-apt报错E-无法获得锁-var-cache-apt-archives-lock-open-11-资源暂时不可用/">Kali apt报错E: 无法获得锁 /var/cache/apt/archives/lock - open (11: 资源暂时不可用)</a>
+            <span class="archive-post-date">10/10</span><a class="archive-post-title" href="/2019/10/10/Centos7安装Anaconda详细版/">Centos7安装Anaconda详细版</a>
         </li>
     
     
@@ -2775,12 +2851,27 @@ PHP 各类漏洞：文件包含、...
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">10/06</span><a class="archive-post-title" href="/2019/10/06/kali20119最新更新源/">kali20119最新更新源</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">10/06</span><a class="archive-post-title" href="/2019/10/06/payload、shellcode、exp、poc区分方法/">payload、shellcode、exp、poc区分方法</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/06</span><a class="archive-post-title" href="/2019/10/06/kali20119最新更新源/">kali20119最新更新源</a>
+            <span class="archive-post-date">10/06</span><a class="archive-post-title" href="/2019/10/06/Kali-apt-get报E-无法打开锁文件-var-lib-dpkg-lock-frontend-open-2-没有那个文件或目录/">Kali apt-get报E: 无法打开锁文件 /var/lib/dpkg/lock-frontend - open (2: 没有那个文件或目录)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/06</span><a class="archive-post-title" href="/2019/10/06/思科模拟器-使用IOS配置启用ospf路由/">思科模拟器 使用IOS配置启用ospf路由</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/06</span><a class="archive-post-title" href="/2019/10/06/Kali-apt报错E-无法获得锁-var-cache-apt-archives-lock-open-11-资源暂时不可用/">Kali apt报错E: 无法获得锁 /var/cache/apt/archives/lock - open (11: 资源暂时不可用)</a>
         </li>
     
     
@@ -2805,32 +2896,22 @@ PHP 各类漏洞：文件包含、...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/03</span><a class="archive-post-title" href="/2019/10/03/Centos7-图形化安装-分区-网络设置/">Centos7 图形化安装,分区,网络设置</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">10/03</span><a class="archive-post-title" href="/2019/10/03/yum更新报错-您可以尝试添加-skip-broken-选项来解决该问题/">yum更新报错 您可以尝试添加 --skip-broken 选项来解决该问题</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/02</span><a class="archive-post-title" href="/2019/10/02/Liunx-curl命令详解/">Liunx curl命令详解</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">10/02</span><a class="archive-post-title" href="/2019/10/02/Linux下查看用户列表/">Linux下查看用户列表</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">10/02</span><a class="archive-post-title" href="/2019/10/02/Linux-crontab命令详解/">Linux crontab命令详解</a>
+            <span class="archive-post-date">10/03</span><a class="archive-post-title" href="/2019/10/03/Centos7-图形化安装-分区-网络设置/">Centos7 图形化安装,分区,网络设置</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">10/02</span><a class="archive-post-title" href="/2019/10/02/CTF隐写总结/">CTF隐写总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/02</span><a class="archive-post-title" href="/2019/10/02/Liunx-curl命令详解/">Liunx curl命令详解</a>
         </li>
     
     
@@ -2845,72 +2926,12 @@ PHP 各类漏洞：文件包含、...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/Hive-beeline-Hiveserver2/">Hive beeline Hiveserver2</a>
+            <span class="archive-post-date">10/02</span><a class="archive-post-title" href="/2019/10/02/Linux下查看用户列表/">Linux下查看用户列表</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/Hive学习笔记/">Hive学习笔记</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/VMware-Workstation-14运行虚拟机黑屏时的解决方案/">VMware Workstation 14运行虚拟机黑屏时的解决方案</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/Spark-2-4-2的环境搭建/">Spark 2.4.2的环境搭建</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/Flume多source，多sink组合框架搭建/">Flume多source，多sink组合框架搭建</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/Flume学习笔记/">Flume学习笔记</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/Hive2-3-0的环境搭建/">Hive2.3.0的环境搭建</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/centos7-访问php-该网页无法正常运作-目前无法处理此请求/">centos7 访问php 该网页无法正常运作 目前无法处理此请求</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/python-字典列表相互转换与排序/">python 字典列表相互转换与排序</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/Sqoop学习笔记/">Sqoop学习笔记</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/python-读写csv数据/">python 读写csv数据</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/分布式消息系统Kafka/">分布式消息系统Kafka</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/修改Compare-py报错时的解决方案/">修改Compare.py报错时的解决方案</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/在Ubuntu的Anaconda环境下创建深度学习环境/">在Ubuntu的Anaconda环境下创建深度学习环境</a>
+            <span class="archive-post-date">10/02</span><a class="archive-post-title" href="/2019/10/02/Linux-crontab命令详解/">Linux crontab命令详解</a>
         </li>
     
     
@@ -2920,7 +2941,22 @@ PHP 各类漏洞：文件包含、...
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/Flume学习笔记/">Flume学习笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/ZooKeeper学习笔记/">ZooKeeper学习笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/Hive学习笔记/">Hive学习笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/python-读写csv数据/">python 读写csv数据</a>
         </li>
     
     
@@ -2930,12 +2966,67 @@ PHP 各类漏洞：文件包含、...
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/在Ubuntu的Anaconda环境下创建深度学习环境/">在Ubuntu的Anaconda环境下创建深度学习环境</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/Spark-2-4-2的环境搭建/">Spark 2.4.2的环境搭建</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/Hive-beeline-Hiveserver2/">Hive beeline Hiveserver2</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/Hive2-3-0的环境搭建/">Hive2.3.0的环境搭建</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/Flume多source，多sink组合框架搭建/">Flume多source，多sink组合框架搭建</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/VMware-Workstation-14运行虚拟机黑屏时的解决方案/">VMware Workstation 14运行虚拟机黑屏时的解决方案</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/python-字典列表相互转换与排序/">python 字典列表相互转换与排序</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/Hive报错记录/">Hive报错记录</a>
         </li>
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/修改Compare-py报错时的解决方案/">修改Compare.py报错时的解决方案</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/基于Facenet与MTCNN的人脸识别/">基于Facenet与MTCNN的人脸识别</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/分布式消息系统Kafka/">分布式消息系统Kafka</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/Sqoop学习笔记/">Sqoop学习笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/centos7-访问php-该网页无法正常运作-目前无法处理此请求/">centos7 访问php 该网页无法正常运作 目前无法处理此请求</a>
         </li>
     
     
@@ -2965,16 +3056,6 @@ PHP 各类漏洞：文件包含、...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/CentOS7关闭SELinux/">CentOS7关闭SELinux</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/Windows下的MapReduce编程实现/">Windows下的MapReduce编程实现</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/解决vmware（vsphere）部署linux系统模板后无法联网问题/">解决vmware（vsphere）部署linux系统模板后无法联网问题</a>
         </li>
     
@@ -2990,12 +3071,12 @@ PHP 各类漏洞：文件包含、...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">08/20</span><a class="archive-post-title" href="/2019/08/20/Linux下进程kill掉的N种方法/">Linux下进程kill掉的N种方法</a>
+            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/CentOS7关闭SELinux/">CentOS7关闭SELinux</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">08/20</span><a class="archive-post-title" href="/2019/08/20/Mysql（双主）主主架构配置/">Mysql（双主）主主架构配置</a>
+            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/Windows下的MapReduce编程实现/">Windows下的MapReduce编程实现</a>
         </li>
     
     
@@ -3005,17 +3086,27 @@ PHP 各类漏洞：文件包含、...
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">08/20</span><a class="archive-post-title" href="/2019/08/20/Mysql（双主）主主架构配置/">Mysql（双主）主主架构配置</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/20</span><a class="archive-post-title" href="/2019/08/20/Linux下进程kill掉的N种方法/">Linux下进程kill掉的N种方法</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">08/20</span><a class="archive-post-title" href="/2019/08/20/keepalived+nginx+apache+mysql实现高可用、负载均衡的网站(上)/">keepalived+nginx+apache+mysql实现高可用、负载均衡的网站(上)</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">08/20</span><a class="archive-post-title" href="/2019/08/20/Centos7-安装-php-和-php-fpm/">Centos7 安装 php 和 php-fpm</a>
+            <span class="archive-post-date">08/20</span><a class="archive-post-title" href="/2019/08/20/keepalived-nginx-apache-mysql实现高可用、负载均衡的网站-下/">keepalived+nginx+apache+mysql实现高可用、负载均衡的网站(下)</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">08/20</span><a class="archive-post-title" href="/2019/08/20/keepalived-nginx-apache-mysql实现高可用、负载均衡的网站-下/">keepalived+nginx+apache+mysql实现高可用、负载均衡的网站(下)</a>
+            <span class="archive-post-date">08/20</span><a class="archive-post-title" href="/2019/08/20/Centos7-安装-php-和-php-fpm/">Centos7 安装 php 和 php-fpm</a>
         </li>
     
     
@@ -3040,12 +3131,12 @@ PHP 各类漏洞：文件包含、...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">08/10</span><a class="archive-post-title" href="/2019/08/10/Java编程思想学习笔记-二/">Java编程思想学习笔记(二)</a>
+            <span class="archive-post-date">08/10</span><a class="archive-post-title" href="/2019/08/10/Java编程思想学习笔记/">Java编程思想学习笔记</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">08/10</span><a class="archive-post-title" href="/2019/08/10/Java编程思想学习笔记/">Java编程思想学习笔记</a>
+            <span class="archive-post-date">08/10</span><a class="archive-post-title" href="/2019/08/10/Java编程思想学习笔记-二/">Java编程思想学习笔记(二)</a>
         </li>
     
     
@@ -3060,22 +3151,22 @@ PHP 各类漏洞：文件包含、...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">08/08</span><a class="archive-post-title" href="/2019/08/08/Scala的安装/">Scala的安装</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">08/08</span><a class="archive-post-title" href="/2019/08/08/Liunx中tar命令的使用/">Liunx中tar命令的使用</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">08/02</span><a class="archive-post-title" href="/2019/08/02/什么是环境变量/">什么是环境变量</a>
+            <span class="archive-post-date">08/08</span><a class="archive-post-title" href="/2019/08/08/Scala的安装/">Scala的安装</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">08/02</span><a class="archive-post-title" href="/2019/08/02/Java变量类型/">Java变量类型</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/02</span><a class="archive-post-title" href="/2019/08/02/什么是环境变量/">什么是环境变量</a>
         </li>
     
     
@@ -3128,19 +3219,23 @@ PHP 各类漏洞：文件包含、...
     
         <span class="sidebar-tag-name" data-tags="GitHub"><span class="iconfont-archer">&#xe606;</span>GitHub</span>
     
+        <span class="sidebar-tag-name" data-tags="Hbase"><span class="iconfont-archer">&#xe606;</span>Hbase</span>
+    
         <span class="sidebar-tag-name" data-tags="Hive"><span class="iconfont-archer">&#xe606;</span>Hive</span>
     
         <span class="sidebar-tag-name" data-tags="Git"><span class="iconfont-archer">&#xe606;</span>Git</span>
     
         <span class="sidebar-tag-name" data-tags="Kali"><span class="iconfont-archer">&#xe606;</span>Kali</span>
     
-        <span class="sidebar-tag-name" data-tags="VMware"><span class="iconfont-archer">&#xe606;</span>VMware</span>
-    
         <span class="sidebar-tag-name" data-tags="Scala"><span class="iconfont-archer">&#xe606;</span>Scala</span>
     
         <span class="sidebar-tag-name" data-tags="Spark"><span class="iconfont-archer">&#xe606;</span>Spark</span>
     
         <span class="sidebar-tag-name" data-tags="Sqoop"><span class="iconfont-archer">&#xe606;</span>Sqoop</span>
+    
+        <span class="sidebar-tag-name" data-tags="VMware"><span class="iconfont-archer">&#xe606;</span>VMware</span>
+    
+        <span class="sidebar-tag-name" data-tags="机器学习"><span class="iconfont-archer">&#xe606;</span>机器学习</span>
     
         <span class="sidebar-tag-name" data-tags="Zookeeper"><span class="iconfont-archer">&#xe606;</span>Zookeeper</span>
     
@@ -3154,13 +3249,11 @@ PHP 各类漏洞：文件包含、...
     
         <span class="sidebar-tag-name" data-tags="PySpark"><span class="iconfont-archer">&#xe606;</span>PySpark</span>
     
-        <span class="sidebar-tag-name" data-tags="机器学习"><span class="iconfont-archer">&#xe606;</span>机器学习</span>
-    
         <span class="sidebar-tag-name" data-tags="网络"><span class="iconfont-archer">&#xe606;</span>网络</span>
     
-        <span class="sidebar-tag-name" data-tags="Vmware"><span class="iconfont-archer">&#xe606;</span>Vmware</span>
-    
         <span class="sidebar-tag-name" data-tags="Maven"><span class="iconfont-archer">&#xe606;</span>Maven</span>
+    
+        <span class="sidebar-tag-name" data-tags="Vmware"><span class="iconfont-archer">&#xe606;</span>Vmware</span>
     
         <span class="sidebar-tag-name" data-tags="数据采集"><span class="iconfont-archer">&#xe606;</span>数据采集</span>
     
@@ -3211,6 +3304,8 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="GitHub"><span class="iconfont-archer">&#xe60a;</span>GitHub</span>
     
+        <span class="sidebar-category-name" data-categories="Hive"><span class="iconfont-archer">&#xe60a;</span>Hive</span>
+    
         <span class="sidebar-category-name" data-categories="Java"><span class="iconfont-archer">&#xe60a;</span>Java</span>
     
         <span class="sidebar-category-name" data-categories="其他"><span class="iconfont-archer">&#xe60a;</span>其他</span>
@@ -3221,15 +3316,15 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="Spark"><span class="iconfont-archer">&#xe60a;</span>Spark</span>
     
+        <span class="sidebar-category-name" data-categories="机器学习"><span class="iconfont-archer">&#xe60a;</span>机器学习</span>
+    
         <span class="sidebar-category-name" data-categories="博客"><span class="iconfont-archer">&#xe60a;</span>博客</span>
     
         <span class="sidebar-category-name" data-categories="Python"><span class="iconfont-archer">&#xe60a;</span>Python</span>
     
-        <span class="sidebar-category-name" data-categories="VMware"><span class="iconfont-archer">&#xe60a;</span>VMware</span>
-    
         <span class="sidebar-category-name" data-categories="网络"><span class="iconfont-archer">&#xe60a;</span>网络</span>
     
-        <span class="sidebar-category-name" data-categories="机器学习"><span class="iconfont-archer">&#xe60a;</span>机器学习</span>
+        <span class="sidebar-category-name" data-categories="VMware"><span class="iconfont-archer">&#xe60a;</span>VMware</span>
     
         <span class="sidebar-category-name" data-categories="Vmware"><span class="iconfont-archer">&#xe60a;</span>Vmware</span>
     

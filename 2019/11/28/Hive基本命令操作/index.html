@@ -1,0 +1,3337 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <!-- title -->
+
+
+
+
+<!-- keywords -->
+
+
+
+
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="author" content="浩翰">
+    <meta name="renderer" content="webkit">
+    <meta name="copyright" content="浩翰">
+    
+    <meta name="keywords" content="hexo,hexo-theme,hexo-blog">
+    
+    <meta name="description" content="Just Do ‘IT’ .">
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Hive基本命令操作 · 浩翰Redamancy的博客</title>
+    <style type="text/css">
+    @font-face {
+        font-family: 'Oswald-Regular';
+        src: url("/font/Oswald-Regular.ttf");
+    }
+
+    body {
+        margin: 0;
+    }
+
+    header,
+    footer,
+    .back-top,
+    .sidebar,
+    .container,
+    .site-intro-meta,
+    .toc-wrapper {
+        display: none;
+    }
+
+    .site-intro {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        /* height: 50vh; */
+        overflow: hidden;
+    }
+
+    .site-intro-placeholder {
+        position: absolute;
+        z-index: -2;
+        top: 0;
+        left: 0;
+        width: calc(100% + 300px);
+        height: 100%;
+        background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
+        background-position: center center;
+        transform: translate3d(-226px, 0, 0);
+        animation: gradient-move 2.5s ease-out 0s infinite;
+    }
+
+    @keyframes gradient-move {
+        0% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        100% {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+</style>
+
+    <link rel="preload" href="/css/style.css?v=20180824" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="stylesheet" href="/css/mobile.css?v=20180824" media="(max-width: 980px)">
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    
+    <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
+/* This file is meant as a standalone workflow for
+- testing support for link[rel=preload]
+- enabling async CSS loading in browsers that do not support rel=preload
+- applying rel preload css once loaded, whether supported or not.
+*/ -->
+<script>
+(function( w ){
+	"use strict";
+	// rel=preload support test
+	if( !w.loadCSS ){
+		w.loadCSS = function(){};
+	}
+	// define on the loadCSS obj
+	var rp = loadCSS.relpreload = {};
+	// rel=preload feature support test
+	// runs once and returns a function for compat purposes
+	rp.support = (function(){
+		var ret;
+		try {
+			ret = w.document.createElement( "link" ).relList.supports( "preload" );
+		} catch (e) {
+			ret = false;
+		}
+		return function(){
+			return ret;
+		};
+	})();
+
+	// if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+	// then change that media back to its intended value on load
+	rp.bindMediaToggle = function( link ){
+		// remember existing media attr for ultimate state, or default to 'all'
+		var finalMedia = link.media || "all";
+
+		function enableStylesheet(){
+			link.media = finalMedia;
+		}
+
+		// bind load handlers to enable media
+		if( link.addEventListener ){
+			link.addEventListener( "load", enableStylesheet );
+		} else if( link.attachEvent ){
+			link.attachEvent( "onload", enableStylesheet );
+		}
+
+		// Set rel and non-applicable media type to start an async request
+		// note: timeout allows this to happen async to let rendering continue in IE
+		setTimeout(function(){
+			link.rel = "stylesheet";
+			link.media = "only x";
+		});
+		// also enable media after 3 seconds,
+		// which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+		setTimeout( enableStylesheet, 3000 );
+	};
+
+	// loop through link elements in DOM
+	rp.poly = function(){
+		// double check this to prevent external calls from running
+		if( rp.support() ){
+			return;
+		}
+		var links = w.document.getElementsByTagName( "link" );
+		for( var i = 0; i < links.length; i++ ){
+			var link = links[ i ];
+			// qualify links to those with rel=preload and as=style attrs
+			if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
+				// prevent rerunning on link
+				link.setAttribute( "data-loadcss", true );
+				// bind listeners to toggle media back
+				rp.bindMediaToggle( link );
+			}
+		}
+	};
+
+	// if unsupported, run the polyfill
+	if( !rp.support() ){
+		// run once at least
+		rp.poly();
+
+		// rerun poly on an interval until onload
+		var run = w.setInterval( rp.poly, 500 );
+		if( w.addEventListener ){
+			w.addEventListener( "load", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		} else if( w.attachEvent ){
+			w.attachEvent( "onload", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		}
+	}
+
+
+	// commonjs
+	if( typeof exports !== "undefined" ){
+		exports.loadCSS = loadCSS;
+	}
+	else {
+		w.loadCSS = loadCSS;
+	}
+}( typeof global !== "undefined" ? global : this ) );
+</script>
+
+    <link rel="icon" href="/assets/favicon.ico">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js" as="script">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" as="script">
+    <link rel="preload" href="/scripts/main.js" as="script">
+    <link rel="preload" as="font" href="/font/Oswald-Regular.ttf" crossorigin>
+    <link rel="preload" as="font" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" crossorigin>
+    
+    <!-- fancybox -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script>
+    <!-- 百度统计  -->
+    
+    <!-- 谷歌统计  -->
+    
+</head>
+
+    
+        <body class="post-body">
+    
+    
+<header class="header">
+
+    <div class="read-progress"></div>
+    <div class="header-sidebar-menu">&#xe775;</div>
+    <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/">Just Do IT !</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">Hive基本命令操作</a>
+            </div>
+    </div>
+    
+    <a class="home-link" href="/">Just Do IT !</a>
+</header>
+    <div class="wrapper">
+        <div class="site-intro" style="
+
+
+
+
+
+
+
+height:50vh;
+">
+    
+    <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
+            
+    <div class="site-intro-placeholder"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
+    <div class="site-intro-meta">
+        <!-- 标题  -->
+        <h1 class="intro-title">
+            <!-- 主页  -->
+            
+            Hive基本命令操作
+            <!-- 404 -->
+            
+        </h1>
+        <!-- 副标题 -->
+        <p class="intro-subtitle">
+            <!-- 主页副标题  -->
+            
+            
+            <!-- 404 -->
+            
+        </p>
+        <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class="post-intro-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Hive">Hive</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>字数统计: <span class="post-count word-count">3.2k</span>阅读时长: <span class="post-count reading-time">13 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2019/11/28</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
+        
+    </div>
+</div>
+        <script>
+ 
+  // get user agent
+  var browser = {
+    versions: function () {
+      var u = window.navigator.userAgent;
+      return {
+        userAgent: u,
+        trident: u.indexOf('Trident') > -1, //IE内核
+        presto: u.indexOf('Presto') > -1, //opera内核
+        webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+        gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+        mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+        ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+        android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+        iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
+        iPad: u.indexOf('iPad') > -1, //是否为iPad
+        webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
+        weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
+        uc: u.indexOf('UCBrowser') > -1 //是否为android下的UC浏览器
+      };
+    }()
+  }
+  console.log("userAgent:" + browser.versions.userAgent);
+
+  // callback
+  function fontLoaded() {
+    console.log('font loaded');
+    if (document.getElementsByClassName('site-intro-meta')) {
+      document.getElementsByClassName('intro-title')[0].classList.add('intro-fade-in');
+      document.getElementsByClassName('intro-subtitle')[0].classList.add('intro-fade-in');
+      var postIntros = document.getElementsByClassName('post-intros')[0]
+      if (postIntros) {
+        postIntros.classList.add('post-fade-in');
+      }
+    }
+  }
+
+  // UC不支持跨域，所以直接显示
+  function asyncCb(){
+    if (browser.versions.uc) {
+      console.log("UCBrowser");
+      fontLoaded();
+    } else {
+      WebFont.load({
+        custom: {
+          families: ['Oswald-Regular']
+        },
+        loading: function () {  //所有字体开始加载
+          // console.log('loading');
+        },
+        active: function () {  //所有字体已渲染
+          fontLoaded();
+        },
+        inactive: function () { //字体预加载失败，无效字体或浏览器不支持加载
+          console.log('inactive: timeout');
+          fontLoaded();
+        },
+        timeout: 5000 // Set the timeout to two seconds
+      });
+    }
+  }
+
+  function asyncErr(){
+    console.warn('script load from CDN failed, will load local script')
+  }
+
+  // load webfont-loader async, and add callback function
+  function async(u, cb, err) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (cb) { o.addEventListener('load', function (e) { cb(null, e); }, false); }
+    if (err) { o.addEventListener('error', function (e) { err(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+
+  var asyncLoadWithFallBack = function(arr, success, reject) {
+      var currReject = function(){
+        reject()
+        arr.shift()
+        if(arr.length)
+          async(arr[0], success, currReject)
+        }
+
+      async(arr[0], success, currReject)
+  }
+
+  asyncLoadWithFallBack([
+    "https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js", 
+    "https://cdn.bootcss.com/webfont/1.6.28/webfontloader.js",
+    "/lib/webfontloader.min.js"
+  ], asyncCb, asyncErr)
+</script>        
+        <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
+        <div class="container container-unloaded">
+            <main class="main post-page">
+    <article class="article-entry">
+        <h2 id="基本介绍"><a href="#基本介绍" class="headerlink" title="基本介绍"></a>基本介绍</h2><p>Hive定义了一套自己的SQL，简称HQL，它与关系型数据库的SQL略有不同，但支持了绝大多数的语句如DDL、DML以及常见的聚合函数、连接查询、条件查询。</p>
+<p>DDL操作（数据定义语言）包括：Create、Alter、Show、Drop等。</p>
+<p>（1）create database- 创建新数据库</p>
+<p>（2）alter database - 修改数据库</p>
+<p>（3）drop database - 删除数据库</p>
+<p>（4）create table - 创建新表</p>
+<p>（5）alter table - 变更（改变）数据库表</p>
+<p>（6）drop table - 删除表</p>
+<p>（7）create index - 创建索引（搜索键）</p>
+<p>（8）drop index - 删除索引</p>
+<p>（9）show table - 查看表</p>
+<p>DML操作（数据操作语言）包括：Load 、Insert、Update、Delete、Merge。</p>
+<h2 id="基本命令操作"><a href="#基本命令操作" class="headerlink" title="基本命令操作"></a>基本命令操作</h2><p>（1）load data - 加载数据</p>
+<p>①insert into - 插入数据</p>
+<p>②insert overwrite - 覆盖数据（insert … values从Hive 0.14开始可用。）</p>
+<p>（2）update table - 更新表（update在Hive 0.14开始可用，并且只能在支持ACID的表上执行）</p>
+<p>（3）delete from table where id = 1; - 删除表中ID等于1的数据（delete在Hive 0.14开始可用，并且只能在支持ACID的表上执行）</p>
+<p>（4）merge - 合并（MERGE在Hive 2.2开始可用，并且只能在支持ACID的表上执行）</p>
+<p>注意：频繁的update和delete操作已经违背了Hive的初衷。不到万不得已的情况，还是使用增量添加的方式最好。</p>
+<h2 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h2><ol>
+<li><p>启动hadoop集群</p>
+</li>
+<li><p>开启Hive，首先，需要保证Mysql启动</p>
+</li>
+</ol>
+<h3 id="Hive数据仓库的操作"><a href="#Hive数据仓库的操作" class="headerlink" title="Hive数据仓库的操作"></a>Hive数据仓库的操作</h3><p>1.在Hive中创建一个数据仓库，名为DB。<br><code>create database DB;</code></p>
+<p>2.以上简单创建了一个DB库，但是这条sql可以更进一步的优化，我们可以加上<code>if not exists</code>。<br><code>create database if not exists DB;</code></p>
+<p>解析：在创建库时，应避免新建的库名与已有库名重复，如果库名重复将会报出以下错误（我在已有DB库的前提下，再次创建了DB库）。</p>
+<p>错误提示数据仓库DB已经存在， 那么加入的if not exists就起了作用，如下（在已有DB库的前提下，再次创建DB库，提示成功不会报错）</p>
+<p>加入<code>if not exists</code>的意思是如果没有DB库就创建，如果已有就不再创建。</p>
+<p>3.查看数据仓库DB的信息及路径。</p>
+<p><code>describe database DB;</code></p>
+<p>4.删除名为DB的数据仓库。</p>
+<p><code>drop database if exists DB;</code></p>
+<h3 id="Hive数据表的操作"><a href="#Hive数据表的操作" class="headerlink" title="Hive数据表的操作"></a>Hive数据表的操作</h3><p>Hive的数据表分为两种：内部表和外部表。</p>
+<p>Hive创建内部表时，会将数据移动到数据仓库指向的路径；若创建外部表，仅记录数据所在的路径， 不对数据的位置做任何改变。在删除表的时候，内部表的元数据和数据会被一起删除， 而外部表只删除元数据，不删除数据。这样外部表相对来说更加安全些，数据组织也更加灵活，方便共享源数据，生产中常使用外部表。</p>
+<p>下面详细介绍对表操作的命令及使用方法：</p>
+<p>即将创建的表，表名不能和已有表名重复，否则会报错，现在我们show tables一下，查看已存在的表。</p>
+<p><code>show tables;</code></p>
+<p>现在库中没有表。</p>
+<p>1.创建一个名为cat的内部表，有两个字段为cat_id和cat_name，字符类型为string。</p>
+<p><code>create table cat(cat_id string,cat_name string);</code></p>
+<p>查看是否创建成功。</p>
+<p><code>show tables;</code></p>
+<p>下面我们再次创建一个与刚才表名相同的表，看一下报错。</p>
+<p><code>create table cat(cat_id string,cat_name string);</code></p>
+<p>提示错误，该表已经存在！说明表与库一样，名称不能重复，解决方法是加入if not exists。</p>
+<p>2.创建一个外部表，表名为cat2，有两个字段为cat_id和cat_name，字符类型为string。</p>
+<p><code>create external table if not exists cat2(cat_id string,cat_name string);</code></p>
+<p>查看是否创建成功。</p>
+<p><code>show tables;</code></p>
+<p>外部表较内部表而言，只是在create后加了一个external。</p>
+<p>3.修改cat表的表结构。对cat表添加两个字段group_id和cat_code。</p>
+<p><code>alter table cat add columns(group_id string,cat_code string);</code></p>
+<p>使用desc命令查看一下加完字段后的cat表结构 。<br><code>desc cat;</code></p>
+<p>4.修改cat2表的表名。把cat2表重命名为cat3 。</p>
+<p><code>alter table cat2 rename to cat3;</code></p>
+<p>这个命令可以让用户为表更名，数据所在的位置和分区名并不改变。</p>
+<p>5.删除名为cat3的表并查看。</p>
+<p><code>drop table cat3;</code><br><code>show tables;</code></p>
+<p>6.创建与已知表相同结构的表，创建一个与cat表结构相同的表，名为cat4，这里要用到like关键字。<br><code>create table cat4 like cat;</code></p>
+<p>创建完成并查看结果。</p>
+<p><code>show tables;</code></p>
+<h3 id="Hive中数据的导入导出"><a href="#Hive中数据的导入导出" class="headerlink" title="Hive中数据的导入导出"></a>Hive中数据的导入导出</h3><p>以下介绍四种常见的数据导入方式：</p>
+<p>1.从本地文件系统中导入数据到Hive表。</p>
+<p>首先，在Hive中创建一个cat_group表，包含group_id和group_name两个字段，字符类型为string，以“\t”为分隔符，并查看结果。<br><code>create table cat_group(group_id string,group_name string) row format delimited fields terminated by &#39;\t&#39;  stored as textfile;</code><br><code>show tables;</code></p>
+<pre><code>[row format delimited]关键字，是用来设置创建的表在加载数据的时候，支持的列分隔符。
+[stored as textfile]关键字，是用来设置加载数据的数据类型，默认是TEXTFILE，如果文件数据是纯文本，就是使用 [stored as textfile]，然后从本地直接拷贝到HDFS上，Hive直接可以识别数据。
+</code></pre><p>然后，将Linux本地/data/hive2目录下的cat_group文件导入到Hive中的cat_group表中。</p>
+<p><code>load data local inpath &#39;/data/hive2/cat_group&#39; into table cat_group;</code><br>通过select语句查看cat_group表中是否成功导入数据，由于数据量大，使用limit关键字限制输出10条记录。</p>
+<p><code>select * from cat_group limit 10;</code></p>
+<p>导入成功。</p>
+<p>2.将HDFS上的数据导入到Hive中。</p>
+<p>首先，另外开启一个操作窗口，在HDFS上创建/myhive2目录。</p>
+<p><code>hadoop fs -mkdir /myhive2</code></p>
+<p>然后，将本地/data/hive2/下的cat_group表上传到HDFS的/myhive2上，并查看是否创建成功。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hadoop fs -put /data/hive2/cat_group /myhive2  </span><br><span class="line">hadoop fs -ls /myhive2</span><br></pre></td></tr></table></figure>
+<p>接着，在Hive中创建名为cat_group1的表，创表语句如下。</p>
+<p><code>create table cat_group1(group_id string,group_name string)  
+row format delimited fields terminated by &#39;\t&#39;  stored as textfile;</code></p>
+<p>最后，将HDFS下/myhive2中的表cat_group导入到Hive中的cat_group1表中 ，并查看结果。</p>
+<p><code>load data inpath &#39;/myhive2/cat_group&#39; into table cat_group1;</code><br><code>select * from cat_group1 limit 10;</code></p>
+<p>导入成功。</p>
+<p>提示：HDFS中数据导入到Hive中与本地数据导入到hive中的区别是load data后少了local。</p>
+<p>3.从别的表中查询出相应的数据并导入到Hive中。</p>
+<p>首先在Hive中创建一个名为cat_group2的表。</p>
+<p><code>create table cat_group2(group_id string,group_name string)  
+row format delimited fields terminated by &#39;\t&#39;  stored as textfile;</code>  </p>
+<p>用下面两种方式将cat_group1表中的数据导入到cat_group2表中。</p>
+<p><code>insert into table cat_group2 select * from cat_group1;</code><br>或<br><code>insert overwrite table cat_group2 select * from cat_group1;</code></p>
+<p>（insert overwrite 会覆盖数据）。</p>
+<p>导入完成后，用select语句查询cat_group2表。<br><code>select * from cat_group2 limit 10;</code></p>
+<p>4.在创建表的时候从别的表中查询出相应数据并插入到所创建的表中。</p>
+<p>Hive中创建表cat_group3并直接从cat_group2中获得数据。<br><code>create table cat_group3 as select * from cat_group2;</code></p>
+<p>创建并导入完成，用select语句查询实验结果。<br><code>select * from cat_group3 limit 10;</code></p>
+<h3 id="三种常见的数据导出方式"><a href="#三种常见的数据导出方式" class="headerlink" title="三种常见的数据导出方式"></a>三种常见的数据导出方式</h3><p>1.导出到本地文件系统。</p>
+<p>首先，在Linux本地新建/data/hive2/out目录。</p>
+<p><code>mkdir -p /data/hive2/out</code></p>
+<p>并将Hive中的cat_group表导出到本地文件系统/data/hive2/out中。</p>
+<p>注意：方法和导入数据到Hive不一样，不能用insert into来将数据导出。</p>
+<p><code>insert overwrite local directory &#39;/data/hive2/out&#39; select * from cat_group;</code></p>
+<p>导出完成后，在Linux本地切换到/data/hive2/out目录，通过cat命令查询导出文件的内容。</p>
+<p><code>cd /data/hive2/out</code><br><code>ls</code><br><code>cat 000000_0</code></p>
+<p>通过上图可以看到导出的数据，字段之间没有分割开，所以我们使用下面的方式，将输出字段以“\t”键分割。</p>
+<p><code>insert overwrite local directory &#39;/data/hive2/out&#39; select group_id,concat(&#39;\t&#39;,group_name) from cat_group;</code></p>
+<p>通过cat命令查询/data/hive2/out目录下的导出文件。</p>
+<p><code>cd /data/hive2/out/</code><br><code>cat 000000_0</code></p>
+<p>2.Hive中数据导出到HDFS中</p>
+<p>在HDFS上创建/myhive2/out目录。</p>
+<p><code>hadoop fs -mkdir -p /myhive2/out</code></p>
+<p>并将Hive中的表cat_group中的数据导入到HDFS的/myhive2/out目录里。</p>
+<p><code>insert overwrite directory &#39;/myhive2/out&#39; select group_id,concat(&#39;\t&#39;,group_name) from cat_group;</code></p>
+<p>导入完成后，在HDFS上的/myhive2/out目录下查看结果。</p>
+<p><code>hadoop fs -ls /myhive2/out</code></p>
+<p>3.导出到Hive的另一个表中。</p>
+<p>将Hive中表cat_group中的数据导入到cat_group4中（两表字段及字符类型相同）。</p>
+<p>首先在Hive中创建一个表cat_group4，有group_id和group_name两个字段，字符类型为string，以‘\t’为分隔符。</p>
+<p><code>create table cat_group4(group_id string,group_name string)  
+row format delimited fields terminated by &#39;\t&#39;  stored as textfile;</code>  </p>
+<p>然后将cat_group中的数据导入到cat_group4中。</p>
+<p><code>insert into table cat_group4 select * from cat_group;</code></p>
+<p>导入完成后，查看cat_group4表中数据。</p>
+<p><code>select * from cat_group4 limit 10;</code></p>
+<h3 id="Hive分区表的操作"><a href="#Hive分区表的操作" class="headerlink" title="Hive分区表的操作"></a>Hive分区表的操作</h3><p>Hive中创建分区表没有什么复杂的分区类型（范围分区、列表分区、hash 分区，混合分区等）。分区列也不是表中的一个实际的字段，而是一个或者多个伪列。意思是说，在表的数据文件中实际并不保存分区列的信息与数据。</p>
+<p>1.创建表分区，在Hive中创建一个分区表goods，包含goods_id和goods_status两个字段，字符类型为string，分区为cat_id，字符类型为string，以“\t“为分隔符。</p>
+<p><code>create table goods(goods_id string,goods_status string) partitioned by (cat_id string)  
+row format delimited fields terminated by &#39;\t&#39;;</code></p>
+<p>查看表goods表结构。</p>
+<p><code>desc goods;</code></p>
+<p>这样一个分区表就建好了。</p>
+<p>2.向分区表插入数据，将本地/data/hive2下的表goods中数据，插入到分区表goods中。</p>
+<p>首先，在Hive中创建一个非分区表goods_1表，用于存储本地/data/hive2下的表goods中数据。</p>
+<p><code>create table goods_1(goods_id string,goods_status string,cat_id string)  
+row format delimited fields terminated by &#39;\t&#39;;</code></p>
+<p>将本地/data/hive2下的表goods中数据导入到Hive中的goods_1表中。</p>
+<p><code>load data local inpath &#39;/data/hive2/goods&#39; into table goods_1;</code><br>再将表goods_1中的数据导入到分区表goods中。</p>
+<p><code>insert into table goods partition(cat_id=&#39;52052&#39;) select goods_id,goods_status from goods_1 where cat_id=&#39;52052&#39;;</code></p>
+<p>插入数据完成后，用select语句查看实验结果。</p>
+<p><code>select * from goods limit 10;</code></p>
+<p>4.查看表goods中的分区。</p>
+<p><code>show partitions goods;</code></p>
+<p>5.修改表分区，将分区表goods中的分区列cat_id=52052改为cat_id=52051,并查看修改后的分区名。</p>
+<p><code>alter table goods partition(cat_id=52052) rename to partition(cat_id=52051);  
+show partitions goods;</code></p>
+<p>6.删除表分区。</p>
+<p>在删除goods分区表之前，先将goods表备份出一个goods_2表。</p>
+<p><code>create table goods_2(goods_id string,goods_status string) partitioned by (cat_id string)  
+row format delimited fields terminated by &#39;\t&#39;;</code></p>
+<p><code>insert into table goods_2 partition(cat_id=&#39;52052&#39;) select goods_id,goods_status from goods_1 where cat_id=&#39;52052&#39;;</code><br>删除goods表中的cat_id分区。</p>
+<p><code>alter table goods drop if exists partition (cat_id=&#39;52051&#39;);</code></p>
+<h3 id="Hive桶的操作"><a href="#Hive桶的操作" class="headerlink" title="Hive桶的操作"></a>Hive桶的操作</h3><p>1.桶的定义及用途</p>
+<p>Hive还可以把表或分区，组织成桶。将表或分区组织成桶有以下几个目的：</p>
+<p>（1）是为使取样更高效。在处理大规模的数据集时，在开发、测试阶段将所有的数据全部处理一遍可能不太现实，如果能在数据集的一小部分数据上试运行查询，会带来很多方便。</p>
+<p>（2）是为了获得更好的查询处理效率。</p>
+<p>桶为表提供了额外的结构，Hive在处理某些查询时利用这个结构，能够有效地提高查询效率。</p>
+<p>具体而言，连接两个在（包含连接列的）相同列上划分了桶的表，可以使用Map端连接（Map-side join）高效的实现。比如JOIN操作。对于JOIN操作两个表有一个相同的列，如果对这两个表都进行了桶操作。那么将保存相同列值的桶进行JOIN操作就可以，可以大大较少JOIN的数据量。在建立桶之前，需要设置hive.enforce.bucketing属性为true，使得Hive能识别桶。</p>
+<p>2.创建桶</p>
+<p>创建一个名为goods_t的表，包含两个字段goods_id和goods_status，字符类型都为string，按cat_id string做分区，按goods_status列聚类和goods_id列排序，划分成两个桶</p>
+<p><code>create table goods_t(goods_id string,goods_status string) partitioned by (cat_id string)  
+clustered by(goods_status) sorted by (goods_id) into 2 buckets;</code></p>
+<p>设置环境变量<code>set hive.enforce.bucketing=ture</code></p>
+<p><code>set hive.enforce.bucketing=true;</code></p>
+<p>3.向goods_t表中插入goods_2表中的数据。</p>
+<p><code>from goods_2 insert overwrite table goods_t partition(cat_id=&#39;52063&#39;) select goods_id,goods_status;</code></p>
+<p>查看结果</p>
+<p><code>select * from goods_t tablesample(bucket 1 out of 2 on goods_id);</code></p>
+<p>tablesample 是抽样语句，语法如下:</p>
+<p>tablesample(bucket x out of y)</p>
+<p>y必须是table总bucket数的倍数或者因子。hive根据y的大小，决定抽样的比例。例如，table总共分了64份，当y=32时，抽取(64/32=)2个bucket的数据，当y=128时，抽取(64/128=)1/2个bucket的数据。</p>
+<p>x表示从哪个bucket开始抽取。例如，table总bucket数为32，tablesample(bucket 3 out of 16)，表示总共抽取（32/16=）2个bucket的数据，分别为第3个bucket和第（3+16=）19个bucket的数据。</p>
+
+    </article>
+    <!-- license  -->
+    
+        <div class="license-wrapper">
+            <p>原文作者：<a href="https://plutoacharon.github.io">浩翰</a>
+            </p><p>原文链接：<a href="https://plutoacharon.github.io/2019/11/28/Hive基本命令操作/">https://plutoacharon.github.io/2019/11/28/Hive基本命令操作/</a>
+            </p><p>发表日期：<a href="https://plutoacharon.github.io/2019/11/28/Hive基本命令操作/">November 28th 2019, 5:30:39 pm</a>
+            </p><p>更新日期：<a href="https://plutoacharon.github.io/2019/11/28/Hive基本命令操作/">November 28th 2019, 5:31:14 pm</a>
+            </p><p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
+        </div>
+    
+    <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+                <div class="nextSlogan">Next Post</div>
+                <a href="/2019/11/28/Hive-java-API接口/" title="Hive java API接口">
+                    <div class="nextTitle">Hive java API接口</div>
+                </a>
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href="/2019/11/28/Docker实战-创建支持SSH服务的镜像-超详细/" title="Docker实战 创建支持SSH服务的镜像(超详细)">
+                    <div class="prevTitle">Docker实战 创建支持SSH服务的镜像(超详细)</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
+    
+    
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
+</main>
+            <!-- profile -->
+            
+        </div>
+        <footer class="footer footer-unloaded">
+    <!-- social  -->
+    
+    <div class="social">
+        
+    
+        
+            
+                <a href="mailto:thishaohan@foxmail.com" class="iconfont-archer email" title="email"></a>
+            
+        
+    
+        
+            
+                <a href="https://github.com/PlutoaCharon" class="iconfont-archer github" target="_blank" title="github"></a>
+            
+        
+    
+        
+            
+                <span class="iconfont-archer wechat" title="wechat">
+                  
+                  <img class="profile-qr" src="/assets/mmqrcode1570781814268.png">
+                </span>
+            
+        
+    
+        
+            
+                <span class="iconfont-archer qq" title="qq">
+                  
+                  <img class="profile-qr" src="/assets/qrcode_1570781828190.jpg">
+                </span>
+            
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+            
+                <a href="/atom.xml" class="iconfont-archer rss" target="_blank" title="rss"></a>
+            
+        
+    
+
+    </div>
+    
+    <!-- powered by Hexo  -->
+    <div class="copyright">
+        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">Archer</a></span>
+    </div>
+    <!-- 不蒜子  -->
+    
+    <div class="busuanzi-container">
+    
+     
+    <span id="busuanzi_container_site_pv">PV: <span id="busuanzi_value_site_pv"></span> :)</span>
+    
+    </div>
+    
+</footer>
+    </div>
+    <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#基本介绍"><span class="toc-number">1.</span> <span class="toc-text">基本介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#基本命令操作"><span class="toc-number">2.</span> <span class="toc-text">基本命令操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#环境准备"><span class="toc-number">3.</span> <span class="toc-text">环境准备</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Hive数据仓库的操作"><span class="toc-number">3.1.</span> <span class="toc-text">Hive数据仓库的操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hive数据表的操作"><span class="toc-number">3.2.</span> <span class="toc-text">Hive数据表的操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hive中数据的导入导出"><span class="toc-number">3.3.</span> <span class="toc-text">Hive中数据的导入导出</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三种常见的数据导出方式"><span class="toc-number">3.4.</span> <span class="toc-text">三种常见的数据导出方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hive分区表的操作"><span class="toc-number">3.5.</span> <span class="toc-text">Hive分区表的操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hive桶的操作"><span class="toc-number">3.6.</span> <span class="toc-text">Hive桶的操作</span></a></li></ol></li></ol>
+    </div>
+    
+    <div class="back-top iconfont-archer">&#xe639;</div>
+    <div class="sidebar sidebar-hide">
+    <ul class="sidebar-tabs sidebar-tabs-active-0">
+        <li class="sidebar-tab-archives"><span class="iconfont-archer">&#xe67d;</span><span class="tab-name">Archive</span></li>
+        <li class="sidebar-tab-tags"><span class="iconfont-archer">&#xe61b;</span><span class="tab-name">Tag</span></li>
+        <li class="sidebar-tab-categories"><span class="iconfont-archer">&#xe666;</span><span class="tab-name">Cate</span></li>
+    </ul>
+    <div class="sidebar-content sidebar-content-show-archive">
+          <div class="sidebar-panel-archives">
+    <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="total-and-search">
+        <div class="total-archive">
+        Total : 103
+        </div>
+        <!-- search  -->
+        
+    </div>
+    
+    <div class="post-archive">
+    
+    
+    
+    
+    <div class="archive-year"> 2019 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/28</span><a class="archive-post-title" href="/2019/11/28/Spark-Shell操作/">Spark Shell操作</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/28</span><a class="archive-post-title" href="/2019/11/28/WindowsServer2016-Anaconda下TensorFlow-GPU环境搭建详细教程（包含CUDA-cuDNN安装过程）/">WindowsServer2016 Anaconda下TensorFlow-GPU环境搭建详细教程（包含CUDA+cuDNN安装过程）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/28</span><a class="archive-post-title" href="/2019/11/28/Hbase-Java-API接口/">Hbase Java API接口</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/28</span><a class="archive-post-title" href="/2019/11/28/Hive-java-API接口/">Hive java API接口</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/28</span><a class="archive-post-title" href="/2019/11/28/Ubuntu-18-04-2-LTS网络设置/">Ubuntu 18.04.2 LTS网络设置</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/28</span><a class="archive-post-title" href="/2019/11/28/WindowsServer-2016-最新激活方法/">WindowsServer 2016 最新激活方法</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/28</span><a class="archive-post-title" href="/2019/11/28/华为服务器H22H-03的Windows-Server2012安装/">华为服务器H22H-03的Windows Server2012安装</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/28</span><a class="archive-post-title" href="/2019/11/28/Docker实战-创建支持SSH服务的镜像-超详细/">Docker实战 创建支持SSH服务的镜像(超详细)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/28</span><a class="archive-post-title" href="/2019/11/28/Hive基本命令操作/">Hive基本命令操作</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/28</span><a class="archive-post-title" href="/2019/11/28/使用etree与xpath爬取Discuz论坛/">使用etree与xpath爬取Discuz论坛</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/04</span><a class="archive-post-title" href="/2019/11/04/hbase-shell报错-zookeeper-RecoverableZooKeeper-ZooKeeper-exists-failed-after-4-attempts/">hbase shell报错:zookeeper.RecoverableZooKeeper: ZooKeeper exists failed after 4 attempts</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/04</span><a class="archive-post-title" href="/2019/11/04/Docker数据管理-实现将主机目录挂载到容器中并共享/">Docker数据管理:实现将主机目录挂载到容器中并共享</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/04</span><a class="archive-post-title" href="/2019/11/04/Centos7-Docker基本命令详解/">Centos7 Docker基本命令详解</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/04</span><a class="archive-post-title" href="/2019/11/04/Docker入门详解笔记/">Docker入门详解笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/04</span><a class="archive-post-title" href="/2019/11/04/win10-Git修改打开时的路径与上传文件夹到GitHub/">win10 Git修改打开时的路径与上传文件夹到GitHub</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/24</span><a class="archive-post-title" href="/2019/10/24/Hive启动报错-Could-not-create-ServerSocket-on-address-0-0-0-0-0-0-0-0-9083/">Hive启动报错 Could not create ServerSocket on address 0.0.0.0/0.0.0.0:9083</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/24</span><a class="archive-post-title" href="/2019/10/24/源码安装httpd报错-checking-for-APR-configure-error-the-with-apr-parameter-is-incorrect/">源码安装httpd报错: checking for APR... configure: error: the --with-apr parameter is incorrect.</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/24</span><a class="archive-post-title" href="/2019/10/24/Hive报错-javax-jdo-JDOFatalDataStoreException-Unable-to-open-a-test-connection-to-the-given-database/">Hive报错:javax.jdo.JDOFatalDataStoreException: Unable to open a test connection to the given database.</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/24</span><a class="archive-post-title" href="/2019/10/24/vsphere报错-连接到虚拟机控制台失败并显示错误：VMRC-控制台的连接已断开。正在尝试重新连接/">vsphere报错: 连接到虚拟机控制台失败并显示错误：VMRC 控制台的连接已断开。正在尝试重新连接</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/24</span><a class="archive-post-title" href="/2019/10/24/CTF线下AWD攻防步骤总结/">CTF线下AWD攻防步骤总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/24</span><a class="archive-post-title" href="/2019/10/24/ctf线下AWD攻防赛学习笔记/">ctf线下AWD攻防赛学习笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/16</span><a class="archive-post-title" href="/2019/10/16/解决httpd-Could-not-reliably-determine-the-server-s-fully-qualified-domain-name/">解决httpd: Could not reliably determine the server's fully qualified domain name</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/16</span><a class="archive-post-title" href="/2019/10/16/Centos7-bg与fg命令/">Centos7 bg与fg命令</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/14</span><a class="archive-post-title" href="/2019/10/14/大数据环境准备-搭建数据仓库/">大数据环境准备-搭建数据仓库</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/14</span><a class="archive-post-title" href="/2019/10/14/Centos7配置yum源安装Mysql/">Centos7配置yum源安装Mysql</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/14</span><a class="archive-post-title" href="/2019/10/14/Centos7配置时间同步/">Centos7配置时间同步</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/14</span><a class="archive-post-title" href="/2019/10/14/大数据基础环境搭建/">大数据基础环境搭建</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/10</span><a class="archive-post-title" href="/2019/10/10/CTF-河北大赛AWD简单的代码审计/">CTF 河北大赛AWD简单的代码审计</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/10</span><a class="archive-post-title" href="/2019/10/10/Liunx-管理用户、组及权限/">Liunx 管理用户、组及权限</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/10</span><a class="archive-post-title" href="/2019/10/10/基于PySpark的电影推荐引擎/">基于PySpark的电影推荐引擎</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/10</span><a class="archive-post-title" href="/2019/10/10/使用PySpark对招聘信息数据进行分析/">使用PySpark对招聘信息数据进行分析</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/10</span><a class="archive-post-title" href="/2019/10/10/PHP代码审计工具Rips的使用/">PHP代码审计工具Rips的使用</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/10</span><a class="archive-post-title" href="/2019/10/10/Centos7安装Anaconda详细版/">Centos7安装Anaconda详细版</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/06</span><a class="archive-post-title" href="/2019/10/06/Liunx提权常用命令/">Liunx提权常用命令</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/06</span><a class="archive-post-title" href="/2019/10/06/kali20119最新更新源/">kali20119最新更新源</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/06</span><a class="archive-post-title" href="/2019/10/06/payload、shellcode、exp、poc区分方法/">payload、shellcode、exp、poc区分方法</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/06</span><a class="archive-post-title" href="/2019/10/06/Kali-apt-get报E-无法打开锁文件-var-lib-dpkg-lock-frontend-open-2-没有那个文件或目录/">Kali apt-get报E: 无法打开锁文件 /var/lib/dpkg/lock-frontend - open (2: 没有那个文件或目录)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/06</span><a class="archive-post-title" href="/2019/10/06/思科模拟器-使用IOS配置启用ospf路由/">思科模拟器 使用IOS配置启用ospf路由</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/06</span><a class="archive-post-title" href="/2019/10/06/Kali-apt报错E-无法获得锁-var-cache-apt-archives-lock-open-11-资源暂时不可用/">Kali apt报错E: 无法获得锁 /var/cache/apt/archives/lock - open (11: 资源暂时不可用)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/06</span><a class="archive-post-title" href="/2019/10/06/MobaXterm汉化以及解决中文乱码问题/">MobaXterm汉化以及解决中文乱码问题</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/03</span><a class="archive-post-title" href="/2019/10/03/centos7-使用linux命令管理目录和文件/">centos7 使用linux命令管理目录和文件</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/03</span><a class="archive-post-title" href="/2019/10/03/centos7-使用vi编辑器配置网络环境/">centos7 使用vi编辑器配置网络环境</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/03</span><a class="archive-post-title" href="/2019/10/03/centos7-挂载使用外部存储系统/">centos7 挂载使用外部存储系统</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/03</span><a class="archive-post-title" href="/2019/10/03/yum更新报错-您可以尝试添加-skip-broken-选项来解决该问题/">yum更新报错 您可以尝试添加 --skip-broken 选项来解决该问题</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/03</span><a class="archive-post-title" href="/2019/10/03/Centos7-图形化安装-分区-网络设置/">Centos7 图形化安装,分区,网络设置</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/02</span><a class="archive-post-title" href="/2019/10/02/CTF隐写总结/">CTF隐写总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/02</span><a class="archive-post-title" href="/2019/10/02/Liunx-curl命令详解/">Liunx curl命令详解</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/02</span><a class="archive-post-title" href="/2019/10/02/Python-爬取Boos直聘/">Python 爬取Boos直聘</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/02</span><a class="archive-post-title" href="/2019/10/02/Nmap工具命令详解/">Nmap工具命令详解</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/02</span><a class="archive-post-title" href="/2019/10/02/Linux下查看用户列表/">Linux下查看用户列表</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/02</span><a class="archive-post-title" href="/2019/10/02/Linux-crontab命令详解/">Linux crontab命令详解</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/Flume传输数据给Kafka/">Flume传输数据给Kafka</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/Flume学习笔记/">Flume学习笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/ZooKeeper学习笔记/">ZooKeeper学习笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/Hive学习笔记/">Hive学习笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/python-读写csv数据/">python 读写csv数据</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/Zookeeper环境搭建/">Zookeeper环境搭建</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/在Ubuntu的Anaconda环境下创建深度学习环境/">在Ubuntu的Anaconda环境下创建深度学习环境</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/Spark-2-4-2的环境搭建/">Spark 2.4.2的环境搭建</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/Hive-beeline-Hiveserver2/">Hive beeline Hiveserver2</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/Hive2-3-0的环境搭建/">Hive2.3.0的环境搭建</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/Flume多source，多sink组合框架搭建/">Flume多source，多sink组合框架搭建</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/VMware-Workstation-14运行虚拟机黑屏时的解决方案/">VMware Workstation 14运行虚拟机黑屏时的解决方案</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/python-字典列表相互转换与排序/">python 字典列表相互转换与排序</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/Hive报错记录/">Hive报错记录</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/修改Compare-py报错时的解决方案/">修改Compare.py报错时的解决方案</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/基于Facenet与MTCNN的人脸识别/">基于Facenet与MTCNN的人脸识别</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/分布式消息系统Kafka/">分布式消息系统Kafka</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/Sqoop学习笔记/">Sqoop学习笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/centos7-访问php-该网页无法正常运作-目前无法处理此请求/">centos7 访问php 该网页无法正常运作 目前无法处理此请求</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/Esxi-centos7搭建NAT和DHCP服务器/">Esxi centos7搭建NAT和DHCP服务器</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/06</span><a class="archive-post-title" href="/2019/09/06/Liunx中etc下的passwd与shadow文件详解/">Liunx中etc下的passwd与shadow文件详解</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/05</span><a class="archive-post-title" href="/2019/09/05/tracert命令详解/">tracert命令详解</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/win10下用IDEA-Hadoop运行时的环境搭建/">win10下用IDEA+Hadoop运行时的环境搭建</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/JobTracker和TaskTracker/">JobTracker和TaskTracker</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/解决vmware（vsphere）部署linux系统模板后无法联网问题/">解决vmware（vsphere）部署linux系统模板后无法联网问题</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/HDFS文件接口/">HDFS文件接口</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/在Centos 7下安装PHP 7/">在Centos 7下安装PHP 7</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/CentOS7关闭SELinux/">CentOS7关闭SELinux</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/Windows下的MapReduce编程实现/">Windows下的MapReduce编程实现</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/20</span><a class="archive-post-title" href="/2019/08/20/Centos7-防火墙关闭与nginx无法访问/">Centos7 防火墙关闭与nginx无法访问</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/20</span><a class="archive-post-title" href="/2019/08/20/Mysql（双主）主主架构配置/">Mysql（双主）主主架构配置</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/20</span><a class="archive-post-title" href="/2019/08/20/Linux下进程kill掉的N种方法/">Linux下进程kill掉的N种方法</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/20</span><a class="archive-post-title" href="/2019/08/20/keepalived+nginx+apache+mysql实现高可用、负载均衡的网站(上)/">keepalived+nginx+apache+mysql实现高可用、负载均衡的网站(上)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/20</span><a class="archive-post-title" href="/2019/08/20/keepalived-nginx-apache-mysql实现高可用、负载均衡的网站-下/">keepalived+nginx+apache+mysql实现高可用、负载均衡的网站(下)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/20</span><a class="archive-post-title" href="/2019/08/20/Centos7-安装-php-和-php-fpm/">Centos7 安装 php 和 php-fpm</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/17</span><a class="archive-post-title" href="/2019/08/17/IDEA使用Git将项目上传到Github/">IDEA使用Git将项目上传到Github</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/17</span><a class="archive-post-title" href="/2019/08/17/本地安装maven库与IDEA安装本地maven库/">本地安装maven库与IDEA安装本地maven库</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/13</span><a class="archive-post-title" href="/2019/08/13/初识Spark/">初识Spark</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/13</span><a class="archive-post-title" href="/2019/08/13/Java中“-”与equeals的区别/">Java中“==”与equeals的区别</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/10</span><a class="archive-post-title" href="/2019/08/10/Java编程思想学习笔记/">Java编程思想学习笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/10</span><a class="archive-post-title" href="/2019/08/10/Java编程思想学习笔记-二/">Java编程思想学习笔记(二)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/09</span><a class="archive-post-title" href="/2019/08/09/Hadoop2-8-0的环境搭建/">Hadoop2.8.0的环境搭建</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/08</span><a class="archive-post-title" href="/2019/08/08/初识Scala/">初识Scala</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/08</span><a class="archive-post-title" href="/2019/08/08/Liunx中tar命令的使用/">Liunx中tar命令的使用</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/08</span><a class="archive-post-title" href="/2019/08/08/Scala的安装/">Scala的安装</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/02</span><a class="archive-post-title" href="/2019/08/02/Java变量类型/">Java变量类型</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/02</span><a class="archive-post-title" href="/2019/08/02/什么是环境变量/">什么是环境变量</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/31</span><a class="archive-post-title" href="/2019/07/31/Centos7下的JDK安装/">Centos7下的JDK安装</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/30</span><a class="archive-post-title" href="/2019/07/30/Centos7下NAT设置静态ip/">Centos7下NAT设置静态ip</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/17</span><a class="archive-post-title" href="/2019/07/17/Github学习笔记/">Github学习笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/21</span><a class="archive-post-title" href="/2019/05/21/hexo搭建个人博客（二）/">hexo搭建个人博客（二）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/20</span><a class="archive-post-title" href="/2019/05/20/hexo搭建个人博客（一）/">hexo搭建个人博客（一）</a>
+        </li>
+    
+    </ul></div>
+  </div>
+        <div class="sidebar-panel-tags">
+    <div class="sidebar-tags-name">
+    
+        <span class="sidebar-tag-name" data-tags="CTF"><span class="iconfont-archer">&#xe606;</span>CTF</span>
+    
+        <span class="sidebar-tag-name" data-tags="Liunx"><span class="iconfont-archer">&#xe606;</span>Liunx</span>
+    
+        <span class="sidebar-tag-name" data-tags="高可用负载均衡"><span class="iconfont-archer">&#xe606;</span>高可用负载均衡</span>
+    
+        <span class="sidebar-tag-name" data-tags="Java"><span class="iconfont-archer">&#xe606;</span>Java</span>
+    
+        <span class="sidebar-tag-name" data-tags="Hadoop"><span class="iconfont-archer">&#xe606;</span>Hadoop</span>
+    
+        <span class="sidebar-tag-name" data-tags="Docker"><span class="iconfont-archer">&#xe606;</span>Docker</span>
+    
+        <span class="sidebar-tag-name" data-tags="Esxi"><span class="iconfont-archer">&#xe606;</span>Esxi</span>
+    
+        <span class="sidebar-tag-name" data-tags="Flume"><span class="iconfont-archer">&#xe606;</span>Flume</span>
+    
+        <span class="sidebar-tag-name" data-tags="Kafka"><span class="iconfont-archer">&#xe606;</span>Kafka</span>
+    
+        <span class="sidebar-tag-name" data-tags="GitHub"><span class="iconfont-archer">&#xe606;</span>GitHub</span>
+    
+        <span class="sidebar-tag-name" data-tags="Hbase"><span class="iconfont-archer">&#xe606;</span>Hbase</span>
+    
+        <span class="sidebar-tag-name" data-tags="Hive"><span class="iconfont-archer">&#xe606;</span>Hive</span>
+    
+        <span class="sidebar-tag-name" data-tags="Git"><span class="iconfont-archer">&#xe606;</span>Git</span>
+    
+        <span class="sidebar-tag-name" data-tags="Kali"><span class="iconfont-archer">&#xe606;</span>Kali</span>
+    
+        <span class="sidebar-tag-name" data-tags="Scala"><span class="iconfont-archer">&#xe606;</span>Scala</span>
+    
+        <span class="sidebar-tag-name" data-tags="Spark"><span class="iconfont-archer">&#xe606;</span>Spark</span>
+    
+        <span class="sidebar-tag-name" data-tags="Sqoop"><span class="iconfont-archer">&#xe606;</span>Sqoop</span>
+    
+        <span class="sidebar-tag-name" data-tags="VMware"><span class="iconfont-archer">&#xe606;</span>VMware</span>
+    
+        <span class="sidebar-tag-name" data-tags="机器学习"><span class="iconfont-archer">&#xe606;</span>机器学习</span>
+    
+        <span class="sidebar-tag-name" data-tags="Zookeeper"><span class="iconfont-archer">&#xe606;</span>Zookeeper</span>
+    
+        <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
+    
+        <span class="sidebar-tag-name" data-tags="hexo"><span class="iconfont-archer">&#xe606;</span>hexo</span>
+    
+        <span class="sidebar-tag-name" data-tags="安全"><span class="iconfont-archer">&#xe606;</span>安全</span>
+    
+        <span class="sidebar-tag-name" data-tags="Python"><span class="iconfont-archer">&#xe606;</span>Python</span>
+    
+        <span class="sidebar-tag-name" data-tags="PySpark"><span class="iconfont-archer">&#xe606;</span>PySpark</span>
+    
+        <span class="sidebar-tag-name" data-tags="网络"><span class="iconfont-archer">&#xe606;</span>网络</span>
+    
+        <span class="sidebar-tag-name" data-tags="Maven"><span class="iconfont-archer">&#xe606;</span>Maven</span>
+    
+        <span class="sidebar-tag-name" data-tags="Vmware"><span class="iconfont-archer">&#xe606;</span>Vmware</span>
+    
+        <span class="sidebar-tag-name" data-tags="数据采集"><span class="iconfont-archer">&#xe606;</span>数据采集</span>
+    
+        <span class="sidebar-tag-name" data-tags="AWD"><span class="iconfont-archer">&#xe606;</span>AWD</span>
+    
+        <span class="sidebar-tag-name" data-tags="ZooKeeper"><span class="iconfont-archer">&#xe606;</span>ZooKeeper</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
+    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+    缺失模块。<br>
+    1、请确保node版本大于6.2<br>
+    2、在博客根目录（注意不是archer根目录）执行以下命令：<br>
+    <span style="color: #f75357; font-size: 1rem; line-height: 2rem;">npm i hexo-generator-json-content --save</span><br>
+    3、在根目录_config.yml里添加配置：
+    <pre style="color: #787878; font-size: 0.6rem;">
+jsonContent:
+  meta: false
+  pages: false
+  posts:
+    title: true
+    date: true
+    path: true
+    text: false
+    raw: false
+    content: false
+    slug: false
+    updated: false
+    comments: false
+    link: false
+    permalink: false
+    excerpt: false
+    categories: true
+    tags: true</pre>
+    </div> 
+    <div class="sidebar-tags-list"></div>
+</div>
+        <div class="sidebar-panel-categories">
+    <div class="sidebar-categories-name">
+    
+        <span class="sidebar-category-name" data-categories="CTF"><span class="iconfont-archer">&#xe60a;</span>CTF</span>
+    
+        <span class="sidebar-category-name" data-categories="Liunx"><span class="iconfont-archer">&#xe60a;</span>Liunx</span>
+    
+        <span class="sidebar-category-name" data-categories="Hadoop"><span class="iconfont-archer">&#xe60a;</span>Hadoop</span>
+    
+        <span class="sidebar-category-name" data-categories="Docker"><span class="iconfont-archer">&#xe60a;</span>Docker</span>
+    
+        <span class="sidebar-category-name" data-categories="GitHub"><span class="iconfont-archer">&#xe60a;</span>GitHub</span>
+    
+        <span class="sidebar-category-name" data-categories="Hive"><span class="iconfont-archer">&#xe60a;</span>Hive</span>
+    
+        <span class="sidebar-category-name" data-categories="Java"><span class="iconfont-archer">&#xe60a;</span>Java</span>
+    
+        <span class="sidebar-category-name" data-categories="其他"><span class="iconfont-archer">&#xe60a;</span>其他</span>
+    
+        <span class="sidebar-category-name" data-categories="高可用负载均衡"><span class="iconfont-archer">&#xe60a;</span>高可用负载均衡</span>
+    
+        <span class="sidebar-category-name" data-categories="Scala"><span class="iconfont-archer">&#xe60a;</span>Scala</span>
+    
+        <span class="sidebar-category-name" data-categories="Spark"><span class="iconfont-archer">&#xe60a;</span>Spark</span>
+    
+        <span class="sidebar-category-name" data-categories="机器学习"><span class="iconfont-archer">&#xe60a;</span>机器学习</span>
+    
+        <span class="sidebar-category-name" data-categories="博客"><span class="iconfont-archer">&#xe60a;</span>博客</span>
+    
+        <span class="sidebar-category-name" data-categories="Python"><span class="iconfont-archer">&#xe60a;</span>Python</span>
+    
+        <span class="sidebar-category-name" data-categories="网络"><span class="iconfont-archer">&#xe60a;</span>网络</span>
+    
+        <span class="sidebar-category-name" data-categories="VMware"><span class="iconfont-archer">&#xe60a;</span>VMware</span>
+    
+        <span class="sidebar-category-name" data-categories="Vmware"><span class="iconfont-archer">&#xe60a;</span>Vmware</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
+    <div class="sidebar-categories-list"></div>
+</div>
+    </div>
+</div> 
+    <script>
+    var siteMeta = {
+        root: "/",
+        author: "浩翰"
+    }
+</script>
+    <!-- CDN failover -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+        if (typeof window.$ === 'undefined')
+        {
+            console.warn('jquery load from jsdelivr failed, will load local script')
+            document.write('<script src="/lib/jquery.min.js">\x3C/script>')
+        }
+    </script>
+    <script src="/scripts/main.js"></script>
+    <!-- algolia -->
+    
+    <!-- busuanzi  -->
+    
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+    <!-- CNZZ  -->
+    
+    </div>
+    <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
+     
+    </body>
+</html>
+
+
