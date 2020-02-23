@@ -346,6 +346,252 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2020/02/23/Centos7安装Docker-配置使用harbor/">
+            
+                <span>Centos7安装Docker-配置使用harbor</span>
+        </a>
+        <div class="abstract-content">
+            配置使用harbor添加EPEL源yum install -y epel-release
+yum方式安装和python3、python-pip 和docker-compose
+下载解压harbor的离线版本harbor-offline-installer-v1.9.3.tgz下载网址
+编辑harbor.yml配置文件，修改hostname为本机IP，设置harbor_admin_password为123456
+执行安装./install.sh
+查看docker images
+查看docker-compose.xml
+在harbor目录下执行#docker-compose start
+在主...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/02/23</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Docker">Docker</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2020/02/23/Docker容器出现使用systemctl问题：Failed-to-get-D-Bus-connection-Operation-not-permitted/">
+            
+                <span>Docker容器出现使用systemctl问题：Failed to get D-Bus connection: Operation not permitted</span>
+        </a>
+        <div class="abstract-content">
+            在学习docker过程中,我从官网安装了centos最新版和centos:7镜像
+在centos7镜像中我安装了ssh服务, 当使用systemctl start sshd 命令启动时竟然报错
+[root@4decd9c3c3aa /]# systemctl start sshd
+Failed to get D-Bus connection: Operation not permitted
+通过查阅资料:
+Docker的设计理念是在容器里面不运行后台服务，容器本身就是宿主机上的一个独立的主进程，也可以间接的理解为就是容器里运行服务的应用进程。一个容器的生命周期是围绕这个主进程存在的，所以...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/02/23</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Dokcer">Dokcer</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2020/02/23/Centos7配置Docker镜像加速器-阿里云官方-报错解决repository-does-not-exist-or-may-require-docker-login/">
+            
+                <span>Centos7配置Docker镜像加速器-阿里云官方(报错解决repository does not exist or may require &#39;docker login&#39;)</span>
+        </a>
+        <div class="abstract-content">
+            我们在日常学习或者使用docker的时候可能会遇到下载安装镜像速度慢的问题,这里我们就得添加以下中国的阿里云镜像就会速度加快
+添加阿里云镜像阿里云网站按照命令即可,也可以手动创建/ect/docker/daemon.json来用vim添加
+{
+  &quot;registry-mirrors&quot;: [&quot;https://XXXXX.mirror.aliyuncs.com&quot;]
+}
+添加成功后输入命令:
+systemctl daemon-reload
+systemctl restart docker
+拉取镜像出现的问题[root@localhost ~]# dock...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/02/23</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Docker">Docker</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2020/02/23/Python算法学习day10-栈应用-括号匹配问题/">
+            
+                <span>Python算法学习day10: 栈应用(括号匹配问题)</span>
+        </a>
+        <div class="abstract-content">
+            栈栈的应用–括号匹配问题括号匹配问题: 给一个字符串, 其中包括小括号, 中括号, 大括号, 求该字符串中的括号是否匹配
+例如:
+    - (){}[] 匹配
+    - ([{}]) 匹配
+    - ([)]   不匹配
+    - ())    不匹配
+代码:12345678910111213141516171819def brace_match(s):	stack = []	dic = &#123;'(':')', '&#123;':'&#125;', '[':']'&#125;	for ch in s:		if ch in &#123;'(', '&#123;', '['&#...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/02/23</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Python算法">Python算法</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2020/02/23/Python算法学习day9-基数排序-翻转数字的基本应用/">
+            
+                <span>Python算法学习day9:基数排序(翻转数字的基本应用)</span>
+        </a>
+        <div class="abstract-content">
+            基数排序(1) 基数排序思路基数排序 (Radix Sort) 是一种非比较型整数排序算法，其原理是将整数按位数切割成不同的数字，然后按每个位数分别比较。
+基数排序法会使用到桶 (Bucket)，顾名思义，通过将要比较的位（个位、十位、百位…），将要排序的元素分配至 0~9 个桶中，借以达到排序的作用，在某些时候，基数排序法的效率高于其它的比较性排序法
+
+将所有待比较数值（正整数）统一为同样的数位长度，数位较短的数前面补零
+
+从最低位开始，依次进行一次排序
+
+从最低位排序一直到最高位排序完成以后, 数列就变成一个有序序列
+
+
+(2) 举几个小例子例1: 将一个数字例如345, 随意取出任...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/02/23</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Python算法">Python算法</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2020/02/23/Python算法学习day8-线性时间排序-希尔排序-计数排序/">
+            
+                <span>Python算法学习day8:线性时间排序(希尔排序, 计数排序)</span>
+        </a>
+        <div class="abstract-content">
+            希尔排序(1) 希尔排序思路
+希尔排序是一种分组插入排序算法。
+首先取一个整数d1=n/2, 将元素分为d1个组. 每组相邻量元素之间距离为d1, 在各组内进行直接插入排序;
+取第二个整数d2=d1/2, 重复上述分组排序过程, 直到di=1. 即所有元素在同一组内进行直接插入排序
+
+(2) 代码实现1234567891011121314def insert_sort_part(li, d): # 分组插入排序实现	for i in range(d,len(li)):		tmp = li[i]		j = i - d		while j &gt;= 0 and li[j] &gt; tmp:...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/02/23</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Python算法">Python算法</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2020/02/23/Python算法学习day7-归并排序/">
+            
+                <span>Python算法学习day7:归并排序</span>
+        </a>
+        <div class="abstract-content">
+            归并排序1. 一次归并假设现在的列表分两段有序, 如何将其合成为一个有序列表选取两段列表,分成两段,然后一一比较比较完成,这便是一次归并
+2. 一次归并算法实现12345678910111213141516171819def merge(li, low, mid, high):	i = low	j = mid + 1	li_tmp = []	while i &lt;= mid and j &lt;= high:		if li[i] &lt;= li[j]:			li_tmp.append(li[i])			i += 1		if li[i] &gt;= li[j]:			li_tmp.ap...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/02/23</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Python算法">Python算法</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2020/01/19/Python算法学习day6-堆排序-二叉树/">
             
                 <span>Python算法学习day6:堆排序(二叉树)</span>
@@ -442,252 +688,10 @@
         </div>
     </article>
     
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2020/01/16/Python算法学习day3-快速排序-二/">
-            
-                <span>Python算法学习day3:快速排序(二)</span>
-        </a>
-        <div class="abstract-content">
-            排序(1) 取出一个数列中唯一一个奇数出现的数字例如:
-li = [1,2,1,3,2,1,1,2,2,3,3]
-唯一一个奇数出现的数字为3
-代码详细:12345li = [1,2,1,3,2,1,1,2,2,3,3]num = 0for i in li:	num = num ^ i #这里运用了一个异或符号的小技巧 当然只能在数列中只存在唯一一个数字才可使用print(num)
-(2) 快速排序12345678910111213141516def quick_sort(li, left, right):	if left &lt; right:		mid = partition(li, ...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/01/16</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Python算法">Python算法</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2020/01/16/Python算法学习day2-查找和排序-一/">
-            
-                <span>Python算法学习day2:查找和排序(一)</span>
-        </a>
-        <div class="abstract-content">
-            说明排序算法是《数据结构与算法》中最基本的算法之一。
-排序算法可以分为内部排序和外部排序
-内部排序是数据记录在内存中进行排序。
-而外部排序是因排序的数据很大，一次不能容纳全部的排序记录，在排序过程中需要访问外存。常见的内部排序算法有：插入排序、希尔排序、选择排序、冒泡排序、归并排序、快速排序、堆排序、基数排序等。
-用一张图概括：
-关于时间复杂度：平方阶 (O(n2)) 排序 各类简单排序：直接插入、直接选择和冒泡排序。线性对数阶 (O(nlog2n)) 排序 快速排序、堆排序和归并排序；O(n1+§)) 排序，§ 是介于 0 和 1 之间的常数。 希尔排序线性阶 (O(n)) 排序 基数...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/01/16</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Python算法">Python算法</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2020/01/16/Python算法学习day1-汉诺塔-斐波那契数列-递归/">
-            
-                <span>Python算法学习day1:汉诺塔,斐波那契数列(递归)</span>
-        </a>
-        <div class="abstract-content">
-            1. 斐波那契数列简单的递归数列问题
-(1) 蓝桥杯入门训练:Fibonacci数列问题描述
-Fibonacci数列的递推公式为：Fn=Fn-1+Fn-2，其中F1=F2=1。
-
-当n比较大时，Fn也非常大，现在我们想知道，Fn除以10007的余数是多少。
-
-输入格式
-输入包含一个整数n。
-输出格式
-输出一行，包含一个整数，表示Fn除以10007的余数。
-说明：在本题中，答案是要求Fn除以10007的余数，因此我们只要能算出这个余数即可，而不需要先计算出Fn的准确值，再将计算的结果除以10007取余数，直接计算余数往往比先算出原数再取余简单。
-
-样例输入
-10
-样例输出
-55
-样例输入
-...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/01/16</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Python算法">Python算法</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2020/01/16/Win10开启与搭建FTP服务器-详细图文版/">
-            
-                <span>Win10开启与搭建FTP服务器(详细图文版)</span>
-        </a>
-        <div class="abstract-content">
-            Win10搭建FTP服务器记一次在win10上搭建FTP服务器的过程
-1. 开启FTP服务打开控制面板选中程序,打开启用或关闭Windows功能
-2. IIS配置windows+q键搜索IIS右键网站,添加FTP站点输入站点信息输入本机IP地址,注意SSL选中无SSL的选项
-
-3. 防火墙设置在控制面板中打开防火墙,选中箭头选项允许应用通过Windows Defender 防火墙进行通信允许其他应用
-4. 查看是否成功
-
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/01/16</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2020/01/16/Windows-10上用AutoHotkey实现快速隐藏-显示桌面图标与切换虚拟桌面/">
-            
-                <span>Windows 10上用AutoHotkey实现快速隐藏/显示桌面图标与切换虚拟桌面</span>
-        </a>
-        <div class="abstract-content">
-            当你想用多个桌面的时候需要按ctrl+Windows+左右键 觉得很麻烦怎么办?
-下载 AutoHotkey编辑脚本 添加以下内容123456~LControl &amp; WheelUp::Send &#123;LWin Down&#125;&#123;Ctrl Down&#125;&#123;Left&#125;&#123;Ctrl Up&#125;&#123;LWin Up&#125;return~LControl &amp; WheelDown::Send &#123;LWin Down&#125;&#123;Ctrl Down&#125;&#123;Right&#125;&#1...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/01/16</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2020/01/16/Centos7搭建Hadoop3-1-3完全分布模式/">
-            
-                <span>Centos7搭建Hadoop3.1.3完全分布模式</span>
-        </a>
-        <div class="abstract-content">
-            
-详细搭建可以参考我的Hadoop2.8.0安装
-
-准备
-本文下载的是3.1.3版本的Hadoop
-
-关闭防火墙12systemctl stop firewalldsetenforce 0
-虚拟机的准备安装3个虚拟机并实现ssh免密码的登录安装3个centos7虚拟机
-安装3个机器，机器分别叫master slave1 slave2
-在/etc/hostname下修改主机名
-其他两台也是一样
-修改主机映射修改/etc/hosts文件
-修改这3台机器的/etc/hosts文件，在文件中添加以下内容,如图：
-说明：ip地址没必要和我的一样，这里只是做一个映射，只要映射是对的就可以，至于修改方...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/01/16</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Hadoop">Hadoop</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2020/01/16/访问php-该网页无法正常运作-目前无法处理此请求/">
-            
-                <span>访问php 该网页无法正常运作 目前无法处理此请求</span>
-        </a>
-        <div class="abstract-content">
-            
-修改php.ini文件文件在/etc/php.ini
-由于php.ini配置文件中错误显示关闭导致.将下值由Off 变更为 On
-display_errors = On
-display_startup_errors = On
-
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/01/16</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="PHP">PHP</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
     <!-- paginator  -->
     
     <nav class="page-nav">
-        <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="page-number" href="/archives/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/12/">12</a><a class="extend next" rel="next" href="/archives/page/2/">NEXT &#62;</a>
+        <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="page-number" href="/archives/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/13/">13</a><a class="extend next" rel="next" href="/archives/page/2/">NEXT &#62;</a>
     </nav>
     
 </main>
@@ -3118,9 +3122,154 @@ display_startup_errors = On
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 116
+        Total : 123
         </div>
         <!-- search  -->
         
@@ -3136,52 +3285,42 @@ display_startup_errors = On
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/Centos7安装Docker-配置使用harbor/">Centos7安装Docker-配置使用harbor</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/Centos7配置Docker镜像加速器-阿里云官方-报错解决repository-does-not-exist-or-may-require-docker-login/">Centos7配置Docker镜像加速器-阿里云官方(报错解决repository does not exist or may require 'docker login')</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/Docker容器出现使用systemctl问题：Failed-to-get-D-Bus-connection-Operation-not-permitted/">Docker容器出现使用systemctl问题：Failed to get D-Bus connection: Operation not permitted</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/Python算法学习day9-基数排序-翻转数字的基本应用/">Python算法学习day9:基数排序(翻转数字的基本应用)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/Python算法学习day8-线性时间排序-希尔排序-计数排序/">Python算法学习day8:线性时间排序(希尔排序, 计数排序)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/Python算法学习day7-归并排序/">Python算法学习day7:归并排序</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/Python算法学习day10-栈应用-括号匹配问题/">Python算法学习day10: 栈应用(括号匹配问题)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">01/19</span><a class="archive-post-title" href="/2020/01/19/Python算法学习day6-堆排序-二叉树/">Python算法学习day6:堆排序(二叉树)</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">01/16</span><a class="archive-post-title" href="/2020/01/16/Python算法学习day1-汉诺塔-斐波那契数列-递归/">Python算法学习day1:汉诺塔,斐波那契数列(递归)</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">01/16</span><a class="archive-post-title" href="/2020/01/16/访问php-该网页无法正常运作-目前无法处理此请求/">访问php 该网页无法正常运作 目前无法处理此请求</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">01/16</span><a class="archive-post-title" href="/2020/01/16/Python算法学习day3-快速排序-二/">Python算法学习day3:快速排序(二)</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">01/16</span><a class="archive-post-title" href="/2020/01/16/Win10开启与搭建FTP服务器-详细图文版/">Win10开启与搭建FTP服务器(详细图文版)</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">01/16</span><a class="archive-post-title" href="/2020/01/16/Centos7搭建Hadoop3-1-3完全分布模式/">Centos7搭建Hadoop3.1.3完全分布模式</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">01/16</span><a class="archive-post-title" href="/2020/01/16/Python算法学习day2-查找和排序-一/">Python算法学习day2:查找和排序(一)</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">01/16</span><a class="archive-post-title" href="/2020/01/16/CentOS7-Failed-to-start-LSB-Bring-up-down解决方法/">CentOS7 Failed to start LSB: Bring up/down解决方法</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">01/16</span><a class="archive-post-title" href="/2020/01/16/Python算法学习day5-剑指offer：二进制中1的个数/">Python算法学习day5:剑指offer：二进制中1的个数</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">01/16</span><a class="archive-post-title" href="/2020/01/16/Windows-10上用AutoHotkey实现快速隐藏-显示桌面图标与切换虚拟桌面/">Windows 10上用AutoHotkey实现快速隐藏/显示桌面图标与切换虚拟桌面</a>
         </li>
     
     
@@ -3191,12 +3330,57 @@ display_startup_errors = On
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">01/16</span><a class="archive-post-title" href="/2020/01/16/Python算法学习day4-关于一道亚马逊面试题的情景分析/">Python算法学习day4:关于一道亚马逊面试题的情景分析</a>
+            <span class="archive-post-date">01/16</span><a class="archive-post-title" href="/2020/01/16/Python算法学习day5-剑指offer：二进制中1的个数/">Python算法学习day5:剑指offer：二进制中1的个数</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/16</span><a class="archive-post-title" href="/2020/01/16/CentOS7-Failed-to-start-LSB-Bring-up-down解决方法/">CentOS7 Failed to start LSB: Bring up/down解决方法</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/16</span><a class="archive-post-title" href="/2020/01/16/Centos7搭建Hadoop3-1-3完全分布模式/">Centos7搭建Hadoop3.1.3完全分布模式</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/16</span><a class="archive-post-title" href="/2020/01/16/访问php-该网页无法正常运作-目前无法处理此请求/">访问php 该网页无法正常运作 目前无法处理此请求</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/16</span><a class="archive-post-title" href="/2020/01/16/Windows-10上用AutoHotkey实现快速隐藏-显示桌面图标与切换虚拟桌面/">Windows 10上用AutoHotkey实现快速隐藏/显示桌面图标与切换虚拟桌面</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/16</span><a class="archive-post-title" href="/2020/01/16/Win10开启与搭建FTP服务器-详细图文版/">Win10开启与搭建FTP服务器(详细图文版)</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">01/16</span><a class="archive-post-title" href="/2020/01/16/SparkSQL，创建表，查询数据/">SparkSQL，创建表，查询数据</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/16</span><a class="archive-post-title" href="/2020/01/16/Python算法学习day2-查找和排序-一/">Python算法学习day2:查找和排序(一)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/16</span><a class="archive-post-title" href="/2020/01/16/Python算法学习day4-关于一道亚马逊面试题的情景分析/">Python算法学习day4:关于一道亚马逊面试题的情景分析</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/16</span><a class="archive-post-title" href="/2020/01/16/Python算法学习day3-快速排序-二/">Python算法学习day3:快速排序(二)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/16</span><a class="archive-post-title" href="/2020/01/16/Python算法学习day1-汉诺塔-斐波那契数列-递归/">Python算法学习day1:汉诺塔,斐波那契数列(递归)</a>
         </li>
     
     
@@ -3210,7 +3394,17 @@ display_startup_errors = On
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">11/28</span><a class="archive-post-title" href="/2019/11/28/WindowsServer-2016-最新激活方法/">WindowsServer 2016 最新激活方法</a>
+            <span class="archive-post-date">11/28</span><a class="archive-post-title" href="/2019/11/28/Hbase-Java-API接口/">Hbase Java API接口</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/28</span><a class="archive-post-title" href="/2019/11/28/Spark-Shell操作/">Spark Shell操作</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/28</span><a class="archive-post-title" href="/2019/11/28/WindowsServer2016-Anaconda下TensorFlow-GPU环境搭建详细教程（包含CUDA-cuDNN安装过程）/">WindowsServer2016 Anaconda下TensorFlow-GPU环境搭建详细教程（包含CUDA+cuDNN安装过程）</a>
         </li>
     
     
@@ -3220,17 +3414,12 @@ display_startup_errors = On
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">11/28</span><a class="archive-post-title" href="/2019/11/28/WindowsServer-2016-最新激活方法/">WindowsServer 2016 最新激活方法</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">11/28</span><a class="archive-post-title" href="/2019/11/28/使用etree与xpath爬取Discuz论坛/">使用etree与xpath爬取Discuz论坛</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">11/28</span><a class="archive-post-title" href="/2019/11/28/Hive基本命令操作/">Hive基本命令操作</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">11/28</span><a class="archive-post-title" href="/2019/11/28/华为服务器H22H-03的Windows-Server2012安装/">华为服务器H22H-03的Windows Server2012安装</a>
         </li>
     
     
@@ -3245,22 +3434,17 @@ display_startup_errors = On
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">11/28</span><a class="archive-post-title" href="/2019/11/28/Hbase-Java-API接口/">Hbase Java API接口</a>
+            <span class="archive-post-date">11/28</span><a class="archive-post-title" href="/2019/11/28/Hive基本命令操作/">Hive基本命令操作</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">11/28</span><a class="archive-post-title" href="/2019/11/28/WindowsServer2016-Anaconda下TensorFlow-GPU环境搭建详细教程（包含CUDA-cuDNN安装过程）/">WindowsServer2016 Anaconda下TensorFlow-GPU环境搭建详细教程（包含CUDA+cuDNN安装过程）</a>
+            <span class="archive-post-date">11/28</span><a class="archive-post-title" href="/2019/11/28/华为服务器H22H-03的Windows-Server2012安装/">华为服务器H22H-03的Windows Server2012安装</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">11/28</span><a class="archive-post-title" href="/2019/11/28/Spark-Shell操作/">Spark Shell操作</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">11/04</span><a class="archive-post-title" href="/2019/11/04/hbase-shell报错-zookeeper-RecoverableZooKeeper-ZooKeeper-exists-failed-after-4-attempts/">hbase shell报错:zookeeper.RecoverableZooKeeper: ZooKeeper exists failed after 4 attempts</a>
+            <span class="archive-post-date">11/04</span><a class="archive-post-title" href="/2019/11/04/Centos7-Docker基本命令详解/">Centos7 Docker基本命令详解</a>
         </li>
     
     
@@ -3270,7 +3454,7 @@ display_startup_errors = On
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">11/04</span><a class="archive-post-title" href="/2019/11/04/Centos7-Docker基本命令详解/">Centos7 Docker基本命令详解</a>
+            <span class="archive-post-date">11/04</span><a class="archive-post-title" href="/2019/11/04/hbase-shell报错-zookeeper-RecoverableZooKeeper-ZooKeeper-exists-failed-after-4-attempts/">hbase shell报错:zookeeper.RecoverableZooKeeper: ZooKeeper exists failed after 4 attempts</a>
         </li>
     
     
@@ -3281,21 +3465,6 @@ display_startup_errors = On
     
         <li class="archive-post-item">
             <span class="archive-post-date">11/04</span><a class="archive-post-title" href="/2019/11/04/win10-Git修改打开时的路径与上传文件夹到GitHub/">win10 Git修改打开时的路径与上传文件夹到GitHub</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">10/24</span><a class="archive-post-title" href="/2019/10/24/Hive启动报错-Could-not-create-ServerSocket-on-address-0-0-0-0-0-0-0-0-9083/">Hive启动报错 Could not create ServerSocket on address 0.0.0.0/0.0.0.0:9083</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">10/24</span><a class="archive-post-title" href="/2019/10/24/CTF线下AWD攻防步骤总结/">CTF线下AWD攻防步骤总结</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">10/24</span><a class="archive-post-title" href="/2019/10/24/Hive报错-javax-jdo-JDOFatalDataStoreException-Unable-to-open-a-test-connection-to-the-given-database/">Hive报错:javax.jdo.JDOFatalDataStoreException: Unable to open a test connection to the given database.</a>
         </li>
     
     
@@ -3315,7 +3484,17 @@ display_startup_errors = On
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/16</span><a class="archive-post-title" href="/2019/10/16/Centos7-bg与fg命令/">Centos7 bg与fg命令</a>
+            <span class="archive-post-date">10/24</span><a class="archive-post-title" href="/2019/10/24/Hive启动报错-Could-not-create-ServerSocket-on-address-0-0-0-0-0-0-0-0-9083/">Hive启动报错 Could not create ServerSocket on address 0.0.0.0/0.0.0.0:9083</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/24</span><a class="archive-post-title" href="/2019/10/24/Hive报错-javax-jdo-JDOFatalDataStoreException-Unable-to-open-a-test-connection-to-the-given-database/">Hive报错:javax.jdo.JDOFatalDataStoreException: Unable to open a test connection to the given database.</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/24</span><a class="archive-post-title" href="/2019/10/24/CTF线下AWD攻防步骤总结/">CTF线下AWD攻防步骤总结</a>
         </li>
     
     
@@ -3325,17 +3504,7 @@ display_startup_errors = On
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/14</span><a class="archive-post-title" href="/2019/10/14/大数据环境准备-搭建数据仓库/">大数据环境准备-搭建数据仓库</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">10/14</span><a class="archive-post-title" href="/2019/10/14/大数据基础环境搭建/">大数据基础环境搭建</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">10/14</span><a class="archive-post-title" href="/2019/10/14/Centos7配置时间同步/">Centos7配置时间同步</a>
+            <span class="archive-post-date">10/16</span><a class="archive-post-title" href="/2019/10/16/Centos7-bg与fg命令/">Centos7 bg与fg命令</a>
         </li>
     
     
@@ -3345,12 +3514,17 @@ display_startup_errors = On
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/10</span><a class="archive-post-title" href="/2019/10/10/使用PySpark对招聘信息数据进行分析/">使用PySpark对招聘信息数据进行分析</a>
+            <span class="archive-post-date">10/14</span><a class="archive-post-title" href="/2019/10/14/大数据环境准备-搭建数据仓库/">大数据环境准备-搭建数据仓库</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/10</span><a class="archive-post-title" href="/2019/10/10/Liunx-管理用户、组及权限/">Liunx 管理用户、组及权限</a>
+            <span class="archive-post-date">10/14</span><a class="archive-post-title" href="/2019/10/14/Centos7配置时间同步/">Centos7配置时间同步</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/14</span><a class="archive-post-title" href="/2019/10/14/大数据基础环境搭建/">大数据基础环境搭建</a>
         </li>
     
     
@@ -3360,7 +3534,12 @@ display_startup_errors = On
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/10</span><a class="archive-post-title" href="/2019/10/10/Centos7安装Anaconda详细版/">Centos7安装Anaconda详细版</a>
+            <span class="archive-post-date">10/10</span><a class="archive-post-title" href="/2019/10/10/基于PySpark的电影推荐引擎/">基于PySpark的电影推荐引擎</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/10</span><a class="archive-post-title" href="/2019/10/10/Liunx-管理用户、组及权限/">Liunx 管理用户、组及权限</a>
         </li>
     
     
@@ -3370,22 +3549,12 @@ display_startup_errors = On
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/10</span><a class="archive-post-title" href="/2019/10/10/基于PySpark的电影推荐引擎/">基于PySpark的电影推荐引擎</a>
+            <span class="archive-post-date">10/10</span><a class="archive-post-title" href="/2019/10/10/使用PySpark对招聘信息数据进行分析/">使用PySpark对招聘信息数据进行分析</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/06</span><a class="archive-post-title" href="/2019/10/06/Liunx提权常用命令/">Liunx提权常用命令</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">10/06</span><a class="archive-post-title" href="/2019/10/06/思科模拟器-使用IOS配置启用ospf路由/">思科模拟器 使用IOS配置启用ospf路由</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">10/06</span><a class="archive-post-title" href="/2019/10/06/Kali-apt报错E-无法获得锁-var-cache-apt-archives-lock-open-11-资源暂时不可用/">Kali apt报错E: 无法获得锁 /var/cache/apt/archives/lock - open (11: 资源暂时不可用)</a>
+            <span class="archive-post-date">10/10</span><a class="archive-post-title" href="/2019/10/10/Centos7安装Anaconda详细版/">Centos7安装Anaconda详细版</a>
         </li>
     
     
@@ -3395,7 +3564,7 @@ display_startup_errors = On
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/06</span><a class="archive-post-title" href="/2019/10/06/kali20119最新更新源/">kali20119最新更新源</a>
+            <span class="archive-post-date">10/06</span><a class="archive-post-title" href="/2019/10/06/思科模拟器-使用IOS配置启用ospf路由/">思科模拟器 使用IOS配置启用ospf路由</a>
         </li>
     
     
@@ -3405,12 +3574,22 @@ display_startup_errors = On
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/06</span><a class="archive-post-title" href="/2019/10/06/MobaXterm汉化以及解决中文乱码问题/">MobaXterm汉化以及解决中文乱码问题</a>
+            <span class="archive-post-date">10/06</span><a class="archive-post-title" href="/2019/10/06/Kali-apt报错E-无法获得锁-var-cache-apt-archives-lock-open-11-资源暂时不可用/">Kali apt报错E: 无法获得锁 /var/cache/apt/archives/lock - open (11: 资源暂时不可用)</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/03</span><a class="archive-post-title" href="/2019/10/03/centos7-使用vi编辑器配置网络环境/">centos7 使用vi编辑器配置网络环境</a>
+            <span class="archive-post-date">10/06</span><a class="archive-post-title" href="/2019/10/06/Liunx提权常用命令/">Liunx提权常用命令</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/06</span><a class="archive-post-title" href="/2019/10/06/kali20119最新更新源/">kali20119最新更新源</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/06</span><a class="archive-post-title" href="/2019/10/06/MobaXterm汉化以及解决中文乱码问题/">MobaXterm汉化以及解决中文乱码问题</a>
         </li>
     
     
@@ -3420,7 +3599,12 @@ display_startup_errors = On
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/03</span><a class="archive-post-title" href="/2019/10/03/yum更新报错-您可以尝试添加-skip-broken-选项来解决该问题/">yum更新报错 您可以尝试添加 --skip-broken 选项来解决该问题</a>
+            <span class="archive-post-date">10/03</span><a class="archive-post-title" href="/2019/10/03/centos7-使用vi编辑器配置网络环境/">centos7 使用vi编辑器配置网络环境</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/03</span><a class="archive-post-title" href="/2019/10/03/centos7-挂载使用外部存储系统/">centos7 挂载使用外部存储系统</a>
         </li>
     
     
@@ -3430,7 +3614,7 @@ display_startup_errors = On
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/03</span><a class="archive-post-title" href="/2019/10/03/centos7-挂载使用外部存储系统/">centos7 挂载使用外部存储系统</a>
+            <span class="archive-post-date">10/03</span><a class="archive-post-title" href="/2019/10/03/yum更新报错-您可以尝试添加-skip-broken-选项来解决该问题/">yum更新报错 您可以尝试添加 --skip-broken 选项来解决该问题</a>
         </li>
     
     
@@ -3445,11 +3629,6 @@ display_startup_errors = On
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/02</span><a class="archive-post-title" href="/2019/10/02/Nmap工具命令详解/">Nmap工具命令详解</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">10/02</span><a class="archive-post-title" href="/2019/10/02/Linux-crontab命令详解/">Linux crontab命令详解</a>
         </li>
     
@@ -3460,42 +3639,12 @@ display_startup_errors = On
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">10/02</span><a class="archive-post-title" href="/2019/10/02/Nmap工具命令详解/">Nmap工具命令详解</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">10/02</span><a class="archive-post-title" href="/2019/10/02/CTF隐写总结/">CTF隐写总结</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/python-读写csv数据/">python 读写csv数据</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/Hive报错记录/">Hive报错记录</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/Hive学习笔记/">Hive学习笔记</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/基于Facenet与MTCNN的人脸识别/">基于Facenet与MTCNN的人脸识别</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/Zookeeper环境搭建/">Zookeeper环境搭建</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/Sqoop学习笔记/">Sqoop学习笔记</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/Flume传输数据给Kafka/">Flume传输数据给Kafka</a>
         </li>
     
     
@@ -3505,7 +3654,17 @@ display_startup_errors = On
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/Flume多source，多sink组合框架搭建/">Flume多source，多sink组合框架搭建</a>
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/在Ubuntu的Anaconda环境下创建深度学习环境/">在Ubuntu的Anaconda环境下创建深度学习环境</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/Zookeeper环境搭建/">Zookeeper环境搭建</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/Flume传输数据给Kafka/">Flume传输数据给Kafka</a>
         </li>
     
     
@@ -3515,22 +3674,12 @@ display_startup_errors = On
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/修改Compare-py报错时的解决方案/">修改Compare.py报错时的解决方案</a>
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/Flume多source，多sink组合框架搭建/">Flume多source，多sink组合框架搭建</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/分布式消息系统Kafka/">分布式消息系统Kafka</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/在Ubuntu的Anaconda环境下创建深度学习环境/">在Ubuntu的Anaconda环境下创建深度学习环境</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/ZooKeeper学习笔记/">ZooKeeper学习笔记</a>
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/基于Facenet与MTCNN的人脸识别/">基于Facenet与MTCNN的人脸识别</a>
         </li>
     
     
@@ -3540,12 +3689,42 @@ display_startup_errors = On
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/Hive报错记录/">Hive报错记录</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/Hive-beeline-Hiveserver2/">Hive beeline Hiveserver2</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/python-字典列表相互转换与排序/">python 字典列表相互转换与排序</a>
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/python-读写csv数据/">python 读写csv数据</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/Sqoop学习笔记/">Sqoop学习笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/ZooKeeper学习笔记/">ZooKeeper学习笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/分布式消息系统Kafka/">分布式消息系统Kafka</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/Hive学习笔记/">Hive学习笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/Flume学习笔记/">Flume学习笔记</a>
         </li>
     
     
@@ -3555,7 +3734,12 @@ display_startup_errors = On
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/Flume学习笔记/">Flume学习笔记</a>
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/python-字典列表相互转换与排序/">python 字典列表相互转换与排序</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/修改Compare-py报错时的解决方案/">修改Compare.py报错时的解决方案</a>
         </li>
     
     
@@ -3580,12 +3764,7 @@ display_startup_errors = On
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/Windows下的MapReduce编程实现/">Windows下的MapReduce编程实现</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/CentOS7关闭SELinux/">CentOS7关闭SELinux</a>
+            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/解决vmware（vsphere）部署linux系统模板后无法联网问题/">解决vmware（vsphere）部署linux系统模板后无法联网问题</a>
         </li>
     
     
@@ -3595,12 +3774,7 @@ display_startup_errors = On
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/HDFS文件接口/">HDFS文件接口</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/解决vmware（vsphere）部署linux系统模板后无法联网问题/">解决vmware（vsphere）部署linux系统模板后无法联网问题</a>
+            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/Windows下的MapReduce编程实现/">Windows下的MapReduce编程实现</a>
         </li>
     
     
@@ -3610,12 +3784,22 @@ display_startup_errors = On
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">08/20</span><a class="archive-post-title" href="/2019/08/20/Mysql（双主）主主架构配置/">Mysql（双主）主主架构配置</a>
+            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/HDFS文件接口/">HDFS文件接口</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/CentOS7关闭SELinux/">CentOS7关闭SELinux</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">08/20</span><a class="archive-post-title" href="/2019/08/20/Centos7-防火墙关闭与nginx无法访问/">Centos7 防火墙关闭与nginx无法访问</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/20</span><a class="archive-post-title" href="/2019/08/20/Mysql（双主）主主架构配置/">Mysql（双主）主主架构配置</a>
         </li>
     
     
@@ -3660,12 +3844,12 @@ display_startup_errors = On
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">08/10</span><a class="archive-post-title" href="/2019/08/10/Java编程思想学习笔记/">Java编程思想学习笔记</a>
+            <span class="archive-post-date">08/10</span><a class="archive-post-title" href="/2019/08/10/Java编程思想学习笔记-二/">Java编程思想学习笔记(二)</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">08/10</span><a class="archive-post-title" href="/2019/08/10/Java编程思想学习笔记-二/">Java编程思想学习笔记(二)</a>
+            <span class="archive-post-date">08/10</span><a class="archive-post-title" href="/2019/08/10/Java编程思想学习笔记/">Java编程思想学习笔记</a>
         </li>
     
     
@@ -3690,12 +3874,12 @@ display_startup_errors = On
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">08/02</span><a class="archive-post-title" href="/2019/08/02/什么是环境变量/">什么是环境变量</a>
+            <span class="archive-post-date">08/02</span><a class="archive-post-title" href="/2019/08/02/Java变量类型/">Java变量类型</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">08/02</span><a class="archive-post-title" href="/2019/08/02/Java变量类型/">Java变量类型</a>
+            <span class="archive-post-date">08/02</span><a class="archive-post-title" href="/2019/08/02/什么是环境变量/">什么是环境变量</a>
         </li>
     
     
@@ -3728,9 +3912,9 @@ display_startup_errors = On
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
     
-        <span class="sidebar-tag-name" data-tags="Liunx"><span class="iconfont-archer">&#xe606;</span>Liunx</span>
-    
         <span class="sidebar-tag-name" data-tags="CTF"><span class="iconfont-archer">&#xe606;</span>CTF</span>
+    
+        <span class="sidebar-tag-name" data-tags="Liunx"><span class="iconfont-archer">&#xe606;</span>Liunx</span>
     
         <span class="sidebar-tag-name" data-tags="高可用负载均衡"><span class="iconfont-archer">&#xe606;</span>高可用负载均衡</span>
     
@@ -3739,6 +3923,8 @@ display_startup_errors = On
         <span class="sidebar-tag-name" data-tags="Hadoop"><span class="iconfont-archer">&#xe606;</span>Hadoop</span>
     
         <span class="sidebar-tag-name" data-tags="Docker"><span class="iconfont-archer">&#xe606;</span>Docker</span>
+    
+        <span class="sidebar-tag-name" data-tags="Dokcer"><span class="iconfont-archer">&#xe606;</span>Dokcer</span>
     
         <span class="sidebar-tag-name" data-tags="Flume"><span class="iconfont-archer">&#xe606;</span>Flume</span>
     
@@ -3764,11 +3950,11 @@ display_startup_errors = On
     
         <span class="sidebar-tag-name" data-tags="Vmware"><span class="iconfont-archer">&#xe606;</span>Vmware</span>
     
+        <span class="sidebar-tag-name" data-tags="机器学习"><span class="iconfont-archer">&#xe606;</span>机器学习</span>
+    
         <span class="sidebar-tag-name" data-tags="Zookeeper"><span class="iconfont-archer">&#xe606;</span>Zookeeper</span>
     
         <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
-    
-        <span class="sidebar-tag-name" data-tags="机器学习"><span class="iconfont-archer">&#xe606;</span>机器学习</span>
     
         <span class="sidebar-tag-name" data-tags="Hexo"><span class="iconfont-archer">&#xe606;</span>Hexo</span>
     
@@ -3778,9 +3964,9 @@ display_startup_errors = On
     
         <span class="sidebar-tag-name" data-tags="PySpark"><span class="iconfont-archer">&#xe606;</span>PySpark</span>
     
-        <span class="sidebar-tag-name" data-tags="Maven"><span class="iconfont-archer">&#xe606;</span>Maven</span>
-    
         <span class="sidebar-tag-name" data-tags="网络"><span class="iconfont-archer">&#xe606;</span>网络</span>
+    
+        <span class="sidebar-tag-name" data-tags="Maven"><span class="iconfont-archer">&#xe606;</span>Maven</span>
     
         <span class="sidebar-tag-name" data-tags="数据采集"><span class="iconfont-archer">&#xe606;</span>数据采集</span>
     
@@ -3821,9 +4007,9 @@ jsonContent:
         <div class="sidebar-panel-categories">
     <div class="sidebar-categories-name">
     
-        <span class="sidebar-category-name" data-categories="Liunx"><span class="iconfont-archer">&#xe60a;</span>Liunx</span>
-    
         <span class="sidebar-category-name" data-categories="CTF"><span class="iconfont-archer">&#xe60a;</span>CTF</span>
+    
+        <span class="sidebar-category-name" data-categories="Liunx"><span class="iconfont-archer">&#xe60a;</span>Liunx</span>
     
         <span class="sidebar-category-name" data-categories="Hadoop"><span class="iconfont-archer">&#xe60a;</span>Hadoop</span>
     
