@@ -359,6 +359,382 @@ height:50vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2019/10/06/Kali-apt-get报E-无法打开锁文件-var-lib-dpkg-lock-frontend-open-2-没有那个文件或目录/">
+            
+                <span>Kali apt-get报E: 无法打开锁文件 /var/lib/dpkg/lock-frontend - open (2: 没有那个文件或目录)</span>
+        </a>
+        <div class="abstract-content">
+            Kali apt-get报E: 无法打开锁文件 /var/lib/dpkg/lock-frontend - open (2: 没有那个文件或目录)由于使用apt安装时一直报错,所以把文件夹直接删除
+删除一时爽,删完毁断肠
+解决办法：
+sudo mkdir -p /var/lib/dpkg/{alternatives,info,parts,triggers,updates}
+sudo cp /var/backups/dpkg.status.0 /var/lib/dpkg/status
+apt-get download dpkg
+sudo dpkg -i dpkg*.deb
+apt-get ...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/10/06</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Kali">Kali</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2019/10/06/Kali-apt报错E-无法获得锁-var-cache-apt-archives-lock-open-11-资源暂时不可用/">
+            
+                <span>Kali apt报错E: 无法获得锁 /var/cache/apt/archives/lock - open (11: 资源暂时不可用)</span>
+        </a>
+        <div class="abstract-content">
+            kali apt时报错:
+root@kali:~# apt-get clean &amp;&amp; apt-get update &amp;&amp; apt-get upgrade -y &amp;&amp; apt-get dist-upgrade -y 
+E: 无法获得锁 /var/cache/apt/archives/lock - open (11: 资源暂时不可用)
+E: 无法对目录 /var/cache/apt/archives/ 加锁
+解决:
+将/var/cache/apt/archives/lock删除
+rm -rf /var/cache/apt/archives/lo...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/10/06</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Kali">Kali</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2019/10/06/kali20119最新更新源/">
+            
+                <span>kali20119最新更新源</span>
+        </a>
+        <div class="abstract-content">
+            查看添加更新源编辑sources.list,将kali更新源加入其中sudo vim /etc/apt/sources.list
+#中科大
+deb http://mirrors.ustc.edu.cn/kali kali-rolling main non-free contrib
+deb-src http://mirrors.ustc.edu.cn/kali kali-rolling main non-free contrib
+
+#阿里云
+deb http://mirrors.aliyun.com/kali kali-rolling main non-free contrib
+deb-s...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/10/06</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Kali">Kali</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2019/10/06/Liunx提权常用命令/">
+            
+                <span>Liunx提权常用命令</span>
+        </a>
+        <div class="abstract-content">
+            操作系统信息收集如何查看服务器的版本cat /etc/issue
+
+cat /etc/*-release
+
+cat /etc/lsb-release # 基于 Debian
+
+cat /etc/redhat-release # 基于 Redhat
+如何查看内核的版本信息？cat /proc/version
+
+uname -a
+
+uname -mrs
+
+rpm -q kernel
+
+dmesg | grep Linux
+
+ls /boot | grep vmlinuz-
+应用和服务信息有什么服务在运行？是以什么样的权限在运行？ps aux
+
+ps -ef
+
+top
+
+cat /etc/se...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/10/06</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Liunx">Liunx</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2019/10/06/MobaXterm汉化以及解决中文乱码问题/">
+            
+                <span>MobaXterm汉化以及解决中文乱码问题</span>
+        </a>
+        <div class="abstract-content">
+            
+在使用MobaXterm过程中会遇到中文乱码的问题,这时候我们需要设置一下编码点击鼠标右键选择第二个ISO选项
+再次输入出现乱码的命令修改成功!
+
+如果设置完以后使用其他命令出现乱码,则修改回UTF-8编码即可
+汉化包下载:链接: https://pan.baidu.com/s/1UAxKfsSj9OOpC3ojaLN5IQ 提取码: myi3
+
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/10/06</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2019/10/03/centos7-使用vi编辑器配置网络环境/">
+            
+                <span>centos7 使用vi编辑器配置网络环境</span>
+        </a>
+        <div class="abstract-content">
+            命令
+
+
+命令和路径
+描述
+
+
+
+
+ifconfig
+改变网卡地址，启用禁用网卡
+
+
+route
+管理本机路由表
+
+
+hostname
+设置本机主机名
+
+
+
+一 使用ifconfig命令改变网卡IP地址
+使用ifconfig命令查看虚拟机的IP地址
+使用ifconfig命令把虚拟机的地址设成192.168.238.7
+
+注意:这里我修改了静态,所以使用该命令的时候需要是DHCP才可以更改成功
+
+
+
+
+
+使用ping命令检查虚拟机到主机的互通性
+使用route命令查看本机的路由表
+
+
+二 熟悉vi的基本命令编辑作业2任务二的命令行到一个文件中1.    vi的三种模式的特点、如何切换
+i ...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/10/03</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Liunx">Liunx</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2019/10/03/centos7-挂载使用外部存储系统/">
+            
+                <span>centos7 挂载使用外部存储系统</span>
+        </a>
+        <div class="abstract-content">
+            命令
+
+
+命令
+描述
+
+
+
+
+fdisk
+管理磁盘分区
+
+
+mkfs
+创建文件系统
+
+
+mount
+挂载文件系统
+
+
+umount
+卸载文件系统
+
+
+du
+统计目录的磁盘使用情况
+
+
+df
+统计未使用的磁盘空间
+
+
+
+一 在linux系统中挂载使用光盘
+在vmware虚拟机中配置光驱使用ISO光盘映像
+
+使用mount命令把光盘挂载到/mnt/cdrom
+
+查看光盘内容
+使用umonut命令卸载光盘
+使用mount命令挂载linux系统中的ISO光盘映像
+
+二 在linux系统中挂载使用U盘
+在主机上插入U盘
+
+在linux系统中，fdisk -l 查看U盘分区信息
+
+
+
+
+使用moun...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/10/03</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Liunx">Liunx</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2019/10/03/centos7-使用linux命令管理目录和文件/">
+            
+                <span>centos7 使用linux命令管理目录和文件</span>
+        </a>
+        <div class="abstract-content">
+            一 使用命令查看系统基本信息
+uname命令查看内核版本、硬件平台
+hostname查看修改主机名
+ifconfig查看修改IP地址
+df查看磁盘空间占用情况
+free查看内存空间占用情况
+二 使用linux命令完成如下目录和文件操作|命令|描述  ||–|–|| ls | 列出目录下的文件 ||mkdir、cd、rmdir、pwd|目录操作命令||rm、mv、cp|文件操作命令|
+
+在/root目录下建立temp目录
+
+把/bin目录下的a开头的文件拷贝到/root/temp目录
+把/etc/httpd/目录下所有文件和子目录拷贝到/root/temp目录
+给/sbin/ifconfi...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/10/03</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Liunx">Liunx</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2019/10/03/Centos7-图形化安装-分区-网络设置/">
             
                 <span>Centos7 图形化安装,分区,网络设置</span>
@@ -427,308 +803,10 @@ height:50vh;
         </div>
     </article>
     
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/10/02/Nmap工具命令详解/">
-            
-                <span>Nmap工具命令详解</span>
-        </a>
-        <div class="abstract-content">
-            nmap用于网络扫描和主机检测 漏洞探测 安全扫描发现主机nmap -sP 10.0.3.0/24   发现有哪些机器，主机，路由器，交换机，跳过端口检测
-
-nmap  -sn 10.0.1.161-166  ping探测扫描主机，不进行端口扫描
-
-nmap 10.0.1.161 -sA （发送tcp的ack包进行探测，可以探测主机是否存活）
-
-nmap 192.168.1.1-100 (扫描IP地址为192.168.1.1-192.168.1.100内的所有主机)
-nmap -iL target.txt （ip地址列表）
-
-nmap 192.168.1.1/24 -exclude  1...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/10/02</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Liunx">Liunx</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/10/02/Linux下查看用户列表/">
-            
-                <span>Linux下查看用户列表</span>
-        </a>
-        <div class="abstract-content">
-            以下是用到的一些命令。
-查看用户
-cat /etc/passwd
-查看用户组
-cat /etc/group
-查看当前活跃的用户列表
-w但是，你会发现，在使用上面的 cat 命令所打印出来的东西太杂乱了，于是网上找到下面的这个命令：
-对于 cat /etc/passwd 的替换cat /etc/passwd|grep -v nologin|grep -v halt|grep -v shutdown|awk -F&quot;:&quot; &#39;{ print $1&quot;|&quot;$3&quot;|&quot;$4 }&#39;|more
-输出结果类似下面这样的：
-root|0...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/10/02</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Liunx">Liunx</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/10/02/Linux-crontab命令详解/">
-            
-                <span>Linux crontab命令详解</span>
-        </a>
-        <div class="abstract-content">
-            Linux crontab是用来定期执行程序的命令。
-当安装完成操作系统之后，默认便会启动此任务调度命令。
-crond命令每分锺会定期检查是否有要执行的工作，如果有要执行的工作便会自动执行该工作。
-而linux任务调度的工作主要分为以下两类：
-
-系统执行的工作：系统周期性所要执行的工作，如备份系统数据、清理缓存
-个人执行的工作：某个用户定期要做的工作，例如每隔10分钟检查邮件服务器是否有新信，这些工作可由每个用户自行设置
-
-语法crontab [ -u user ] file或crontab [ -u user ] { -l | -r | -e }  
-说明crontab 是用来让使用者...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/10/02</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Liunx">Liunx</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/10/02/Liunx-curl命令详解/">
-            
-                <span>Liunx curl命令详解</span>
-        </a>
-        <div class="abstract-content">
-            curl 是常用的命令行工具，用来请求 Web 服务器。它的名字就是客户端（client）的 URL 工具的意思。
-
-它的功能非常强大，命令行参数多达几十种。如果熟练的话，完全可以取代 Postman 这一类的图形界面工具。
-
-
-
-不带有任何参数时，curl 就是发出 GET 请求。
-
-$ curl https://www.example.com
-
-上面命令向www.example.com发出 GET 请求，服务器返回的内容会在命令行输出。
-
--A
-
--A参数指定客户端的用户代理标头，即User-Agent。curl 的默认用户代理字符串是curl/[version]。
-
-$ curl ...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/10/02</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Liunx">Liunx</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/10/02/Python-爬取Boos直聘/">
-            
-                <span>Python 爬取Boos直聘</span>
-        </a>
-        <div class="abstract-content">
-            数据采集数据采集（Date Capture），又叫做数据获取，数据采集是将系统需要管理的所有对象的原始数据（外部数据）进行一系列的操作并输入到系统内部的一个接口。像摄像头、麦克风等等，都是数据采集工具，而在计算机世界，相应的数据采集工具就更多了，简单的采集工具有Hawk、八爪鱼等。在计算机广泛应用的今天，数据采集在多个领域具有非常重要的意义。它是计算机与外部物理世界连接的桥梁。
-前几个月做了一个互联网加项目,是基于机器学习的一个简历招聘推荐系统
-今天就分享一下当时爬取Boss直聘时的爬虫代码
-用到的库
-Python3
-selenium
-BeautifulSoup
-os
-io
-re
-
-简述...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/10/02</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="数据采集">数据采集</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/10/02/CTF隐写总结/">
-            
-                <span>CTF隐写总结</span>
-        </a>
-        <div class="abstract-content">
-            打了有小半年ctf比赛了，一直没有时间来写几篇关于ctf的博客，今天抽出时间写了点杂项中隐写的总结，希望能够帮到大家
-简述隐写术是一门关于信息隐藏的技巧与科学，所谓信息隐藏指的是不让除预期的接收者之外的任何人知晓信息的传递事件或者信息的内容。隐写术的英文叫做Steganography，来源于特里特米乌斯的一本讲述密码学与隐写术的著作Steganographia，该书书名源于希腊语，意为“隐秘书写”。
-CTF隐写常见方式：1.增加数据的方式 隐藏信息另存为.zip后解压，正常的.JPG图片在文本编辑器（winhex）中，16进制是以FF D9结尾原理：a.先制作一个1.zip 把含有隐藏的...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/10/02</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="CTF">CTF</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/09/29/修改Compare-py报错时的解决方案/">
-            
-                <span>修改Compare.py报错时的解决方案</span>
-        </a>
-        <div class="abstract-content">
-            错误：在安装opevncv时会出现 ImportError: No module named cv2 的错误，找不到cv2的包。解决：
-这时候安装扩展包即可：
-pip install opencv-python
-
-错误：
-123456Traceback (most recent call last):  File &quot;data_generator.py&quot;, line 24, in &lt;module&gt;    import cv2  File &quot;/usr/local/lib/python3.5/dist-packages/cv2/__init__.py&...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/09/29</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="机器学习">机器学习</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Python">Python</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/09/29/基于Facenet与MTCNN的人脸识别/">
-            
-                <span>基于Facenet与MTCNN的人脸识别</span>
-        </a>
-        <div class="abstract-content">
-            本文来自于中国科学院深圳先进技术研究院，目前发表在arXiv上，是2016年4月份的文章，算是比较新的文章。论文地址：https://kpzhang93.github.io/MTCNN_face_detection_alignment/
-概述相比于R-CNN系列通用检测方法，本文更加针对人脸检测这一专门的任务，速度和精度都有足够的提升。R-CNN，Fast R-CNN，FasterR-CNN这一系列的方法不是一篇博客能讲清楚的，有兴趣可以找相关论文阅读。类似于TCDCN，本文提出了一种Multi-task的人脸检测框架，将人脸检测和人脸特征点检测同时进行。论文使用3个CNN级联的方式，和...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/09/29</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="机器学习">机器学习</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Python">Python</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
     <!-- paginator  -->
     
     <nav class="page-nav">
-        <a class="extend prev" rel="prev" href="/page/7/">&#60; PREV</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/9/">NEXT &#62;</a>
+        <a class="extend prev" rel="prev" href="/page/7/">&#60; PREV</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="extend next" rel="next" href="/page/9/">NEXT &#62;</a>
     </nav>
     
 </main>
@@ -3553,9 +3631,141 @@ pip install opencv-python
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 130
+        Total : 138
         </div>
         <!-- search  -->
         
@@ -3571,6 +3781,46 @@ pip install opencv-python
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">03/07</span><a class="archive-post-title" href="/2020/03/07/Golang语言学习从入门到实战-闭包/">Golang语言学习从入门到实战----闭包</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/07</span><a class="archive-post-title" href="/2020/03/07/Kubernetes-K8s-入门到实践-二-Kubernetes的基本概念和术语/">Kubernetes(K8s)入门到实践(二)----Kubernetes的基本概念和术语</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/07</span><a class="archive-post-title" href="/2020/03/07/Git上传文件时报错-error-failed-to-push-some-refs-to-https-github-com-XXX/">Git上传文件时报错:error: failed to push some refs to 'https://github.com/XXX'</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/07</span><a class="archive-post-title" href="/2020/03/07/Python算法学习-全排列的回溯实现与二进制枚举/">Python算法学习:全排列的回溯实现与二进制枚举</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/07</span><a class="archive-post-title" href="/2020/03/07/Python算法学习-竞码编程-蓝桥杯模拟赛3题解/">Python算法学习: 竞码编程-蓝桥杯模拟赛3题解</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/07</span><a class="archive-post-title" href="/2020/03/07/Golang语言学习从入门到实战-指针和内存布局/">Golang语言学习从入门到实战----指针和内存布局</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/07</span><a class="archive-post-title" href="/2020/03/07/Liunx-Shell编程入门-编写简单的开机欢迎脚本与操作服务脚本/">Liunx Shell编程入门----编写简单的开机欢迎脚本与操作服务脚本</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/07</span><a class="archive-post-title" href="/2020/03/07/Golang语言学习从入门到实战-defer/">Golang语言学习从入门到实战----defer</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/2020/02/25/Kubernetes-K8s-入门到实践-一-Kubernetes入门/">Kubernetes(K8s)入门到实践(一)----Kubernetes入门</a>
         </li>
     
@@ -3581,7 +3831,7 @@ pip install opencv-python
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/Python算法学习-任意进制转换/">Python算法学习: 任意进制转换</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/Python算法学习-计蒜客-2020-蓝桥杯大学-B-组省赛模拟赛-（一）题目及解析/">Python算法学习: 计蒜客 2020 蓝桥杯大学 B 组省赛模拟赛 （一）题目及解析</a>
         </li>
     
     
@@ -3611,7 +3861,7 @@ pip install opencv-python
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/Python算法学习-计蒜客-2020-蓝桥杯大学-B-组省赛模拟赛-（一）题目及解析/">Python算法学习: 计蒜客 2020 蓝桥杯大学 B 组省赛模拟赛 （一）题目及解析</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/Python算法学习-任意进制转换/">Python算法学习: 任意进制转换</a>
         </li>
     
     
@@ -3720,7 +3970,7 @@ pip install opencv-python
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">11/28</span><a class="archive-post-title" href="/2019/11/28/Ubuntu-18-04-2-LTS网络设置/">Ubuntu 18.04.2 LTS网络设置</a>
+            <span class="archive-post-date">11/28</span><a class="archive-post-title" href="/2019/11/28/Spark-Shell操作/">Spark Shell操作</a>
         </li>
     
     
@@ -3735,12 +3985,12 @@ pip install opencv-python
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">11/28</span><a class="archive-post-title" href="/2019/11/28/使用etree与xpath爬取Discuz论坛/">使用etree与xpath爬取Discuz论坛</a>
+            <span class="archive-post-date">11/28</span><a class="archive-post-title" href="/2019/11/28/Ubuntu-18-04-2-LTS网络设置/">Ubuntu 18.04.2 LTS网络设置</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">11/28</span><a class="archive-post-title" href="/2019/11/28/Spark-Shell操作/">Spark Shell操作</a>
+            <span class="archive-post-date">11/28</span><a class="archive-post-title" href="/2019/11/28/使用etree与xpath爬取Discuz论坛/">使用etree与xpath爬取Discuz论坛</a>
         </li>
     
     
@@ -3880,7 +4130,7 @@ pip install opencv-python
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/06</span><a class="archive-post-title" href="/2019/10/06/Liunx提权常用命令/">Liunx提权常用命令</a>
+            <span class="archive-post-date">10/06</span><a class="archive-post-title" href="/2019/10/06/payload、shellcode、exp、poc区分方法/">payload、shellcode、exp、poc区分方法</a>
         </li>
     
     
@@ -3890,7 +4140,7 @@ pip install opencv-python
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/06</span><a class="archive-post-title" href="/2019/10/06/payload、shellcode、exp、poc区分方法/">payload、shellcode、exp、poc区分方法</a>
+            <span class="archive-post-date">10/06</span><a class="archive-post-title" href="/2019/10/06/思科模拟器-使用IOS配置启用ospf路由/">思科模拟器 使用IOS配置启用ospf路由</a>
         </li>
     
     
@@ -3900,7 +4150,7 @@ pip install opencv-python
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/06</span><a class="archive-post-title" href="/2019/10/06/思科模拟器-使用IOS配置启用ospf路由/">思科模拟器 使用IOS配置启用ospf路由</a>
+            <span class="archive-post-date">10/06</span><a class="archive-post-title" href="/2019/10/06/Liunx提权常用命令/">Liunx提权常用命令</a>
         </li>
     
     
@@ -4085,7 +4335,7 @@ pip install opencv-python
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/HDFS文件接口/">HDFS文件接口</a>
+            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/Windows下的MapReduce编程实现/">Windows下的MapReduce编程实现</a>
         </li>
     
     
@@ -4095,7 +4345,7 @@ pip install opencv-python
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/在Centos 7下安装PHP 7/">在Centos 7下安装PHP 7</a>
+            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/CentOS7关闭SELinux/">CentOS7关闭SELinux</a>
         </li>
     
     
@@ -4105,12 +4355,12 @@ pip install opencv-python
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/CentOS7关闭SELinux/">CentOS7关闭SELinux</a>
+            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/在Centos 7下安装PHP 7/">在Centos 7下安装PHP 7</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/Windows下的MapReduce编程实现/">Windows下的MapReduce编程实现</a>
+            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/HDFS文件接口/">HDFS文件接口</a>
         </li>
     
     
@@ -4245,25 +4495,29 @@ pip install opencv-python
     
         <span class="sidebar-tag-name" data-tags="Docker"><span class="iconfont-archer">&#xe606;</span>Docker</span>
     
-        <span class="sidebar-tag-name" data-tags="Flume"><span class="iconfont-archer">&#xe606;</span>Flume</span>
-    
-        <span class="sidebar-tag-name" data-tags="Kafka"><span class="iconfont-archer">&#xe606;</span>Kafka</span>
-    
         <span class="sidebar-tag-name" data-tags="Dokcer"><span class="iconfont-archer">&#xe606;</span>Dokcer</span>
     
         <span class="sidebar-tag-name" data-tags="Esxi"><span class="iconfont-archer">&#xe606;</span>Esxi</span>
     
+        <span class="sidebar-tag-name" data-tags="Flume"><span class="iconfont-archer">&#xe606;</span>Flume</span>
+    
+        <span class="sidebar-tag-name" data-tags="Kafka"><span class="iconfont-archer">&#xe606;</span>Kafka</span>
+    
         <span class="sidebar-tag-name" data-tags="GitHub"><span class="iconfont-archer">&#xe606;</span>GitHub</span>
     
-        <span class="sidebar-tag-name" data-tags="Hive"><span class="iconfont-archer">&#xe606;</span>Hive</span>
+        <span class="sidebar-tag-name" data-tags="Golang"><span class="iconfont-archer">&#xe606;</span>Golang</span>
     
         <span class="sidebar-tag-name" data-tags="Hbase"><span class="iconfont-archer">&#xe606;</span>Hbase</span>
+    
+        <span class="sidebar-tag-name" data-tags="Hive"><span class="iconfont-archer">&#xe606;</span>Hive</span>
     
         <span class="sidebar-tag-name" data-tags="Git"><span class="iconfont-archer">&#xe606;</span>Git</span>
     
         <span class="sidebar-tag-name" data-tags="Kali"><span class="iconfont-archer">&#xe606;</span>Kali</span>
     
         <span class="sidebar-tag-name" data-tags="Kubernetes"><span class="iconfont-archer">&#xe606;</span>Kubernetes</span>
+    
+        <span class="sidebar-tag-name" data-tags="Shell"><span class="iconfont-archer">&#xe606;</span>Shell</span>
     
         <span class="sidebar-tag-name" data-tags="Python算法"><span class="iconfont-archer">&#xe606;</span>Python算法</span>
     
@@ -4339,6 +4593,8 @@ jsonContent:
         <span class="sidebar-category-name" data-categories="Docker"><span class="iconfont-archer">&#xe60a;</span>Docker</span>
     
         <span class="sidebar-category-name" data-categories="GitHub"><span class="iconfont-archer">&#xe60a;</span>GitHub</span>
+    
+        <span class="sidebar-category-name" data-categories="Golang"><span class="iconfont-archer">&#xe60a;</span>Golang</span>
     
         <span class="sidebar-category-name" data-categories="Hive"><span class="iconfont-archer">&#xe60a;</span>Hive</span>
     
