@@ -404,20 +404,20 @@ height:50vh;
     <article class="article-entry">
         <h2 id><a href="#" class="headerlink" title="=="></a>==</h2><p><code>==</code>是比较两个变量的值，如果是基本数据类型，那么就是比较的基本数据的大小值</p>
 <h3 id="情况一"><a href="#情况一" class="headerlink" title="情况一"></a>情况一</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a=<span class="number">1</span>;</span><br><span class="line"><span class="keyword">int</span> b=<span class="number">1</span>;</span><br><span class="line">System.out.println(a==b);</span><br></pre></td></tr></table></figure>
-<p><img src="image001.png" alt="Java"></p>
+<p><img src="https://pic.imgdb.cn/item/5e65e14a98271cb2b8078a09.png" alt></p>
 <p>以上图中：==比较的就是上面两个内存块中的值，都是1，所以是true</p>
 <p>但是如果存储的是引用类型，其实比较的还是变量本身所存储的值，我们都知道，<br>变量存储引用类型其实存储的只是引用对象的地址作为值存储到变量中，那么当用==<br>判断时，比较的就是这两个<strong>地址值</strong>了，所以说==比的是两个变量所存储的值，</p>
 <p>至于这个值是什么类型的，就看放什么了</p>
 <h3 id="情况二"><a href="#情况二" class="headerlink" title="情况二"></a>情况二</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">User a = <span class="keyword">new</span> User();</span><br><span class="line">User b = <span class="keyword">new</span> User();</span><br><span class="line">System.out.println(a==b);</span><br></pre></td></tr></table></figure>
-<p><img src="image003.png" alt="Java"></p>
+<p><img src="https://pic.imgdb.cn/item/5e65e15998271cb2b8078f78.png" alt></p>
 <p>在上图中，a和b存的就是一个引用对象，在这时判断a==b时，比较的也是a和b所存储的值，</p>
 <p>可以看出，a里面存的是0x1234，b里面存放的是0x5874,很明显不相等，所以是false</p>
 <h3 id="情况三"><a href="#情况三" class="headerlink" title="情况三"></a>情况三</h3><p>而当使用==比较字符串时：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">String a=<span class="string">"abcd"</span>;</span><br><span class="line">String b=<span class="string">"abcd"</span>;</span><br><span class="line">System.out.println(a==b);</span><br></pre></td></tr></table></figure>
-<p><img src="image005.png" alt="Java"></p>
+<p><img src="https://pic.imgdb.cn/item/5e65e16298271cb2b80794d4.png" alt></p>
 <p>这时，a和b存储的是同一个常量字符串，地址也一样，所以是true。</p>
 <h3 id="情况四"><a href="#情况四" class="headerlink" title="情况四"></a>情况四</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">String a=<span class="keyword">new</span> String(<span class="string">"abcd"</span>);</span><br><span class="line">String b=<span class="keyword">new</span> String(<span class="string">"abcd"</span>);</span><br><span class="line">System.out.printlnl(a==b);</span><br></pre></td></tr></table></figure>
-<p><img src="image007.png" alt="Java"></p>
+<p><img src="https://pic.imgdb.cn/item/5e65e16a98271cb2b8079931.png" alt></p>
 <p>如果通过创建对象的方式创建字符串，那么流程就会向上图一样，a和b里面所存放的值就不一样了，a和b 比较就是false</p>
 <h2 id="equals"><a href="#equals" class="headerlink" title="equals()"></a>equals()</h2><p>JAVA当中所有的类都是继承于<code>Object</code>这个超类的，在Object类中定义了一个equals的方法，equals的源码是这样写的：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object obj)</span> </span>&#123;</span><br><span class="line">    <span class="comment">//this - s1</span></span><br><span class="line">    <span class="comment">//obj - s2</span></span><br><span class="line">    <span class="keyword">return</span> (<span class="keyword">this</span> == obj);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -432,8 +432,8 @@ height:50vh;
         <div class="license-wrapper">
             <p>原文作者：<a href="https://plutoacharon.github.io">浩翰</a>
             </p><p>原文链接：<a href="https://plutoacharon.github.io/2019/08/13/Java中“-”与equeals的区别/">https://plutoacharon.github.io/2019/08/13/Java中“-”与equeals的区别/</a>
-            </p><p>发表日期：<a href="https://plutoacharon.github.io/2019/08/13/Java中“-”与equeals的区别/">八月 13日 2019, 7:58:48 晚上</a>
-            </p><p>更新日期：<a href="https://plutoacharon.github.io/2019/08/13/Java中“-”与equeals的区别/">August 17th 2019, 10:49:05 am</a>
+            </p><p>发表日期：<a href="https://plutoacharon.github.io/2019/08/13/Java中“-”与equeals的区别/">August 13th 2019, 7:58:48 pm</a>
+            </p><p>更新日期：<a href="https://plutoacharon.github.io/2019/08/13/Java中“-”与equeals的区别/">March 9th 2020, 2:25:53 pm</a>
             </p><p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
@@ -3944,7 +3944,7 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/Windows下的MapReduce编程实现/">Windows下的MapReduce编程实现</a>
+            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/HDFS文件接口/">HDFS文件接口</a>
         </li>
     
     
@@ -3954,17 +3954,17 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/CentOS7关闭SELinux/">CentOS7关闭SELinux</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/HDFS文件接口/">HDFS文件接口</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/在Centos 7下安装PHP 7/">在Centos 7下安装PHP 7</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/Windows下的MapReduce编程实现/">Windows下的MapReduce编程实现</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/CentOS7关闭SELinux/">CentOS7关闭SELinux</a>
         </li>
     
     
@@ -4092,9 +4092,9 @@ top:50vh;
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
     
-        <span class="sidebar-tag-name" data-tags="Liunx"><span class="iconfont-archer">&#xe606;</span>Liunx</span>
-    
         <span class="sidebar-tag-name" data-tags="CTF"><span class="iconfont-archer">&#xe606;</span>CTF</span>
+    
+        <span class="sidebar-tag-name" data-tags="Liunx"><span class="iconfont-archer">&#xe606;</span>Liunx</span>
     
         <span class="sidebar-tag-name" data-tags="高可用负载均衡"><span class="iconfont-archer">&#xe606;</span>高可用负载均衡</span>
     
@@ -4112,13 +4112,13 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Kafka"><span class="iconfont-archer">&#xe606;</span>Kafka</span>
     
-        <span class="sidebar-tag-name" data-tags="Golang"><span class="iconfont-archer">&#xe606;</span>Golang</span>
-    
         <span class="sidebar-tag-name" data-tags="GitHub"><span class="iconfont-archer">&#xe606;</span>GitHub</span>
     
-        <span class="sidebar-tag-name" data-tags="Hive"><span class="iconfont-archer">&#xe606;</span>Hive</span>
+        <span class="sidebar-tag-name" data-tags="Golang"><span class="iconfont-archer">&#xe606;</span>Golang</span>
     
         <span class="sidebar-tag-name" data-tags="Hbase"><span class="iconfont-archer">&#xe606;</span>Hbase</span>
+    
+        <span class="sidebar-tag-name" data-tags="Hive"><span class="iconfont-archer">&#xe606;</span>Hive</span>
     
         <span class="sidebar-tag-name" data-tags="Git"><span class="iconfont-archer">&#xe606;</span>Git</span>
     
@@ -4136,17 +4136,17 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Vmware"><span class="iconfont-archer">&#xe606;</span>Vmware</span>
     
+        <span class="sidebar-tag-name" data-tags="机器学习"><span class="iconfont-archer">&#xe606;</span>机器学习</span>
+    
         <span class="sidebar-tag-name" data-tags="Zookeeper"><span class="iconfont-archer">&#xe606;</span>Zookeeper</span>
     
         <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
     
-        <span class="sidebar-tag-name" data-tags="机器学习"><span class="iconfont-archer">&#xe606;</span>机器学习</span>
-    
         <span class="sidebar-tag-name" data-tags="Hexo"><span class="iconfont-archer">&#xe606;</span>Hexo</span>
     
-        <span class="sidebar-tag-name" data-tags="Python"><span class="iconfont-archer">&#xe606;</span>Python</span>
-    
         <span class="sidebar-tag-name" data-tags="安全"><span class="iconfont-archer">&#xe606;</span>安全</span>
+    
+        <span class="sidebar-tag-name" data-tags="Python"><span class="iconfont-archer">&#xe606;</span>Python</span>
     
         <span class="sidebar-tag-name" data-tags="PySpark"><span class="iconfont-archer">&#xe606;</span>PySpark</span>
     
@@ -4193,17 +4193,17 @@ jsonContent:
         <div class="sidebar-panel-categories">
     <div class="sidebar-categories-name">
     
-        <span class="sidebar-category-name" data-categories="Liunx"><span class="iconfont-archer">&#xe60a;</span>Liunx</span>
-    
         <span class="sidebar-category-name" data-categories="CTF"><span class="iconfont-archer">&#xe60a;</span>CTF</span>
+    
+        <span class="sidebar-category-name" data-categories="Liunx"><span class="iconfont-archer">&#xe60a;</span>Liunx</span>
     
         <span class="sidebar-category-name" data-categories="Hadoop"><span class="iconfont-archer">&#xe60a;</span>Hadoop</span>
     
         <span class="sidebar-category-name" data-categories="Docker"><span class="iconfont-archer">&#xe60a;</span>Docker</span>
     
-        <span class="sidebar-category-name" data-categories="Golang"><span class="iconfont-archer">&#xe60a;</span>Golang</span>
-    
         <span class="sidebar-category-name" data-categories="GitHub"><span class="iconfont-archer">&#xe60a;</span>GitHub</span>
+    
+        <span class="sidebar-category-name" data-categories="Golang"><span class="iconfont-archer">&#xe60a;</span>Golang</span>
     
         <span class="sidebar-category-name" data-categories="Hive"><span class="iconfont-archer">&#xe60a;</span>Hive</span>
     
@@ -4211,9 +4211,9 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="Kubernetes"><span class="iconfont-archer">&#xe60a;</span>Kubernetes</span>
     
-        <span class="sidebar-category-name" data-categories="其他"><span class="iconfont-archer">&#xe60a;</span>其他</span>
-    
         <span class="sidebar-category-name" data-categories="高可用负载均衡"><span class="iconfont-archer">&#xe60a;</span>高可用负载均衡</span>
+    
+        <span class="sidebar-category-name" data-categories="其他"><span class="iconfont-archer">&#xe60a;</span>其他</span>
     
         <span class="sidebar-category-name" data-categories="Python算法"><span class="iconfont-archer">&#xe60a;</span>Python算法</span>
     
@@ -4225,9 +4225,9 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="博客"><span class="iconfont-archer">&#xe60a;</span>博客</span>
     
-        <span class="sidebar-category-name" data-categories="Python"><span class="iconfont-archer">&#xe60a;</span>Python</span>
-    
         <span class="sidebar-category-name" data-categories="网络"><span class="iconfont-archer">&#xe60a;</span>网络</span>
+    
+        <span class="sidebar-category-name" data-categories="Python"><span class="iconfont-archer">&#xe60a;</span>Python</span>
     
     </div>
     <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>

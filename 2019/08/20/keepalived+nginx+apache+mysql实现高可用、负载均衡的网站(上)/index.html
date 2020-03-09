@@ -405,7 +405,7 @@ height:50vh;
         <blockquote>
 <p>说明：本次实验是需要8台虚拟机的项目 其架构如下图：</p>
 </blockquote>
-<p><img src="1.png" alt="上"></p>
+<p><img src="https://pic.imgdb.cn/item/5e65e35598271cb2b8084fce.png" alt></p>
 <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>keepalived是一个类似于layer3, 4 &amp; 5交换机制的软件，也就是我们平时说的第3层、第4层和第5层交换。Keepalived是自动完成，不需人工干涉。</p>
 <p>Layer3,4,5工作在IP/TCP协议栈的IP层，TCP层，及应用层,原理分别如下：</p>
 <p>Layer3：Keepalived使用Layer3的方式工作式时，Keepalived会定期向服务器群中的服务器发送一个ICMP的数据包（既我们平时用的Ping程序）,如果发现某台服务的IP地址没有激活，Keepalived便报告这台服务器失效，并将它从服务器群中剔除，这种情况的典型例子是某台服务器被非法关机。Layer3的方式是以服务器的IP地址是否有效作为服务器工作正常与<br>否的标准。</p>
@@ -473,7 +473,7 @@ cp nginx.conf ./nginx.conf.bak
 </code></pre><p>修改nginx.conf的配置</p>
 <p><code>vim nginx.conf</code></p>
 <p>修改红框里的内容</p>
-<p><img src="2.png" alt="上"></p>
+<p><img src="https://pic.imgdb.cn/item/5e65e36f98271cb2b8085b4d.png" alt></p>
 <p>保存退出，然后在sbin目录重新加载nginx</p>
 <p><code>./nginx -s reload</code></p>
 <h3 id="下载并安装keepalived"><a href="#下载并安装keepalived" class="headerlink" title="下载并安装keepalived"></a>下载并安装keepalived</h3><pre><code>yum install wget make gcc gcc-c++ openssl-devel 
@@ -484,7 +484,7 @@ cd keepalived-2.0.7
 </code></pre><p>如果报以下警告：</p>
 <pre><code>WARNING - this build will not support IPVS with IPv6. Please install libnl/libnl-3 dev libraries to support IPv6 with IPVS.
 </code></pre><p>不用担心，我们只需要用到VRRP功能，不需要用IPVS功能，所以请确保以下三项是yes就行了。</p>
-<p><img src="3.png" alt="上"></p>
+<p><img src="https://pic.imgdb.cn/item/5e65e37c98271cb2b8085f62.png" alt></p>
 <h4 id="编译并安装"><a href="#编译并安装" class="headerlink" title="编译并安装"></a>编译并安装</h4><p><code>make&amp;&amp;make install</code></p>
 <h4 id="将keepalived-以服务方式启动"><a href="#将keepalived-以服务方式启动" class="headerlink" title="将keepalived 以服务方式启动"></a>将keepalived 以服务方式启动</h4><p>创建/etc/keepalived目录并把keepalived的配置文件拷贝/etc/keepalived目录下并加入到开机启动。</p>
 <pre><code>mkdir /etc/keepalived 
@@ -496,12 +496,12 @@ systemctl enable keepalived
 <h4 id="添加检查nginx状态的脚本"><a href="#添加检查nginx状态的脚本" class="headerlink" title="添加检查nginx状态的脚本"></a>添加检查nginx状态的脚本</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line">A=`ps -C nginx –no-header |wc -l`</span><br><span class="line">if [ $A -eq 0 ];then</span><br><span class="line">    /usr/local/nginx/sbin/nginx</span><br><span class="line">    sleep 2</span><br><span class="line">    if [ `ps -C nginx --no-header |wc -l` -eq 0 ];then</span><br><span class="line">        killall keepalived</span><br><span class="line">    fi</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
 <h4 id="重启keepalived"><a href="#重启keepalived" class="headerlink" title="重启keepalived"></a>重启keepalived</h4><p><code>systemctl restart keepalived</code></p>
 <p>输入命令<code>ip a</code>查看是否有vip</p>
-<p><img src="4.png" alt="上"></p>
+<p><img src="https://pic.imgdb.cn/item/5e65e38598271cb2b80862c1.png" alt></p>
 <p>keepalived+nginx+apache+mysql实现高可用、负载均衡的网站</p>
 <p>然后关闭master的keepalived</p>
 <p>systemctl stop keepalived</p>
 <p>查看backup上是否有vip</p>
-<p><img src="5.png" alt="上"></p>
+<p><img src="https://pic.imgdb.cn/item/5e65e3a398271cb2b8086b34.png" alt></p>
 <p>有说明配置成功</p>
 <p>没有说明keepalived.conf存在问题</p>
 <h4 id="安装apache服务器"><a href="#安装apache服务器" class="headerlink" title="安装apache服务器"></a>安装apache服务器</h4><p>在两台web服务器上安装apache服务</p>
@@ -516,22 +516,22 @@ systemctl enable keepalived
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"Content-Type"</span> <span class="attr">content</span>=<span class="string">"text/html;charset=UTF-8"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>产品添加-JD产品管理系统<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h3</span>&gt;</span>web2_JD产品管理<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">"deal.php"</span> <span class="attr">method</span>=<span class="string">"post"</span> <span class="attr">enctype</span>=<span class="string">"multipart/form-data"</span>&gt;</span></span><br><span class="line">图书名称：<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">'text'</span> <span class="attr">name</span>=<span class="string">'title'</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">hr</span> /&gt;</span></span><br><span class="line">销售价格：<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">'price'</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">hr</span> /&gt;</span></span><br><span class="line">市场价格：<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">'market_price'</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">hr</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">name</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">"添加"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"reset"</span> <span class="attr">name</span>=<span class="string">"reset"</span> <span class="attr">value</span>=<span class="string">"重置"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>通过浏览器访问vip</p>
 <p>可以看到web1的页面，再次刷新会出现web2的页面</p>
-<p><img src="6.png" alt="上"></p>
-<p><img src="7.png" alt="上"></p>
+<p><img src="https://pic.imgdb.cn/item/5e65e3ad98271cb2b8086e9e.png" alt></p>
+<p><img src="https://pic.imgdb.cn/item/5e65e3b798271cb2b80871d5.png" alt></p>
 <p>因为在nginx的配置为你教案中设置的web1和web2的权重为100：80</p>
 <p>所以每访问180次会出现100次web1，80次web2</p>
 <p><a href="https://plutoacharon.github.io/2019/08/20/keepalived-nginx-apache-mysql%E5%AE%9E%E7%8E%B0%E9%AB%98%E5%8F%AF%E7%94%A8%E3%80%81%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%E7%9A%84%E7%BD%91%E7%AB%99-%E4%B8%8B/#more">keepalived+nginx+apache+mysql实现高可用、负载均衡的网站-下</a></p>
 <hr>
 <p>报错指南:</p>
-<p><img src="8.png" alt="上"></p>
-<p><img src="9.png" alt="上"></p>
+<p><img src="https://pic.imgdb.cn/item/5e65e3c398271cb2b8087580.png" alt></p>
+<p><img src="https://pic.imgdb.cn/item/5e65e3cd98271cb2b8087831.png" alt></p>
 <p>原因</p>
 <p>未使用nginx -c的参数指定nginx.conf文件的位置</p>
 <p>解决</p>
 <p><code>/usr/local/nginx/sbin/nginx -c /usr/local/nginx/conf/nginx.conf</code> 执行</p>
 <hr>
-<p><img src="11.png" alt="上"></p>
-<p><img src="10.png" alt="上"></p>
+<p><img src="https://pic.imgdb.cn/item/5e65e3d698271cb2b8087acd.png" alt></p>
+<p><img src="https://pic.imgdb.cn/item/5e65e3e298271cb2b8087de5.png" alt></p>
 <p>不能加空格</p>
 
     </article>
@@ -540,8 +540,8 @@ systemctl enable keepalived
         <div class="license-wrapper">
             <p>原文作者：<a href="https://plutoacharon.github.io">浩翰</a>
             </p><p>原文链接：<a href="https://plutoacharon.github.io/2019/08/20/keepalived+nginx+apache+mysql实现高可用、负载均衡的网站(上)/">https://plutoacharon.github.io/2019/08/20/keepalived+nginx+apache+mysql实现高可用、负载均衡的网站(上)/</a>
-            </p><p>发表日期：<a href="https://plutoacharon.github.io/2019/08/20/keepalived+nginx+apache+mysql实现高可用、负载均衡的网站(上)/">八月 20日 2019, 7:52:34 晚上</a>
-            </p><p>更新日期：<a href="https://plutoacharon.github.io/2019/08/20/keepalived+nginx+apache+mysql实现高可用、负载均衡的网站(上)/">October 6th 2019, 9:25:50 pm</a>
+            </p><p>发表日期：<a href="https://plutoacharon.github.io/2019/08/20/keepalived+nginx+apache+mysql实现高可用、负载均衡的网站(上)/">August 20th 2019, 7:52:34 pm</a>
+            </p><p>更新日期：<a href="https://plutoacharon.github.io/2019/08/20/keepalived+nginx+apache+mysql实现高可用、负载均衡的网站(上)/">March 9th 2020, 2:36:24 pm</a>
             </p><p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
@@ -4052,7 +4052,7 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/Windows下的MapReduce编程实现/">Windows下的MapReduce编程实现</a>
+            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/HDFS文件接口/">HDFS文件接口</a>
         </li>
     
     
@@ -4062,17 +4062,17 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/CentOS7关闭SELinux/">CentOS7关闭SELinux</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/HDFS文件接口/">HDFS文件接口</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/在Centos 7下安装PHP 7/">在Centos 7下安装PHP 7</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/Windows下的MapReduce编程实现/">Windows下的MapReduce编程实现</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/CentOS7关闭SELinux/">CentOS7关闭SELinux</a>
         </li>
     
     
@@ -4200,9 +4200,9 @@ top:50vh;
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
     
-        <span class="sidebar-tag-name" data-tags="Liunx"><span class="iconfont-archer">&#xe606;</span>Liunx</span>
-    
         <span class="sidebar-tag-name" data-tags="CTF"><span class="iconfont-archer">&#xe606;</span>CTF</span>
+    
+        <span class="sidebar-tag-name" data-tags="Liunx"><span class="iconfont-archer">&#xe606;</span>Liunx</span>
     
         <span class="sidebar-tag-name" data-tags="高可用负载均衡"><span class="iconfont-archer">&#xe606;</span>高可用负载均衡</span>
     
@@ -4220,13 +4220,13 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Kafka"><span class="iconfont-archer">&#xe606;</span>Kafka</span>
     
-        <span class="sidebar-tag-name" data-tags="Golang"><span class="iconfont-archer">&#xe606;</span>Golang</span>
-    
         <span class="sidebar-tag-name" data-tags="GitHub"><span class="iconfont-archer">&#xe606;</span>GitHub</span>
     
-        <span class="sidebar-tag-name" data-tags="Hive"><span class="iconfont-archer">&#xe606;</span>Hive</span>
+        <span class="sidebar-tag-name" data-tags="Golang"><span class="iconfont-archer">&#xe606;</span>Golang</span>
     
         <span class="sidebar-tag-name" data-tags="Hbase"><span class="iconfont-archer">&#xe606;</span>Hbase</span>
+    
+        <span class="sidebar-tag-name" data-tags="Hive"><span class="iconfont-archer">&#xe606;</span>Hive</span>
     
         <span class="sidebar-tag-name" data-tags="Git"><span class="iconfont-archer">&#xe606;</span>Git</span>
     
@@ -4244,17 +4244,17 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Vmware"><span class="iconfont-archer">&#xe606;</span>Vmware</span>
     
+        <span class="sidebar-tag-name" data-tags="机器学习"><span class="iconfont-archer">&#xe606;</span>机器学习</span>
+    
         <span class="sidebar-tag-name" data-tags="Zookeeper"><span class="iconfont-archer">&#xe606;</span>Zookeeper</span>
     
         <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
     
-        <span class="sidebar-tag-name" data-tags="机器学习"><span class="iconfont-archer">&#xe606;</span>机器学习</span>
-    
         <span class="sidebar-tag-name" data-tags="Hexo"><span class="iconfont-archer">&#xe606;</span>Hexo</span>
     
-        <span class="sidebar-tag-name" data-tags="Python"><span class="iconfont-archer">&#xe606;</span>Python</span>
-    
         <span class="sidebar-tag-name" data-tags="安全"><span class="iconfont-archer">&#xe606;</span>安全</span>
+    
+        <span class="sidebar-tag-name" data-tags="Python"><span class="iconfont-archer">&#xe606;</span>Python</span>
     
         <span class="sidebar-tag-name" data-tags="PySpark"><span class="iconfont-archer">&#xe606;</span>PySpark</span>
     
@@ -4301,17 +4301,17 @@ jsonContent:
         <div class="sidebar-panel-categories">
     <div class="sidebar-categories-name">
     
-        <span class="sidebar-category-name" data-categories="Liunx"><span class="iconfont-archer">&#xe60a;</span>Liunx</span>
-    
         <span class="sidebar-category-name" data-categories="CTF"><span class="iconfont-archer">&#xe60a;</span>CTF</span>
+    
+        <span class="sidebar-category-name" data-categories="Liunx"><span class="iconfont-archer">&#xe60a;</span>Liunx</span>
     
         <span class="sidebar-category-name" data-categories="Hadoop"><span class="iconfont-archer">&#xe60a;</span>Hadoop</span>
     
         <span class="sidebar-category-name" data-categories="Docker"><span class="iconfont-archer">&#xe60a;</span>Docker</span>
     
-        <span class="sidebar-category-name" data-categories="Golang"><span class="iconfont-archer">&#xe60a;</span>Golang</span>
-    
         <span class="sidebar-category-name" data-categories="GitHub"><span class="iconfont-archer">&#xe60a;</span>GitHub</span>
+    
+        <span class="sidebar-category-name" data-categories="Golang"><span class="iconfont-archer">&#xe60a;</span>Golang</span>
     
         <span class="sidebar-category-name" data-categories="Hive"><span class="iconfont-archer">&#xe60a;</span>Hive</span>
     
@@ -4319,9 +4319,9 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="Kubernetes"><span class="iconfont-archer">&#xe60a;</span>Kubernetes</span>
     
-        <span class="sidebar-category-name" data-categories="其他"><span class="iconfont-archer">&#xe60a;</span>其他</span>
-    
         <span class="sidebar-category-name" data-categories="高可用负载均衡"><span class="iconfont-archer">&#xe60a;</span>高可用负载均衡</span>
+    
+        <span class="sidebar-category-name" data-categories="其他"><span class="iconfont-archer">&#xe60a;</span>其他</span>
     
         <span class="sidebar-category-name" data-categories="Python算法"><span class="iconfont-archer">&#xe60a;</span>Python算法</span>
     
@@ -4333,9 +4333,9 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="博客"><span class="iconfont-archer">&#xe60a;</span>博客</span>
     
-        <span class="sidebar-category-name" data-categories="Python"><span class="iconfont-archer">&#xe60a;</span>Python</span>
-    
         <span class="sidebar-category-name" data-categories="网络"><span class="iconfont-archer">&#xe60a;</span>网络</span>
+    
+        <span class="sidebar-category-name" data-categories="Python"><span class="iconfont-archer">&#xe60a;</span>Python</span>
     
     </div>
     <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>

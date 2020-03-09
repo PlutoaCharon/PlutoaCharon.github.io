@@ -425,7 +425,7 @@ height:50vh;
 </ul>
 <h2 id="Spark生态"><a href="#Spark生态" class="headerlink" title="Spark生态"></a>Spark生态</h2><h3 id="Spark历史"><a href="#Spark历史" class="headerlink" title="Spark历史"></a>Spark历史</h3><p>Spark是美国加州大学伯克利分校的AMP实验室（主要创始人lester和Matei）开发的通用的大数据处理框架。</p>
 <h3 id="Spark的组件"><a href="#Spark的组件" class="headerlink" title="Spark的组件"></a>Spark的组件</h3><p>Spark包括多个紧密集成的组件：</p>
-<p><img src="image001.png" alt="Spark"></p>
+<p><img src="https://pic.imgdb.cn/item/5e65e18498271cb2b807a100.png" alt></p>
 <h4 id="Spark-Core："><a href="#Spark-Core：" class="headerlink" title="Spark Core："></a>Spark Core：</h4><p>包含Spark的基本功能，包含任务调度，内存管理，容错机制等。</p>
 <p>内部定义了RDDs（弹性分布式数据集）。</p>
 <p>提供了很多APIs来创建和操作这些RDDs。</p>
@@ -467,7 +467,7 @@ height:50vh;
 <li>大数据将会孕育出更多的新技术</li>
 </ul>
 <h3 id="RDDs介绍"><a href="#RDDs介绍" class="headerlink" title="RDDs介绍"></a>RDDs介绍</h3><h4 id="Driver-program："><a href="#Driver-program：" class="headerlink" title="Driver program："></a>Driver program：</h4><p>包含程序的main（）方法，RDDs的定义和操作。<br>它管理很多节点，我们称作<code>executors</code></p>
-<p><img src="image003.png" alt="Spark"></p>
+<p><img src="https://pic.imgdb.cn/item/5e65e19798271cb2b807a703.png" alt></p>
 <h4 id="SparkContext："><a href="#SparkContext：" class="headerlink" title="SparkContext："></a>SparkContext：</h4><p>Driver programs通过SparkContext对象访问Spark。</p>
 <p>SparkContext对象代表和一个集群的连接。</p>
 <p>在Shell中SparkContext自动创建好了，就是sc。</p>
@@ -498,11 +498,11 @@ height:50vh;
 <p>flat压扁的意思，将RDD中元素压扁后返回一个新的RDD.</p>
 <h2 id="RDD基本操作之Action"><a href="#RDD基本操作之Action" class="headerlink" title="RDD基本操作之Action"></a>RDD基本操作之Action</h2><h3 id="Action介绍："><a href="#Action介绍：" class="headerlink" title="Action介绍："></a>Action介绍：</h3><p>在RDD上计算出来一个结果。</p>
 <p>把结果返回给driver program或保存在文件系统，count(),save</p>
-<p><img src="image005.png" alt="Spark"></p>
-<p><img src="image007.png" alt="Spark"></p>
+<p><img src="https://pic.imgdb.cn/item/5e65e1a498271cb2b807ab37.png" alt></p>
+<p><img src="https://pic.imgdb.cn/item/5e65e1b598271cb2b807afec.png" alt></p>
 <h3 id="常用函数举例："><a href="#常用函数举例：" class="headerlink" title="常用函数举例："></a>常用函数举例：</h3><h4 id="reduce"><a href="#reduce" class="headerlink" title="reduce()"></a>reduce()</h4><p>接收一个函数，作用在RDD两个类型相同的元素上，返回新元素。<br>可以实现，RDD中元素的累加，计数，和其他类型的聚集操作。</p>
-<p><img src="image009.png" alt="Spark"></p>
-<p><img src="image011.png" alt="Spark"></p>
+<p><img src="https://pic.imgdb.cn/item/5e65e1bd98271cb2b807b33c.png" alt></p>
+<p><img src="https://pic.imgdb.cn/item/5e65e1c898271cb2b807b742.png" alt></p>
 <h4 id="Collect-："><a href="#Collect-：" class="headerlink" title="Collect()："></a>Collect()：</h4><p>遍历整个RDD，向driver program返回RDD的内容</p>
 <p>需要单机内存能够容纳下（因为数据要拷贝给driver，测试使用）</p>
 <p>大数据的时候，使用savaAsTextFile() action等。</p>
@@ -512,7 +512,7 @@ height:50vh;
 <h4 id="foreach-："><a href="#foreach-：" class="headerlink" title="foreach()："></a>foreach()：</h4><p>计算RDD中的每个元素，但不返回到本地。</p>
 <p>可以配合println()友好的打印出数据。</p>
 <h2 id="RDDs的特性"><a href="#RDDs的特性" class="headerlink" title="RDDs的特性"></a>RDDs的特性</h2><p><strong>RDDs的血统关系图：</strong></p>
-<p><img src="image013.png" alt="Spark"></p>
+<p><img src="https://pic.imgdb.cn/item/5e65e1de98271cb2b807be4d.png" alt></p>
 <p>Spark维护者RDDs之间的依赖关系和创建关系，叫做血统关系图</p>
 <p>Spark使用血统关系图来计算每个RDD的需求和恢复丢失的数据</p>
 <h3 id="延迟计算（Lazy-Evaluation）："><a href="#延迟计算（Lazy-Evaluation）：" class="headerlink" title="延迟计算（Lazy Evaluation）："></a>延迟计算（Lazy Evaluation）：</h3><p>Spark对RDDs的计算是，他们第一次使用action操作的时候</p>
@@ -523,8 +523,8 @@ height:50vh;
 <p>如果想重复利用一个RDD，可以使用RDD.persist()</p>
 <p>unpersist()方法从缓存中移除</p>
 <p>例子-peisist()</p>
-<p><img src="image015.png" alt="Spark"></p>
-<p><img src="image017.png" alt="Spark"></p>
+<p><img src="https://pic.imgdb.cn/item/5e65e1e998271cb2b807c28d.png" alt></p>
+<p><img src="https://pic.imgdb.cn/item/5e65e1f398271cb2b807c6dc.png" alt></p>
 
     </article>
     <!-- license  -->
@@ -532,8 +532,8 @@ height:50vh;
         <div class="license-wrapper">
             <p>原文作者：<a href="https://plutoacharon.github.io">浩翰</a>
             </p><p>原文链接：<a href="https://plutoacharon.github.io/2019/08/13/初识Spark/">https://plutoacharon.github.io/2019/08/13/初识Spark/</a>
-            </p><p>发表日期：<a href="https://plutoacharon.github.io/2019/08/13/初识Spark/">八月 13日 2019, 8:12:40 晚上</a>
-            </p><p>更新日期：<a href="https://plutoacharon.github.io/2019/08/13/初识Spark/">October 2nd 2019, 10:38:49 pm</a>
+            </p><p>发表日期：<a href="https://plutoacharon.github.io/2019/08/13/初识Spark/">August 13th 2019, 8:12:40 pm</a>
+            </p><p>更新日期：<a href="https://plutoacharon.github.io/2019/08/13/初识Spark/">March 9th 2020, 2:28:09 pm</a>
             </p><p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
@@ -4044,7 +4044,7 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/Windows下的MapReduce编程实现/">Windows下的MapReduce编程实现</a>
+            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/HDFS文件接口/">HDFS文件接口</a>
         </li>
     
     
@@ -4054,17 +4054,17 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/CentOS7关闭SELinux/">CentOS7关闭SELinux</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/HDFS文件接口/">HDFS文件接口</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/在Centos 7下安装PHP 7/">在Centos 7下安装PHP 7</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/Windows下的MapReduce编程实现/">Windows下的MapReduce编程实现</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/CentOS7关闭SELinux/">CentOS7关闭SELinux</a>
         </li>
     
     
@@ -4192,9 +4192,9 @@ top:50vh;
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
     
-        <span class="sidebar-tag-name" data-tags="Liunx"><span class="iconfont-archer">&#xe606;</span>Liunx</span>
-    
         <span class="sidebar-tag-name" data-tags="CTF"><span class="iconfont-archer">&#xe606;</span>CTF</span>
+    
+        <span class="sidebar-tag-name" data-tags="Liunx"><span class="iconfont-archer">&#xe606;</span>Liunx</span>
     
         <span class="sidebar-tag-name" data-tags="高可用负载均衡"><span class="iconfont-archer">&#xe606;</span>高可用负载均衡</span>
     
@@ -4212,13 +4212,13 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Kafka"><span class="iconfont-archer">&#xe606;</span>Kafka</span>
     
-        <span class="sidebar-tag-name" data-tags="Golang"><span class="iconfont-archer">&#xe606;</span>Golang</span>
-    
         <span class="sidebar-tag-name" data-tags="GitHub"><span class="iconfont-archer">&#xe606;</span>GitHub</span>
     
-        <span class="sidebar-tag-name" data-tags="Hive"><span class="iconfont-archer">&#xe606;</span>Hive</span>
+        <span class="sidebar-tag-name" data-tags="Golang"><span class="iconfont-archer">&#xe606;</span>Golang</span>
     
         <span class="sidebar-tag-name" data-tags="Hbase"><span class="iconfont-archer">&#xe606;</span>Hbase</span>
+    
+        <span class="sidebar-tag-name" data-tags="Hive"><span class="iconfont-archer">&#xe606;</span>Hive</span>
     
         <span class="sidebar-tag-name" data-tags="Git"><span class="iconfont-archer">&#xe606;</span>Git</span>
     
@@ -4236,17 +4236,17 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Vmware"><span class="iconfont-archer">&#xe606;</span>Vmware</span>
     
+        <span class="sidebar-tag-name" data-tags="机器学习"><span class="iconfont-archer">&#xe606;</span>机器学习</span>
+    
         <span class="sidebar-tag-name" data-tags="Zookeeper"><span class="iconfont-archer">&#xe606;</span>Zookeeper</span>
     
         <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
     
-        <span class="sidebar-tag-name" data-tags="机器学习"><span class="iconfont-archer">&#xe606;</span>机器学习</span>
-    
         <span class="sidebar-tag-name" data-tags="Hexo"><span class="iconfont-archer">&#xe606;</span>Hexo</span>
     
-        <span class="sidebar-tag-name" data-tags="Python"><span class="iconfont-archer">&#xe606;</span>Python</span>
-    
         <span class="sidebar-tag-name" data-tags="安全"><span class="iconfont-archer">&#xe606;</span>安全</span>
+    
+        <span class="sidebar-tag-name" data-tags="Python"><span class="iconfont-archer">&#xe606;</span>Python</span>
     
         <span class="sidebar-tag-name" data-tags="PySpark"><span class="iconfont-archer">&#xe606;</span>PySpark</span>
     
@@ -4293,17 +4293,17 @@ jsonContent:
         <div class="sidebar-panel-categories">
     <div class="sidebar-categories-name">
     
-        <span class="sidebar-category-name" data-categories="Liunx"><span class="iconfont-archer">&#xe60a;</span>Liunx</span>
-    
         <span class="sidebar-category-name" data-categories="CTF"><span class="iconfont-archer">&#xe60a;</span>CTF</span>
+    
+        <span class="sidebar-category-name" data-categories="Liunx"><span class="iconfont-archer">&#xe60a;</span>Liunx</span>
     
         <span class="sidebar-category-name" data-categories="Hadoop"><span class="iconfont-archer">&#xe60a;</span>Hadoop</span>
     
         <span class="sidebar-category-name" data-categories="Docker"><span class="iconfont-archer">&#xe60a;</span>Docker</span>
     
-        <span class="sidebar-category-name" data-categories="Golang"><span class="iconfont-archer">&#xe60a;</span>Golang</span>
-    
         <span class="sidebar-category-name" data-categories="GitHub"><span class="iconfont-archer">&#xe60a;</span>GitHub</span>
+    
+        <span class="sidebar-category-name" data-categories="Golang"><span class="iconfont-archer">&#xe60a;</span>Golang</span>
     
         <span class="sidebar-category-name" data-categories="Hive"><span class="iconfont-archer">&#xe60a;</span>Hive</span>
     
@@ -4311,9 +4311,9 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="Kubernetes"><span class="iconfont-archer">&#xe60a;</span>Kubernetes</span>
     
-        <span class="sidebar-category-name" data-categories="其他"><span class="iconfont-archer">&#xe60a;</span>其他</span>
-    
         <span class="sidebar-category-name" data-categories="高可用负载均衡"><span class="iconfont-archer">&#xe60a;</span>高可用负载均衡</span>
+    
+        <span class="sidebar-category-name" data-categories="其他"><span class="iconfont-archer">&#xe60a;</span>其他</span>
     
         <span class="sidebar-category-name" data-categories="Python算法"><span class="iconfont-archer">&#xe60a;</span>Python算法</span>
     
@@ -4325,9 +4325,9 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="博客"><span class="iconfont-archer">&#xe60a;</span>博客</span>
     
-        <span class="sidebar-category-name" data-categories="Python"><span class="iconfont-archer">&#xe60a;</span>Python</span>
-    
         <span class="sidebar-category-name" data-categories="网络"><span class="iconfont-archer">&#xe60a;</span>网络</span>
+    
+        <span class="sidebar-category-name" data-categories="Python"><span class="iconfont-archer">&#xe60a;</span>Python</span>
     
     </div>
     <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>

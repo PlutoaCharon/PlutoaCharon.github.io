@@ -458,11 +458,11 @@ rpm -ivh mysql-community-release-el7-5.noarch.rpm
 yum install -y mysql&amp;&amp;yum install mysql-server -y
 
 systemctl start mysql
-</code></pre><p><img src="1.png" alt="下"></p>
+</code></pre><p><img src="https://pic.imgdb.cn/item/5e65e3ef98271cb2b808818f.png" alt></p>
 <p>首先我们配置mysql双主模型，让其数据同步</p>
 <p><code>vim /etc.my.cnf</code></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">server-id=1</span><br><span class="line">log-bin=mysql-bin</span><br><span class="line">binlog_format=mixed</span><br><span class="line">relay-log=relay-bin</span><br><span class="line">relay-log-index=slave-relay-bin.index</span><br><span class="line">auto-increment-increment=2</span><br><span class="line">auto-increment-offset=1</span><br><span class="line">log-slave-updates</span><br></pre></td></tr></table></figure>
-<p><img src="2.png" alt="下"></p>
+<p><img src="https://pic.imgdb.cn/item/5e65e3fe98271cb2b80886e9.png" alt></p>
 <p>其中红框历史需要添加的内容</p>
 <p>粉框中是两个mysql不同的地方</p>
 <p>mysql2的粉框处是2</p>
@@ -472,7 +472,7 @@ systemctl start mysql
 <h2 id="创建用户"><a href="#创建用户" class="headerlink" title="创建用户"></a>创建用户</h2><pre><code>grant replication slave on *.* to &apos;repl&apos;@&apos;172.18.74.71&apos; identified by &apos;123456&apos;; &apos;;
 
 flush privileges;
-</code></pre><p><img src="3.png" alt="下"></p>
+</code></pre><p><img src="https://pic.imgdb.cn/item/5e65e40698271cb2b8088961.png" alt></p>
 <h2 id="web服务器授权"><a href="#web服务器授权" class="headerlink" title="web服务器授权"></a>web服务器授权</h2><pre><code>mysql&gt; create database db_jd;
 Query OK, 1 row affected (0.00 sec)
 
@@ -495,22 +495,22 @@ GRANT ALL PRIVILEGES ON *.* TO &apos;web&apos;@&apos;%&apos; IDENTIFIED BY &apos
 Query OK, 0 rows affected (0.00 sec)
 mysql&gt; flush privileges;
 Query OK, 0 rows affected (0.01 sec)
-</code></pre><h2 id="查看主库的状态"><a href="#查看主库的状态" class="headerlink" title="查看主库的状态"></a>查看主库的状态</h2><p><img src="5.png" alt="Mysql"></p>
-<p><img src="7.png" alt="Mysql"></p>
+</code></pre><h2 id="查看主库的状态"><a href="#查看主库的状态" class="headerlink" title="查看主库的状态"></a>查看主库的状态</h2><p><img src="https://pic.imgdb.cn/item/5e65e40f98271cb2b8088cb5.png" alt></p>
+<p><img src="https://pic.imgdb.cn/item/5e65e41998271cb2b80890b0.png" alt></p>
 <h2 id="配置同步信息"><a href="#配置同步信息" class="headerlink" title="配置同步信息"></a>配置同步信息</h2><p>masterA上：</p>
 <pre><code>change master to master_host=&apos;172.18.74.71&apos;,master_port=3306,master_user=&apos;repl&apos;,master_password=&apos;123456&apos;,master_log_file=&apos;mysql-bin.000002&apos;,master_log_pos=632;
 
 start slave;
 
 show slave status\G
-</code></pre><p><img src="9.png" alt="Mysql"></p>
+</code></pre><p><img src="https://pic.imgdb.cn/item/5e65e42f98271cb2b808978c.png" alt></p>
 <p>masterB上：</p>
 <pre><code>change master to master_host=&apos;172.18.74.76&apos;,master_port=3306,master_user=&apos;repl&apos;,master_password=&apos;123456&apos;,master_log_file=&apos;mysql-bin.000002&apos;,master_log_pos=632;
 
 start slave;
 
 show slave status\G
-</code></pre><p><img src="8.png" alt="Mysql"></p>
+</code></pre><p><img src="https://pic.imgdb.cn/item/5e65e42198271cb2b80893a4.png" alt></p>
 <h2 id="测试主主同步"><a href="#测试主主同步" class="headerlink" title="测试主主同步"></a>测试主主同步</h2><p>在masterA上创建一个数据库测试同步效果</p>
 <pre><code>mysql&gt; create database myTest;
 Query OK, 1 row affected (0.00 sec)
@@ -544,8 +544,8 @@ mysql&gt; show databases;
         <div class="license-wrapper">
             <p>原文作者：<a href="https://plutoacharon.github.io">浩翰</a>
             </p><p>原文链接：<a href="https://plutoacharon.github.io/2019/08/20/Mysql（双主）主主架构配置/">https://plutoacharon.github.io/2019/08/20/Mysql（双主）主主架构配置/</a>
-            </p><p>发表日期：<a href="https://plutoacharon.github.io/2019/08/20/Mysql（双主）主主架构配置/">八月 20日 2019, 8:22:20 晚上</a>
-            </p><p>更新日期：<a href="https://plutoacharon.github.io/2019/08/20/Mysql（双主）主主架构配置/">September 5th 2019, 10:53:09 pm</a>
+            </p><p>发表日期：<a href="https://plutoacharon.github.io/2019/08/20/Mysql（双主）主主架构配置/">August 20th 2019, 8:22:20 pm</a>
+            </p><p>更新日期：<a href="https://plutoacharon.github.io/2019/08/20/Mysql（双主）主主架构配置/">March 9th 2020, 2:37:41 pm</a>
             </p><p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
@@ -554,8 +554,8 @@ mysql&gt; show databases;
         <li class="next">
             
                 <div class="nextSlogan">Next Post</div>
-                <a href="/2019/08/31/HDFS文件接口/" title="HDFS文件接口">
-                    <div class="nextTitle">HDFS文件接口</div>
+                <a href="/2019/08/31/Windows下的MapReduce编程实现/" title="Windows下的MapReduce编程实现">
+                    <div class="nextTitle">Windows下的MapReduce编程实现</div>
                 </a>
             
         </li>
@@ -4056,7 +4056,7 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/Windows下的MapReduce编程实现/">Windows下的MapReduce编程实现</a>
+            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/HDFS文件接口/">HDFS文件接口</a>
         </li>
     
     
@@ -4066,17 +4066,17 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/CentOS7关闭SELinux/">CentOS7关闭SELinux</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/HDFS文件接口/">HDFS文件接口</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/在Centos 7下安装PHP 7/">在Centos 7下安装PHP 7</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/Windows下的MapReduce编程实现/">Windows下的MapReduce编程实现</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/CentOS7关闭SELinux/">CentOS7关闭SELinux</a>
         </li>
     
     
@@ -4204,9 +4204,9 @@ top:50vh;
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
     
-        <span class="sidebar-tag-name" data-tags="Liunx"><span class="iconfont-archer">&#xe606;</span>Liunx</span>
-    
         <span class="sidebar-tag-name" data-tags="CTF"><span class="iconfont-archer">&#xe606;</span>CTF</span>
+    
+        <span class="sidebar-tag-name" data-tags="Liunx"><span class="iconfont-archer">&#xe606;</span>Liunx</span>
     
         <span class="sidebar-tag-name" data-tags="高可用负载均衡"><span class="iconfont-archer">&#xe606;</span>高可用负载均衡</span>
     
@@ -4224,13 +4224,13 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Kafka"><span class="iconfont-archer">&#xe606;</span>Kafka</span>
     
-        <span class="sidebar-tag-name" data-tags="Golang"><span class="iconfont-archer">&#xe606;</span>Golang</span>
-    
         <span class="sidebar-tag-name" data-tags="GitHub"><span class="iconfont-archer">&#xe606;</span>GitHub</span>
     
-        <span class="sidebar-tag-name" data-tags="Hive"><span class="iconfont-archer">&#xe606;</span>Hive</span>
+        <span class="sidebar-tag-name" data-tags="Golang"><span class="iconfont-archer">&#xe606;</span>Golang</span>
     
         <span class="sidebar-tag-name" data-tags="Hbase"><span class="iconfont-archer">&#xe606;</span>Hbase</span>
+    
+        <span class="sidebar-tag-name" data-tags="Hive"><span class="iconfont-archer">&#xe606;</span>Hive</span>
     
         <span class="sidebar-tag-name" data-tags="Git"><span class="iconfont-archer">&#xe606;</span>Git</span>
     
@@ -4248,17 +4248,17 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Vmware"><span class="iconfont-archer">&#xe606;</span>Vmware</span>
     
+        <span class="sidebar-tag-name" data-tags="机器学习"><span class="iconfont-archer">&#xe606;</span>机器学习</span>
+    
         <span class="sidebar-tag-name" data-tags="Zookeeper"><span class="iconfont-archer">&#xe606;</span>Zookeeper</span>
     
         <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
     
-        <span class="sidebar-tag-name" data-tags="机器学习"><span class="iconfont-archer">&#xe606;</span>机器学习</span>
-    
         <span class="sidebar-tag-name" data-tags="Hexo"><span class="iconfont-archer">&#xe606;</span>Hexo</span>
     
-        <span class="sidebar-tag-name" data-tags="Python"><span class="iconfont-archer">&#xe606;</span>Python</span>
-    
         <span class="sidebar-tag-name" data-tags="安全"><span class="iconfont-archer">&#xe606;</span>安全</span>
+    
+        <span class="sidebar-tag-name" data-tags="Python"><span class="iconfont-archer">&#xe606;</span>Python</span>
     
         <span class="sidebar-tag-name" data-tags="PySpark"><span class="iconfont-archer">&#xe606;</span>PySpark</span>
     
@@ -4305,17 +4305,17 @@ jsonContent:
         <div class="sidebar-panel-categories">
     <div class="sidebar-categories-name">
     
-        <span class="sidebar-category-name" data-categories="Liunx"><span class="iconfont-archer">&#xe60a;</span>Liunx</span>
-    
         <span class="sidebar-category-name" data-categories="CTF"><span class="iconfont-archer">&#xe60a;</span>CTF</span>
+    
+        <span class="sidebar-category-name" data-categories="Liunx"><span class="iconfont-archer">&#xe60a;</span>Liunx</span>
     
         <span class="sidebar-category-name" data-categories="Hadoop"><span class="iconfont-archer">&#xe60a;</span>Hadoop</span>
     
         <span class="sidebar-category-name" data-categories="Docker"><span class="iconfont-archer">&#xe60a;</span>Docker</span>
     
-        <span class="sidebar-category-name" data-categories="Golang"><span class="iconfont-archer">&#xe60a;</span>Golang</span>
-    
         <span class="sidebar-category-name" data-categories="GitHub"><span class="iconfont-archer">&#xe60a;</span>GitHub</span>
+    
+        <span class="sidebar-category-name" data-categories="Golang"><span class="iconfont-archer">&#xe60a;</span>Golang</span>
     
         <span class="sidebar-category-name" data-categories="Hive"><span class="iconfont-archer">&#xe60a;</span>Hive</span>
     
@@ -4323,9 +4323,9 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="Kubernetes"><span class="iconfont-archer">&#xe60a;</span>Kubernetes</span>
     
-        <span class="sidebar-category-name" data-categories="其他"><span class="iconfont-archer">&#xe60a;</span>其他</span>
-    
         <span class="sidebar-category-name" data-categories="高可用负载均衡"><span class="iconfont-archer">&#xe60a;</span>高可用负载均衡</span>
+    
+        <span class="sidebar-category-name" data-categories="其他"><span class="iconfont-archer">&#xe60a;</span>其他</span>
     
         <span class="sidebar-category-name" data-categories="Python算法"><span class="iconfont-archer">&#xe60a;</span>Python算法</span>
     
@@ -4337,9 +4337,9 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="博客"><span class="iconfont-archer">&#xe60a;</span>博客</span>
     
-        <span class="sidebar-category-name" data-categories="Python"><span class="iconfont-archer">&#xe60a;</span>Python</span>
-    
         <span class="sidebar-category-name" data-categories="网络"><span class="iconfont-archer">&#xe60a;</span>网络</span>
+    
+        <span class="sidebar-category-name" data-categories="Python"><span class="iconfont-archer">&#xe60a;</span>Python</span>
     
     </div>
     <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>

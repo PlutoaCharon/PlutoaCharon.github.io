@@ -445,17 +445,18 @@ height:50vh;
 <h3 id="修改nginx配置文件"><a href="#修改nginx配置文件" class="headerlink" title="修改nginx配置文件"></a>修改nginx配置文件</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">stream &#123;</span><br><span class="line">upstream mysql &#123;</span><br><span class="line"></span><br><span class="line">            server 172.18.74.76:3306 weight=5 max_fails=3 fail_timeout=30s;</span><br><span class="line">            server 172.18.74.71:3306 weight=5 max_fails=3 fail_timeout=30s;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">    server &#123;</span><br><span class="line"></span><br><span class="line">            listen 3306;</span><br><span class="line">            proxy_connect_timeout 1s;</span><br><span class="line">            proxy_timeout 3s;</span><br><span class="line">            proxy_pass mysql;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="启动nginx"><a href="#启动nginx" class="headerlink" title="启动nginx"></a>启动nginx</h3><p><code>/usr/local/nginx/sbin/nginx</code></p>
 <p><code>netstat -napt</code></p>
-<p><img src="3.png" alt="下"></p>
+<p><img src="https://pic.imgdb.cn/item/5e65e4b598271cb2b808bfeb.png" alt></p>
 <p>发现nginx已经被成功监听</p>
 <p>backup的nginx配置相同</p>
 <h3 id="mysql数据库配置"><a href="#mysql数据库配置" class="headerlink" title="mysql数据库配置"></a>mysql数据库配置</h3><p><a href="https://plutoacharon.github.io/2019/08/20/Mysql%EF%BC%88%E5%8F%8C%E4%B8%BB%EF%BC%89%E4%B8%BB%E4%B8%BB%E6%9E%B6%E6%9E%84%E9%85%8D%E7%BD%AE/#more">Mysql主主配置</a></p>
+<p><img src="https://pic.imgdb.cn/item/5e65e43b98271cb2b8089bce.png" alt></p>
 <p>具体可以参考我的这篇文章</p>
 <h2 id="基于web页面的测试"><a href="#基于web页面的测试" class="headerlink" title="基于web页面的测试"></a>基于web页面的测试</h2><p><code>cd /var/www/html</code></p>
 <p><code>vim con.php</code></p>
 <p>如果系统中没有php环境可以参考我的这篇文章<a href="https://plutoacharon.github.io/2019/08/20/Centos7-%E5%AE%89%E8%A3%85-php-%E5%92%8C-php-fpm/#more">php环境搭建</a></p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">$servername = <span class="string">"172.18.74.76"</span>;</span><br><span class="line">$username = <span class="string">"web"</span>;</span><br><span class="line">$password = <span class="string">"123456"</span>;</span><br><span class="line"> </span><br><span class="line"><span class="comment">// 创建连接</span></span><br><span class="line">$conn = <span class="keyword">new</span> mysqli($servername, $username, $password);</span><br><span class="line"> </span><br><span class="line"><span class="comment">// 检测连接</span></span><br><span class="line"><span class="keyword">if</span> ($conn-&gt;connect_error) &#123;</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">"连接失败: "</span> . $conn-&gt;connect_error);</span><br><span class="line">&#125; </span><br><span class="line"><span class="keyword">echo</span> <span class="string">"连接成功"</span>;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
 <p>浏览器访问web的ip/con.php</p>
-<p><img src="2.png" alt="下"></p>
+<p><img src="https://pic.imgdb.cn/item/5e65e4ad98271cb2b808bd3e.png" alt></p>
 <p>mysql2同理</p>
 <p>然后在数据库db_jd里创建表,为接下来的实验做好准备</p>
 <p><code>mysql &gt; create table tb_goods (tltle VarChar(40), price Decimal(10), market_price Decimal(10));</code></p>
@@ -467,9 +468,9 @@ height:50vh;
 <p><code>vim deal.php</code></p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    <span class="comment">//1、设置响应头信息</span></span><br><span class="line">    header(<span class="string">'Content-type:text/html; charset=utf-8'</span>);</span><br><span class="line">    <span class="comment">//2、submit安全判断</span></span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">isset</span>($_POST[<span class="string">'submit'</span>])) &#123;</span><br><span class="line">        <span class="comment">//3、接收数据</span></span><br><span class="line">        $title = $_POST[<span class="string">'title'</span>];</span><br><span class="line">        $price = $_POST[<span class="string">'price'</span>];</span><br><span class="line">        $market_price = $_POST[<span class="string">'market_price'</span>];</span><br><span class="line">        <span class="keyword">include</span> <span class="string">'coon.php'</span>;</span><br><span class="line">        <span class="comment">//9、定义SQL语句</span></span><br><span class="line">        $sql = <span class="string">"insert into tb_goods values ('$title','$price','$market_price')"</span>;</span><br><span class="line">        <span class="comment">//10、执行SQL语句</span></span><br><span class="line">        $result = mysql_query($sql);</span><br><span class="line">        <span class="keyword">if</span>($result) &#123;</span><br><span class="line">            <span class="keyword">echo</span> <span class="string">'添加成功'</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">echo</span> <span class="string">'添加失败'</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
 <h2 id="访问webvip的地址"><a href="#访问webvip的地址" class="headerlink" title="访问webvip的地址"></a>访问webvip的地址</h2><p>插入数据</p>
-<p><img src="4.png" alt="下"></p>
-<h2 id><a href="#" class="headerlink" title></a><img src="10.png" alt="下"></h2><p>报错指南:</p>
-<p><img src="5.png" alt="下"></p>
+<p><img src="https://pic.imgdb.cn/item/5e65e4c598271cb2b808c47a.png" alt></p>
+<h2 id><a href="#" class="headerlink" title></a><img src="https://pic.imgdb.cn/item/5e65e4d998271cb2b808cb62.png" alt></h2><p>报错指南:</p>
+<p><img src="https://pic.imgdb.cn/item/5e65e4d298271cb2b808c80c.png" alt></p>
 <p>原因： SELinux 不让 httpd 访问外网</p>
 <p>在本地可以连接成功但是外网访问不了</p>
 <p><code>getsebool -a | grep httpd</code></p>
@@ -482,8 +483,8 @@ height:50vh;
         <div class="license-wrapper">
             <p>原文作者：<a href="https://plutoacharon.github.io">浩翰</a>
             </p><p>原文链接：<a href="https://plutoacharon.github.io/2019/08/20/keepalived-nginx-apache-mysql实现高可用、负载均衡的网站-下/">https://plutoacharon.github.io/2019/08/20/keepalived-nginx-apache-mysql实现高可用、负载均衡的网站-下/</a>
-            </p><p>发表日期：<a href="https://plutoacharon.github.io/2019/08/20/keepalived-nginx-apache-mysql实现高可用、负载均衡的网站-下/">八月 20日 2019, 7:52:45 晚上</a>
-            </p><p>更新日期：<a href="https://plutoacharon.github.io/2019/08/20/keepalived-nginx-apache-mysql实现高可用、负载均衡的网站-下/">October 6th 2019, 9:25:47 pm</a>
+            </p><p>发表日期：<a href="https://plutoacharon.github.io/2019/08/20/keepalived-nginx-apache-mysql实现高可用、负载均衡的网站-下/">August 20th 2019, 7:52:45 pm</a>
+            </p><p>更新日期：<a href="https://plutoacharon.github.io/2019/08/20/keepalived-nginx-apache-mysql实现高可用、负载均衡的网站-下/">March 9th 2020, 2:40:30 pm</a>
             </p><p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
@@ -3994,7 +3995,7 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/Windows下的MapReduce编程实现/">Windows下的MapReduce编程实现</a>
+            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/HDFS文件接口/">HDFS文件接口</a>
         </li>
     
     
@@ -4004,17 +4005,17 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/CentOS7关闭SELinux/">CentOS7关闭SELinux</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/HDFS文件接口/">HDFS文件接口</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/在Centos 7下安装PHP 7/">在Centos 7下安装PHP 7</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/Windows下的MapReduce编程实现/">Windows下的MapReduce编程实现</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/CentOS7关闭SELinux/">CentOS7关闭SELinux</a>
         </li>
     
     
@@ -4142,9 +4143,9 @@ top:50vh;
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
     
-        <span class="sidebar-tag-name" data-tags="Liunx"><span class="iconfont-archer">&#xe606;</span>Liunx</span>
-    
         <span class="sidebar-tag-name" data-tags="CTF"><span class="iconfont-archer">&#xe606;</span>CTF</span>
+    
+        <span class="sidebar-tag-name" data-tags="Liunx"><span class="iconfont-archer">&#xe606;</span>Liunx</span>
     
         <span class="sidebar-tag-name" data-tags="高可用负载均衡"><span class="iconfont-archer">&#xe606;</span>高可用负载均衡</span>
     
@@ -4162,13 +4163,13 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Kafka"><span class="iconfont-archer">&#xe606;</span>Kafka</span>
     
-        <span class="sidebar-tag-name" data-tags="Golang"><span class="iconfont-archer">&#xe606;</span>Golang</span>
-    
         <span class="sidebar-tag-name" data-tags="GitHub"><span class="iconfont-archer">&#xe606;</span>GitHub</span>
     
-        <span class="sidebar-tag-name" data-tags="Hive"><span class="iconfont-archer">&#xe606;</span>Hive</span>
+        <span class="sidebar-tag-name" data-tags="Golang"><span class="iconfont-archer">&#xe606;</span>Golang</span>
     
         <span class="sidebar-tag-name" data-tags="Hbase"><span class="iconfont-archer">&#xe606;</span>Hbase</span>
+    
+        <span class="sidebar-tag-name" data-tags="Hive"><span class="iconfont-archer">&#xe606;</span>Hive</span>
     
         <span class="sidebar-tag-name" data-tags="Git"><span class="iconfont-archer">&#xe606;</span>Git</span>
     
@@ -4186,17 +4187,17 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Vmware"><span class="iconfont-archer">&#xe606;</span>Vmware</span>
     
+        <span class="sidebar-tag-name" data-tags="机器学习"><span class="iconfont-archer">&#xe606;</span>机器学习</span>
+    
         <span class="sidebar-tag-name" data-tags="Zookeeper"><span class="iconfont-archer">&#xe606;</span>Zookeeper</span>
     
         <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
     
-        <span class="sidebar-tag-name" data-tags="机器学习"><span class="iconfont-archer">&#xe606;</span>机器学习</span>
-    
         <span class="sidebar-tag-name" data-tags="Hexo"><span class="iconfont-archer">&#xe606;</span>Hexo</span>
     
-        <span class="sidebar-tag-name" data-tags="Python"><span class="iconfont-archer">&#xe606;</span>Python</span>
-    
         <span class="sidebar-tag-name" data-tags="安全"><span class="iconfont-archer">&#xe606;</span>安全</span>
+    
+        <span class="sidebar-tag-name" data-tags="Python"><span class="iconfont-archer">&#xe606;</span>Python</span>
     
         <span class="sidebar-tag-name" data-tags="PySpark"><span class="iconfont-archer">&#xe606;</span>PySpark</span>
     
@@ -4243,17 +4244,17 @@ jsonContent:
         <div class="sidebar-panel-categories">
     <div class="sidebar-categories-name">
     
-        <span class="sidebar-category-name" data-categories="Liunx"><span class="iconfont-archer">&#xe60a;</span>Liunx</span>
-    
         <span class="sidebar-category-name" data-categories="CTF"><span class="iconfont-archer">&#xe60a;</span>CTF</span>
+    
+        <span class="sidebar-category-name" data-categories="Liunx"><span class="iconfont-archer">&#xe60a;</span>Liunx</span>
     
         <span class="sidebar-category-name" data-categories="Hadoop"><span class="iconfont-archer">&#xe60a;</span>Hadoop</span>
     
         <span class="sidebar-category-name" data-categories="Docker"><span class="iconfont-archer">&#xe60a;</span>Docker</span>
     
-        <span class="sidebar-category-name" data-categories="Golang"><span class="iconfont-archer">&#xe60a;</span>Golang</span>
-    
         <span class="sidebar-category-name" data-categories="GitHub"><span class="iconfont-archer">&#xe60a;</span>GitHub</span>
+    
+        <span class="sidebar-category-name" data-categories="Golang"><span class="iconfont-archer">&#xe60a;</span>Golang</span>
     
         <span class="sidebar-category-name" data-categories="Hive"><span class="iconfont-archer">&#xe60a;</span>Hive</span>
     
@@ -4261,9 +4262,9 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="Kubernetes"><span class="iconfont-archer">&#xe60a;</span>Kubernetes</span>
     
-        <span class="sidebar-category-name" data-categories="其他"><span class="iconfont-archer">&#xe60a;</span>其他</span>
-    
         <span class="sidebar-category-name" data-categories="高可用负载均衡"><span class="iconfont-archer">&#xe60a;</span>高可用负载均衡</span>
+    
+        <span class="sidebar-category-name" data-categories="其他"><span class="iconfont-archer">&#xe60a;</span>其他</span>
     
         <span class="sidebar-category-name" data-categories="Python算法"><span class="iconfont-archer">&#xe60a;</span>Python算法</span>
     
@@ -4275,9 +4276,9 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="博客"><span class="iconfont-archer">&#xe60a;</span>博客</span>
     
-        <span class="sidebar-category-name" data-categories="Python"><span class="iconfont-archer">&#xe60a;</span>Python</span>
-    
         <span class="sidebar-category-name" data-categories="网络"><span class="iconfont-archer">&#xe60a;</span>网络</span>
+    
+        <span class="sidebar-category-name" data-categories="Python"><span class="iconfont-archer">&#xe60a;</span>Python</span>
     
     </div>
     <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
