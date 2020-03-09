@@ -541,28 +541,13 @@ export HIVE_HOME=/opt/hadoop/...
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2019/08/31/HDFS文件接口/">
+        <a class="abstract-title" href="/2019/08/31/Windows下的MapReduce编程实现/">
             
-                <span>HDFS文件接口</span>
+                <span>Windows下的MapReduce编程实现</span>
         </a>
         <div class="abstract-content">
-            命令基本格式:hadoop fs -cmd &lt; args &gt;
-
-
-ls
-
-hadoop fs -ls  /
-列出hdfs文件系统根目录下的目录和文件
-hadoop fs -ls -R /
-列出hdfs文件系统所有的目录和文件
-
-
-put
-
-hadoop fs -put &lt; local file &gt; &lt; hdfs file &gt;
-hdfs file的父目录一定要存在，否则命令不会执行
-hadoop fs -put  &lt; local file or dir &gt;...&lt; hdfs dir &gt;
-hdfs dir 一定要存在，否则命令不会执...
+            统计某银行信用卡违约用户数量csv下载地址
+违约规则：AY_1～PAY_6：PAY_1为2005年9月的还款情况；PAY_2为2005年8月的还款情况；…；PAY_6为2005年4月的还款情况。BILL_AMT1～BILL_AMT6和PAY_AMT1～PAY_AMT6中数字标识的含义也是如此。PAY_1～PAY_6的取值含义为：0 = 及时还；1 = 还款延迟一个月；2 = 还款延迟两个月；3 = 还款延迟三个月；…；9 = 还款延迟九个月及以上。每月的支付金额PAY_AMT不能低于银行规定的当月最低还款额，否则就是违约。如果支付金额PAY_AMT大于上月账单金额BILL_AMT则视为及...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -623,13 +608,28 @@ JobTracker剖析概述：JobTracker是一个后台服务进程，启动之后，
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2019/08/31/Windows下的MapReduce编程实现/">
+        <a class="abstract-title" href="/2019/08/31/HDFS文件接口/">
             
-                <span>Windows下的MapReduce编程实现</span>
+                <span>HDFS文件接口</span>
         </a>
         <div class="abstract-content">
-            统计某银行信用卡违约用户数量csv下载地址
-违约规则：AY_1～PAY_6：PAY_1为2005年9月的还款情况；PAY_2为2005年8月的还款情况；…；PAY_6为2005年4月的还款情况。BILL_AMT1～BILL_AMT6和PAY_AMT1～PAY_AMT6中数字标识的含义也是如此。PAY_1～PAY_6的取值含义为：0 = 及时还；1 = 还款延迟一个月；2 = 还款延迟两个月；3 = 还款延迟三个月；…；9 = 还款延迟九个月及以上。每月的支付金额PAY_AMT不能低于银行规定的当月最低还款额，否则就是违约。如果支付金额PAY_AMT大于上月账单金额BILL_AMT则视为及...
+            命令基本格式:hadoop fs -cmd &lt; args &gt;
+
+
+ls
+
+hadoop fs -ls  /
+列出hdfs文件系统根目录下的目录和文件
+hadoop fs -ls -R /
+列出hdfs文件系统所有的目录和文件
+
+
+put
+
+hadoop fs -put &lt; local file &gt; &lt; hdfs file &gt;
+hdfs file的父目录一定要存在，否则命令不会执行
+hadoop fs -put  &lt; local file or dir &gt;...&lt; hdfs dir &gt;
+hdfs dir 一定要存在，否则命令不会执...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -4198,7 +4198,7 @@ ps：为了免去后面一系列授权的麻烦，这里直接使用root账户�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/HDFS文件接口/">HDFS文件接口</a>
+            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/Windows下的MapReduce编程实现/">Windows下的MapReduce编程实现</a>
         </li>
     
     
@@ -4208,17 +4208,17 @@ ps：为了免去后面一系列授权的麻烦，这里直接使用root账户�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/在Centos 7下安装PHP 7/">在Centos 7下安装PHP 7</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/Windows下的MapReduce编程实现/">Windows下的MapReduce编程实现</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/CentOS7关闭SELinux/">CentOS7关闭SELinux</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/HDFS文件接口/">HDFS文件接口</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/在Centos 7下安装PHP 7/">在Centos 7下安装PHP 7</a>
         </li>
     
     
@@ -4465,9 +4465,9 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="Kubernetes"><span class="iconfont-archer">&#xe60a;</span>Kubernetes</span>
     
-        <span class="sidebar-category-name" data-categories="高可用负载均衡"><span class="iconfont-archer">&#xe60a;</span>高可用负载均衡</span>
-    
         <span class="sidebar-category-name" data-categories="其他"><span class="iconfont-archer">&#xe60a;</span>其他</span>
+    
+        <span class="sidebar-category-name" data-categories="高可用负载均衡"><span class="iconfont-archer">&#xe60a;</span>高可用负载均衡</span>
     
         <span class="sidebar-category-name" data-categories="Python算法"><span class="iconfont-archer">&#xe60a;</span>Python算法</span>
     
@@ -4479,9 +4479,9 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="博客"><span class="iconfont-archer">&#xe60a;</span>博客</span>
     
-        <span class="sidebar-category-name" data-categories="网络"><span class="iconfont-archer">&#xe60a;</span>网络</span>
-    
         <span class="sidebar-category-name" data-categories="Python"><span class="iconfont-archer">&#xe60a;</span>Python</span>
+    
+        <span class="sidebar-category-name" data-categories="网络"><span class="iconfont-archer">&#xe60a;</span>网络</span>
     
     </div>
     <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>

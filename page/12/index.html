@@ -406,20 +406,17 @@ height:50vh;
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2019/08/31/CentOS7关闭SELinux/">
+        <a class="abstract-title" href="/2019/08/31/在Centos 7下安装PHP 7/">
             
-                <span>CentOS7关闭SELinux</span>
+                <span>在Centos 7下安装PHP 7</span>
         </a>
         <div class="abstract-content">
-            查看[root@dev-server ~]# getenforce
-Disabled
-[root@dev-server ~]# /usr/sbin/sestatus -v
-SELinux status:                 disabled
-临时关闭设置SELinux 成为permissive模式setenforce 1 设置SELinux 成为enforcing模式setenforce 0
-永久关闭vi /etc/selinux/config
-将SELINUX=enforcing改为SELINUX=disabled
-设置后需要重启才能生效
-
+            CentOS 7的官方软件源中，只有PHP 5.4这个官方已经不再提供技术支持的老版本。
+不仅仅是为了安全原因，只是PHP 7中的那些新特性，就要求我们必须更新到新版本下。
+启用EPEL和REMI软件源执行以下指令，分别安装EPEL和Remi软件源：
+yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+yum install http://rpms.remirepo.net/enterprise/remi-release-7.rpm
+安装yum包管理工具默认安装的yum软件包...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -443,17 +440,20 @@ SELinux status:                 disabled
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2019/08/31/在Centos 7下安装PHP 7/">
+        <a class="abstract-title" href="/2019/08/31/CentOS7关闭SELinux/">
             
-                <span>在Centos 7下安装PHP 7</span>
+                <span>CentOS7关闭SELinux</span>
         </a>
         <div class="abstract-content">
-            CentOS 7的官方软件源中，只有PHP 5.4这个官方已经不再提供技术支持的老版本。
-不仅仅是为了安全原因，只是PHP 7中的那些新特性，就要求我们必须更新到新版本下。
-启用EPEL和REMI软件源执行以下指令，分别安装EPEL和Remi软件源：
-yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
-yum install http://rpms.remirepo.net/enterprise/remi-release-7.rpm
-安装yum包管理工具默认安装的yum软件包...
+            查看[root@dev-server ~]# getenforce
+Disabled
+[root@dev-server ~]# /usr/sbin/sestatus -v
+SELinux status:                 disabled
+临时关闭设置SELinux 成为permissive模式setenforce 1 设置SELinux 成为enforcing模式setenforce 0
+永久关闭vi /etc/selinux/config
+将SELINUX=enforcing改为SELINUX=disabled
+设置后需要重启才能生效
+
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -514,28 +514,13 @@ rm /etc/udev/rules.d/70-persistent-net.rules
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2019/08/31/HDFS文件接口/">
+        <a class="abstract-title" href="/2019/08/31/Windows下的MapReduce编程实现/">
             
-                <span>HDFS文件接口</span>
+                <span>Windows下的MapReduce编程实现</span>
         </a>
         <div class="abstract-content">
-            命令基本格式:hadoop fs -cmd &lt; args &gt;
-
-
-ls
-
-hadoop fs -ls  /
-列出hdfs文件系统根目录下的目录和文件
-hadoop fs -ls -R /
-列出hdfs文件系统所有的目录和文件
-
-
-put
-
-hadoop fs -put &lt; local file &gt; &lt; hdfs file &gt;
-hdfs file的父目录一定要存在，否则命令不会执行
-hadoop fs -put  &lt; local file or dir &gt;...&lt; hdfs dir &gt;
-hdfs dir 一定要存在，否则命令不会执...
+            统计某银行信用卡违约用户数量csv下载地址
+违约规则：AY_1～PAY_6：PAY_1为2005年9月的还款情况；PAY_2为2005年8月的还款情况；…；PAY_6为2005年4月的还款情况。BILL_AMT1～BILL_AMT6和PAY_AMT1～PAY_AMT6中数字标识的含义也是如此。PAY_1～PAY_6的取值含义为：0 = 及时还；1 = 还款延迟一个月；2 = 还款延迟两个月；3 = 还款延迟三个月；…；9 = 还款延迟九个月及以上。每月的支付金额PAY_AMT不能低于银行规定的当月最低还款额，否则就是违约。如果支付金额PAY_AMT大于上月账单金额BILL_AMT则视为及...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -596,13 +581,28 @@ JobTracker剖析概述：JobTracker是一个后台服务进程，启动之后，
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2019/08/31/Windows下的MapReduce编程实现/">
+        <a class="abstract-title" href="/2019/08/31/HDFS文件接口/">
             
-                <span>Windows下的MapReduce编程实现</span>
+                <span>HDFS文件接口</span>
         </a>
         <div class="abstract-content">
-            统计某银行信用卡违约用户数量csv下载地址
-违约规则：AY_1～PAY_6：PAY_1为2005年9月的还款情况；PAY_2为2005年8月的还款情况；…；PAY_6为2005年4月的还款情况。BILL_AMT1～BILL_AMT6和PAY_AMT1～PAY_AMT6中数字标识的含义也是如此。PAY_1～PAY_6的取值含义为：0 = 及时还；1 = 还款延迟一个月；2 = 还款延迟两个月；3 = 还款延迟三个月；…；9 = 还款延迟九个月及以上。每月的支付金额PAY_AMT不能低于银行规定的当月最低还款额，否则就是违约。如果支付金额PAY_AMT大于上月账单金额BILL_AMT则视为及...
+            命令基本格式:hadoop fs -cmd &lt; args &gt;
+
+
+ls
+
+hadoop fs -ls  /
+列出hdfs文件系统根目录下的目录和文件
+hadoop fs -ls -R /
+列出hdfs文件系统所有的目录和文件
+
+
+put
+
+hadoop fs -put &lt; local file &gt; &lt; hdfs file &gt;
+hdfs file的父目录一定要存在，否则命令不会执行
+hadoop fs -put  &lt; local file or dir &gt;...&lt; hdfs dir &gt;
+hdfs dir 一定要存在，否则命令不会执...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -4311,7 +4311,7 @@ kill -s 9 2457
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/HDFS文件接口/">HDFS文件接口</a>
+            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/Windows下的MapReduce编程实现/">Windows下的MapReduce编程实现</a>
         </li>
     
     
@@ -4321,17 +4321,17 @@ kill -s 9 2457
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/在Centos 7下安装PHP 7/">在Centos 7下安装PHP 7</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/Windows下的MapReduce编程实现/">Windows下的MapReduce编程实现</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/CentOS7关闭SELinux/">CentOS7关闭SELinux</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/HDFS文件接口/">HDFS文件接口</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/在Centos 7下安装PHP 7/">在Centos 7下安装PHP 7</a>
         </li>
     
     
@@ -4578,9 +4578,9 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="Kubernetes"><span class="iconfont-archer">&#xe60a;</span>Kubernetes</span>
     
-        <span class="sidebar-category-name" data-categories="高可用负载均衡"><span class="iconfont-archer">&#xe60a;</span>高可用负载均衡</span>
-    
         <span class="sidebar-category-name" data-categories="其他"><span class="iconfont-archer">&#xe60a;</span>其他</span>
+    
+        <span class="sidebar-category-name" data-categories="高可用负载均衡"><span class="iconfont-archer">&#xe60a;</span>高可用负载均衡</span>
     
         <span class="sidebar-category-name" data-categories="Python算法"><span class="iconfont-archer">&#xe60a;</span>Python算法</span>
     
@@ -4592,9 +4592,9 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="博客"><span class="iconfont-archer">&#xe60a;</span>博客</span>
     
-        <span class="sidebar-category-name" data-categories="网络"><span class="iconfont-archer">&#xe60a;</span>网络</span>
-    
         <span class="sidebar-category-name" data-categories="Python"><span class="iconfont-archer">&#xe60a;</span>Python</span>
+    
+        <span class="sidebar-category-name" data-categories="网络"><span class="iconfont-archer">&#xe60a;</span>网络</span>
     
     </div>
     <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>

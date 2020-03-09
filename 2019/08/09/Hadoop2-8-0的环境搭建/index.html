@@ -411,11 +411,11 @@ height:50vh;
 <h3 id="Hadoop的下载"><a href="#Hadoop的下载" class="headerlink" title="Hadoop的下载"></a>Hadoop的下载</h3><blockquote>
 <p>本文下载的是2.8.0版本的Hadoop</p>
 </blockquote>
-<p><img src="image001.png" alt="Hadoop"></p>
+<p><img src="https://pic.imgdb.cn/item/5e65f1f098271cb2b80e2849.png" alt></p>
 <h3 id="安装3个虚拟机并实现ssh免密码的登录"><a href="#安装3个虚拟机并实现ssh免密码的登录" class="headerlink" title="安装3个虚拟机并实现ssh免密码的登录"></a>安装3个虚拟机并实现ssh免密码的登录</h3><h4 id="安装3个centos7虚拟机"><a href="#安装3个centos7虚拟机" class="headerlink" title="安装3个centos7虚拟机"></a>安装3个centos7虚拟机</h4><p>安装方法：</p>
 <p>安装3个机器，机器分别叫<strong>master slave1 slave2</strong></p>
 <p>如图：</p>
-<p><img src="image003.png" alt="Hadoop"></p>
+<p><img src="https://pic.imgdb.cn/item/5e65f1ff98271cb2b80e311a.png" alt></p>
 <p><strong>ps：为了免去后面一系列授权的麻烦，这里直接使用root账户登录和操作了。</strong></p>
 <p>使用ifconfig命令，查看着三台机器的ip。</p>
 <p>我的机器名与ip 的对应的关系是：</p>
@@ -424,14 +424,14 @@ height:50vh;
 192.168.236.134 slave2
 </code></pre><h4 id="检查机器名称"><a href="#检查机器名称" class="headerlink" title="检查机器名称"></a>检查机器名称</h4><p>为了后续操作方便，确保机器的hostname是我们想要的。拿192.168.236.132机器举例，用root账户登录之后，然后使用<code>hostname</code>命令查看机器名称</p>
 <p>如图：</p>
-<p><img src="image005.png" alt="Hadoop"></p>
+<p><img src="https://pic.imgdb.cn/item/5e65f20898271cb2b80e3504.png" alt></p>
 <p>hostname命令查看名称一开始的名称是localhost </p>
 <p>我们用hostname master命令更改机器名称为master</p>
 <h4 id="修改-etc-hosts文件"><a href="#修改-etc-hosts文件" class="headerlink" title="修改/etc/hosts文件"></a>修改/etc/hosts文件</h4><p>修改这3台机器的/etc/hosts文件，在文件中添加以下内容：<br>    192.168.236.132 master<br>    192.168.236.133 slave1<br>    192.168.236.134 slave2<br>如图：</p>
-<p><img src="image007.png" alt="Hadoop"></p>
+<p><img src="https://pic.imgdb.cn/item/5e65f21098271cb2b80e37b6.png" alt></p>
 <p>说明：ip地址没必要和我的一样，这里只是做一个映射，只要映射是对的就可以，至于修改方法，vi vim 命令都可以。</p>
 <p>配置成功后使用 ping 命令检查者3台机器是否相互ping的通，以master为例，：</p>
-<p><img src="image009.png" alt="Hadoop"></p>
+<p><img src="https://pic.imgdb.cn/item/5e65f21998271cb2b80e3af1.png" alt></p>
 <p>说明能够ping通</p>
 <blockquote>
 <p>使用该命令 在各个机器都尝试是否可以ping通,ping得通，说明机器是互联的，而且hosts配置也正确。</p>
@@ -439,45 +439,45 @@ height:50vh;
 <h4 id="给3个机器生成秘钥文件"><a href="#给3个机器生成秘钥文件" class="headerlink" title="给3个机器生成秘钥文件"></a>给3个机器生成秘钥文件</h4><p>以master为例，执行命令，生成空字符串的秘钥（后面要使用公钥），命令是：</p>
 <p><code>ssh-keygen -t rsa</code></p>
 <p>如图：</p>
-<p><img src="image011.png" alt="Hadoop"></p>
+<p><img src="https://pic.imgdb.cn/item/5e65f22398271cb2b80e3f3a.png" alt></p>
 <p>因为我现在使用的是root账户，所以秘钥文件保存到了/root/.shh/目录内，可以使用命令查看，命令是：</p>
 <p><code>cd  /root/.ssh</code></p>
 <p>然后<code>ls</code></p>
 <p>如图：</p>
-<p><img src="image013.png" alt="Hadoop"></p>
+<p><img src="https://pic.imgdb.cn/item/5e65f22b98271cb2b80e42bb.png" alt></p>
 <p>使用相同的方法为slave1与slave2生成秘钥（命令相同，不用做任何修改）。</p>
 <h4 id="在master上创建authorized-keys文件"><a href="#在master上创建authorized-keys文件" class="headerlink" title="在master上创建authorized_keys文件"></a>在master上创建authorized_keys文件</h4><p>接下来要做的事情就是在3台机器的/root/.shh/目录下都存入一个内容相同的文件，文件名称叫<strong>authorized_keys</strong>，文件内容是我们刚才为3台机器生成的公钥。</p>
 <p>为了方便，我下面的步骤是现在master上生成<strong>authorized_keys</strong>文件，然后把3台机器刚才生成的公钥加入到这个master的authorized_keys文件里，然后在将这个authorize_keys文件复制到slave1与slave2里。</p>
 <p>首先使用命令，在master的/root/.ssh/目录中生成一个名为authorized_keys的文件，命令是：</p>
 <p><code>touch /root/.shh/authorized_keys</code></p>
 <p>如图：</p>
-<p><img src="image015.png" alt="Hadoop"></p>
+<p><img src="https://pic.imgdb.cn/item/5e65f23a98271cb2b80e499e.png" alt></p>
 <blockquote>
 <p>因为我已经在.ssh目录中了，所以直接在该目录打 touch authorized_keys 命令就可以</p>
 </blockquote>
 <p>其次将master上的/root/.ssh/id_rsa.pub文件内容，slave1上的/root/.ssh/id_rsa.pub文件内容，slave2上的/root/.ssh/id_rsa.pub文件内容复制到这个authorized_keys文件中.</p>
 <p>复制的方法很多了，可以用cat命令和vim命令结合来弄，也可以直接把这3台机器上的/root/.ssh/id_rsa.pub文件下载到本地，在本地将authorized_keys文件编辑好在上载到这3台机器上。master机器上我的/root/.ssh/id_rsa.pub内容是:</p>
 <p>如图：</p>
-<p><img src="image017.png" alt="Hadoop"></p>
+<p><img src="https://pic.imgdb.cn/item/5e65f24498271cb2b80e5241.png" alt></p>
 <p>先将master的id_rsa.pub加到authorized_keys中：</p>
-<p><img src="image019.png" alt="Hadoop"></p>
+<p><img src="https://pic.imgdb.cn/item/5e65f24e98271cb2b80e5997.png" alt></p>
 <p>然后将slave1与slave2中的d_rsa.pub复制到master的authorized_keys中</p>
 <p>如图：</p>
-<p><img src="image021.png" alt="Hadoop"></p>
+<p><img src="https://pic.imgdb.cn/item/5e65f25698271cb2b80e5c4e.png" alt></p>
 <h4 id="将authorized-keys文件复制到其他机器"><a href="#将authorized-keys文件复制到其他机器" class="headerlink" title="将authorized_keys文件复制到其他机器"></a>将authorized_keys文件复制到其他机器</h4><p> master器的/root/.ssh/目录下已经有authorized_keys这个文件了，该文件的内容也已经OK了，接下来要将该文件复制到slave1的/root/.ssh/和slave2的/root/.ssh/。</p>
-<p><img src="image023.png" alt="Hadoop"></p>
+<p><img src="https://pic.imgdb.cn/item/5e65f25e98271cb2b80e5e34.png" alt></p>
 <p>（输入yes）</p>
 <h4 id="测试使用ssh进行无密码登录"><a href="#测试使用ssh进行无密码登录" class="headerlink" title="测试使用ssh进行无密码登录"></a>测试使用ssh进行无密码登录</h4><p>输入命令：</p>
 <p><code>ssh slave1</code></p>
 <p>如图：</p>
-<p><img src="image025.png" alt="Hadoop"></p>
+<p><img src="https://pic.imgdb.cn/item/5e65f26598271cb2b80e64a8.png" alt></p>
 <p>显示这样便就是连接成功，exit 命令退出</p>
 <p>接下来便在 slave1与slave2中测试</p>
 <h3 id="安装Jdk与Hadoop"><a href="#安装Jdk与Hadoop" class="headerlink" title="安装Jdk与Hadoop"></a>安装Jdk与Hadoop</h3><p>说明，为了省去一系列获取管理员权限，授权等繁琐操作，精简教程，这里都是使用root账户登录并且使用root权限进行操作。</p>
 <h4 id="安装jdk"><a href="#安装jdk" class="headerlink" title="安装jdk"></a>安装jdk</h4><p>安装：<br>    可以参考我的<a href="https://plutoacharon.github.io/2019/07/31/Centos7%E4%B8%8B%E7%9A%84JDK%E5%AE%89%E8%A3%85/#more">Centos7下的Jdk安装</a></p>
 <h4 id="安装hadoop"><a href="#安装hadoop" class="headerlink" title="安装hadoop"></a>安装hadoop</h4><p><strong>注意：3台机器都要解压安装</strong></p>
 <h5 id="上载文件并解压缩"><a href="#上载文件并解压缩" class="headerlink" title="上载文件并解压缩"></a>上载文件并解压缩</h5><p>在opt目录下新建一个名为hadoop的目录，并将下载得到的hadoop-2.8.0.tar上载到该目录下，如图:</p>
-<p><img src="image027.png" alt="Hadoop"></p>
+<p><img src="https://pic.imgdb.cn/item/5e65f27198271cb2b80e6b24.png" alt></p>
 <p><strong>（此处使用的是xftp6）</strong></p>
 <p>然后进入到该目录，执行命令：</p>
 <p><code>cd /opt/hadoop</code></p>
@@ -612,18 +612,18 @@ slave2
 &lt;/property&gt;
     说明：yarn.nodemanager.vmem-check-enabled这个的意思是忽略虚拟内存的检查，如果你是安装在虚拟机上，这个配置很有用，配上去之后后续操作不容易出问题。如果是实体机上，并且内存够多，可以将这个配置去掉。
 </code></pre><p>然后用 scp命令传到 slave1与slave2中</p>
-<p><img src="image029.png" alt="Hadoop"></p>
+<p><img src="https://pic.imgdb.cn/item/5e65f27e98271cb2b80e6edb.png" alt></p>
 <h2 id="启动hadoop"><a href="#启动hadoop" class="headerlink" title="启动hadoop"></a>启动hadoop</h2><h3 id="在namenode上执行初始化"><a href="#在namenode上执行初始化" class="headerlink" title="在namenode上执行初始化"></a>在namenode上执行初始化</h3><p>因为master是namenode，slave1和slave2都是datanode，所以只需要对master进行初始化操作，也就是对hdfs进行格式化。</p>
 <p>进入到master这台机器的/opt/hadoop/hadoop-2.8.0/bin目录，也就是执行命令：</p>
 <p><code>cd /opt/hadoop/hadoop-2.8.0/bin</code></p>
 <p>执行初始化脚本，也就是执行命令：</p>
 <p><code>./hadoop  namenode  -format</code></p>
 <p>如图：</p>
-<p><img src="image031.png" alt="Hadoop"></p>
+<p><img src="https://pic.imgdb.cn/item/5e65f28f98271cb2b80e735e.png" alt></p>
 <p> 稍等几秒，不报错的话，即可执行成功，如图：</p>
-<p><img src="image033.png" alt="Hadoop"></p>
+<p><img src="https://pic.imgdb.cn/item/5e65f29898271cb2b80e7659.png" alt></p>
 <p>格式化成功后，可以在看到在/root/hadoop/dfs/name/目录多了一个current目录，而且该目录内有一系列文件：</p>
-<p><img src="image035.png" alt="Hadoop"></p>
+<p><img src="https://pic.imgdb.cn/item/5e65f2a098271cb2b80e786b.png" alt></p>
 <h3 id="在namenode上执行启动命令"><a href="#在namenode上执行启动命令" class="headerlink" title="在namenode上执行启动命令"></a>在namenode上执行启动命令</h3><p>因为master是namenode，slave1和slave2都是datanode，所以只需要再slave2上执行启动命令即可。</p>
 <p>进入到master这台机器的/opt/hadoop/hadoop-2.8.0/sbin目录，也就是执行命令：</p>
 <p><code>cd /opt/hadoop/hadoop-2.8.0/sbin</code></p>
@@ -631,7 +631,7 @@ slave2
 <p><code>./start-all.sh</code></p>
 <p>第一次执行上面的启动命令，会需要我们进行交互操作，在问答界面上输入yes回车</p>
 <p>如图：</p>
-<p><img src="image037.png" alt="Hadoop"></p>
+<p><img src="https://pic.imgdb.cn/item/5e65f2a798271cb2b80e7b29.png" alt></p>
 <p><strong>关闭防火墙：</strong></p>
 <p><code>systemctl stop firewalld.service</code></p>
 <p>不关闭防火墙的话，web页面访问不了！！！</p>
@@ -639,12 +639,12 @@ slave2
 <p><code>http://192.168.236.132:50070/</code></p>
 <p>自动跳转到了overview页面</p>
 <p>如图：</p>
-<p><img src="image039.png" alt="Hadoop"></p>
+<p><img src="https://pic.imgdb.cn/item/5e65f2af98271cb2b80e7db8.png" alt></p>
 <p>在本地浏览器里访问如下地址：</p>
 <p><a href="http://192.168.119.128:8088/" target="_blank" rel="noopener">http://192.168.119.128:8088/</a></p>
 <p>自动跳转到了cluster页面</p>
 <p>如图：</p>
-<p><img src="image041.png" alt="Hadoop"></p>
+<p><img src="https://pic.imgdb.cn/item/5e65f2ba98271cb2b80e8142.png" alt></p>
 <p><strong>Hadoop安装完成！</strong></p>
 <h2 id="报错处理"><a href="#报错处理" class="headerlink" title="报错处理"></a>报错处理</h2><p>想执行hadoop命令，结果报错：hadoop：未找到命令。</p>
 <p>原因是hadoop的安装路径没有加入到当前路径中。解决办法有两个：</p>
@@ -665,7 +665,7 @@ export PATH=$HADOOP_HOME/bin:$HADOOP_HOME/sbin:$PATH
             <p>原文作者：<a href="https://plutoacharon.github.io">浩翰</a>
             </p><p>原文链接：<a href="https://plutoacharon.github.io/2019/08/09/Hadoop2-8-0的环境搭建/">https://plutoacharon.github.io/2019/08/09/Hadoop2-8-0的环境搭建/</a>
             </p><p>发表日期：<a href="https://plutoacharon.github.io/2019/08/09/Hadoop2-8-0的环境搭建/">August 9th 2019, 7:12:44 pm</a>
-            </p><p>更新日期：<a href="https://plutoacharon.github.io/2019/08/09/Hadoop2-8-0的环境搭建/">September 6th 2019, 10:07:46 pm</a>
+            </p><p>更新日期：<a href="https://plutoacharon.github.io/2019/08/09/Hadoop2-8-0的环境搭建/">March 9th 2020, 3:39:49 pm</a>
             </p><p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
@@ -4176,7 +4176,7 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/HDFS文件接口/">HDFS文件接口</a>
+            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/Windows下的MapReduce编程实现/">Windows下的MapReduce编程实现</a>
         </li>
     
     
@@ -4186,17 +4186,17 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/在Centos 7下安装PHP 7/">在Centos 7下安装PHP 7</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/Windows下的MapReduce编程实现/">Windows下的MapReduce编程实现</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/CentOS7关闭SELinux/">CentOS7关闭SELinux</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/HDFS文件接口/">HDFS文件接口</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/在Centos 7下安装PHP 7/">在Centos 7下安装PHP 7</a>
         </li>
     
     
@@ -4443,9 +4443,9 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="Kubernetes"><span class="iconfont-archer">&#xe60a;</span>Kubernetes</span>
     
-        <span class="sidebar-category-name" data-categories="高可用负载均衡"><span class="iconfont-archer">&#xe60a;</span>高可用负载均衡</span>
-    
         <span class="sidebar-category-name" data-categories="其他"><span class="iconfont-archer">&#xe60a;</span>其他</span>
+    
+        <span class="sidebar-category-name" data-categories="高可用负载均衡"><span class="iconfont-archer">&#xe60a;</span>高可用负载均衡</span>
     
         <span class="sidebar-category-name" data-categories="Python算法"><span class="iconfont-archer">&#xe60a;</span>Python算法</span>
     
@@ -4457,9 +4457,9 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="博客"><span class="iconfont-archer">&#xe60a;</span>博客</span>
     
-        <span class="sidebar-category-name" data-categories="网络"><span class="iconfont-archer">&#xe60a;</span>网络</span>
-    
         <span class="sidebar-category-name" data-categories="Python"><span class="iconfont-archer">&#xe60a;</span>Python</span>
+    
+        <span class="sidebar-category-name" data-categories="网络"><span class="iconfont-archer">&#xe60a;</span>网络</span>
     
     </div>
     <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
