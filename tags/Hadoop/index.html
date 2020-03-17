@@ -541,43 +541,6 @@ export HIVE_HOME=/opt/hadoop/...
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2019/08/31/JobTracker和TaskTracker/">
-            
-                <span>JobTracker和TaskTracker</span>
-        </a>
-        <div class="abstract-content">
-            概述Hadoop MapReduce采用Master/Slave结构。
-
-Master：是整个集群的唯一的全局管理者，功能包括：作业管理、状态监控和任务调度等，即MapReduce中的JobTracker。
-
-Slave：负责任务的执行和任务状态的回报，即MapReduce中的TaskTracker。
-
-
-JobTracker剖析概述：JobTracker是一个后台服务进程，启动之后，会一直监听并接收来自各个TaskTracker发送的心跳信息，包括资源使用情况和任务运行情况等信息JobTracker的主要功能
-作业控制：在hadoop中每个应用程序被表示成一个作业，每个作业又被分成多个...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/31</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Hadoop">Hadoop</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
         <a class="abstract-title" href="/2019/08/31/Windows下的MapReduce编程实现/">
             
                 <span>Windows下的MapReduce编程实现</span>
@@ -630,6 +593,43 @@ hadoop fs -put &lt; local file &gt; &lt; hdfs file &gt;
 hdfs file的父目录一定要存在，否则命令不会执行
 hadoop fs -put  &lt; local file or dir &gt;...&lt; hdfs dir &gt;
 hdfs dir 一定要存在，否则命令不会执...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/31</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Hadoop">Hadoop</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2019/08/31/JobTracker和TaskTracker/">
+            
+                <span>JobTracker和TaskTracker</span>
+        </a>
+        <div class="abstract-content">
+            概述Hadoop MapReduce采用Master/Slave结构。
+
+Master：是整个集群的唯一的全局管理者，功能包括：作业管理、状态监控和任务调度等，即MapReduce中的JobTracker。
+
+Slave：负责任务的执行和任务状态的回报，即MapReduce中的TaskTracker。
+
+
+JobTracker剖析概述：JobTracker是一个后台服务进程，启动之后，会一直监听并接收来自各个TaskTracker发送的心跳信息，包括资源使用情况和任务运行情况等信息JobTracker的主要功能
+作业控制：在hadoop中每个应用程序被表示成一个作业，每个作业又被分成多个...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -3653,9 +3653,168 @@ ps：为了免去后面一系列授权的麻烦，这里直接使用root账户�
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 143
+        Total : 150
         </div>
         <!-- search  -->
         
@@ -3671,17 +3830,52 @@ ps：为了免去后面一系列授权的麻烦，这里直接使用root账户�
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">03/17</span><a class="archive-post-title" href="/2020/03/17/Windows10安装运行Kafka2-1-0与Zookeeper3-4-14/">Windows10安装运行Kafka2.1.0与Zookeeper3.4.14</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/17</span><a class="archive-post-title" href="/2020/03/17/关于go-get-以后下载的包不在src下而在pkg的源头并且不可以import-Goland-Modules模块的使用/">关于go get 以后下载的包不在src下而在pkg的源头并且不可以import(Goland Modules模块的使用)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/17</span><a class="archive-post-title" href="/2020/03/17/Golang语言学习从入门到实战-HTTP-web开发编程/">Golang语言学习从入门到实战----HTTP web开发编程</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/17</span><a class="archive-post-title" href="/2020/03/17/Golang语言学习从入门到实战-基于Golang的客户关系管理系统/">Golang语言学习从入门到实战----基于Golang的客户关系管理系统</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/17</span><a class="archive-post-title" href="/2020/03/17/Golang语言学习从入门到实战-接口/">Golang语言学习从入门到实战----接口</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/17</span><a class="archive-post-title" href="/2020/03/17/Golang语言学习从入门到实战-基于Golang实现简单家庭收支项目/">Golang语言学习从入门到实战----基于Golang实现简单家庭收支项目</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/17</span><a class="archive-post-title" href="/2020/03/17/Golang语言学习从入门到实战-编写简单的TCP-IP聊天室/">Golang语言学习从入门到实战----编写简单的TCP/IP聊天室</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/12</span><a class="archive-post-title" href="/2020/03/12/Golang语言学习从入门到实战-结构体以及内存分布/">Golang语言学习从入门到实战----结构体以及内存分布</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">03/12</span><a class="archive-post-title" href="/2020/03/12/Golang语言学习从入门到实战-链表定义/">Golang语言学习从入门到实战----链表定义</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">03/12</span><a class="archive-post-title" href="/2020/03/12/Liunx-Shell编程入门-编写系统监控脚本与FTP探测脚本/">Liunx Shell编程入门----编写系统监控脚本与FTP探测脚本</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">03/12</span><a class="archive-post-title" href="/2020/03/12/Golang语言学习从入门到实战-结构体以及内存分布/">Golang语言学习从入门到实战----结构体以及内存分布</a>
         </li>
     
     
@@ -3696,12 +3890,7 @@ ps：为了免去后面一系列授权的麻烦，这里直接使用root账户�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/07</span><a class="archive-post-title" href="/2020/03/07/Python算法学习-竞码编程-蓝桥杯模拟赛3题解/">Python算法学习: 竞码编程-蓝桥杯模拟赛3题解</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">03/07</span><a class="archive-post-title" href="/2020/03/07/Golang语言学习从入门到实战-指针和内存布局/">Golang语言学习从入门到实战----指针和内存布局</a>
+            <span class="archive-post-date">03/07</span><a class="archive-post-title" href="/2020/03/07/Golang语言学习从入门到实战-defer/">Golang语言学习从入门到实战----defer</a>
         </li>
     
     
@@ -3721,17 +3910,22 @@ ps：为了免去后面一系列授权的麻烦，这里直接使用root账户�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/07</span><a class="archive-post-title" href="/2020/03/07/Golang语言学习从入门到实战-defer/">Golang语言学习从入门到实战----defer</a>
+            <span class="archive-post-date">03/07</span><a class="archive-post-title" href="/2020/03/07/Python算法学习-竞码编程-蓝桥杯模拟赛3题解/">Python算法学习: 竞码编程-蓝桥杯模拟赛3题解</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/07</span><a class="archive-post-title" href="/2020/03/07/Golang语言学习从入门到实战-闭包/">Golang语言学习从入门到实战----闭包</a>
+            <span class="archive-post-date">03/07</span><a class="archive-post-title" href="/2020/03/07/Golang语言学习从入门到实战-指针和内存布局/">Golang语言学习从入门到实战----指针和内存布局</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">03/07</span><a class="archive-post-title" href="/2020/03/07/Liunx-Shell编程入门-编写简单的开机欢迎脚本与操作服务脚本/">Liunx Shell编程入门----编写简单的开机欢迎脚本与操作服务脚本</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/07</span><a class="archive-post-title" href="/2020/03/07/Golang语言学习从入门到实战-闭包/">Golang语言学习从入门到实战----闭包</a>
         </li>
     
     
@@ -3811,7 +4005,7 @@ ps：为了免去后面一系列授权的麻烦，这里直接使用root账户�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">01/16</span><a class="archive-post-title" href="/2020/01/16/Windows-10上用AutoHotkey实现快速隐藏-显示桌面图标与切换虚拟桌面/">Windows 10上用AutoHotkey实现快速隐藏/显示桌面图标与切换虚拟桌面</a>
+            <span class="archive-post-date">01/16</span><a class="archive-post-title" href="/2020/01/16/Python算法学习day2-查找和排序-一/">Python算法学习day2:查找和排序(一)</a>
         </li>
     
     
@@ -3831,7 +4025,7 @@ ps：为了免去后面一系列授权的麻烦，这里直接使用root账户�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">01/16</span><a class="archive-post-title" href="/2020/01/16/Python算法学习day2-查找和排序-一/">Python算法学习day2:查找和排序(一)</a>
+            <span class="archive-post-date">01/16</span><a class="archive-post-title" href="/2020/01/16/Python算法学习day4-关于一道亚马逊面试题的情景分析/">Python算法学习day4:关于一道亚马逊面试题的情景分析</a>
         </li>
     
     
@@ -3861,7 +4055,7 @@ ps：为了免去后面一系列授权的麻烦，这里直接使用root账户�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">01/16</span><a class="archive-post-title" href="/2020/01/16/Python算法学习day4-关于一道亚马逊面试题的情景分析/">Python算法学习day4:关于一道亚马逊面试题的情景分析</a>
+            <span class="archive-post-date">01/16</span><a class="archive-post-title" href="/2020/01/16/Windows-10上用AutoHotkey实现快速隐藏-显示桌面图标与切换虚拟桌面/">Windows 10上用AutoHotkey实现快速隐藏/显示桌面图标与切换虚拟桌面</a>
         </li>
     
     
@@ -4015,7 +4209,7 @@ ps：为了免去后面一系列授权的麻烦，这里直接使用root账户�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/10</span><a class="archive-post-title" href="/2019/10/10/Liunx-管理用户、组及权限/">Liunx 管理用户、组及权限</a>
+            <span class="archive-post-date">10/10</span><a class="archive-post-title" href="/2019/10/10/Centos7安装Anaconda详细版/">Centos7安装Anaconda详细版</a>
         </li>
     
     
@@ -4025,7 +4219,7 @@ ps：为了免去后面一系列授权的麻烦，这里直接使用root账户�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/10</span><a class="archive-post-title" href="/2019/10/10/Centos7安装Anaconda详细版/">Centos7安装Anaconda详细版</a>
+            <span class="archive-post-date">10/10</span><a class="archive-post-title" href="/2019/10/10/基于PySpark的电影推荐引擎/">基于PySpark的电影推荐引擎</a>
         </li>
     
     
@@ -4040,7 +4234,7 @@ ps：为了免去后面一系列授权的麻烦，这里直接使用root账户�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/10</span><a class="archive-post-title" href="/2019/10/10/基于PySpark的电影推荐引擎/">基于PySpark的电影推荐引擎</a>
+            <span class="archive-post-date">10/10</span><a class="archive-post-title" href="/2019/10/10/Liunx-管理用户、组及权限/">Liunx 管理用户、组及权限</a>
         </li>
     
     
@@ -4250,12 +4444,22 @@ ps：为了免去后面一系列授权的麻烦，这里直接使用root账户�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/JobTracker和TaskTracker/">JobTracker和TaskTracker</a>
+            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/Windows下的MapReduce编程实现/">Windows下的MapReduce编程实现</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/解决vmware（vsphere）部署linux系统模板后无法联网问题/">解决vmware（vsphere）部署linux系统模板后无法联网问题</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/在Centos 7下安装PHP 7/">在Centos 7下安装PHP 7</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/JobTracker和TaskTracker/">JobTracker和TaskTracker</a>
         </li>
     
     
@@ -4266,16 +4470,6 @@ ps：为了免去后面一系列授权的麻烦，这里直接使用root账户�
     
         <li class="archive-post-item">
             <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/HDFS文件接口/">HDFS文件接口</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/在Centos 7下安装PHP 7/">在Centos 7下安装PHP 7</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/Windows下的MapReduce编程实现/">Windows下的MapReduce编程实现</a>
         </li>
     
     
@@ -4418,13 +4612,13 @@ ps：为了免去后面一系列授权的麻烦，这里直接使用root账户�
     
         <span class="sidebar-tag-name" data-tags="Kafka"><span class="iconfont-archer">&#xe606;</span>Kafka</span>
     
-        <span class="sidebar-tag-name" data-tags="GitHub"><span class="iconfont-archer">&#xe606;</span>GitHub</span>
-    
         <span class="sidebar-tag-name" data-tags="Golang"><span class="iconfont-archer">&#xe606;</span>Golang</span>
     
-        <span class="sidebar-tag-name" data-tags="Hbase"><span class="iconfont-archer">&#xe606;</span>Hbase</span>
+        <span class="sidebar-tag-name" data-tags="GitHub"><span class="iconfont-archer">&#xe606;</span>GitHub</span>
     
         <span class="sidebar-tag-name" data-tags="Hive"><span class="iconfont-archer">&#xe606;</span>Hive</span>
+    
+        <span class="sidebar-tag-name" data-tags="Hbase"><span class="iconfont-archer">&#xe606;</span>Hbase</span>
     
         <span class="sidebar-tag-name" data-tags="Git"><span class="iconfont-archer">&#xe606;</span>Git</span>
     
@@ -4507,9 +4701,9 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="Docker"><span class="iconfont-archer">&#xe60a;</span>Docker</span>
     
-        <span class="sidebar-category-name" data-categories="GitHub"><span class="iconfont-archer">&#xe60a;</span>GitHub</span>
-    
         <span class="sidebar-category-name" data-categories="Golang"><span class="iconfont-archer">&#xe60a;</span>Golang</span>
+    
+        <span class="sidebar-category-name" data-categories="GitHub"><span class="iconfont-archer">&#xe60a;</span>GitHub</span>
     
         <span class="sidebar-category-name" data-categories="Hive"><span class="iconfont-archer">&#xe60a;</span>Hive</span>
     

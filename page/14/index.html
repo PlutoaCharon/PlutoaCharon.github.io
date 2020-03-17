@@ -359,6 +359,286 @@ height:50vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2019/08/20/Centos7-安装-php-和-php-fpm/">
+            
+                <span>Centos7 安装 php 和 php-fpm</span>
+        </a>
+        <div class="abstract-content">
+            安装 php 和 php-fpm首先安装epelyum -y install epel-release
+安装php php-fpmyum -y install php php-fpm
+查看php版本php -v
+安装php-mysqlyum install php-mysql
+设置php-fpm开机自动启动systemctl enable php-fpm
+启动php-fpmsystemctl start php-fpm
+重启httpd服务systemctl restart httpd.service
+
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/20</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Liunx">Liunx</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2019/08/20/keepalived-nginx-apache-mysql实现高可用、负载均衡的网站-下/">
+            
+                <span>keepalived+nginx+apache+mysql实现高可用、负载均衡的网站(下)</span>
+        </a>
+        <div class="abstract-content">
+            环境介绍
+
+
+主机名称
+安装软件
+ip地址
+
+
+
+
+nginx_mysql_m
+keepalived+nginx
+172.18.74.77
+
+
+nginx_mysql_s
+keepalived+nginx
+172.18.74.70
+
+
+mysql1
+mysql、mysql-server
+172.18.74.76
+
+
+mysql2
+mysql、mysql-server
+172.18.74.71
+
+
+
+keepalived配置keepalived的配置和上一篇的类似,也是主从配置
+在nginx_mysql_m中keeplived配置
+12345678910111213141516171819...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/20</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="高可用负载均衡">高可用负载均衡</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2019/08/20/keepalived+nginx+apache+mysql实现高可用、负载均衡的网站(上)/">
+            
+                <span>keepalived+nginx+apache+mysql实现高可用、负载均衡的网站(上)</span>
+        </a>
+        <div class="abstract-content">
+            
+说明：本次实验是需要8台虚拟机的项目 其架构如下图：
+
+
+简介keepalived是一个类似于layer3, 4 &amp; 5交换机制的软件，也就是我们平时说的第3层、第4层和第5层交换。Keepalived是自动完成，不需人工干涉。
+Layer3,4,5工作在IP/TCP协议栈的IP层，TCP层，及应用层,原理分别如下：
+Layer3：Keepalived使用Layer3的方式工作式时，Keepalived会定期向服务器群中的服务器发送一个ICMP的数据包（既我们平时用的Ping程序）,如果发现某台服务的IP地址没有激活，Keepalived便报告这台服务器失效，并将它从服务器群中...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/20</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="高可用负载均衡">高可用负载均衡</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2019/08/17/IDEA使用Git将项目上传到Github/">
+            
+                <span>IDEA使用Git将项目上传到Github</span>
+        </a>
+        <div class="abstract-content">
+            准备配置使用idea开发工具创建了一个project之后，此时项目代码是没有版本管理控制的，只是存放在本地。一方面没有办法团队协作开发，另一方面无法让别人共同观赏。
+于是经过自己摸索了解到了IDEA2019版本的连接GitHub使用git上传项目
+在上传项目之前需要先在idea中确认两个配置，一个是git的执行位置，电脑上没有安装git的需要提前安装，安装之后再idea的settings中搜索git然后配置刚刚安装的git目录文件，再点击右侧的Test按钮进行测试验证，出现successfully表示git可以正常使用
+
+接下来在GitHub选项中添加自己的GitHub账号
+添加完成以后...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/17</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Git">Git</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2019/08/17/本地安装maven库与IDEA安装本地maven库/">
+            
+                <span>本地安装maven库与IDEA安装本地maven库</span>
+        </a>
+        <div class="abstract-content">
+            前期准备下载在Maven官网下载最新版的安装包：[下载链接]http://maven.apache.org/download.cgi
+
+将文件解压到D:\opt\Tool\maven目录下（可以自己设置目录）
+新建环境变量新建环境变量MAVEN_HOME，赋值D:\opt\Tool\maven\
+
+编辑环境变量Path，追加%MAVEN_HOME%\bin\
+
+检查maven是否安装成功我们可以通过DOS命令检查一下我们是否安装成功：(我使用cmd一直找不到mvn，但是使用git就可以)
+
+容易错误的地点前面4步安装成功之前打开的cmd运行mvn -v命令不会成功
+如果出现 JAVA_H...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/17</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Hadoop">Hadoop</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Maven">Maven</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2019/08/13/初识Spark/">
+            
+                <span>初识Spark</span>
+        </a>
+        <div class="abstract-content">
+            Spark简介Spark是什么Spark是一个快读且通用的集群计算平台
+Spark的特点Spark应用程序可以使用R语言、Java、Scala和Python进行编写，极少使用R语言编写Spark程序，Java和Scala语言编写的Spark程序的执行效率是相同的，但Java语言写的代码量多，Scala简洁优雅，但可读性不如Java，Python语言编写的Spark程序的执行效率不如Java和Scala。
+Spark是快速的
+Spark扩充了流行的MapReduce计算模型
+Spark是基于内存的计算
+
+Spark是通用的
+Spark的设计容纳了其他分布式系统拥有的功能
+批处理，迭代式计算...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/13</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Spark">Spark</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2019/08/13/Java中“-”与equeals的区别/">
+            
+                <span>Java中“==”与equeals的区别</span>
+        </a>
+        <div class="abstract-content">
+            ====是比较两个变量的值，如果是基本数据类型，那么就是比较的基本数据的大小值
+情况一123int a=1;int b=1;System.out.println(a==b);
+
+以上图中：==比较的就是上面两个内存块中的值，都是1，所以是true
+但是如果存储的是引用类型，其实比较的还是变量本身所存储的值，我们都知道，变量存储引用类型其实存储的只是引用对象的地址作为值存储到变量中，那么当用==判断时，比较的就是这两个地址值了，所以说==比的是两个变量所存储的值，
+至于这个值是什么类型的，就看放什么了
+情况二123User a = new User();User b = new User(...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/13</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Java">Java</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2019/08/10/Java编程思想学习笔记-二/">
             
                 <span>Java编程思想学习笔记(二)</span>
@@ -462,311 +742,6 @@ ps：为了免去后面一系列授权的麻烦，这里直接使用root账户�
             <div class="abstract-tags">
     
         <a class="post-tag" href="javascript:void(0);" data-tags="Hadoop">Hadoop</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/08/08/初识Scala/">
-            
-                <span>初识Scala</span>
-        </a>
-        <div class="abstract-content">
-            Scala概述学习Scala的原因
-Spark—新一代内存级大数据计算框架，是大数据的重要内容。
-
-Spark就是使用Scala编写的。因此为了更好的学习Spark, 需要掌握Scala这门语言。
-
-Scala 是 Scalable Language 的简写，是一门多范式(范式/编程方式[面向对象/函数式编程])的编程语言
-
-联邦理工学院洛桑（EPFL）的Martin Odersky于2001年开始设计Scala
-
-Spark的兴起，带动Scala语言的发展！
-
-
-Scala语言的特点
-Scala 是一门以 java 虚拟机（JVM）为运行环境并将面向对象和函数式编程的最佳特性结合在一起...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/08</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Spark">Spark</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/08/08/Scala的安装/">
-            
-                <span>Scala的安装</span>
-        </a>
-        <div class="abstract-content">
-            准备安装首先在官网下载好scala以后，安装在hadoop目录下
-cd /opt/hadoop
-tar -zxvf scala-2.12.8.tgz
-进入环境变量vim /etc/profile
-#scala
-
-export SCALA_HOME=/opt/hadoop/scala-2.12.8
-export PATH=$PATH:$SCALA_HOME/bin
-source /etc/profile保存
-在相应的slave1，与slave2中也进行相应修改
-安装成功
-将scala分发到其他节点上scp -r scala-2.12.8 root@slave1:/opt/hadoop/
-
-...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/08</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Spark">Spark</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/08/08/Liunx中tar命令的使用/">
-            
-                <span>Liunx中tar命令的使用</span>
-        </a>
-        <div class="abstract-content">
-            
-把常用的tar解压命令总结下，当作备忘：
-
-
-tar-c: 建立压缩档案
--x：解压
--t：查看内容
--r：向压缩归档文件末尾追加文件
--u：更新原压缩包中的文件
-这五个是独立的命令，压缩解压都要用到其中一个，可以和别的命令连用但只能用其中一个。下面的参数是根据需要在压缩或解压档案时可选的。
--z：有gzip属性的
--j：有bz2属性的
--Z：有compress属性的
--v：显示所有过程
--O：将文件解开到标准输出
-下面的参数-f是必须的
--f: 使用档案名字，切记，这个参数是最后一个参数，后面只能接档案名。
-
-tar -cf all.tar *.jpg
-这条命令是将所有.jpg的文件...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/08</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Liunx">Liunx</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/08/02/Java变量类型/">
-            
-                <span>Java变量类型</span>
-        </a>
-        <div class="abstract-content">
-            变量的分类
-
-按数据类型分类详细说明：
-
-整型：
-
-
-byte(1字节=8bit)
-short(2字节)
-int(4字节)
-long(8字节)
-
-① byte范围：-128 ~ 127
-② 声明long型变量，必须以”l”或”L”结尾
-③ 通常，定义整型变量时，使用int型。
-④整型的常量，默认类型是：int型
-
-浮点型：float(4字节) \ double(8字节)
-
-① 浮点型，表示带小数点的数值
-② float表示数值的范围比long还大
-③ 定义float类型变量时，变量要以”f”或”F”结尾
-④ 通常，定义浮点型变量时，使用double型。
-⑤ 浮点型的常量，默认类型为：do...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/02</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Java">Java</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/08/02/什么是环境变量/">
-            
-                <span>什么是环境变量</span>
-        </a>
-        <div class="abstract-content">
-            前言相信大家初学java时，肯定会涉及到“配置环境变量”，而在网上搜索大多是教我们如何如配置，真正说明为什么要去配置环境变量的不多。
-不管在windows里还是liunx里都少不了环境变量的配置，一键Copy是解决不了问题的，还可能会出现各种各样的问题，如果我们搞清楚原理，就会方便许多。
-今天我们就以java环境变量来了解，什么是环境变量以及为什么要配置。
-什么是环境变量环境变量（Environment Variable ）环境变量是在操作系统中一个具有特定名字的对象，它包含了一个或者多个应用程序所将使用到的信息。
-变量
-可以随意给其赋值的一个存储单元
-
-环境例如jvm这些都属于小软件，...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/02</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Java">Java</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/07/31/Centos7下的JDK安装/">
-            
-                <span>Centos7下的JDK安装</span>
-        </a>
-        <div class="abstract-content">
-            卸载系统自带OpenJDK以及相关的java文件查看系统自带jdk版本信息java -version
-查看当前系统自带的open jdk版本信息
-查找要删除的jdk文件输入
-rpm -qa | grep java
-查看包含java字符串的文件，其中删除类似下面这四个文件（不一定是四个）
-java-1.7.0-openjdk-1.7.0.111-2.6.7.8.el7.x86_64
-java-1.8.0-openjdk-1.8.0.102-4.b14.el7.x86_64
-java-1.8.0-openjdk-headless-1.8.0.102-4.b14.el7.x86_64
-java...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/31</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Liunx">Liunx</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Java">Java</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Hadoop">Hadoop</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/07/30/Centos7下NAT设置静态ip/">
-            
-                <span>Centos7下NAT设置静态ip</span>
-        </a>
-        <div class="abstract-content">
-            前期准备在VMware下安装Centos7 以后，选择NAT模式
-查看IP地址
-ip addr
-
-现在我的ip地址是dhcp动态分配出的，地址为192.168.0.128，网卡名字为ens33
-点击VMware Workstation 编辑下的虚拟网络编辑器
-
-在里面我们可以看到虚拟网卡的信息
-点击 更改设置
-
-点击Vmnet8网卡，将子网ip改为自己想要的ip地址类型，这里我修改的是192.168.0.0
-然后点击NAT设置，将网关设置为192.168.0.253
-
-
-保存退出。
-修改配置文件在/etc/sysconfig/network-scripts/下找到网卡配置文件 ens33...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/30</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Liunx">Liunx</a>
     
 </div>
             
@@ -3798,9 +3773,168 @@ ip addr
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 143
+        Total : 150
         </div>
         <!-- search  -->
         
@@ -3816,17 +3950,52 @@ ip addr
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">03/17</span><a class="archive-post-title" href="/2020/03/17/Windows10安装运行Kafka2-1-0与Zookeeper3-4-14/">Windows10安装运行Kafka2.1.0与Zookeeper3.4.14</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/17</span><a class="archive-post-title" href="/2020/03/17/关于go-get-以后下载的包不在src下而在pkg的源头并且不可以import-Goland-Modules模块的使用/">关于go get 以后下载的包不在src下而在pkg的源头并且不可以import(Goland Modules模块的使用)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/17</span><a class="archive-post-title" href="/2020/03/17/Golang语言学习从入门到实战-HTTP-web开发编程/">Golang语言学习从入门到实战----HTTP web开发编程</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/17</span><a class="archive-post-title" href="/2020/03/17/Golang语言学习从入门到实战-基于Golang的客户关系管理系统/">Golang语言学习从入门到实战----基于Golang的客户关系管理系统</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/17</span><a class="archive-post-title" href="/2020/03/17/Golang语言学习从入门到实战-接口/">Golang语言学习从入门到实战----接口</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/17</span><a class="archive-post-title" href="/2020/03/17/Golang语言学习从入门到实战-基于Golang实现简单家庭收支项目/">Golang语言学习从入门到实战----基于Golang实现简单家庭收支项目</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/17</span><a class="archive-post-title" href="/2020/03/17/Golang语言学习从入门到实战-编写简单的TCP-IP聊天室/">Golang语言学习从入门到实战----编写简单的TCP/IP聊天室</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/12</span><a class="archive-post-title" href="/2020/03/12/Golang语言学习从入门到实战-结构体以及内存分布/">Golang语言学习从入门到实战----结构体以及内存分布</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">03/12</span><a class="archive-post-title" href="/2020/03/12/Golang语言学习从入门到实战-链表定义/">Golang语言学习从入门到实战----链表定义</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">03/12</span><a class="archive-post-title" href="/2020/03/12/Liunx-Shell编程入门-编写系统监控脚本与FTP探测脚本/">Liunx Shell编程入门----编写系统监控脚本与FTP探测脚本</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">03/12</span><a class="archive-post-title" href="/2020/03/12/Golang语言学习从入门到实战-结构体以及内存分布/">Golang语言学习从入门到实战----结构体以及内存分布</a>
         </li>
     
     
@@ -3841,12 +4010,7 @@ ip addr
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/07</span><a class="archive-post-title" href="/2020/03/07/Python算法学习-竞码编程-蓝桥杯模拟赛3题解/">Python算法学习: 竞码编程-蓝桥杯模拟赛3题解</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">03/07</span><a class="archive-post-title" href="/2020/03/07/Golang语言学习从入门到实战-指针和内存布局/">Golang语言学习从入门到实战----指针和内存布局</a>
+            <span class="archive-post-date">03/07</span><a class="archive-post-title" href="/2020/03/07/Golang语言学习从入门到实战-defer/">Golang语言学习从入门到实战----defer</a>
         </li>
     
     
@@ -3866,17 +4030,22 @@ ip addr
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/07</span><a class="archive-post-title" href="/2020/03/07/Golang语言学习从入门到实战-defer/">Golang语言学习从入门到实战----defer</a>
+            <span class="archive-post-date">03/07</span><a class="archive-post-title" href="/2020/03/07/Python算法学习-竞码编程-蓝桥杯模拟赛3题解/">Python算法学习: 竞码编程-蓝桥杯模拟赛3题解</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/07</span><a class="archive-post-title" href="/2020/03/07/Golang语言学习从入门到实战-闭包/">Golang语言学习从入门到实战----闭包</a>
+            <span class="archive-post-date">03/07</span><a class="archive-post-title" href="/2020/03/07/Golang语言学习从入门到实战-指针和内存布局/">Golang语言学习从入门到实战----指针和内存布局</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">03/07</span><a class="archive-post-title" href="/2020/03/07/Liunx-Shell编程入门-编写简单的开机欢迎脚本与操作服务脚本/">Liunx Shell编程入门----编写简单的开机欢迎脚本与操作服务脚本</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/07</span><a class="archive-post-title" href="/2020/03/07/Golang语言学习从入门到实战-闭包/">Golang语言学习从入门到实战----闭包</a>
         </li>
     
     
@@ -3956,7 +4125,7 @@ ip addr
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">01/16</span><a class="archive-post-title" href="/2020/01/16/Windows-10上用AutoHotkey实现快速隐藏-显示桌面图标与切换虚拟桌面/">Windows 10上用AutoHotkey实现快速隐藏/显示桌面图标与切换虚拟桌面</a>
+            <span class="archive-post-date">01/16</span><a class="archive-post-title" href="/2020/01/16/Python算法学习day2-查找和排序-一/">Python算法学习day2:查找和排序(一)</a>
         </li>
     
     
@@ -3976,7 +4145,7 @@ ip addr
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">01/16</span><a class="archive-post-title" href="/2020/01/16/Python算法学习day2-查找和排序-一/">Python算法学习day2:查找和排序(一)</a>
+            <span class="archive-post-date">01/16</span><a class="archive-post-title" href="/2020/01/16/Python算法学习day4-关于一道亚马逊面试题的情景分析/">Python算法学习day4:关于一道亚马逊面试题的情景分析</a>
         </li>
     
     
@@ -4006,7 +4175,7 @@ ip addr
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">01/16</span><a class="archive-post-title" href="/2020/01/16/Python算法学习day4-关于一道亚马逊面试题的情景分析/">Python算法学习day4:关于一道亚马逊面试题的情景分析</a>
+            <span class="archive-post-date">01/16</span><a class="archive-post-title" href="/2020/01/16/Windows-10上用AutoHotkey实现快速隐藏-显示桌面图标与切换虚拟桌面/">Windows 10上用AutoHotkey实现快速隐藏/显示桌面图标与切换虚拟桌面</a>
         </li>
     
     
@@ -4160,7 +4329,7 @@ ip addr
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/10</span><a class="archive-post-title" href="/2019/10/10/Liunx-管理用户、组及权限/">Liunx 管理用户、组及权限</a>
+            <span class="archive-post-date">10/10</span><a class="archive-post-title" href="/2019/10/10/Centos7安装Anaconda详细版/">Centos7安装Anaconda详细版</a>
         </li>
     
     
@@ -4170,7 +4339,7 @@ ip addr
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/10</span><a class="archive-post-title" href="/2019/10/10/Centos7安装Anaconda详细版/">Centos7安装Anaconda详细版</a>
+            <span class="archive-post-date">10/10</span><a class="archive-post-title" href="/2019/10/10/基于PySpark的电影推荐引擎/">基于PySpark的电影推荐引擎</a>
         </li>
     
     
@@ -4185,7 +4354,7 @@ ip addr
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/10</span><a class="archive-post-title" href="/2019/10/10/基于PySpark的电影推荐引擎/">基于PySpark的电影推荐引擎</a>
+            <span class="archive-post-date">10/10</span><a class="archive-post-title" href="/2019/10/10/Liunx-管理用户、组及权限/">Liunx 管理用户、组及权限</a>
         </li>
     
     
@@ -4395,12 +4564,22 @@ ip addr
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/JobTracker和TaskTracker/">JobTracker和TaskTracker</a>
+            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/Windows下的MapReduce编程实现/">Windows下的MapReduce编程实现</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/解决vmware（vsphere）部署linux系统模板后无法联网问题/">解决vmware（vsphere）部署linux系统模板后无法联网问题</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/在Centos 7下安装PHP 7/">在Centos 7下安装PHP 7</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/JobTracker和TaskTracker/">JobTracker和TaskTracker</a>
         </li>
     
     
@@ -4411,16 +4590,6 @@ ip addr
     
         <li class="archive-post-item">
             <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/HDFS文件接口/">HDFS文件接口</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/在Centos 7下安装PHP 7/">在Centos 7下安装PHP 7</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/Windows下的MapReduce编程实现/">Windows下的MapReduce编程实现</a>
         </li>
     
     
@@ -4563,13 +4732,13 @@ ip addr
     
         <span class="sidebar-tag-name" data-tags="Kafka"><span class="iconfont-archer">&#xe606;</span>Kafka</span>
     
-        <span class="sidebar-tag-name" data-tags="GitHub"><span class="iconfont-archer">&#xe606;</span>GitHub</span>
-    
         <span class="sidebar-tag-name" data-tags="Golang"><span class="iconfont-archer">&#xe606;</span>Golang</span>
     
-        <span class="sidebar-tag-name" data-tags="Hbase"><span class="iconfont-archer">&#xe606;</span>Hbase</span>
+        <span class="sidebar-tag-name" data-tags="GitHub"><span class="iconfont-archer">&#xe606;</span>GitHub</span>
     
         <span class="sidebar-tag-name" data-tags="Hive"><span class="iconfont-archer">&#xe606;</span>Hive</span>
+    
+        <span class="sidebar-tag-name" data-tags="Hbase"><span class="iconfont-archer">&#xe606;</span>Hbase</span>
     
         <span class="sidebar-tag-name" data-tags="Git"><span class="iconfont-archer">&#xe606;</span>Git</span>
     
@@ -4652,9 +4821,9 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="Docker"><span class="iconfont-archer">&#xe60a;</span>Docker</span>
     
-        <span class="sidebar-category-name" data-categories="GitHub"><span class="iconfont-archer">&#xe60a;</span>GitHub</span>
-    
         <span class="sidebar-category-name" data-categories="Golang"><span class="iconfont-archer">&#xe60a;</span>Golang</span>
+    
+        <span class="sidebar-category-name" data-categories="GitHub"><span class="iconfont-archer">&#xe60a;</span>GitHub</span>
     
         <span class="sidebar-category-name" data-categories="Hive"><span class="iconfont-archer">&#xe60a;</span>Hive</span>
     

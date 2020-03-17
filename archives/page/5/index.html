@@ -346,6 +346,235 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2020/01/16/Win10开启与搭建FTP服务器-详细图文版/">
+            
+                <span>Win10开启与搭建FTP服务器(详细图文版)</span>
+        </a>
+        <div class="abstract-content">
+            Win10搭建FTP服务器记一次在win10上搭建FTP服务器的过程
+1. 开启FTP服务打开控制面板选中程序,打开启用或关闭Windows功能
+2. IIS配置windows+q键搜索IIS右键网站,添加FTP站点输入站点信息输入本机IP地址,注意SSL选中无SSL的选项
+
+3. 防火墙设置在控制面板中打开防火墙,选中箭头选项允许应用通过Windows Defender 防火墙进行通信允许其他应用
+4. 查看是否成功
+
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/01/16</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2020/01/16/Windows-10上用AutoHotkey实现快速隐藏-显示桌面图标与切换虚拟桌面/">
+            
+                <span>Windows 10上用AutoHotkey实现快速隐藏/显示桌面图标与切换虚拟桌面</span>
+        </a>
+        <div class="abstract-content">
+            当你想用多个桌面的时候需要按ctrl+Windows+左右键 觉得很麻烦怎么办?
+下载 AutoHotkey编辑脚本 添加以下内容123456~LControl &amp; WheelUp::Send &#123;LWin Down&#125;&#123;Ctrl Down&#125;&#123;Left&#125;&#123;Ctrl Up&#125;&#123;LWin Up&#125;return~LControl &amp; WheelDown::Send &#123;LWin Down&#125;&#123;Ctrl Down&#125;&#123;Right&#125;&#1...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/01/16</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2020/01/16/Centos7搭建Hadoop3-1-3完全分布模式/">
+            
+                <span>Centos7搭建Hadoop3.1.3完全分布模式</span>
+        </a>
+        <div class="abstract-content">
+            
+详细搭建可以参考我的Hadoop2.8.0安装
+
+准备
+本文下载的是3.1.3版本的Hadoop
+
+关闭防火墙12systemctl stop firewalldsetenforce 0
+虚拟机的准备安装3个虚拟机并实现ssh免密码的登录安装3个centos7虚拟机
+安装3个机器，机器分别叫master slave1 slave2
+在/etc/hostname下修改主机名
+其他两台也是一样
+修改主机映射修改/etc/hosts文件
+修改这3台机器的/etc/hosts文件，在文件中添加以下内容,如图：
+说明：ip地址没必要和我的一样，这里只是做一个映射，只要映射是对的就可以，至于修改方...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/01/16</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Hadoop">Hadoop</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2020/01/16/访问php-该网页无法正常运作-目前无法处理此请求/">
+            
+                <span>访问php 该网页无法正常运作 目前无法处理此请求</span>
+        </a>
+        <div class="abstract-content">
+            
+修改php.ini文件文件在/etc/php.ini
+由于php.ini配置文件中错误显示关闭导致.将下值由Off 变更为 On
+display_errors = On
+display_startup_errors = On
+
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/01/16</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="PHP">PHP</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2020/01/16/CentOS7-Failed-to-start-LSB-Bring-up-down解决方法/">
+            
+                <span>CentOS7 Failed to start LSB: Bring up/down解决方法</span>
+        </a>
+        <div class="abstract-content">
+            报错Failed to start LSB: Bring up/down networking.
+原因分析原因可能是因为我虚拟机地址设为静态地址,然后通过此虚拟机克隆了两台虚拟机,猜测此时mac地址发生了冲突
+解决方法systemctl stop NetworkManager
+systemctl disable NetworkManager
+systemctl start network.service
+
+
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/01/16</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Liunx">Liunx</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2020/01/16/SparkSQL，加载文件，处理文件，存储文件/">
+            
+                <span>SparkSQL，加载文件，处理文件，存储文件</span>
+        </a>
+        <div class="abstract-content">
+            简介Spark SQL重要的是操作DataFrame，DataFrame本身提供了Save和Load的操作，
+Load：可以创建DataFrame。
+Save：把DataFrame中的数据保存到文件或者说用具体的格式来指明我们要读取的文件类型，以及用具体的格式来指出我们要输出的文件是什么类型。
+Spark SQL执行基本操作时，内部结构流程图如下：
+DataFrame本质是数据 + 数据的描述信息（结构元信息）。
+所有的上述SQL及DataFrame操作最终都通过Catalyst翻译成Spark程序RDD操作代码。
+Spark SQL前身是Shark，大量依赖Hive项目的jar包与功能...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/01/16</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Spark">Spark</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2020/01/16/SparkSQL，创建表，查询数据/">
+            
+                <span>SparkSQL，创建表，查询数据</span>
+        </a>
+        <div class="abstract-content">
+            简介Spark SQL的前身是Shark，Shark是伯克利实验室Spark生态环境的组件之一，它能运行在Spark引擎上，从而使得SQL查询的速度得到10-100倍的提升，但是，随着Spark的发展，由于Shark对于Hive的太多依赖（如采用Hive的语法解析器、查询优化器等等），制约了Spark的One Stack Rule Them All的既定方针，制约了Spark各个组件的相互集成，所以提出了SparkSQL项目。
+SparkSQL抛弃了原有Shark的代码，汲取了Shark的一些优点，如内存列存储（In-MemoryColumnarStorage）、Hive兼容性等，重新开...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/01/16</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Spark">Spark</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2019/11/28/Spark-Shell操作/">
             
                 <span>Spark Shell操作</span>
@@ -432,228 +661,6 @@ pip install tens...
             <div class="abstract-tags">
     
         <a class="post-tag" href="javascript:void(0);" data-tags="机器学习">机器学习</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/11/28/WindowsServer-2016-最新激活方法/">
-            
-                <span>WindowsServer 2016 最新激活方法</span>
-        </a>
-        <div class="abstract-content">
-            命令行操作用管理员身份打开Powershall,输入:123slmgr.vbs -ipk W269N-WFGWX-YVC9B-4J6C9-T83GXslmgr.vbs -skms kms.srv.crsoo.comslmgr.vbs -ato
-输入要激活的系统秘钥12Windows Server 2016| Operating system edition | KMS Client Setup Key | | —————————————– | —————————– | | Windows Server 2016 Datacenter | CB7KF-BWN84-R7R2Y-793K2-8...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/11/28</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/11/28/Ubuntu-18-04-2-LTS网络设置/">
-            
-                <span>Ubuntu 18.04.2 LTS网络设置</span>
-        </a>
-        <div class="abstract-content">
-            与Ubuntu16的对比ubuntu16.04TLS的网络配置文件为/etc/network/interfaces，我们通过在该文件中写入配置对网卡进行IP设置。并且然后通过网卡的重启来加载该配置
-ubuntu18.04TLS中，其引入了一个新的工具netplan来进行网络设备的管理，对其进行设置。
-netplan的配置文件位于/etc/netplan文件夹下面
-对Ubuntu 18.04的网络配置1234cuda@cuda1:~$ cd /etc/netplan/cuda@cuda1:/etc/netplan$ ls50-cloud-init.yamlcuda@cuda1:/etc/n...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/11/28</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Liunx">Liunx</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/11/28/华为服务器H22H-03的Windows-Server2012安装/">
-            
-                <span>华为服务器H22H-03的Windows Server2012安装</span>
-        </a>
-        <div class="abstract-content">
-            前期准备镜像可以从MSDN中下载
-使用软碟通制作一个Windows Server2012的U盘启动器
-设置BIOS把USB设置第一启动重启服务器,在启动页面的时候多按几次del键
-华为服务器默认密码Huawei12@#
-设置第一启动项为USB设备
-在“UEFI”或“Boot Device Priority”界面中选择“Others”并按“Enter”。
-通过“F5”、“F6”将USB设备调整到列表的第一行
-或者按’+’ -‘号将other选项调整到第一行
-保存重新启动
-
-
-安装WindowsServer如果安装windows server 2008r2/2012r2时提示：无法在此驱动器...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/11/28</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/11/28/Hbase-Java-API接口/">
-            
-                <span>Hbase Java API接口</span>
-        </a>
-        <div class="abstract-content">
-            实验环境Hadoop2.8.0
-Hbase-1.4.9
-Centos7.2
-Java代码123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111package pers.haohan.bigdata....
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/11/28</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Hbase">Hbase</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/11/28/Hive-java-API接口/">
-            
-                <span>Hive java API接口</span>
-        </a>
-        <div class="abstract-content">
-            实验环境Hadoop2.8.0
-Hbase-1.4.9
-Centos7.2
-pom.xml123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;project xmlns="http://maven.apache.org/POM/4.0.0"         xmlns:xsi="http://www.w3.org/...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/11/28</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Hive">Hive</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/11/28/Hive基本命令操作/">
-            
-                <span>Hive基本命令操作</span>
-        </a>
-        <div class="abstract-content">
-            基本介绍Hive定义了一套自己的SQL，简称HQL，它与关系型数据库的SQL略有不同，但支持了绝大多数的语句如DDL、DML以及常见的聚合函数、连接查询、条件查询。
-DDL操作（数据定义语言）包括：Create、Alter、Show、Drop等。
-（1）create database- 创建新数据库
-（2）alter database - 修改数据库
-（3）drop database - 删除数据库
-（4）create table - 创建新表
-（5）alter table - 变更（改变）数据库表
-（6）drop table - 删除表
-（7）create index - 创建索引（搜...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/11/28</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Hive">Hive</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/11/28/Docker实战-创建支持SSH服务的镜像-超详细/">
-            
-                <span>Docker实战 创建支持SSH服务的镜像(超详细)</span>
-        </a>
-        <div class="abstract-content">
-            基于docker commit命令创建Docker提供了docker commit命令，支持用户提交自己对定制容器的修改，并生成新的镜像。
-命令格式为：docker commit CONTAINER [REPOSITORY[:TAG]]
-准备工作利用ubuntu:14.04镜像创建一个容器：12345678[root@node1 ~]# docker imagesREPOSITORY              TAG                 IMAGE ID            CREATED             SIZEdocker.io/ubuntu        la...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/11/28</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Docker">Docker</a>
     
 </div>
             
@@ -3577,9 +3584,168 @@ DDL操作（数据定义语言）包括：Create、Alter、Show、Drop等。
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 143
+        Total : 150
         </div>
         <!-- search  -->
         
@@ -3595,17 +3761,52 @@ DDL操作（数据定义语言）包括：Create、Alter、Show、Drop等。
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">03/17</span><a class="archive-post-title" href="/2020/03/17/Windows10安装运行Kafka2-1-0与Zookeeper3-4-14/">Windows10安装运行Kafka2.1.0与Zookeeper3.4.14</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/17</span><a class="archive-post-title" href="/2020/03/17/关于go-get-以后下载的包不在src下而在pkg的源头并且不可以import-Goland-Modules模块的使用/">关于go get 以后下载的包不在src下而在pkg的源头并且不可以import(Goland Modules模块的使用)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/17</span><a class="archive-post-title" href="/2020/03/17/Golang语言学习从入门到实战-HTTP-web开发编程/">Golang语言学习从入门到实战----HTTP web开发编程</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/17</span><a class="archive-post-title" href="/2020/03/17/Golang语言学习从入门到实战-基于Golang的客户关系管理系统/">Golang语言学习从入门到实战----基于Golang的客户关系管理系统</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/17</span><a class="archive-post-title" href="/2020/03/17/Golang语言学习从入门到实战-接口/">Golang语言学习从入门到实战----接口</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/17</span><a class="archive-post-title" href="/2020/03/17/Golang语言学习从入门到实战-基于Golang实现简单家庭收支项目/">Golang语言学习从入门到实战----基于Golang实现简单家庭收支项目</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/17</span><a class="archive-post-title" href="/2020/03/17/Golang语言学习从入门到实战-编写简单的TCP-IP聊天室/">Golang语言学习从入门到实战----编写简单的TCP/IP聊天室</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/12</span><a class="archive-post-title" href="/2020/03/12/Golang语言学习从入门到实战-结构体以及内存分布/">Golang语言学习从入门到实战----结构体以及内存分布</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">03/12</span><a class="archive-post-title" href="/2020/03/12/Golang语言学习从入门到实战-链表定义/">Golang语言学习从入门到实战----链表定义</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">03/12</span><a class="archive-post-title" href="/2020/03/12/Liunx-Shell编程入门-编写系统监控脚本与FTP探测脚本/">Liunx Shell编程入门----编写系统监控脚本与FTP探测脚本</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">03/12</span><a class="archive-post-title" href="/2020/03/12/Golang语言学习从入门到实战-结构体以及内存分布/">Golang语言学习从入门到实战----结构体以及内存分布</a>
         </li>
     
     
@@ -3620,12 +3821,7 @@ DDL操作（数据定义语言）包括：Create、Alter、Show、Drop等。
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/07</span><a class="archive-post-title" href="/2020/03/07/Python算法学习-竞码编程-蓝桥杯模拟赛3题解/">Python算法学习: 竞码编程-蓝桥杯模拟赛3题解</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">03/07</span><a class="archive-post-title" href="/2020/03/07/Golang语言学习从入门到实战-指针和内存布局/">Golang语言学习从入门到实战----指针和内存布局</a>
+            <span class="archive-post-date">03/07</span><a class="archive-post-title" href="/2020/03/07/Golang语言学习从入门到实战-defer/">Golang语言学习从入门到实战----defer</a>
         </li>
     
     
@@ -3645,17 +3841,22 @@ DDL操作（数据定义语言）包括：Create、Alter、Show、Drop等。
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/07</span><a class="archive-post-title" href="/2020/03/07/Golang语言学习从入门到实战-defer/">Golang语言学习从入门到实战----defer</a>
+            <span class="archive-post-date">03/07</span><a class="archive-post-title" href="/2020/03/07/Python算法学习-竞码编程-蓝桥杯模拟赛3题解/">Python算法学习: 竞码编程-蓝桥杯模拟赛3题解</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/07</span><a class="archive-post-title" href="/2020/03/07/Golang语言学习从入门到实战-闭包/">Golang语言学习从入门到实战----闭包</a>
+            <span class="archive-post-date">03/07</span><a class="archive-post-title" href="/2020/03/07/Golang语言学习从入门到实战-指针和内存布局/">Golang语言学习从入门到实战----指针和内存布局</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">03/07</span><a class="archive-post-title" href="/2020/03/07/Liunx-Shell编程入门-编写简单的开机欢迎脚本与操作服务脚本/">Liunx Shell编程入门----编写简单的开机欢迎脚本与操作服务脚本</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/07</span><a class="archive-post-title" href="/2020/03/07/Golang语言学习从入门到实战-闭包/">Golang语言学习从入门到实战----闭包</a>
         </li>
     
     
@@ -3735,7 +3936,7 @@ DDL操作（数据定义语言）包括：Create、Alter、Show、Drop等。
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">01/16</span><a class="archive-post-title" href="/2020/01/16/Windows-10上用AutoHotkey实现快速隐藏-显示桌面图标与切换虚拟桌面/">Windows 10上用AutoHotkey实现快速隐藏/显示桌面图标与切换虚拟桌面</a>
+            <span class="archive-post-date">01/16</span><a class="archive-post-title" href="/2020/01/16/Python算法学习day2-查找和排序-一/">Python算法学习day2:查找和排序(一)</a>
         </li>
     
     
@@ -3755,7 +3956,7 @@ DDL操作（数据定义语言）包括：Create、Alter、Show、Drop等。
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">01/16</span><a class="archive-post-title" href="/2020/01/16/Python算法学习day2-查找和排序-一/">Python算法学习day2:查找和排序(一)</a>
+            <span class="archive-post-date">01/16</span><a class="archive-post-title" href="/2020/01/16/Python算法学习day4-关于一道亚马逊面试题的情景分析/">Python算法学习day4:关于一道亚马逊面试题的情景分析</a>
         </li>
     
     
@@ -3785,7 +3986,7 @@ DDL操作（数据定义语言）包括：Create、Alter、Show、Drop等。
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">01/16</span><a class="archive-post-title" href="/2020/01/16/Python算法学习day4-关于一道亚马逊面试题的情景分析/">Python算法学习day4:关于一道亚马逊面试题的情景分析</a>
+            <span class="archive-post-date">01/16</span><a class="archive-post-title" href="/2020/01/16/Windows-10上用AutoHotkey实现快速隐藏-显示桌面图标与切换虚拟桌面/">Windows 10上用AutoHotkey实现快速隐藏/显示桌面图标与切换虚拟桌面</a>
         </li>
     
     
@@ -3939,7 +4140,7 @@ DDL操作（数据定义语言）包括：Create、Alter、Show、Drop等。
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/10</span><a class="archive-post-title" href="/2019/10/10/Liunx-管理用户、组及权限/">Liunx 管理用户、组及权限</a>
+            <span class="archive-post-date">10/10</span><a class="archive-post-title" href="/2019/10/10/Centos7安装Anaconda详细版/">Centos7安装Anaconda详细版</a>
         </li>
     
     
@@ -3949,7 +4150,7 @@ DDL操作（数据定义语言）包括：Create、Alter、Show、Drop等。
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/10</span><a class="archive-post-title" href="/2019/10/10/Centos7安装Anaconda详细版/">Centos7安装Anaconda详细版</a>
+            <span class="archive-post-date">10/10</span><a class="archive-post-title" href="/2019/10/10/基于PySpark的电影推荐引擎/">基于PySpark的电影推荐引擎</a>
         </li>
     
     
@@ -3964,7 +4165,7 @@ DDL操作（数据定义语言）包括：Create、Alter、Show、Drop等。
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/10</span><a class="archive-post-title" href="/2019/10/10/基于PySpark的电影推荐引擎/">基于PySpark的电影推荐引擎</a>
+            <span class="archive-post-date">10/10</span><a class="archive-post-title" href="/2019/10/10/Liunx-管理用户、组及权限/">Liunx 管理用户、组及权限</a>
         </li>
     
     
@@ -4174,12 +4375,22 @@ DDL操作（数据定义语言）包括：Create、Alter、Show、Drop等。
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/JobTracker和TaskTracker/">JobTracker和TaskTracker</a>
+            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/Windows下的MapReduce编程实现/">Windows下的MapReduce编程实现</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/解决vmware（vsphere）部署linux系统模板后无法联网问题/">解决vmware（vsphere）部署linux系统模板后无法联网问题</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/在Centos 7下安装PHP 7/">在Centos 7下安装PHP 7</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/JobTracker和TaskTracker/">JobTracker和TaskTracker</a>
         </li>
     
     
@@ -4190,16 +4401,6 @@ DDL操作（数据定义语言）包括：Create、Alter、Show、Drop等。
     
         <li class="archive-post-item">
             <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/HDFS文件接口/">HDFS文件接口</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/在Centos 7下安装PHP 7/">在Centos 7下安装PHP 7</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/Windows下的MapReduce编程实现/">Windows下的MapReduce编程实现</a>
         </li>
     
     
@@ -4342,13 +4543,13 @@ DDL操作（数据定义语言）包括：Create、Alter、Show、Drop等。
     
         <span class="sidebar-tag-name" data-tags="Kafka"><span class="iconfont-archer">&#xe606;</span>Kafka</span>
     
-        <span class="sidebar-tag-name" data-tags="GitHub"><span class="iconfont-archer">&#xe606;</span>GitHub</span>
-    
         <span class="sidebar-tag-name" data-tags="Golang"><span class="iconfont-archer">&#xe606;</span>Golang</span>
     
-        <span class="sidebar-tag-name" data-tags="Hbase"><span class="iconfont-archer">&#xe606;</span>Hbase</span>
+        <span class="sidebar-tag-name" data-tags="GitHub"><span class="iconfont-archer">&#xe606;</span>GitHub</span>
     
         <span class="sidebar-tag-name" data-tags="Hive"><span class="iconfont-archer">&#xe606;</span>Hive</span>
+    
+        <span class="sidebar-tag-name" data-tags="Hbase"><span class="iconfont-archer">&#xe606;</span>Hbase</span>
     
         <span class="sidebar-tag-name" data-tags="Git"><span class="iconfont-archer">&#xe606;</span>Git</span>
     
@@ -4431,9 +4632,9 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="Docker"><span class="iconfont-archer">&#xe60a;</span>Docker</span>
     
-        <span class="sidebar-category-name" data-categories="GitHub"><span class="iconfont-archer">&#xe60a;</span>GitHub</span>
-    
         <span class="sidebar-category-name" data-categories="Golang"><span class="iconfont-archer">&#xe60a;</span>Golang</span>
+    
+        <span class="sidebar-category-name" data-categories="GitHub"><span class="iconfont-archer">&#xe60a;</span>GitHub</span>
     
         <span class="sidebar-category-name" data-categories="Hive"><span class="iconfont-archer">&#xe60a;</span>Hive</span>
     

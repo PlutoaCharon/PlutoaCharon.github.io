@@ -359,6 +359,279 @@ height:50vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2019/10/03/Centos7-图形化安装-分区-网络设置/">
+            
+                <span>Centos7 图形化安装,分区,网络设置</span>
+        </a>
+        <div class="abstract-content">
+            一 使用vmware建立新的虚拟机
+
+二 安装CentOS7.4系统 使用安装光盘映像引导系统，进入安装界面
+ 重新划分磁盘分区，交换分区swap为2G，“/boot”分区512M，其余的划为根分区，分区表
+选择DeskTop安装 配置root密码为123456 安装完成重新启动系统并登录
+
+三 系统登录、控制台切换、图形界面操作
+图形界面root超级用户的登陆
+控制台切换快捷键，切换到字符界面登录使用 init 3 命令切换到命令行界面
+切换回图形界面，打开终端使用 init 5 命令切换到命令行界面
+
+使用图形界面设置桌面、网络ip和dns、设置root密码我的网关是192.168....
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/10/03</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Liunx">Liunx</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2019/10/03/yum更新报错-您可以尝试添加-skip-broken-选项来解决该问题/">
+            
+                <span>yum更新报错 您可以尝试添加 --skip-broken 选项来解决该问题</span>
+        </a>
+        <div class="abstract-content">
+            在centos7 中执行 yum -y update时系统报错:
+错误：软件包：kernel-3.10.0-1062.1.2.el7.x86_64 (updates)
+          需要：linux-firmware &gt;= 20190429-72
+          正在删除: linux-firmware-20160830-49.git7534e19.el7.noarch (@anaconda)
+              linux-firmware = 20160830-49.git7534e19.el7
+          更新，由: linux-firmware-2...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/10/03</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Liunx">Liunx</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2019/10/02/Nmap工具命令详解/">
+            
+                <span>Nmap工具命令详解</span>
+        </a>
+        <div class="abstract-content">
+            nmap用于网络扫描和主机检测 漏洞探测 安全扫描发现主机nmap -sP 10.0.3.0/24   发现有哪些机器，主机，路由器，交换机，跳过端口检测
+
+nmap  -sn 10.0.1.161-166  ping探测扫描主机，不进行端口扫描
+
+nmap 10.0.1.161 -sA （发送tcp的ack包进行探测，可以探测主机是否存活）
+
+nmap 192.168.1.1-100 (扫描IP地址为192.168.1.1-192.168.1.100内的所有主机)
+nmap -iL target.txt （ip地址列表）
+
+nmap 192.168.1.1/24 -exclude  1...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/10/02</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Liunx">Liunx</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2019/10/02/Linux下查看用户列表/">
+            
+                <span>Linux下查看用户列表</span>
+        </a>
+        <div class="abstract-content">
+            以下是用到的一些命令。
+查看用户
+cat /etc/passwd
+查看用户组
+cat /etc/group
+查看当前活跃的用户列表
+w但是，你会发现，在使用上面的 cat 命令所打印出来的东西太杂乱了，于是网上找到下面的这个命令：
+对于 cat /etc/passwd 的替换cat /etc/passwd|grep -v nologin|grep -v halt|grep -v shutdown|awk -F&quot;:&quot; &#39;{ print $1&quot;|&quot;$3&quot;|&quot;$4 }&#39;|more
+输出结果类似下面这样的：
+root|0...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/10/02</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Liunx">Liunx</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2019/10/02/Linux-crontab命令详解/">
+            
+                <span>Linux crontab命令详解</span>
+        </a>
+        <div class="abstract-content">
+            Linux crontab是用来定期执行程序的命令。
+当安装完成操作系统之后，默认便会启动此任务调度命令。
+crond命令每分锺会定期检查是否有要执行的工作，如果有要执行的工作便会自动执行该工作。
+而linux任务调度的工作主要分为以下两类：
+
+系统执行的工作：系统周期性所要执行的工作，如备份系统数据、清理缓存
+个人执行的工作：某个用户定期要做的工作，例如每隔10分钟检查邮件服务器是否有新信，这些工作可由每个用户自行设置
+
+语法crontab [ -u user ] file或crontab [ -u user ] { -l | -r | -e }  
+说明crontab 是用来让使用者...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/10/02</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Liunx">Liunx</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2019/10/02/Liunx-curl命令详解/">
+            
+                <span>Liunx curl命令详解</span>
+        </a>
+        <div class="abstract-content">
+            curl 是常用的命令行工具，用来请求 Web 服务器。它的名字就是客户端（client）的 URL 工具的意思。
+
+它的功能非常强大，命令行参数多达几十种。如果熟练的话，完全可以取代 Postman 这一类的图形界面工具。
+
+
+
+不带有任何参数时，curl 就是发出 GET 请求。
+
+$ curl https://www.example.com
+
+上面命令向www.example.com发出 GET 请求，服务器返回的内容会在命令行输出。
+
+-A
+
+-A参数指定客户端的用户代理标头，即User-Agent。curl 的默认用户代理字符串是curl/[version]。
+
+$ curl ...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/10/02</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Liunx">Liunx</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2019/10/02/Python-爬取Boos直聘/">
+            
+                <span>Python 爬取Boos直聘</span>
+        </a>
+        <div class="abstract-content">
+            数据采集数据采集（Date Capture），又叫做数据获取，数据采集是将系统需要管理的所有对象的原始数据（外部数据）进行一系列的操作并输入到系统内部的一个接口。像摄像头、麦克风等等，都是数据采集工具，而在计算机世界，相应的数据采集工具就更多了，简单的采集工具有Hawk、八爪鱼等。在计算机广泛应用的今天，数据采集在多个领域具有非常重要的意义。它是计算机与外部物理世界连接的桥梁。
+前几个月做了一个互联网加项目,是基于机器学习的一个简历招聘推荐系统
+今天就分享一下当时爬取Boss直聘时的爬虫代码
+用到的库
+Python3
+selenium
+BeautifulSoup
+os
+io
+re
+
+简述...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/10/02</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="数据采集">数据采集</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2019/10/02/CTF隐写总结/">
             
                 <span>CTF隐写总结</span>
@@ -446,244 +719,6 @@ pip install opencv-python
         <a class="post-tag" href="javascript:void(0);" data-tags="机器学习">机器学习</a>
     
         <a class="post-tag" href="javascript:void(0);" data-tags="Python">Python</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/09/29/python-字典列表相互转换与排序/">
-            
-                <span>python 字典列表相互转换与排序</span>
-        </a>
-        <div class="abstract-content">
-            列表 元组 字典 集合的区别列表：清单可重复，类型可不同 list元组: 类似列表不可修改类型  tuple集合：就是我们数学学的集合应用是去重 set字典：字典存储键值对数据价值是查询，通过键，查找值 dict
-列表列表的特点：可重复，类型可不同，这是与数组最本质的区别。python中的列表用“[]”表示
-list=[‘asd’,123]
-向list中添加项有两种方法：append和extend。append使用append可能会出现下面的这种情况列表里会叠加列表这是使用extend就不会出现这种问题
-元组元组和列表在结构上没有什么区别，唯一的差异在于元组是只读的，不能修改。元组用“(...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/09/29</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Python">Python</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/09/29/python-读写csv数据/">
-            
-                <span>python 读写csv数据</span>
-        </a>
-        <div class="abstract-content">
-            CSV文件简介CSV(Comma-Separated Values，逗号分隔值)，是一种纯文本形式存储表格数据的文件。该文件由任意数目的记录组成，每条记录被分隔符分隔为字段（最常见的分隔符是逗号或制表符），且每条记录都有相同的字段序列，因此csv相当于一个结构化表的纯文本形式。从直观上看，它比Excel文件更加简洁，然而它不包含诸如XLS电子表格的数值、公式和格式等内容，它仅仅为一个结构化的纯文本。
-CSV文件读取和写入在CSV文件读写操作中，常用两种读写方式是列表读写和字典读写，下面我们分别来对此进行介绍。
-文件读取csv文件读取主要是使用reader()和DictReader()方法...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/09/29</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Python">Python</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/09/29/在Ubuntu的Anaconda环境下创建深度学习环境/">
-            
-                <span>在Ubuntu的Anaconda环境下创建深度学习环境</span>
-        </a>
-        <div class="abstract-content">
-            环境准备首先在所在系统中安装Anaconda。可以打开命令行输入conda -V检验是否安装以及当前conda的版本conda版本为4.5.11
-conda常用的命令
-
-conda list 查看安装了哪些包
-conda env list或 conda info -e 查看当前存在哪些虚拟环境
-conda update conda 检查更新当前conda
-
-
-
-创建python虚拟环境使用 conda create -n your_env_name python=X.X（2.7、3.6等)命令创建python版本为X.X、名字为your_env_name的虚拟环境。your_env_na...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/09/29</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="机器学习">机器学习</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/09/29/centos7-访问php-该网页无法正常运作-目前无法处理此请求/">
-            
-                <span>centos7 访问php 该网页无法正常运作 目前无法处理此请求</span>
-        </a>
-        <div class="abstract-content">
-            修改php.ini文件文件在/etc/php.ini
-由于php.ini配置文件中错误显示关闭导致.将下值由Off 变更为 On12display_errors = Ondisplay_startup_errors = On
-
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/09/29</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="PHP">PHP</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/09/29/分布式消息系统Kafka/">
-            
-                <span>分布式消息系统Kafka</span>
-        </a>
-        <div class="abstract-content">
-            分布式消息系统KafkaKafka可以处理消费者规模的网站中的所有动作流数据。 对于像Hadoop的一样的日志数据和离线分析系统，但又要求实时处理的限制，Kafka的目的是通过Hadoop的并行加载机制来统一线上和离线的消息处理，也是为了通过集群来提供实时的消息
-kafka是一个分布式的、可分区的、可复制的消息系统；
-kafka是由LinkedIn开发，使用Scala编写；
-支持水平拓展和高吞吐率；
-可与Apache Storm、Spark等多种开源分布式处理系统集成。
-相关知识:（1）以时间复杂度为O(1)的方式提供消息持久化能力，即使对TB级以上数据也能保证常数时间复杂度的访问性能（...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/09/29</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Kafka">Kafka</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/09/29/ZooKeeper学习笔记/">
-            
-                <span>ZooKeeper学习笔记</span>
-        </a>
-        <div class="abstract-content">
-            一 什么是 ZooKeeperZooKeeper 的由来Zookeeper最早起源于雅虎研究院的一个研究小组。在当时，研究人员发现，在雅虎内部很多大型系统基本都需要依赖一个类似的系统来进行分布式协调，但是这些系统往往都存在分布式单点问题。所以，雅虎的开发人员就试图开发一个通用的无单点问题的分布式协调框架，以便让开发人员将精力集中在处理业务逻辑上。
-关于“ZooKeeper”这个项目的名字，其实也有一段趣闻。在立项初期，考虑到之前内部很多项目都是使用动物的名字来命名的（例如著名的Pig项目),雅虎的工程师希望给这个项目也取一个动物的名字。时任研究院的首席科学家RaghuRamakrishn...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/09/29</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="ZooKeeper">ZooKeeper</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/09/29/Zookeeper环境搭建/">
-            
-                <span>Zookeeper环境搭建</span>
-        </a>
-        <div class="abstract-content">
-            zookeeper集群安装在master，slave1，slave2上安装
-hadoop用户进入master
-cd /opt/hadoop/
-tar -zxvf zookeeper-3.4.8.tar.gz
-vim /etc/profile
-#zookeeper
-export ZOOKEEPER_HOME=/opt/hadoop/zookeeper-3.4.8
-export PATH=$ZOOKEEPER_HOME/bin:$PATH
-
-cd zookeeper-3.4.8/conf
-cp zoo_sample.cfg zoo.cfg
-修改配置文件 zoo.cfg
-# The numbe...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/09/29</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Zookeeper">Zookeeper</a>
     
 </div>
             
@@ -3715,9 +3750,168 @@ cp zoo_sample.cfg zoo.cfg
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 143
+        Total : 150
         </div>
         <!-- search  -->
         
@@ -3733,17 +3927,52 @@ cp zoo_sample.cfg zoo.cfg
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">03/17</span><a class="archive-post-title" href="/2020/03/17/Windows10安装运行Kafka2-1-0与Zookeeper3-4-14/">Windows10安装运行Kafka2.1.0与Zookeeper3.4.14</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/17</span><a class="archive-post-title" href="/2020/03/17/关于go-get-以后下载的包不在src下而在pkg的源头并且不可以import-Goland-Modules模块的使用/">关于go get 以后下载的包不在src下而在pkg的源头并且不可以import(Goland Modules模块的使用)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/17</span><a class="archive-post-title" href="/2020/03/17/Golang语言学习从入门到实战-HTTP-web开发编程/">Golang语言学习从入门到实战----HTTP web开发编程</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/17</span><a class="archive-post-title" href="/2020/03/17/Golang语言学习从入门到实战-基于Golang的客户关系管理系统/">Golang语言学习从入门到实战----基于Golang的客户关系管理系统</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/17</span><a class="archive-post-title" href="/2020/03/17/Golang语言学习从入门到实战-接口/">Golang语言学习从入门到实战----接口</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/17</span><a class="archive-post-title" href="/2020/03/17/Golang语言学习从入门到实战-基于Golang实现简单家庭收支项目/">Golang语言学习从入门到实战----基于Golang实现简单家庭收支项目</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/17</span><a class="archive-post-title" href="/2020/03/17/Golang语言学习从入门到实战-编写简单的TCP-IP聊天室/">Golang语言学习从入门到实战----编写简单的TCP/IP聊天室</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/12</span><a class="archive-post-title" href="/2020/03/12/Golang语言学习从入门到实战-结构体以及内存分布/">Golang语言学习从入门到实战----结构体以及内存分布</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">03/12</span><a class="archive-post-title" href="/2020/03/12/Golang语言学习从入门到实战-链表定义/">Golang语言学习从入门到实战----链表定义</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">03/12</span><a class="archive-post-title" href="/2020/03/12/Liunx-Shell编程入门-编写系统监控脚本与FTP探测脚本/">Liunx Shell编程入门----编写系统监控脚本与FTP探测脚本</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">03/12</span><a class="archive-post-title" href="/2020/03/12/Golang语言学习从入门到实战-结构体以及内存分布/">Golang语言学习从入门到实战----结构体以及内存分布</a>
         </li>
     
     
@@ -3758,12 +3987,7 @@ cp zoo_sample.cfg zoo.cfg
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/07</span><a class="archive-post-title" href="/2020/03/07/Python算法学习-竞码编程-蓝桥杯模拟赛3题解/">Python算法学习: 竞码编程-蓝桥杯模拟赛3题解</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">03/07</span><a class="archive-post-title" href="/2020/03/07/Golang语言学习从入门到实战-指针和内存布局/">Golang语言学习从入门到实战----指针和内存布局</a>
+            <span class="archive-post-date">03/07</span><a class="archive-post-title" href="/2020/03/07/Golang语言学习从入门到实战-defer/">Golang语言学习从入门到实战----defer</a>
         </li>
     
     
@@ -3783,17 +4007,22 @@ cp zoo_sample.cfg zoo.cfg
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/07</span><a class="archive-post-title" href="/2020/03/07/Golang语言学习从入门到实战-defer/">Golang语言学习从入门到实战----defer</a>
+            <span class="archive-post-date">03/07</span><a class="archive-post-title" href="/2020/03/07/Python算法学习-竞码编程-蓝桥杯模拟赛3题解/">Python算法学习: 竞码编程-蓝桥杯模拟赛3题解</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/07</span><a class="archive-post-title" href="/2020/03/07/Golang语言学习从入门到实战-闭包/">Golang语言学习从入门到实战----闭包</a>
+            <span class="archive-post-date">03/07</span><a class="archive-post-title" href="/2020/03/07/Golang语言学习从入门到实战-指针和内存布局/">Golang语言学习从入门到实战----指针和内存布局</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">03/07</span><a class="archive-post-title" href="/2020/03/07/Liunx-Shell编程入门-编写简单的开机欢迎脚本与操作服务脚本/">Liunx Shell编程入门----编写简单的开机欢迎脚本与操作服务脚本</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/07</span><a class="archive-post-title" href="/2020/03/07/Golang语言学习从入门到实战-闭包/">Golang语言学习从入门到实战----闭包</a>
         </li>
     
     
@@ -3873,7 +4102,7 @@ cp zoo_sample.cfg zoo.cfg
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">01/16</span><a class="archive-post-title" href="/2020/01/16/Windows-10上用AutoHotkey实现快速隐藏-显示桌面图标与切换虚拟桌面/">Windows 10上用AutoHotkey实现快速隐藏/显示桌面图标与切换虚拟桌面</a>
+            <span class="archive-post-date">01/16</span><a class="archive-post-title" href="/2020/01/16/Python算法学习day2-查找和排序-一/">Python算法学习day2:查找和排序(一)</a>
         </li>
     
     
@@ -3893,7 +4122,7 @@ cp zoo_sample.cfg zoo.cfg
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">01/16</span><a class="archive-post-title" href="/2020/01/16/Python算法学习day2-查找和排序-一/">Python算法学习day2:查找和排序(一)</a>
+            <span class="archive-post-date">01/16</span><a class="archive-post-title" href="/2020/01/16/Python算法学习day4-关于一道亚马逊面试题的情景分析/">Python算法学习day4:关于一道亚马逊面试题的情景分析</a>
         </li>
     
     
@@ -3923,7 +4152,7 @@ cp zoo_sample.cfg zoo.cfg
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">01/16</span><a class="archive-post-title" href="/2020/01/16/Python算法学习day4-关于一道亚马逊面试题的情景分析/">Python算法学习day4:关于一道亚马逊面试题的情景分析</a>
+            <span class="archive-post-date">01/16</span><a class="archive-post-title" href="/2020/01/16/Windows-10上用AutoHotkey实现快速隐藏-显示桌面图标与切换虚拟桌面/">Windows 10上用AutoHotkey实现快速隐藏/显示桌面图标与切换虚拟桌面</a>
         </li>
     
     
@@ -4077,7 +4306,7 @@ cp zoo_sample.cfg zoo.cfg
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/10</span><a class="archive-post-title" href="/2019/10/10/Liunx-管理用户、组及权限/">Liunx 管理用户、组及权限</a>
+            <span class="archive-post-date">10/10</span><a class="archive-post-title" href="/2019/10/10/Centos7安装Anaconda详细版/">Centos7安装Anaconda详细版</a>
         </li>
     
     
@@ -4087,7 +4316,7 @@ cp zoo_sample.cfg zoo.cfg
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/10</span><a class="archive-post-title" href="/2019/10/10/Centos7安装Anaconda详细版/">Centos7安装Anaconda详细版</a>
+            <span class="archive-post-date">10/10</span><a class="archive-post-title" href="/2019/10/10/基于PySpark的电影推荐引擎/">基于PySpark的电影推荐引擎</a>
         </li>
     
     
@@ -4102,7 +4331,7 @@ cp zoo_sample.cfg zoo.cfg
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/10</span><a class="archive-post-title" href="/2019/10/10/基于PySpark的电影推荐引擎/">基于PySpark的电影推荐引擎</a>
+            <span class="archive-post-date">10/10</span><a class="archive-post-title" href="/2019/10/10/Liunx-管理用户、组及权限/">Liunx 管理用户、组及权限</a>
         </li>
     
     
@@ -4312,12 +4541,22 @@ cp zoo_sample.cfg zoo.cfg
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/JobTracker和TaskTracker/">JobTracker和TaskTracker</a>
+            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/Windows下的MapReduce编程实现/">Windows下的MapReduce编程实现</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/解决vmware（vsphere）部署linux系统模板后无法联网问题/">解决vmware（vsphere）部署linux系统模板后无法联网问题</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/在Centos 7下安装PHP 7/">在Centos 7下安装PHP 7</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/JobTracker和TaskTracker/">JobTracker和TaskTracker</a>
         </li>
     
     
@@ -4328,16 +4567,6 @@ cp zoo_sample.cfg zoo.cfg
     
         <li class="archive-post-item">
             <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/HDFS文件接口/">HDFS文件接口</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/在Centos 7下安装PHP 7/">在Centos 7下安装PHP 7</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/Windows下的MapReduce编程实现/">Windows下的MapReduce编程实现</a>
         </li>
     
     
@@ -4480,13 +4709,13 @@ cp zoo_sample.cfg zoo.cfg
     
         <span class="sidebar-tag-name" data-tags="Kafka"><span class="iconfont-archer">&#xe606;</span>Kafka</span>
     
-        <span class="sidebar-tag-name" data-tags="GitHub"><span class="iconfont-archer">&#xe606;</span>GitHub</span>
-    
         <span class="sidebar-tag-name" data-tags="Golang"><span class="iconfont-archer">&#xe606;</span>Golang</span>
     
-        <span class="sidebar-tag-name" data-tags="Hbase"><span class="iconfont-archer">&#xe606;</span>Hbase</span>
+        <span class="sidebar-tag-name" data-tags="GitHub"><span class="iconfont-archer">&#xe606;</span>GitHub</span>
     
         <span class="sidebar-tag-name" data-tags="Hive"><span class="iconfont-archer">&#xe606;</span>Hive</span>
+    
+        <span class="sidebar-tag-name" data-tags="Hbase"><span class="iconfont-archer">&#xe606;</span>Hbase</span>
     
         <span class="sidebar-tag-name" data-tags="Git"><span class="iconfont-archer">&#xe606;</span>Git</span>
     
@@ -4569,9 +4798,9 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="Docker"><span class="iconfont-archer">&#xe60a;</span>Docker</span>
     
-        <span class="sidebar-category-name" data-categories="GitHub"><span class="iconfont-archer">&#xe60a;</span>GitHub</span>
-    
         <span class="sidebar-category-name" data-categories="Golang"><span class="iconfont-archer">&#xe60a;</span>Golang</span>
+    
+        <span class="sidebar-category-name" data-categories="GitHub"><span class="iconfont-archer">&#xe60a;</span>GitHub</span>
     
         <span class="sidebar-category-name" data-categories="Hive"><span class="iconfont-archer">&#xe60a;</span>Hive</span>
     
