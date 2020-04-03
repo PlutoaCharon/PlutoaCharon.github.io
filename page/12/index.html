@@ -359,6 +359,198 @@ height:50vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2019/10/02/Linux下查看用户列表/">
+            
+                <span>Linux下查看用户列表</span>
+        </a>
+        <div class="abstract-content">
+            以下是用到的一些命令。
+查看用户
+cat /etc/passwd
+查看用户组
+cat /etc/group
+查看当前活跃的用户列表
+w但是，你会发现，在使用上面的 cat 命令所打印出来的东西太杂乱了，于是网上找到下面的这个命令：
+对于 cat /etc/passwd 的替换cat /etc/passwd|grep -v nologin|grep -v halt|grep -v shutdown|awk -F&quot;:&quot; &#39;{ print $1&quot;|&quot;$3&quot;|&quot;$4 }&#39;|more
+输出结果类似下面这样的：
+root|0...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/10/02</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Liunx">Liunx</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2019/10/02/Linux-crontab命令详解/">
+            
+                <span>Linux crontab命令详解</span>
+        </a>
+        <div class="abstract-content">
+            Linux crontab是用来定期执行程序的命令。
+当安装完成操作系统之后，默认便会启动此任务调度命令。
+crond命令每分锺会定期检查是否有要执行的工作，如果有要执行的工作便会自动执行该工作。
+而linux任务调度的工作主要分为以下两类：
+
+系统执行的工作：系统周期性所要执行的工作，如备份系统数据、清理缓存
+个人执行的工作：某个用户定期要做的工作，例如每隔10分钟检查邮件服务器是否有新信，这些工作可由每个用户自行设置
+
+语法crontab [ -u user ] file或crontab [ -u user ] { -l | -r | -e }  
+说明crontab 是用来让使用者...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/10/02</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Liunx">Liunx</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2019/10/02/Liunx-curl命令详解/">
+            
+                <span>Liunx curl命令详解</span>
+        </a>
+        <div class="abstract-content">
+            curl 是常用的命令行工具，用来请求 Web 服务器。它的名字就是客户端（client）的 URL 工具的意思。
+
+它的功能非常强大，命令行参数多达几十种。如果熟练的话，完全可以取代 Postman 这一类的图形界面工具。
+
+
+
+不带有任何参数时，curl 就是发出 GET 请求。
+
+$ curl https://www.example.com
+
+上面命令向www.example.com发出 GET 请求，服务器返回的内容会在命令行输出。
+
+-A
+
+-A参数指定客户端的用户代理标头，即User-Agent。curl 的默认用户代理字符串是curl/[version]。
+
+$ curl ...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/10/02</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Liunx">Liunx</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2019/10/02/Python-爬取Boos直聘/">
+            
+                <span>Python 爬取Boos直聘</span>
+        </a>
+        <div class="abstract-content">
+            数据采集数据采集（Date Capture），又叫做数据获取，数据采集是将系统需要管理的所有对象的原始数据（外部数据）进行一系列的操作并输入到系统内部的一个接口。像摄像头、麦克风等等，都是数据采集工具，而在计算机世界，相应的数据采集工具就更多了，简单的采集工具有Hawk、八爪鱼等。在计算机广泛应用的今天，数据采集在多个领域具有非常重要的意义。它是计算机与外部物理世界连接的桥梁。
+前几个月做了一个互联网加项目,是基于机器学习的一个简历招聘推荐系统
+今天就分享一下当时爬取Boss直聘时的爬虫代码
+用到的库
+Python3
+selenium
+BeautifulSoup
+os
+io
+re
+
+简述...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/10/02</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="数据采集">数据采集</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2019/10/02/CTF隐写总结/">
+            
+                <span>CTF隐写总结</span>
+        </a>
+        <div class="abstract-content">
+            打了有小半年ctf比赛了，一直没有时间来写几篇关于ctf的博客，今天抽出时间写了点杂项中隐写的总结，希望能够帮到大家
+简述隐写术是一门关于信息隐藏的技巧与科学，所谓信息隐藏指的是不让除预期的接收者之外的任何人知晓信息的传递事件或者信息的内容。隐写术的英文叫做Steganography，来源于特里特米乌斯的一本讲述密码学与隐写术的著作Steganographia，该书书名源于希腊语，意为“隐秘书写”。
+CTF隐写常见方式：1.增加数据的方式 隐藏信息另存为.zip后解压，正常的.JPG图片在文本编辑器（winhex）中，16进制是以FF D9结尾原理：a.先制作一个1.zip 把含有隐藏的...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/10/02</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="CTF">CTF</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2019/09/29/修改Compare-py报错时的解决方案/">
             
                 <span>修改Compare.py报错时的解决方案</span>
@@ -517,172 +709,6 @@ conda update conda 检查更新当前conda
             <div class="abstract-tags">
     
         <a class="post-tag" href="javascript:void(0);" data-tags="机器学习">机器学习</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/09/29/centos7-访问php-该网页无法正常运作-目前无法处理此请求/">
-            
-                <span>centos7 访问php 该网页无法正常运作 目前无法处理此请求</span>
-        </a>
-        <div class="abstract-content">
-            修改php.ini文件文件在/etc/php.ini
-由于php.ini配置文件中错误显示关闭导致.将下值由Off 变更为 On12display_errors = Ondisplay_startup_errors = On
-
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/09/29</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="PHP">PHP</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/09/29/分布式消息系统Kafka/">
-            
-                <span>分布式消息系统Kafka</span>
-        </a>
-        <div class="abstract-content">
-            分布式消息系统KafkaKafka可以处理消费者规模的网站中的所有动作流数据。 对于像Hadoop的一样的日志数据和离线分析系统，但又要求实时处理的限制，Kafka的目的是通过Hadoop的并行加载机制来统一线上和离线的消息处理，也是为了通过集群来提供实时的消息
-kafka是一个分布式的、可分区的、可复制的消息系统；
-kafka是由LinkedIn开发，使用Scala编写；
-支持水平拓展和高吞吐率；
-可与Apache Storm、Spark等多种开源分布式处理系统集成。
-相关知识:（1）以时间复杂度为O(1)的方式提供消息持久化能力，即使对TB级以上数据也能保证常数时间复杂度的访问性能（...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/09/29</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Kafka">Kafka</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/09/29/ZooKeeper学习笔记/">
-            
-                <span>ZooKeeper学习笔记</span>
-        </a>
-        <div class="abstract-content">
-            一 什么是 ZooKeeperZooKeeper 的由来Zookeeper最早起源于雅虎研究院的一个研究小组。在当时，研究人员发现，在雅虎内部很多大型系统基本都需要依赖一个类似的系统来进行分布式协调，但是这些系统往往都存在分布式单点问题。所以，雅虎的开发人员就试图开发一个通用的无单点问题的分布式协调框架，以便让开发人员将精力集中在处理业务逻辑上。
-关于“ZooKeeper”这个项目的名字，其实也有一段趣闻。在立项初期，考虑到之前内部很多项目都是使用动物的名字来命名的（例如著名的Pig项目),雅虎的工程师希望给这个项目也取一个动物的名字。时任研究院的首席科学家RaghuRamakrishn...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/09/29</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="ZooKeeper">ZooKeeper</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/09/29/Zookeeper环境搭建/">
-            
-                <span>Zookeeper环境搭建</span>
-        </a>
-        <div class="abstract-content">
-            zookeeper集群安装在master，slave1，slave2上安装
-hadoop用户进入master
-cd /opt/hadoop/
-tar -zxvf zookeeper-3.4.8.tar.gz
-vim /etc/profile
-#zookeeper
-export ZOOKEEPER_HOME=/opt/hadoop/zookeeper-3.4.8
-export PATH=$ZOOKEEPER_HOME/bin:$PATH
-
-cd zookeeper-3.4.8/conf
-cp zoo_sample.cfg zoo.cfg
-修改配置文件 zoo.cfg
-# The numbe...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/09/29</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Zookeeper">Zookeeper</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/09/29/Sqoop学习笔记/">
-            
-                <span>Sqoop学习笔记</span>
-        </a>
-        <div class="abstract-content">
-            数据转移工具SqoopSqoop是一款开源的工具，主要用于在Hadoop(Hive)与传统的数据库(mysql、postgresql…)间进行数据的传递，可以将一个关系型数据库（例如 ： MySQL ,Oracle ,Postgres等）中的数据导进到Hadoop的HDFS中，也可以将HDFS的数据导进到关系型数据库中。Apache框架Hadoop是一个越来越通用的分布式计算环境，主要用来处理大数据。随着云提供商利用这个框架，更多的用户将数据集在Hadoop和传统数据库之间转移，Sqoop这个帮助数据传输的工具变得更加重要。
-Sqoop是一款开源的工具，主要用于在Hadoop(Hive)...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/09/29</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Sqoop">Sqoop</a>
     
 </div>
             
@@ -4245,9 +4271,102 @@ Sqoop是一款开源的工具，主要用于在Hadoop(Hive)...
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 162
+        Total : 167
         </div>
         <!-- search  -->
         
@@ -4263,22 +4382,47 @@ Sqoop是一款开源的工具，主要用于在Hadoop(Hive)...
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">04/04</span><a class="archive-post-title" href="/2020/04/04/quay-io国内无法访问，解决Kubernetes应用flannel失败，报错Init-ImagePullBackOff/">quay.io国内无法访问，解决Kubernetes应用flannel失败，报错Init:ImagePullBackOff</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/04</span><a class="archive-post-title" href="/2020/04/04/Kubernetes-K8s-入门到实践-三-Kubernetes-Centos7集群安装/">Kubernetes(K8s)入门到实践(三)----Kubernetes Centos7集群安装</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/04</span><a class="archive-post-title" href="/2020/04/04/Golang1-14-go-modules-怎么导入本地其它项目的包-看完这篇文章-终于搞懂了/">Golang1.14 go modules 怎么导入本地其它项目的包? 看完这篇文章, 终于搞懂了</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/04</span><a class="archive-post-title" href="/2020/04/04/Golang实战之海量日志收集系统（九）beegoWeb入门/">Golang实战之海量日志收集系统（九）beegoWeb入门</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/04</span><a class="archive-post-title" href="/2020/04/04/Golang语言学习从入门到实战-Go操作Mysql实现增删改查/">Golang语言学习从入门到实战----Go操作Mysql实现增删改查</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/29</span><a class="archive-post-title" href="/2020/03/29/Golang实战之海量日志收集系统（三）简单版本logAgent的实现/">Golang实战之海量日志收集系统（三）简单版本logAgent的实现</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/29</span><a class="archive-post-title" href="/2020/03/29/Golang实战之海量日志收集系统（四）etcd介绍与使用etcd获取配置信息/">Golang实战之海量日志收集系统（四）etcd介绍与使用etcd获取配置信息</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">03/29</span><a class="archive-post-title" href="/2020/03/29/Golang实战之海量日志收集系统（八）logTransfer之将日志入库到Elasticsearch并通过Kibana进行展示/">Golang实战之海量日志收集系统（八）logTransfer之将日志入库到Elasticsearch并通过Kibana进行展示</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/29</span><a class="archive-post-title" href="/2020/03/29/Win10家庭版没有组策略怎么办-教你如何启用组策略gpedit-msc/">Win10家庭版没有组策略怎么办? 教你如何启用组策略gpedit.msc</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">03/29</span><a class="archive-post-title" href="/2020/03/29/Golang实战之海量日志收集系统（七）logTransfer之从kafka中获取日志信息/">Golang实战之海量日志收集系统（七）logTransfer之从kafka中获取日志信息</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">03/29</span><a class="archive-post-title" href="/2020/03/29/Golang实战之海量日志收集系统（六）监视etcd配置项的变更/">Golang实战之海量日志收集系统（六）监视etcd配置项的变更</a>
+            <span class="archive-post-date">03/29</span><a class="archive-post-title" href="/2020/03/29/Windows10配置Elasticsearch7与-Kibana7/">Windows10配置Elasticsearch7与 Kibana7</a>
         </li>
     
     
@@ -4303,12 +4447,12 @@ Sqoop是一款开源的工具，主要用于在Hadoop(Hive)...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/29</span><a class="archive-post-title" href="/2020/03/29/Golang实战之海量日志收集系统（三）简单版本logAgent的实现/">Golang实战之海量日志收集系统（三）简单版本logAgent的实现</a>
+            <span class="archive-post-date">03/29</span><a class="archive-post-title" href="/2020/03/29/Golang实战之海量日志收集系统（七）logTransfer之从kafka中获取日志信息/">Golang实战之海量日志收集系统（七）logTransfer之从kafka中获取日志信息</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/29</span><a class="archive-post-title" href="/2020/03/29/Golang实战之海量日志收集系统（四）etcd介绍与使用etcd获取配置信息/">Golang实战之海量日志收集系统（四）etcd介绍与使用etcd获取配置信息</a>
+            <span class="archive-post-date">03/29</span><a class="archive-post-title" href="/2020/03/29/Win10家庭版没有组策略怎么办-教你如何启用组策略gpedit-msc/">Win10家庭版没有组策略怎么办? 教你如何启用组策略gpedit.msc</a>
         </li>
     
     
@@ -4318,27 +4462,12 @@ Sqoop是一款开源的工具，主要用于在Hadoop(Hive)...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/29</span><a class="archive-post-title" href="/2020/03/29/Windows10配置Elasticsearch7与-Kibana7/">Windows10配置Elasticsearch7与 Kibana7</a>
+            <span class="archive-post-date">03/29</span><a class="archive-post-title" href="/2020/03/29/Golang实战之海量日志收集系统（六）监视etcd配置项的变更/">Golang实战之海量日志收集系统（六）监视etcd配置项的变更</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/17</span><a class="archive-post-title" href="/2020/03/17/Golang语言学习从入门到实战-接口/">Golang语言学习从入门到实战----接口</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">03/17</span><a class="archive-post-title" href="/2020/03/17/Golang语言学习从入门到实战-基于Golang实现简单家庭收支项目/">Golang语言学习从入门到实战----基于Golang实现简单家庭收支项目</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">03/17</span><a class="archive-post-title" href="/2020/03/17/Golang语言学习从入门到实战-HTTP-web开发编程/">Golang语言学习从入门到实战----HTTP web开发编程</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">03/17</span><a class="archive-post-title" href="/2020/03/17/Windows10安装运行Kafka2-1-0与Zookeeper3-4-14/">Windows10安装运行Kafka2.1.0与Zookeeper3.4.14</a>
+            <span class="archive-post-date">03/17</span><a class="archive-post-title" href="/2020/03/17/Golang语言学习从入门到实战-基于Golang的客户关系管理系统/">Golang语言学习从入门到实战----基于Golang的客户关系管理系统</a>
         </li>
     
     
@@ -4348,12 +4477,27 @@ Sqoop是一款开源的工具，主要用于在Hadoop(Hive)...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/17</span><a class="archive-post-title" href="/2020/03/17/关于go-get-以后下载的包不在src下而在pkg的源头并且不可以import-Goland-Modules模块的使用/">关于go get 以后下载的包不在src下而在pkg的源头并且不可以import(Goland Modules模块的使用)</a>
+            <span class="archive-post-date">03/17</span><a class="archive-post-title" href="/2020/03/17/Golang语言学习从入门到实战-HTTP-web开发编程/">Golang语言学习从入门到实战----HTTP web开发编程</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/17</span><a class="archive-post-title" href="/2020/03/17/Golang语言学习从入门到实战-基于Golang的客户关系管理系统/">Golang语言学习从入门到实战----基于Golang的客户关系管理系统</a>
+            <span class="archive-post-date">03/17</span><a class="archive-post-title" href="/2020/03/17/Golang语言学习从入门到实战-基于Golang实现简单家庭收支项目/">Golang语言学习从入门到实战----基于Golang实现简单家庭收支项目</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/17</span><a class="archive-post-title" href="/2020/03/17/Windows10安装运行Kafka2-1-0与Zookeeper3-4-14/">Windows10安装运行Kafka2.1.0与Zookeeper3.4.14</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/17</span><a class="archive-post-title" href="/2020/03/17/Golang语言学习从入门到实战-接口/">Golang语言学习从入门到实战----接口</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/17</span><a class="archive-post-title" href="/2020/03/17/关于go-get-以后下载的包不在src下而在pkg的源头并且不可以import-Goland-Modules模块的使用/">关于go get 以后下载的包不在src下而在pkg的源头并且不可以import(Goland Modules模块的使用)</a>
         </li>
     
     
@@ -4428,7 +4572,7 @@ Sqoop是一款开源的工具，主要用于在Hadoop(Hive)...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/Python算法学习-竞码编程-蓝桥杯模拟赛题解/">Python算法学习: 竞码编程-蓝桥杯模拟赛题解</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/Python算法学习-竞码编程-蓝桥杯模拟赛2题解/">Python算法学习: 竞码编程-蓝桥杯模拟赛2题解</a>
         </li>
     
     
@@ -4438,7 +4582,7 @@ Sqoop是一款开源的工具，主要用于在Hadoop(Hive)...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/Python算法学习-竞码编程-蓝桥杯模拟赛2题解/">Python算法学习: 竞码编程-蓝桥杯模拟赛2题解</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/Python算法学习-任意进制转换/">Python算法学习: 任意进制转换</a>
         </li>
     
     
@@ -4483,7 +4627,7 @@ Sqoop是一款开源的工具，主要用于在Hadoop(Hive)...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/Python算法学习-任意进制转换/">Python算法学习: 任意进制转换</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/Python算法学习-竞码编程-蓝桥杯模拟赛题解/">Python算法学习: 竞码编程-蓝桥杯模拟赛题解</a>
         </li>
     
     
@@ -4498,7 +4642,7 @@ Sqoop是一款开源的工具，主要用于在Hadoop(Hive)...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">01/16</span><a class="archive-post-title" href="/2020/01/16/SparkSQL，创建表，查询数据/">SparkSQL，创建表，查询数据</a>
+            <span class="archive-post-date">01/16</span><a class="archive-post-title" href="/2020/01/16/CentOS7-Failed-to-start-LSB-Bring-up-down解决方法/">CentOS7 Failed to start LSB: Bring up/down解决方法</a>
         </li>
     
     
@@ -4508,12 +4652,27 @@ Sqoop是一款开源的工具，主要用于在Hadoop(Hive)...
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">01/16</span><a class="archive-post-title" href="/2020/01/16/Python算法学习day3-快速排序-二/">Python算法学习day3:快速排序(二)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">01/16</span><a class="archive-post-title" href="/2020/01/16/Python算法学习day2-查找和排序-一/">Python算法学习day2:查找和排序(一)</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">01/16</span><a class="archive-post-title" href="/2020/01/16/Python算法学习day3-快速排序-二/">Python算法学习day3:快速排序(二)</a>
+            <span class="archive-post-date">01/16</span><a class="archive-post-title" href="/2020/01/16/Win10开启与搭建FTP服务器-详细图文版/">Win10开启与搭建FTP服务器(详细图文版)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/16</span><a class="archive-post-title" href="/2020/01/16/SparkSQL，创建表，查询数据/">SparkSQL，创建表，查询数据</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/16</span><a class="archive-post-title" href="/2020/01/16/SparkSQL，加载文件，处理文件，存储文件/">SparkSQL，加载文件，处理文件，存储文件</a>
         </li>
     
     
@@ -4528,21 +4687,6 @@ Sqoop是一款开源的工具，主要用于在Hadoop(Hive)...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">01/16</span><a class="archive-post-title" href="/2020/01/16/SparkSQL，加载文件，处理文件，存储文件/">SparkSQL，加载文件，处理文件，存储文件</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">01/16</span><a class="archive-post-title" href="/2020/01/16/CentOS7-Failed-to-start-LSB-Bring-up-down解决方法/">CentOS7 Failed to start LSB: Bring up/down解决方法</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">01/16</span><a class="archive-post-title" href="/2020/01/16/Python算法学习day1-汉诺塔-斐波那契数列-递归/">Python算法学习day1:汉诺塔,斐波那契数列(递归)</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">01/16</span><a class="archive-post-title" href="/2020/01/16/Centos7搭建Hadoop3-1-3完全分布模式/">Centos7搭建Hadoop3.1.3完全分布模式</a>
         </li>
     
@@ -4553,7 +4697,7 @@ Sqoop是一款开源的工具，主要用于在Hadoop(Hive)...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">01/16</span><a class="archive-post-title" href="/2020/01/16/Win10开启与搭建FTP服务器-详细图文版/">Win10开启与搭建FTP服务器(详细图文版)</a>
+            <span class="archive-post-date">01/16</span><a class="archive-post-title" href="/2020/01/16/Python算法学习day1-汉诺塔-斐波那契数列-递归/">Python算法学习day1:汉诺塔,斐波那契数列(递归)</a>
         </li>
     
     
@@ -4567,17 +4711,12 @@ Sqoop是一款开源的工具，主要用于在Hadoop(Hive)...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">11/28</span><a class="archive-post-title" href="/2019/11/28/Hbase-Java-API接口/">Hbase Java API接口</a>
+            <span class="archive-post-date">11/28</span><a class="archive-post-title" href="/2019/11/28/Ubuntu-18-04-2-LTS网络设置/">Ubuntu 18.04.2 LTS网络设置</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">11/28</span><a class="archive-post-title" href="/2019/11/28/Spark-Shell操作/">Spark Shell操作</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">11/28</span><a class="archive-post-title" href="/2019/11/28/WindowsServer2016-Anaconda下TensorFlow-GPU环境搭建详细教程（包含CUDA-cuDNN安装过程）/">WindowsServer2016 Anaconda下TensorFlow-GPU环境搭建详细教程（包含CUDA+cuDNN安装过程）</a>
+            <span class="archive-post-date">11/28</span><a class="archive-post-title" href="/2019/11/28/Docker实战-创建支持SSH服务的镜像-超详细/">Docker实战 创建支持SSH服务的镜像(超详细)</a>
         </li>
     
     
@@ -4587,12 +4726,22 @@ Sqoop是一款开源的工具，主要用于在Hadoop(Hive)...
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">11/28</span><a class="archive-post-title" href="/2019/11/28/WindowsServer2016-Anaconda下TensorFlow-GPU环境搭建详细教程（包含CUDA-cuDNN安装过程）/">WindowsServer2016 Anaconda下TensorFlow-GPU环境搭建详细教程（包含CUDA+cuDNN安装过程）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/28</span><a class="archive-post-title" href="/2019/11/28/Spark-Shell操作/">Spark Shell操作</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">11/28</span><a class="archive-post-title" href="/2019/11/28/华为服务器H22H-03的Windows-Server2012安装/">华为服务器H22H-03的Windows Server2012安装</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">11/28</span><a class="archive-post-title" href="/2019/11/28/Docker实战-创建支持SSH服务的镜像-超详细/">Docker实战 创建支持SSH服务的镜像(超详细)</a>
+            <span class="archive-post-date">11/28</span><a class="archive-post-title" href="/2019/11/28/使用etree与xpath爬取Discuz论坛/">使用etree与xpath爬取Discuz论坛</a>
         </li>
     
     
@@ -4607,12 +4756,12 @@ Sqoop是一款开源的工具，主要用于在Hadoop(Hive)...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">11/28</span><a class="archive-post-title" href="/2019/11/28/使用etree与xpath爬取Discuz论坛/">使用etree与xpath爬取Discuz论坛</a>
+            <span class="archive-post-date">11/28</span><a class="archive-post-title" href="/2019/11/28/Hbase-Java-API接口/">Hbase Java API接口</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">11/28</span><a class="archive-post-title" href="/2019/11/28/Ubuntu-18-04-2-LTS网络设置/">Ubuntu 18.04.2 LTS网络设置</a>
+            <span class="archive-post-date">11/04</span><a class="archive-post-title" href="/2019/11/04/hbase-shell报错-zookeeper-RecoverableZooKeeper-ZooKeeper-exists-failed-after-4-attempts/">hbase shell报错:zookeeper.RecoverableZooKeeper: ZooKeeper exists failed after 4 attempts</a>
         </li>
     
     
@@ -4627,11 +4776,6 @@ Sqoop是一款开源的工具，主要用于在Hadoop(Hive)...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">11/04</span><a class="archive-post-title" href="/2019/11/04/hbase-shell报错-zookeeper-RecoverableZooKeeper-ZooKeeper-exists-failed-after-4-attempts/">hbase shell报错:zookeeper.RecoverableZooKeeper: ZooKeeper exists failed after 4 attempts</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">11/04</span><a class="archive-post-title" href="/2019/11/04/Docker数据管理-实现将主机目录挂载到容器中并共享/">Docker数据管理:实现将主机目录挂载到容器中并共享</a>
         </li>
     
@@ -4642,17 +4786,7 @@ Sqoop是一款开源的工具，主要用于在Hadoop(Hive)...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/24</span><a class="archive-post-title" href="/2019/10/24/CTF线下AWD攻防步骤总结/">CTF线下AWD攻防步骤总结</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">10/24</span><a class="archive-post-title" href="/2019/10/24/ctf线下AWD攻防赛学习笔记/">ctf线下AWD攻防赛学习笔记</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">10/24</span><a class="archive-post-title" href="/2019/10/24/Hive启动报错-Could-not-create-ServerSocket-on-address-0-0-0-0-0-0-0-0-9083/">Hive启动报错 Could not create ServerSocket on address 0.0.0.0/0.0.0.0:9083</a>
         </li>
     
     
@@ -4667,12 +4801,17 @@ Sqoop是一款开源的工具，主要用于在Hadoop(Hive)...
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">10/24</span><a class="archive-post-title" href="/2019/10/24/Hive启动报错-Could-not-create-ServerSocket-on-address-0-0-0-0-0-0-0-0-9083/">Hive启动报错 Could not create ServerSocket on address 0.0.0.0/0.0.0.0:9083</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">10/24</span><a class="archive-post-title" href="/2019/10/24/vsphere报错-连接到虚拟机控制台失败并显示错误：VMRC-控制台的连接已断开。正在尝试重新连接/">vsphere报错: 连接到虚拟机控制台失败并显示错误：VMRC 控制台的连接已断开。正在尝试重新连接</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/16</span><a class="archive-post-title" href="/2019/10/16/Centos7-bg与fg命令/">Centos7 bg与fg命令</a>
+            <span class="archive-post-date">10/24</span><a class="archive-post-title" href="/2019/10/24/CTF线下AWD攻防步骤总结/">CTF线下AWD攻防步骤总结</a>
         </li>
     
     
@@ -4682,12 +4821,12 @@ Sqoop是一款开源的工具，主要用于在Hadoop(Hive)...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/14</span><a class="archive-post-title" href="/2019/10/14/大数据环境准备-搭建数据仓库/">大数据环境准备-搭建数据仓库</a>
+            <span class="archive-post-date">10/16</span><a class="archive-post-title" href="/2019/10/16/Centos7-bg与fg命令/">Centos7 bg与fg命令</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/14</span><a class="archive-post-title" href="/2019/10/14/大数据基础环境搭建/">大数据基础环境搭建</a>
+            <span class="archive-post-date">10/14</span><a class="archive-post-title" href="/2019/10/14/大数据环境准备-搭建数据仓库/">大数据环境准备-搭建数据仓库</a>
         </li>
     
     
@@ -4698,6 +4837,26 @@ Sqoop是一款开源的工具，主要用于在Hadoop(Hive)...
     
         <li class="archive-post-item">
             <span class="archive-post-date">10/14</span><a class="archive-post-title" href="/2019/10/14/Centos7配置yum源安装Mysql/">Centos7配置yum源安装Mysql</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/14</span><a class="archive-post-title" href="/2019/10/14/大数据基础环境搭建/">大数据基础环境搭建</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/10</span><a class="archive-post-title" href="/2019/10/10/Centos7安装Anaconda详细版/">Centos7安装Anaconda详细版</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/10</span><a class="archive-post-title" href="/2019/10/10/基于PySpark的电影推荐引擎/">基于PySpark的电影推荐引擎</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/10</span><a class="archive-post-title" href="/2019/10/10/使用PySpark对招聘信息数据进行分析/">使用PySpark对招聘信息数据进行分析</a>
         </li>
     
     
@@ -4717,17 +4876,22 @@ Sqoop是一款开源的工具，主要用于在Hadoop(Hive)...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/10</span><a class="archive-post-title" href="/2019/10/10/使用PySpark对招聘信息数据进行分析/">使用PySpark对招聘信息数据进行分析</a>
+            <span class="archive-post-date">10/06</span><a class="archive-post-title" href="/2019/10/06/Kali-apt-get报E-无法打开锁文件-var-lib-dpkg-lock-frontend-open-2-没有那个文件或目录/">Kali apt-get报E: 无法打开锁文件 /var/lib/dpkg/lock-frontend - open (2: 没有那个文件或目录)</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/10</span><a class="archive-post-title" href="/2019/10/10/Centos7安装Anaconda详细版/">Centos7安装Anaconda详细版</a>
+            <span class="archive-post-date">10/06</span><a class="archive-post-title" href="/2019/10/06/payload、shellcode、exp、poc区分方法/">payload、shellcode、exp、poc区分方法</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/10</span><a class="archive-post-title" href="/2019/10/10/基于PySpark的电影推荐引擎/">基于PySpark的电影推荐引擎</a>
+            <span class="archive-post-date">10/06</span><a class="archive-post-title" href="/2019/10/06/思科模拟器-使用IOS配置启用ospf路由/">思科模拟器 使用IOS配置启用ospf路由</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/06</span><a class="archive-post-title" href="/2019/10/06/Kali-apt报错E-无法获得锁-var-cache-apt-archives-lock-open-11-资源暂时不可用/">Kali apt报错E: 无法获得锁 /var/cache/apt/archives/lock - open (11: 资源暂时不可用)</a>
         </li>
     
     
@@ -4738,26 +4902,6 @@ Sqoop是一款开源的工具，主要用于在Hadoop(Hive)...
     
         <li class="archive-post-item">
             <span class="archive-post-date">10/06</span><a class="archive-post-title" href="/2019/10/06/kali20119最新更新源/">kali20119最新更新源</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">10/06</span><a class="archive-post-title" href="/2019/10/06/Kali-apt-get报E-无法打开锁文件-var-lib-dpkg-lock-frontend-open-2-没有那个文件或目录/">Kali apt-get报E: 无法打开锁文件 /var/lib/dpkg/lock-frontend - open (2: 没有那个文件或目录)</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">10/06</span><a class="archive-post-title" href="/2019/10/06/Kali-apt报错E-无法获得锁-var-cache-apt-archives-lock-open-11-资源暂时不可用/">Kali apt报错E: 无法获得锁 /var/cache/apt/archives/lock - open (11: 资源暂时不可用)</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">10/06</span><a class="archive-post-title" href="/2019/10/06/思科模拟器-使用IOS配置启用ospf路由/">思科模拟器 使用IOS配置启用ospf路由</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">10/06</span><a class="archive-post-title" href="/2019/10/06/payload、shellcode、exp、poc区分方法/">payload、shellcode、exp、poc区分方法</a>
         </li>
     
     
@@ -4822,7 +4966,7 @@ Sqoop是一款开源的工具，主要用于在Hadoop(Hive)...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/Flume多source，多sink组合框架搭建/">Flume多source，多sink组合框架搭建</a>
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/Zookeeper环境搭建/">Zookeeper环境搭建</a>
         </li>
     
     
@@ -4872,7 +5016,7 @@ Sqoop是一款开源的工具，主要用于在Hadoop(Hive)...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/Zookeeper环境搭建/">Zookeeper环境搭建</a>
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/修改Compare-py报错时的解决方案/">修改Compare.py报错时的解决方案</a>
         </li>
     
     
@@ -4897,7 +5041,7 @@ Sqoop是一款开源的工具，主要用于在Hadoop(Hive)...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/修改Compare-py报错时的解决方案/">修改Compare.py报错时的解决方案</a>
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/Flume多source，多sink组合框架搭建/">Flume多source，多sink组合框架搭建</a>
         </li>
     
     
@@ -4937,12 +5081,22 @@ Sqoop是一款开源的工具，主要用于在Hadoop(Hive)...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/Windows下的MapReduce编程实现/">Windows下的MapReduce编程实现</a>
+            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/HDFS文件接口/">HDFS文件接口</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/解决vmware（vsphere）部署linux系统模板后无法联网问题/">解决vmware（vsphere）部署linux系统模板后无法联网问题</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/在Centos 7下安装PHP 7/">在Centos 7下安装PHP 7</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/Windows下的MapReduce编程实现/">Windows下的MapReduce编程实现</a>
         </li>
     
     
@@ -4953,16 +5107,6 @@ Sqoop是一款开源的工具，主要用于在Hadoop(Hive)...
     
         <li class="archive-post-item">
             <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/JobTracker和TaskTracker/">JobTracker和TaskTracker</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/在Centos 7下安装PHP 7/">在Centos 7下安装PHP 7</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/HDFS文件接口/">HDFS文件接口</a>
         </li>
     
     
@@ -5085,9 +5229,9 @@ Sqoop是一款开源的工具，主要用于在Hadoop(Hive)...
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
     
-        <span class="sidebar-tag-name" data-tags="CTF"><span class="iconfont-archer">&#xe606;</span>CTF</span>
-    
         <span class="sidebar-tag-name" data-tags="Liunx"><span class="iconfont-archer">&#xe606;</span>Liunx</span>
+    
+        <span class="sidebar-tag-name" data-tags="CTF"><span class="iconfont-archer">&#xe606;</span>CTF</span>
     
         <span class="sidebar-tag-name" data-tags="高可用负载均衡"><span class="iconfont-archer">&#xe606;</span>高可用负载均衡</span>
     
@@ -5105,9 +5249,9 @@ Sqoop是一款开源的工具，主要用于在Hadoop(Hive)...
     
         <span class="sidebar-tag-name" data-tags="Kafka"><span class="iconfont-archer">&#xe606;</span>Kafka</span>
     
-        <span class="sidebar-tag-name" data-tags="GitHub"><span class="iconfont-archer">&#xe606;</span>GitHub</span>
-    
         <span class="sidebar-tag-name" data-tags="Golang"><span class="iconfont-archer">&#xe606;</span>Golang</span>
+    
+        <span class="sidebar-tag-name" data-tags="GitHub"><span class="iconfont-archer">&#xe606;</span>GitHub</span>
     
         <span class="sidebar-tag-name" data-tags="Golang日志收集系统"><span class="iconfont-archer">&#xe606;</span>Golang日志收集系统</span>
     
@@ -5119,8 +5263,6 @@ Sqoop是一款开源的工具，主要用于在Hadoop(Hive)...
     
         <span class="sidebar-tag-name" data-tags="Kali"><span class="iconfont-archer">&#xe606;</span>Kali</span>
     
-        <span class="sidebar-tag-name" data-tags="Kubernetes"><span class="iconfont-archer">&#xe606;</span>Kubernetes</span>
-    
         <span class="sidebar-tag-name" data-tags="Shell"><span class="iconfont-archer">&#xe606;</span>Shell</span>
     
         <span class="sidebar-tag-name" data-tags="Python算法"><span class="iconfont-archer">&#xe606;</span>Python算法</span>
@@ -5131,9 +5273,9 @@ Sqoop是一款开源的工具，主要用于在Hadoop(Hive)...
     
         <span class="sidebar-tag-name" data-tags="Vmware"><span class="iconfont-archer">&#xe606;</span>Vmware</span>
     
-        <span class="sidebar-tag-name" data-tags="机器学习"><span class="iconfont-archer">&#xe606;</span>机器学习</span>
-    
         <span class="sidebar-tag-name" data-tags="Zookeeper"><span class="iconfont-archer">&#xe606;</span>Zookeeper</span>
+    
+        <span class="sidebar-tag-name" data-tags="机器学习"><span class="iconfont-archer">&#xe606;</span>机器学习</span>
     
         <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
     
@@ -5143,15 +5285,17 @@ Sqoop是一款开源的工具，主要用于在Hadoop(Hive)...
     
         <span class="sidebar-tag-name" data-tags="Python"><span class="iconfont-archer">&#xe606;</span>Python</span>
     
+        <span class="sidebar-tag-name" data-tags="Kubernetes"><span class="iconfont-archer">&#xe606;</span>Kubernetes</span>
+    
         <span class="sidebar-tag-name" data-tags="PySpark"><span class="iconfont-archer">&#xe606;</span>PySpark</span>
     
         <span class="sidebar-tag-name" data-tags="Maven"><span class="iconfont-archer">&#xe606;</span>Maven</span>
     
         <span class="sidebar-tag-name" data-tags="网络"><span class="iconfont-archer">&#xe606;</span>网络</span>
     
-        <span class="sidebar-tag-name" data-tags="数据采集"><span class="iconfont-archer">&#xe606;</span>数据采集</span>
-    
         <span class="sidebar-tag-name" data-tags="AWD"><span class="iconfont-archer">&#xe606;</span>AWD</span>
+    
+        <span class="sidebar-tag-name" data-tags="数据采集"><span class="iconfont-archer">&#xe606;</span>数据采集</span>
     
         <span class="sidebar-tag-name" data-tags="ZooKeeper"><span class="iconfont-archer">&#xe606;</span>ZooKeeper</span>
     
@@ -5188,31 +5332,29 @@ jsonContent:
         <div class="sidebar-panel-categories">
     <div class="sidebar-categories-name">
     
-        <span class="sidebar-category-name" data-categories="CTF"><span class="iconfont-archer">&#xe60a;</span>CTF</span>
-    
         <span class="sidebar-category-name" data-categories="Liunx"><span class="iconfont-archer">&#xe60a;</span>Liunx</span>
+    
+        <span class="sidebar-category-name" data-categories="CTF"><span class="iconfont-archer">&#xe60a;</span>CTF</span>
     
         <span class="sidebar-category-name" data-categories="Hadoop"><span class="iconfont-archer">&#xe60a;</span>Hadoop</span>
     
         <span class="sidebar-category-name" data-categories="Docker"><span class="iconfont-archer">&#xe60a;</span>Docker</span>
     
+        <span class="sidebar-category-name" data-categories="Golang"><span class="iconfont-archer">&#xe60a;</span>Golang</span>
+    
         <span class="sidebar-category-name" data-categories="GitHub"><span class="iconfont-archer">&#xe60a;</span>GitHub</span>
     
         <span class="sidebar-category-name" data-categories="Golang日志收集系统"><span class="iconfont-archer">&#xe60a;</span>Golang日志收集系统</span>
-    
-        <span class="sidebar-category-name" data-categories="Golang"><span class="iconfont-archer">&#xe60a;</span>Golang</span>
     
         <span class="sidebar-category-name" data-categories="Hive"><span class="iconfont-archer">&#xe60a;</span>Hive</span>
     
         <span class="sidebar-category-name" data-categories="Java"><span class="iconfont-archer">&#xe60a;</span>Java</span>
     
-        <span class="sidebar-category-name" data-categories="Kubernetes"><span class="iconfont-archer">&#xe60a;</span>Kubernetes</span>
-    
-        <span class="sidebar-category-name" data-categories="其他"><span class="iconfont-archer">&#xe60a;</span>其他</span>
-    
         <span class="sidebar-category-name" data-categories="高可用负载均衡"><span class="iconfont-archer">&#xe60a;</span>高可用负载均衡</span>
     
         <span class="sidebar-category-name" data-categories="Python算法"><span class="iconfont-archer">&#xe60a;</span>Python算法</span>
+    
+        <span class="sidebar-category-name" data-categories="其他"><span class="iconfont-archer">&#xe60a;</span>其他</span>
     
         <span class="sidebar-category-name" data-categories="Spark"><span class="iconfont-archer">&#xe60a;</span>Spark</span>
     
@@ -5223,6 +5365,8 @@ jsonContent:
         <span class="sidebar-category-name" data-categories="博客"><span class="iconfont-archer">&#xe60a;</span>博客</span>
     
         <span class="sidebar-category-name" data-categories="Python"><span class="iconfont-archer">&#xe60a;</span>Python</span>
+    
+        <span class="sidebar-category-name" data-categories="Kubernetes"><span class="iconfont-archer">&#xe60a;</span>Kubernetes</span>
     
         <span class="sidebar-category-name" data-categories="网络"><span class="iconfont-archer">&#xe60a;</span>网络</span>
     
