@@ -431,12 +431,13 @@ height:50vh;
 <p><img src="https://img-blog.csdnimg.cn/20200403171457634.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
 <h3 id="部署网络"><a href="#部署网络" class="headerlink" title="部署网络"></a>部署网络</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p <span class="variable">$HOME</span>/.kube</span><br><span class="line">sudo cp -i /etc/kubernetes/admin.conf <span class="variable">$HOME</span>/.kube/config</span><br><span class="line">sudo chown $(id -u):$(id -g) <span class="variable">$HOME</span>/.kube/config</span><br></pre></td></tr></table></figure>
 <p>目前master处于<code>NotReady</code>状态<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@k8s-master01 ~]<span class="comment"># kubectl get node</span></span><br><span class="line">NAME           STATUS     ROLES    AGE   VERSION</span><br><span class="line">k8s-master01   NotReady   master   19m   v1.15.1</span><br></pre></td></tr></table></figure></p>
-<p>将核心文件移入新建文件夹<code>install-k8s</code>中, 方便管理<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">[root@k8s-master01 ~]<span class="comment"># mkdir install-k8s</span></span><br><span class="line">[root@k8s-master01 ~]<span class="comment"># mv kubeadm-</span></span><br><span class="line">kubeadm-basic.images/        kubeadm-config.yaml          </span><br><span class="line">kubeadm-basic.images.tar.gz  kubeadm-init.log             </span><br><span class="line">[root@k8s-master01 ~]<span class="comment"># mv kubeadm-config.yaml kubeadm-init.log install-k8s/</span></span><br><span class="line">[root@k8s-master01 ~]<span class="comment"># cd install-k8s/</span></span><br><span class="line">[root@k8s-master01 install-k8s]<span class="comment"># mkdir core</span></span><br><span class="line">[root@k8s-master01 install-k8s]<span class="comment"># mv * core/</span></span><br><span class="line">mv: 无法将目录<span class="string">"core"</span> 移动至自身的子目录<span class="string">"core/core"</span> 下</span><br><span class="line">[root@k8s-master01 install-k8s]<span class="comment"># ls</span></span><br><span class="line">core</span><br><span class="line">[root@k8s-master01 install-k8s]<span class="comment"># mkdir plugin</span></span><br><span class="line">[root@k8s-master01 install-k8s]<span class="comment"># cd plugin/</span></span><br><span class="line">[root@k8s-master01 plugin]<span class="comment"># mkdir flannel</span></span><br><span class="line">[root@k8s-master01 plugin]<span class="comment"># cd flannel</span></span><br><span class="line">[root@k8s-master01 flannel]<span class="comment"># wget --no-check-certificate  https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml</span></span><br><span class="line">[root@k8s-master01 flannel]<span class="comment"># ls</span></span><br><span class="line">flannel  kube-flannel.yml</span><br><span class="line">[root@k8s-master01 flannel]<span class="comment">#</span></span><br></pre></td></tr></table></figure></p>
+<p>将核心文件移入新建文件夹<code>install-k8s</code>中, 方便管理<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">[root@k8s-master01 ~]<span class="comment"># mkdir install-k8s</span></span><br><span class="line">[root@k8s-master01 ~]<span class="comment"># mv kubeadm-</span></span><br><span class="line">kubeadm-basic.images/        kubeadm-config.yaml          </span><br><span class="line">kubeadm-basic.images.tar.gz  kubeadm-init.log             </span><br><span class="line">[root@k8s-master01 ~]<span class="comment"># mv kubeadm-config.yaml kubeadm-init.log install-k8s/</span></span><br><span class="line">[root@k8s-master01 ~]<span class="comment"># cd install-k8s/</span></span><br><span class="line">[root@k8s-master01 install-k8s]<span class="comment"># mkdir core</span></span><br><span class="line">[root@k8s-master01 install-k8s]<span class="comment"># mv * core/</span></span><br><span class="line">mv: 无法将目录<span class="string">"core"</span> 移动至自身的子目录<span class="string">"core/core"</span> 下</span><br><span class="line">[root@k8s-master01 install-k8s]<span class="comment"># ls</span></span><br><span class="line">core</span><br><span class="line">[root@k8s-master01 install-k8s]<span class="comment"># mkdir plugin</span></span><br><span class="line">[root@k8s-master01 install-k8s]<span class="comment"># cd plugin/</span></span><br><span class="line">[root@k8s-master01 plugin]<span class="comment"># mkdir flannel</span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@k8s-master01 plugin]<span class="comment"># cd flannel</span></span><br><span class="line">[root@k8s-master01 flannel]<span class="comment"># wget --no-check-certificate  https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml</span></span><br><span class="line">[root@k8s-master01 flannel]<span class="comment"># ls</span></span><br><span class="line">flannel  kube-flannel.yml</span><br><span class="line">[root@k8s-master01 flannel]<span class="comment">#</span></span><br></pre></td></tr></table></figure>
 <p>根据flannel的资源清单，创建网络</p>
 <blockquote>
 <p>如果flannal报错<code>Init:ImagePullBackOff</code><br>查看我<a href="https://blog.csdn.net/qq_43442524/article/details/105298366" target="_blank" rel="noopener">这篇文章</a>:<code>https://blog.csdn.net/qq_43442524/article/details/105298366</code></p>
 </blockquote>
-<p>运行<br><code>kubectl create -f kube-flannel.yml</code><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">[root@k8s-master01 flannel]<span class="comment"># kubectl get pod -n kube-system</span></span><br><span class="line">NAME                                   READY   STATUS                  RESTARTS   AGE</span><br><span class="line">coredns-5c98db65d4-f9rb7               0/1     Pending                 0          36m</span><br><span class="line">coredns-5c98db65d4-xcd9s               0/1     Pending                 0          36m</span><br><span class="line">etcd-k8s-master01                      1/1     Running                 0          35m</span><br><span class="line">kube-apiserver-k8s-master01            1/1     Running                 0          35m</span><br><span class="line">kube-controller-manager-k8s-master01   1/1     Running                 0          35m</span><br><span class="line">kube-flannel-ds-amd64-trlph            0/1     Init:ImagePullBackOff   0          2m2s</span><br><span class="line">kube-proxy-t47n9                       1/1     Running                 0          36m</span><br><span class="line">kube-scheduler-k8s-master01            1/1     Running                 0          35m</span><br><span class="line">[root@k8s-master01 flannel]<span class="comment"># kubectl get node</span></span><br><span class="line">NAME           STATUS   ROLES    AGE     VERSION</span><br><span class="line">k8s-master01   Ready    master   3h22m   v1.15.1</span><br><span class="line">[root@k8s-master01 flannel]<span class="comment">#</span></span><br></pre></td></tr></table></figure></p>
+<p>运行<br><code>kubectl create -f kube-flannel.yml</code><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">[root@k8s-master01 flannel]<span class="comment"># kubectl get pod -n kube-system</span></span><br><span class="line">NAME                                   READY   STATUS                  RESTARTS   AGE</span><br><span class="line">coredns-5c98db65d4-f9rb7               0/1     Pending                 0          36m</span><br><span class="line">coredns-5c98db65d4-xcd9s               0/1     Pending                 0          36m</span><br><span class="line">etcd-k8s-master01                      1/1     Running                 0          35m</span><br><span class="line">kube-apiserver-k8s-master01            1/1     Running                 0          35m</span><br><span class="line">kube-controller-manager-k8s-master01   1/1     Running                 0          35m</span><br><span class="line">kube-flannel-ds-amd64-bnvtd            1/1     Running                 0          91m</span><br><span class="line">kube-proxy-t47n9                       1/1     Running                 0          36m</span><br><span class="line">kube-scheduler-k8s-master01            1/1     Running                 0          35m</span><br><span class="line">[root@k8s-master01 flannel]<span class="comment"># kubectl get node</span></span><br><span class="line">NAME           STATUS   ROLES    AGE     VERSION</span><br><span class="line">k8s-master01   Ready    master   3h22m   v1.15.1</span><br><span class="line">[root@k8s-master01 flannel]<span class="comment">#</span></span><br></pre></td></tr></table></figure></p>
 <p>现在就是Ready状态了</p>
 <h3 id="添加node节点"><a href="#添加node节点" class="headerlink" title="添加node节点"></a>添加node节点</h3><p>查看刚才移到<code>/root/install-k8s/core</code>的<code>kubeadm-init.log</code>最后一行:<br><img src="https://img-blog.csdnimg.cn/20200403203856766.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>复制到其他两个节点运行, 查看<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@k8s-master01 core]<span class="comment"># kubectl get node</span></span><br><span class="line">NAME           STATUS   ROLES    AGE     VERSION</span><br><span class="line">k8s-master01   Ready    master   3h26m   v1.15.1</span><br><span class="line">k8s-node01     Ready    &lt;none&gt;   32s     v1.15.1</span><br><span class="line">k8s-node02     Ready    &lt;none&gt;   29s     v1.15.1</span><br><span class="line">[root@k8s-master01 core]<span class="comment">#</span></span><br></pre></td></tr></table></figure></p>
 <p>成功!</p>
@@ -448,7 +449,7 @@ height:50vh;
             <p>原文作者：<a href="https://plutoacharon.github.io">浩翰</a>
             </p><p>原文链接：<a href="https://plutoacharon.github.io/2020/04/04/Kubernetes-K8s-入门到实践-三-Kubernetes-Centos7集群安装/">https://plutoacharon.github.io/2020/04/04/Kubernetes-K8s-入门到实践-三-Kubernetes-Centos7集群安装/</a>
             </p><p>发表日期：<a href="https://plutoacharon.github.io/2020/04/04/Kubernetes-K8s-入门到实践-三-Kubernetes-Centos7集群安装/">April 4th 2020, 7:38:12 am</a>
-            </p><p>更新日期：<a href="https://plutoacharon.github.io/2020/04/04/Kubernetes-K8s-入门到实践-三-Kubernetes-Centos7集群安装/">April 4th 2020, 7:39:26 am</a>
+            </p><p>更新日期：<a href="https://plutoacharon.github.io/2020/04/04/Kubernetes-K8s-入门到实践-三-Kubernetes-Centos7集群安装/">April 4th 2020, 7:59:02 am</a>
             </p><p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
@@ -4750,7 +4751,7 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/HDFS文件接口/">HDFS文件接口</a>
+            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/JobTracker和TaskTracker/">JobTracker和TaskTracker</a>
         </li>
     
     
@@ -4765,7 +4766,7 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/Windows下的MapReduce编程实现/">Windows下的MapReduce编程实现</a>
+            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/HDFS文件接口/">HDFS文件接口</a>
         </li>
     
     
@@ -4775,7 +4776,7 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/JobTracker和TaskTracker/">JobTracker和TaskTracker</a>
+            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/Windows下的MapReduce编程实现/">Windows下的MapReduce编程实现</a>
         </li>
     
     
@@ -4898,9 +4899,9 @@ top:50vh;
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
     
-        <span class="sidebar-tag-name" data-tags="Liunx"><span class="iconfont-archer">&#xe606;</span>Liunx</span>
-    
         <span class="sidebar-tag-name" data-tags="CTF"><span class="iconfont-archer">&#xe606;</span>CTF</span>
+    
+        <span class="sidebar-tag-name" data-tags="Liunx"><span class="iconfont-archer">&#xe606;</span>Liunx</span>
     
         <span class="sidebar-tag-name" data-tags="高可用负载均衡"><span class="iconfont-archer">&#xe606;</span>高可用负载均衡</span>
     
@@ -4918,9 +4919,9 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Kafka"><span class="iconfont-archer">&#xe606;</span>Kafka</span>
     
-        <span class="sidebar-tag-name" data-tags="Golang"><span class="iconfont-archer">&#xe606;</span>Golang</span>
-    
         <span class="sidebar-tag-name" data-tags="GitHub"><span class="iconfont-archer">&#xe606;</span>GitHub</span>
+    
+        <span class="sidebar-tag-name" data-tags="Golang"><span class="iconfont-archer">&#xe606;</span>Golang</span>
     
         <span class="sidebar-tag-name" data-tags="Golang日志收集系统"><span class="iconfont-archer">&#xe606;</span>Golang日志收集系统</span>
     
@@ -4938,13 +4939,13 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Spark"><span class="iconfont-archer">&#xe606;</span>Spark</span>
     
-        <span class="sidebar-tag-name" data-tags="Sqoop"><span class="iconfont-archer">&#xe606;</span>Sqoop</span>
-    
         <span class="sidebar-tag-name" data-tags="Vmware"><span class="iconfont-archer">&#xe606;</span>Vmware</span>
     
-        <span class="sidebar-tag-name" data-tags="Zookeeper"><span class="iconfont-archer">&#xe606;</span>Zookeeper</span>
+        <span class="sidebar-tag-name" data-tags="Sqoop"><span class="iconfont-archer">&#xe606;</span>Sqoop</span>
     
         <span class="sidebar-tag-name" data-tags="机器学习"><span class="iconfont-archer">&#xe606;</span>机器学习</span>
+    
+        <span class="sidebar-tag-name" data-tags="Zookeeper"><span class="iconfont-archer">&#xe606;</span>Zookeeper</span>
     
         <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
     
@@ -4958,13 +4959,13 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="PySpark"><span class="iconfont-archer">&#xe606;</span>PySpark</span>
     
-        <span class="sidebar-tag-name" data-tags="Maven"><span class="iconfont-archer">&#xe606;</span>Maven</span>
-    
         <span class="sidebar-tag-name" data-tags="网络"><span class="iconfont-archer">&#xe606;</span>网络</span>
     
-        <span class="sidebar-tag-name" data-tags="AWD"><span class="iconfont-archer">&#xe606;</span>AWD</span>
+        <span class="sidebar-tag-name" data-tags="Maven"><span class="iconfont-archer">&#xe606;</span>Maven</span>
     
         <span class="sidebar-tag-name" data-tags="数据采集"><span class="iconfont-archer">&#xe606;</span>数据采集</span>
+    
+        <span class="sidebar-tag-name" data-tags="AWD"><span class="iconfont-archer">&#xe606;</span>AWD</span>
     
         <span class="sidebar-tag-name" data-tags="ZooKeeper"><span class="iconfont-archer">&#xe606;</span>ZooKeeper</span>
     
@@ -5001,17 +5002,17 @@ jsonContent:
         <div class="sidebar-panel-categories">
     <div class="sidebar-categories-name">
     
-        <span class="sidebar-category-name" data-categories="Liunx"><span class="iconfont-archer">&#xe60a;</span>Liunx</span>
-    
         <span class="sidebar-category-name" data-categories="CTF"><span class="iconfont-archer">&#xe60a;</span>CTF</span>
+    
+        <span class="sidebar-category-name" data-categories="Liunx"><span class="iconfont-archer">&#xe60a;</span>Liunx</span>
     
         <span class="sidebar-category-name" data-categories="Hadoop"><span class="iconfont-archer">&#xe60a;</span>Hadoop</span>
     
         <span class="sidebar-category-name" data-categories="Docker"><span class="iconfont-archer">&#xe60a;</span>Docker</span>
     
-        <span class="sidebar-category-name" data-categories="Golang"><span class="iconfont-archer">&#xe60a;</span>Golang</span>
-    
         <span class="sidebar-category-name" data-categories="GitHub"><span class="iconfont-archer">&#xe60a;</span>GitHub</span>
+    
+        <span class="sidebar-category-name" data-categories="Golang"><span class="iconfont-archer">&#xe60a;</span>Golang</span>
     
         <span class="sidebar-category-name" data-categories="Golang日志收集系统"><span class="iconfont-archer">&#xe60a;</span>Golang日志收集系统</span>
     
@@ -5019,11 +5020,11 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="Java"><span class="iconfont-archer">&#xe60a;</span>Java</span>
     
+        <span class="sidebar-category-name" data-categories="其他"><span class="iconfont-archer">&#xe60a;</span>其他</span>
+    
         <span class="sidebar-category-name" data-categories="高可用负载均衡"><span class="iconfont-archer">&#xe60a;</span>高可用负载均衡</span>
     
         <span class="sidebar-category-name" data-categories="Python算法"><span class="iconfont-archer">&#xe60a;</span>Python算法</span>
-    
-        <span class="sidebar-category-name" data-categories="其他"><span class="iconfont-archer">&#xe60a;</span>其他</span>
     
         <span class="sidebar-category-name" data-categories="Spark"><span class="iconfont-archer">&#xe60a;</span>Spark</span>
     
