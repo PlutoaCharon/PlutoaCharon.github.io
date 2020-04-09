@@ -346,6 +346,187 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2020/04/09/HA高可用与负载均衡入门到实战（五）-配置nginx反向代理和负载均衡/">
+            
+                <span>HA高可用与负载均衡入门到实战（五）---- 配置nginx反向代理和负载均衡</span>
+        </a>
+        <div class="abstract-content">
+            网站架构基于Docker容器里构建高并发网站
+拓扑图:
+正向代理
+代理：也被叫做正向代理，是一个位于客户端和目标服务器之间的代理服务器
+作用：客户端将发送的请求和指定的目标服务器提交给代理服务器，然后代理服务器向目标服务器发起请求，并将获得的响应结果返回给客户端的过程
+
+反向代理
+反向代理：对于客户端而言就是目标服务器
+作用：客户端向反向代理服务器发送请求后，反向代理服务器将该请求转发给内部网络上的后端服务器，并将从后端服务器上得到的响应结果返回给客户端反向代理服务配置
+反向代理的配置指令：proxy_pass，用于设置后端服务器的地址。该地址中包括传输数据使用的协议、服务器主机名以及可...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/04/09</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="高可用负载均衡">高可用负载均衡</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Docker">Docker</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2020/04/09/HA高可用与负载均衡入门到实战（四）-配置nginx防盗链和HTTPS/">
+            
+                <span>HA高可用与负载均衡入门到实战（四）---- 配置nginx防盗链和HTTPS</span>
+        </a>
+        <div class="abstract-content">
+            环境要求vmware虚拟机双核2G内存以上安装有CentOS7和docker
+配置nginx图片防盗链配置盗链网站1)    启动nginx容器，设置端口映射，并进入容器docker run -d --privileged -p 80:80 -p 443:443 nginx /usr/sbin/init
+2)    在nginx容器中准备两个网站，配置文件123456789101112server &#123;   listen 80;   server_name  site1.test.com;   root  /var/www/html/site1;   index  index.h...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/04/09</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="高可用负载均衡">高可用负载均衡</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Docker">Docker</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2020/04/09/HA高可用与负载均衡入门到实战（三）---- 配置Nginx支持PHP并实现动静分离/">
+            
+                <span>HA高可用与负载均衡入门到实战（一）----Docker中安装与配置Nginx</span>
+        </a>
+        <div class="abstract-content">
+            实验环境vmware虚拟机双核2G内存以上安装有CentOS7和docker
+配置nginx支持php启动进入容器nginx
+启动容器docker run -d –privileged -p 80:80 nginx /usr/sbin/init2)    查看容器docker ps3)    进入容器docker exec -it 容器ID /bin/bash使用yum方式安装php-fpm
+
+1)    使用yum 方式安装php-fpm
+2)    查看php-fpm配置文件：/etc/php-fpm.conf和/etc/php-fpm.d/www.conf
+3)    编辑/etc...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/04/09</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="高可用负载均衡">高可用负载均衡</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Docker">Docker</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2020/04/09/HA高可用与负载均衡入门到实战（一）----Docker中安装与配置Nginx /">
+            
+                <span>HA高可用与负载均衡入门到实战（一）----Docker中安装与配置Nginx</span>
+        </a>
+        <div class="abstract-content">
+            实现Docker容器中安装配置Nginx1. 启动进入容器1.1 拉取centos镜像:docker pull centos
+
+注意: 这样拉取的是最新的centos8镜像,如果想要拉取centos7则使用docker pull centos:7
+
+1.2 启动进入容器docker run -d --privileged --name nginx centos:v1 /usr/sbin/init我这里起名为myNginx, 名字都可以只要不和其他容器冲突就行docker exec -it 容器ID /bin/bash进入容器
+2. 在容器中安装Nginx2.1 在容器中编辑/etc/yu...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/04/09</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="高可用负载均衡">高可用负载均衡</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Docker">Docker</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2020/04/09/HA高可用与负载均衡入门到实战（二）----日志和配置Nginx虚拟主机/">
+            
+                <span>HA高可用与负载均衡入门到实战（一）----Docker中安装与配置Nginx</span>
+        </a>
+        <div class="abstract-content">
+            实验环境vmware虚拟机双核2G内存以上安装有CentOS7和docker
+查看与管理nginx日志启用nginx容器
+启动容器docker run -d –privileged -p 80:80 nginx /usr/sbin/init
+查看容器docker ps
+进入容器docker exec -it 容器ID /bin/bash配置nginx日志1)    打开/etc/nginx/nginx.conf文件，查看log_format与access_log的配置2)    配置日志文件存放位置/var/log/nginx/access.log3)    使用浏览器访问nginx并查...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/04/09</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="高可用负载均衡">高可用负载均衡</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Docker">Docker</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2020/04/04/Kubernetes-K8s-入门到实践-三-Kubernetes-Centos7集群安装/">
             
                 <span>Kubernetes(K8s)入门到实践(三)----Kubernetes Centos7集群安装</span>
@@ -501,178 +682,10 @@ sqlx是一个go语言包，在内置database／sql包之上增加了很多扩展
         </div>
     </article>
     
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2020/03/29/Win10家庭版没有组策略怎么办-教你如何启用组策略gpedit-msc/">
-            
-                <span>Win10家庭版没有组策略怎么办? 教你如何启用组策略gpedit.msc</span>
-        </a>
-        <div class="abstract-content">
-            今日在优化Windows cpu时遇到了Win10打不开组策略gpedit.msc的问题, 仅以此篇记录开启组策略功能过程
-1. 创建cmd脚本在桌面新建一个txt文件, 将下面的代码复制到txt中, 并且更改后缀为cmd123456@echo offpushd "%~dp0"dir /b C:\Windows\servicing\Packages\Microsoft-Windows-GroupPolicy-ClientExtensions-Package~3*.mum &gt;List.txtdir /b C:\Windows\servicing\Packages\Microsoft-...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/03/29</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2020/03/29/Golang实战之海量日志收集系统（八）logTransfer之将日志入库到Elasticsearch并通过Kibana进行展示/">
-            
-                <span>Golang实战之海量日志收集系统（八）logTransfer之将日志入库到Elasticsearch并通过Kibana进行展示</span>
-        </a>
-        <div class="abstract-content">
-            前面我们将logTransfor的配置初始化成功了, 下面将从Kafka中消费数据, 并将日志入库到Elasticsearch并通过Kibana进行展示
-
-图源自 :  https://www.cnblogs.com/zhaof/p/8948516.html
-
-将日志保存到ES中初始化Es在main函数中添加初始化InitEs函数1234567// 初始化Es	err = es.InitEs(logConfig.EsAddr)	if err != nil &#123;		logs.Error("初始化Elasticsearch失败, err:", err)		return	&#125;	...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/03/29</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Golang">Golang</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Golang日志收集系统">Golang日志收集系统</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2020/03/29/Golang实战之海量日志收集系统（七）logTransfer之从kafka中获取日志信息/">
-            
-                <span>Golang实战之海量日志收集系统（七）logTransfer之从kafka中获取日志信息</span>
-        </a>
-        <div class="abstract-content">
-            在前六章中已经完成了日志收集的logAgent端, 接下来需要将日志数据写入到Kafka中, 然后将数据落地到Elastciseartch中
-项目架构图:
-
-
-图源自:https://www.cnblogs.com/zhaof/p/8910761.html
-
-项目逻辑图:
-
-Elastciseartch与Kinaba下载与安装Elastciseartch与Kinaba下载与安装, 参考我这篇博客
-使用Golang控制Elasticsearch环境版本:123go 1.14elasticsearch-7.6.1kibana-7.6.1-windows-x86_64
-我们使用第三方库gith...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/03/29</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Golang">Golang</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Golang日志收集系统">Golang日志收集系统</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2020/03/29/Windows10配置Elasticsearch7与-Kibana7/">
-            
-                <span>Windows10配置Elasticsearch7与 Kibana7</span>
-        </a>
-        <div class="abstract-content">
-            Elasticsearch 是一个实时的分布式搜索分析引擎，它能让你以前所未有的速度和规模，去探索你的数据。 它被用作全文检索、结构化搜索、分析以及这三个功能的组合
-Kibana 是一款开源的数据分析和可视化平台，它是 Elastic Stack 成员之一，设计用于和 Elasticsearch 协作。您可以使用 Kibana 对 Elasticsearch 索引中的数据进行搜索、查看、交互操作。您可以很方便的利用图表、表格及地图对数据进行多元化的分析和呈现。
-下载Elasticsearch下载: https://www.elastic.co/cn/downloads/elasticse...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/03/29</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Golang">Golang</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Golang日志收集系统">Golang日志收集系统</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2020/03/29/Golang实战之海量日志收集系统（六）监视etcd配置项的变更/">
-            
-                <span>Golang实战之海量日志收集系统（六）监视etcd配置项的变更</span>
-        </a>
-        <div class="abstract-content">
-            在上一篇中我们已经实现了从etcd中获取配置信息并创建tailTask任务
-现在我们来通过etcd的watch实现新配置的变更
-监视etcd配置项的变更实现watch各个不同ip在真实生产环境中时会常常添加新的服务器, 这时我们需要借助之前的ip.go获取所有ip节点, 并且实时监控
-修改EtcdClient结构体增加keys1234type EtcdClient struct &#123;	client *clientv3.Client	keys   []string&#125;
-在main/etcd.go中添加initEtcdWatcher与watchKey函数并且在函数initEt...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/03/29</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Golang">Golang</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Golang日志收集系统">Golang日志收集系统</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
     <!-- paginator  -->
     
     <nav class="page-nav">
-        <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="page-number" href="/archives/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/17/">17</a><a class="extend next" rel="next" href="/archives/page/2/">NEXT &#62;</a>
+        <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="page-number" href="/archives/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/18/">18</a><a class="extend next" rel="next" href="/archives/page/2/">NEXT &#62;</a>
     </nav>
     
 </main>
@@ -4210,9 +4223,133 @@ Kibana 是一款开源的数据分析和可视化平台，它是 Elastic Stack �
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 167
+        Total : 171
         </div>
         <!-- search  -->
         
@@ -4228,7 +4365,27 @@ Kibana 是一款开源的数据分析和可视化平台，它是 Elastic Stack �
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/04</span><a class="archive-post-title" href="/2020/04/04/quay-io国内无法访问，解决Kubernetes应用flannel失败，报错Init-ImagePullBackOff/">quay.io国内无法访问，解决Kubernetes应用flannel失败，报错Init:ImagePullBackOff</a>
+            <span class="archive-post-date">04/09</span><a class="archive-post-title" href="/2020/04/09/HA高可用与负载均衡入门到实战（四）-配置nginx防盗链和HTTPS/">HA高可用与负载均衡入门到实战（四）---- 配置nginx防盗链和HTTPS</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/09</span><a class="archive-post-title" href="/2020/04/09/HA高可用与负载均衡入门到实战（五）-配置nginx反向代理和负载均衡/">HA高可用与负载均衡入门到实战（五）---- 配置nginx反向代理和负载均衡</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/09</span><a class="archive-post-title" href="/2020/04/09/HA高可用与负载均衡入门到实战（二）----日志和配置Nginx虚拟主机/">HA高可用与负载均衡入门到实战（一）----Docker中安装与配置Nginx</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/09</span><a class="archive-post-title" href="/2020/04/09/HA高可用与负载均衡入门到实战（三）---- 配置Nginx支持PHP并实现动静分离/">HA高可用与负载均衡入门到实战（一）----Docker中安装与配置Nginx</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/09</span><a class="archive-post-title" href="/2020/04/09/HA高可用与负载均衡入门到实战（一）----Docker中安装与配置Nginx /">HA高可用与负载均衡入门到实战（一）----Docker中安装与配置Nginx</a>
         </li>
     
     
@@ -4243,27 +4400,22 @@ Kibana 是一款开源的数据分析和可视化平台，它是 Elastic Stack �
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/04</span><a class="archive-post-title" href="/2020/04/04/Golang实战之海量日志收集系统（九）beegoWeb入门/">Golang实战之海量日志收集系统（九）beegoWeb入门</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">04/04</span><a class="archive-post-title" href="/2020/04/04/Golang语言学习从入门到实战-Go操作Mysql实现增删改查/">Golang语言学习从入门到实战----Go操作Mysql实现增删改查</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/29</span><a class="archive-post-title" href="/2020/03/29/Golang实战之海量日志收集系统（三）简单版本logAgent的实现/">Golang实战之海量日志收集系统（三）简单版本logAgent的实现</a>
+            <span class="archive-post-date">04/04</span><a class="archive-post-title" href="/2020/04/04/Golang实战之海量日志收集系统（九）beegoWeb入门/">Golang实战之海量日志收集系统（九）beegoWeb入门</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/29</span><a class="archive-post-title" href="/2020/03/29/Golang实战之海量日志收集系统（四）etcd介绍与使用etcd获取配置信息/">Golang实战之海量日志收集系统（四）etcd介绍与使用etcd获取配置信息</a>
+            <span class="archive-post-date">04/04</span><a class="archive-post-title" href="/2020/04/04/quay-io国内无法访问，解决Kubernetes应用flannel失败，报错Init-ImagePullBackOff/">quay.io国内无法访问，解决Kubernetes应用flannel失败，报错Init:ImagePullBackOff</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/29</span><a class="archive-post-title" href="/2020/03/29/Golang实战之海量日志收集系统（八）logTransfer之将日志入库到Elasticsearch并通过Kibana进行展示/">Golang实战之海量日志收集系统（八）logTransfer之将日志入库到Elasticsearch并通过Kibana进行展示</a>
+            <span class="archive-post-date">03/29</span><a class="archive-post-title" href="/2020/03/29/Golang实战之海量日志收集系统（六）监视etcd配置项的变更/">Golang实战之海量日志收集系统（六）监视etcd配置项的变更</a>
         </li>
     
     
@@ -4273,7 +4425,7 @@ Kibana 是一款开源的数据分析和可视化平台，它是 Elastic Stack �
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/29</span><a class="archive-post-title" href="/2020/03/29/Docker中安装与配置Nginx/">Docker中安装与配置Nginx</a>
+            <span class="archive-post-date">03/29</span><a class="archive-post-title" href="/2020/03/29/Win10家庭版没有组策略怎么办-教你如何启用组策略gpedit-msc/">Win10家庭版没有组策略怎么办? 教你如何启用组策略gpedit.msc</a>
         </li>
     
     
@@ -4293,12 +4445,12 @@ Kibana 是一款开源的数据分析和可视化平台，它是 Elastic Stack �
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/29</span><a class="archive-post-title" href="/2020/03/29/Golang实战之海量日志收集系统（七）logTransfer之从kafka中获取日志信息/">Golang实战之海量日志收集系统（七）logTransfer之从kafka中获取日志信息</a>
+            <span class="archive-post-date">03/29</span><a class="archive-post-title" href="/2020/03/29/Golang实战之海量日志收集系统（三）简单版本logAgent的实现/">Golang实战之海量日志收集系统（三）简单版本logAgent的实现</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/29</span><a class="archive-post-title" href="/2020/03/29/Win10家庭版没有组策略怎么办-教你如何启用组策略gpedit-msc/">Win10家庭版没有组策略怎么办? 教你如何启用组策略gpedit.msc</a>
+            <span class="archive-post-date">03/29</span><a class="archive-post-title" href="/2020/03/29/Golang实战之海量日志收集系统（四）etcd介绍与使用etcd获取配置信息/">Golang实战之海量日志收集系统（四）etcd介绍与使用etcd获取配置信息</a>
         </li>
     
     
@@ -4308,27 +4460,12 @@ Kibana 是一款开源的数据分析和可视化平台，它是 Elastic Stack �
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/29</span><a class="archive-post-title" href="/2020/03/29/Golang实战之海量日志收集系统（六）监视etcd配置项的变更/">Golang实战之海量日志收集系统（六）监视etcd配置项的变更</a>
+            <span class="archive-post-date">03/29</span><a class="archive-post-title" href="/2020/03/29/Golang实战之海量日志收集系统（八）logTransfer之将日志入库到Elasticsearch并通过Kibana进行展示/">Golang实战之海量日志收集系统（八）logTransfer之将日志入库到Elasticsearch并通过Kibana进行展示</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/17</span><a class="archive-post-title" href="/2020/03/17/Golang语言学习从入门到实战-基于Golang的客户关系管理系统/">Golang语言学习从入门到实战----基于Golang的客户关系管理系统</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">03/17</span><a class="archive-post-title" href="/2020/03/17/Golang语言学习从入门到实战-编写简单的TCP-IP聊天室/">Golang语言学习从入门到实战----编写简单的TCP/IP聊天室</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">03/17</span><a class="archive-post-title" href="/2020/03/17/Golang语言学习从入门到实战-HTTP-web开发编程/">Golang语言学习从入门到实战----HTTP web开发编程</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">03/17</span><a class="archive-post-title" href="/2020/03/17/Golang语言学习从入门到实战-基于Golang实现简单家庭收支项目/">Golang语言学习从入门到实战----基于Golang实现简单家庭收支项目</a>
+            <span class="archive-post-date">03/29</span><a class="archive-post-title" href="/2020/03/29/Golang实战之海量日志收集系统（七）logTransfer之从kafka中获取日志信息/">Golang实战之海量日志收集系统（七）logTransfer之从kafka中获取日志信息</a>
         </li>
     
     
@@ -4338,12 +4475,32 @@ Kibana 是一款开源的数据分析和可视化平台，它是 Elastic Stack �
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">03/17</span><a class="archive-post-title" href="/2020/03/17/关于go-get-以后下载的包不在src下而在pkg的源头并且不可以import-Goland-Modules模块的使用/">关于go get 以后下载的包不在src下而在pkg的源头并且不可以import(Goland Modules模块的使用)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/17</span><a class="archive-post-title" href="/2020/03/17/Golang语言学习从入门到实战-HTTP-web开发编程/">Golang语言学习从入门到实战----HTTP web开发编程</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/17</span><a class="archive-post-title" href="/2020/03/17/Golang语言学习从入门到实战-编写简单的TCP-IP聊天室/">Golang语言学习从入门到实战----编写简单的TCP/IP聊天室</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/17</span><a class="archive-post-title" href="/2020/03/17/Golang语言学习从入门到实战-基于Golang实现简单家庭收支项目/">Golang语言学习从入门到实战----基于Golang实现简单家庭收支项目</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">03/17</span><a class="archive-post-title" href="/2020/03/17/Golang语言学习从入门到实战-接口/">Golang语言学习从入门到实战----接口</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/17</span><a class="archive-post-title" href="/2020/03/17/关于go-get-以后下载的包不在src下而在pkg的源头并且不可以import-Goland-Modules模块的使用/">关于go get 以后下载的包不在src下而在pkg的源头并且不可以import(Goland Modules模块的使用)</a>
+            <span class="archive-post-date">03/17</span><a class="archive-post-title" href="/2020/03/17/Golang语言学习从入门到实战-基于Golang的客户关系管理系统/">Golang语言学习从入门到实战----基于Golang的客户关系管理系统</a>
         </li>
     
     
@@ -4369,11 +4526,6 @@ Kibana 是一款开源的数据分析和可视化平台，它是 Elastic Stack �
     
         <li class="archive-post-item">
             <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/2020/03/09/Python算法学习-竞码编程-蓝桥杯校内选拔赛-初赛-重现赛/">Python算法学习: 竞码编程-蓝桥杯校内选拔赛(初赛)重现赛</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">03/07</span><a class="archive-post-title" href="/2020/03/07/Golang语言学习从入门到实战-闭包/">Golang语言学习从入门到实战----闭包</a>
         </li>
     
     
@@ -4413,12 +4565,12 @@ Kibana 是一款开源的数据分析和可视化平台，它是 Elastic Stack �
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/2020/02/25/Kubernetes-K8s-入门到实践-一-Kubernetes入门/">Kubernetes(K8s)入门到实践(一)----Kubernetes入门</a>
+            <span class="archive-post-date">03/07</span><a class="archive-post-title" href="/2020/03/07/Golang语言学习从入门到实战-闭包/">Golang语言学习从入门到实战----闭包</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/Python算法学习-竞码编程-蓝桥杯模拟赛2题解/">Python算法学习: 竞码编程-蓝桥杯模拟赛2题解</a>
+            <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/2020/02/25/Kubernetes-K8s-入门到实践-一-Kubernetes入门/">Kubernetes(K8s)入门到实践(一)----Kubernetes入门</a>
         </li>
     
     
@@ -4438,17 +4590,17 @@ Kibana 是一款开源的数据分析和可视化平台，它是 Elastic Stack �
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/Python算法学习-竞码编程-蓝桥杯模拟赛2题解/">Python算法学习: 竞码编程-蓝桥杯模拟赛2题解</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/Python算法学习-计蒜客-2020-蓝桥杯大学-B-组省赛模拟赛-（一）题目及解析/">Python算法学习: 计蒜客 2020 蓝桥杯大学 B 组省赛模拟赛 （一）题目及解析</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/Python算法学习-计蒜客蓝桥杯训练营题解-持续更新/">Python算法学习: 计蒜客蓝桥杯训练营题解(持续更新)</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/Centos7安装Docker-配置使用harbor/">Centos7安装Docker-配置使用harbor</a>
         </li>
     
     
@@ -4463,7 +4615,7 @@ Kibana 是一款开源的数据分析和可视化平台，它是 Elastic Stack �
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/Docker容器出现使用systemctl问题：Failed-to-get-D-Bus-connection-Operation-not-permitted/">Docker容器出现使用systemctl问题：Failed to get D-Bus connection: Operation not permitted</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/Centos7安装Docker-配置使用harbor/">Centos7安装Docker-配置使用harbor</a>
         </li>
     
     
@@ -4483,17 +4635,22 @@ Kibana 是一款开源的数据分析和可视化平台，它是 Elastic Stack �
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/Docker容器出现使用systemctl问题：Failed-to-get-D-Bus-connection-Operation-not-permitted/">Docker容器出现使用systemctl问题：Failed to get D-Bus connection: Operation not permitted</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">01/19</span><a class="archive-post-title" href="/2020/01/19/Python算法学习day6-堆排序-二叉树/">Python算法学习day6:堆排序(二叉树)</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">01/16</span><a class="archive-post-title" href="/2020/01/16/CentOS7-Failed-to-start-LSB-Bring-up-down解决方法/">CentOS7 Failed to start LSB: Bring up/down解决方法</a>
+            <span class="archive-post-date">01/16</span><a class="archive-post-title" href="/2020/01/16/访问php-该网页无法正常运作-目前无法处理此请求/">访问php 该网页无法正常运作 目前无法处理此请求</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">01/16</span><a class="archive-post-title" href="/2020/01/16/访问php-该网页无法正常运作-目前无法处理此请求/">访问php 该网页无法正常运作 目前无法处理此请求</a>
+            <span class="archive-post-date">01/16</span><a class="archive-post-title" href="/2020/01/16/Centos7搭建Hadoop3-1-3完全分布模式/">Centos7搭建Hadoop3.1.3完全分布模式</a>
         </li>
     
     
@@ -4523,17 +4680,17 @@ Kibana 是一款开源的数据分析和可视化平台，它是 Elastic Stack �
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">01/16</span><a class="archive-post-title" href="/2020/01/16/CentOS7-Failed-to-start-LSB-Bring-up-down解决方法/">CentOS7 Failed to start LSB: Bring up/down解决方法</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">01/16</span><a class="archive-post-title" href="/2020/01/16/Python算法学习day5-剑指offer：二进制中1的个数/">Python算法学习day5:剑指offer：二进制中1的个数</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">01/16</span><a class="archive-post-title" href="/2020/01/16/Python算法学习day4-关于一道亚马逊面试题的情景分析/">Python算法学习day4:关于一道亚马逊面试题的情景分析</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">01/16</span><a class="archive-post-title" href="/2020/01/16/Centos7搭建Hadoop3-1-3完全分布模式/">Centos7搭建Hadoop3.1.3完全分布模式</a>
         </li>
     
     
@@ -4632,12 +4789,12 @@ Kibana 是一款开源的数据分析和可视化平台，它是 Elastic Stack �
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/24</span><a class="archive-post-title" href="/2019/10/24/ctf线下AWD攻防赛学习笔记/">ctf线下AWD攻防赛学习笔记</a>
+            <span class="archive-post-date">10/24</span><a class="archive-post-title" href="/2019/10/24/源码安装httpd报错-checking-for-APR-configure-error-the-with-apr-parameter-is-incorrect/">源码安装httpd报错: checking for APR... configure: error: the --with-apr parameter is incorrect.</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/24</span><a class="archive-post-title" href="/2019/10/24/源码安装httpd报错-checking-for-APR-configure-error-the-with-apr-parameter-is-incorrect/">源码安装httpd报错: checking for APR... configure: error: the --with-apr parameter is incorrect.</a>
+            <span class="archive-post-date">10/24</span><a class="archive-post-title" href="/2019/10/24/vsphere报错-连接到虚拟机控制台失败并显示错误：VMRC-控制台的连接已断开。正在尝试重新连接/">vsphere报错: 连接到虚拟机控制台失败并显示错误：VMRC 控制台的连接已断开。正在尝试重新连接</a>
         </li>
     
     
@@ -4652,7 +4809,7 @@ Kibana 是一款开源的数据分析和可视化平台，它是 Elastic Stack �
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/24</span><a class="archive-post-title" href="/2019/10/24/vsphere报错-连接到虚拟机控制台失败并显示错误：VMRC-控制台的连接已断开。正在尝试重新连接/">vsphere报错: 连接到虚拟机控制台失败并显示错误：VMRC 控制台的连接已断开。正在尝试重新连接</a>
+            <span class="archive-post-date">10/24</span><a class="archive-post-title" href="/2019/10/24/ctf线下AWD攻防赛学习笔记/">ctf线下AWD攻防赛学习笔记</a>
         </li>
     
     
@@ -4927,12 +5084,22 @@ Kibana 是一款开源的数据分析和可视化平台，它是 Elastic Stack �
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/JobTracker和TaskTracker/">JobTracker和TaskTracker</a>
+            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/Windows下的MapReduce编程实现/">Windows下的MapReduce编程实现</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/解决vmware（vsphere）部署linux系统模板后无法联网问题/">解决vmware（vsphere）部署linux系统模板后无法联网问题</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/CentOS7关闭SELinux/">CentOS7关闭SELinux</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/JobTracker和TaskTracker/">JobTracker和TaskTracker</a>
         </li>
     
     
@@ -4943,16 +5110,6 @@ Kibana 是一款开源的数据分析和可视化平台，它是 Elastic Stack �
     
         <li class="archive-post-item">
             <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/HDFS文件接口/">HDFS文件接口</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/CentOS7关闭SELinux/">CentOS7关闭SELinux</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/Windows下的MapReduce编程实现/">Windows下的MapReduce编程实现</a>
         </li>
     
     
@@ -5081,29 +5238,29 @@ Kibana 是一款开源的数据分析和可视化平台，它是 Elastic Stack �
     
         <span class="sidebar-tag-name" data-tags="高可用负载均衡"><span class="iconfont-archer">&#xe606;</span>高可用负载均衡</span>
     
-        <span class="sidebar-tag-name" data-tags="Java"><span class="iconfont-archer">&#xe606;</span>Java</span>
-    
-        <span class="sidebar-tag-name" data-tags="Hadoop"><span class="iconfont-archer">&#xe606;</span>Hadoop</span>
-    
         <span class="sidebar-tag-name" data-tags="Docker"><span class="iconfont-archer">&#xe606;</span>Docker</span>
     
         <span class="sidebar-tag-name" data-tags="Dokcer"><span class="iconfont-archer">&#xe606;</span>Dokcer</span>
     
-        <span class="sidebar-tag-name" data-tags="Esxi"><span class="iconfont-archer">&#xe606;</span>Esxi</span>
-    
         <span class="sidebar-tag-name" data-tags="Flume"><span class="iconfont-archer">&#xe606;</span>Flume</span>
     
-        <span class="sidebar-tag-name" data-tags="Kafka"><span class="iconfont-archer">&#xe606;</span>Kafka</span>
+        <span class="sidebar-tag-name" data-tags="Esxi"><span class="iconfont-archer">&#xe606;</span>Esxi</span>
     
         <span class="sidebar-tag-name" data-tags="GitHub"><span class="iconfont-archer">&#xe606;</span>GitHub</span>
+    
+        <span class="sidebar-tag-name" data-tags="Kafka"><span class="iconfont-archer">&#xe606;</span>Kafka</span>
     
         <span class="sidebar-tag-name" data-tags="Golang"><span class="iconfont-archer">&#xe606;</span>Golang</span>
     
         <span class="sidebar-tag-name" data-tags="Golang日志收集系统"><span class="iconfont-archer">&#xe606;</span>Golang日志收集系统</span>
     
+        <span class="sidebar-tag-name" data-tags="Hive"><span class="iconfont-archer">&#xe606;</span>Hive</span>
+    
+        <span class="sidebar-tag-name" data-tags="Hadoop"><span class="iconfont-archer">&#xe606;</span>Hadoop</span>
+    
         <span class="sidebar-tag-name" data-tags="Hbase"><span class="iconfont-archer">&#xe606;</span>Hbase</span>
     
-        <span class="sidebar-tag-name" data-tags="Hive"><span class="iconfont-archer">&#xe606;</span>Hive</span>
+        <span class="sidebar-tag-name" data-tags="Java"><span class="iconfont-archer">&#xe606;</span>Java</span>
     
         <span class="sidebar-tag-name" data-tags="Git"><span class="iconfont-archer">&#xe606;</span>Git</span>
     
@@ -5115,9 +5272,9 @@ Kibana 是一款开源的数据分析和可视化平台，它是 Elastic Stack �
     
         <span class="sidebar-tag-name" data-tags="Spark"><span class="iconfont-archer">&#xe606;</span>Spark</span>
     
-        <span class="sidebar-tag-name" data-tags="Vmware"><span class="iconfont-archer">&#xe606;</span>Vmware</span>
-    
         <span class="sidebar-tag-name" data-tags="Sqoop"><span class="iconfont-archer">&#xe606;</span>Sqoop</span>
+    
+        <span class="sidebar-tag-name" data-tags="Vmware"><span class="iconfont-archer">&#xe606;</span>Vmware</span>
     
         <span class="sidebar-tag-name" data-tags="机器学习"><span class="iconfont-archer">&#xe606;</span>机器学习</span>
     
@@ -5135,9 +5292,9 @@ Kibana 是一款开源的数据分析和可视化平台，它是 Elastic Stack �
     
         <span class="sidebar-tag-name" data-tags="PySpark"><span class="iconfont-archer">&#xe606;</span>PySpark</span>
     
-        <span class="sidebar-tag-name" data-tags="网络"><span class="iconfont-archer">&#xe606;</span>网络</span>
-    
         <span class="sidebar-tag-name" data-tags="Maven"><span class="iconfont-archer">&#xe606;</span>Maven</span>
+    
+        <span class="sidebar-tag-name" data-tags="网络"><span class="iconfont-archer">&#xe606;</span>网络</span>
     
         <span class="sidebar-tag-name" data-tags="数据采集"><span class="iconfont-archer">&#xe606;</span>数据采集</span>
     
@@ -5182,9 +5339,9 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="Liunx"><span class="iconfont-archer">&#xe60a;</span>Liunx</span>
     
-        <span class="sidebar-category-name" data-categories="Hadoop"><span class="iconfont-archer">&#xe60a;</span>Hadoop</span>
-    
         <span class="sidebar-category-name" data-categories="Docker"><span class="iconfont-archer">&#xe60a;</span>Docker</span>
+    
+        <span class="sidebar-category-name" data-categories="Hadoop"><span class="iconfont-archer">&#xe60a;</span>Hadoop</span>
     
         <span class="sidebar-category-name" data-categories="GitHub"><span class="iconfont-archer">&#xe60a;</span>GitHub</span>
     
@@ -5192,13 +5349,13 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="Golang日志收集系统"><span class="iconfont-archer">&#xe60a;</span>Golang日志收集系统</span>
     
+        <span class="sidebar-category-name" data-categories="高可用负载均衡"><span class="iconfont-archer">&#xe60a;</span>高可用负载均衡</span>
+    
         <span class="sidebar-category-name" data-categories="Hive"><span class="iconfont-archer">&#xe60a;</span>Hive</span>
     
         <span class="sidebar-category-name" data-categories="Java"><span class="iconfont-archer">&#xe60a;</span>Java</span>
     
         <span class="sidebar-category-name" data-categories="其他"><span class="iconfont-archer">&#xe60a;</span>其他</span>
-    
-        <span class="sidebar-category-name" data-categories="高可用负载均衡"><span class="iconfont-archer">&#xe60a;</span>高可用负载均衡</span>
     
         <span class="sidebar-category-name" data-categories="Python算法"><span class="iconfont-archer">&#xe60a;</span>Python算法</span>
     
