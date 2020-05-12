@@ -359,6 +359,212 @@ height:50vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2019/11/28/Hive基本命令操作/">
+            
+                <span>Hive基本命令操作</span>
+        </a>
+        <div class="abstract-content">
+            基本介绍Hive定义了一套自己的SQL，简称HQL，它与关系型数据库的SQL略有不同，但支持了绝大多数的语句如DDL、DML以及常见的聚合函数、连接查询、条件查询。
+DDL操作（数据定义语言）包括：Create、Alter、Show、Drop等。
+（1）create database- 创建新数据库
+（2）alter database - 修改数据库
+（3）drop database - 删除数据库
+（4）create table - 创建新表
+（5）alter table - 变更（改变）数据库表
+（6）drop table - 删除表
+（7）create index - 创建索引（搜...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/11/28</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Hive">Hive</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2019/11/28/Docker实战-创建支持SSH服务的镜像-超详细/">
+            
+                <span>Docker实战 创建支持SSH服务的镜像(超详细)</span>
+        </a>
+        <div class="abstract-content">
+            基于docker commit命令创建Docker提供了docker commit命令，支持用户提交自己对定制容器的修改，并生成新的镜像。
+命令格式为：docker commit CONTAINER [REPOSITORY[:TAG]]
+准备工作利用ubuntu:14.04镜像创建一个容器：12345678[root@node1 ~]# docker imagesREPOSITORY              TAG                 IMAGE ID            CREATED             SIZEdocker.io/ubuntu        la...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/11/28</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Docker">Docker</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2019/11/04/hbase-shell报错-zookeeper-RecoverableZooKeeper-ZooKeeper-exists-failed-after-4-attempts/">
+            
+                <span>hbase shell报错:zookeeper.RecoverableZooKeeper: ZooKeeper exists failed after 4 attempts</span>
+        </a>
+        <div class="abstract-content">
+            1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253542019-11-04 16:03:02,954 ERROR [main] zookeeper.RecoverableZooKeeper: ZooKeeper exists failed after 4 attempts2019-11-04 16:03:02,956 WARN  [main] zookeeper.ZKUtil: hconnection-0x7412ed6b0x0, quorum=...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/11/04</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Hbase">Hbase</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2019/11/04/Docker数据管理-实现将主机目录挂载到容器中并共享/">
+            
+                <span>Docker数据管理:实现将主机目录挂载到容器中并共享</span>
+        </a>
+        <div class="abstract-content">
+            Docker 数据管理Docker    内部以及容器之间管理数据，在容器中管理数据主要有两种方式：
+
+数据卷（Data    volumes）
+数据卷容器（Data    volume    containers）
+
+数据卷数据卷是一个可供一个或多个容器使用的特殊目录，它绕过    UFS，可以提供很多有用的特性：
+
+数据卷可以在容器之间共享和重用
+对数据卷的修改会立马生效
+对数据卷的更新，不会影响镜像
+卷会一直存在，直到没有容器使用
+
+
+数据卷的使用类似于liunx下的mount操作
+
+创建一个数据卷在用        docker    run        命令的时候，使用   ...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/11/04</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Docker">Docker</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2019/11/04/Centos7-Docker基本命令详解/">
+            
+                <span>Centos7 Docker基本命令详解</span>
+        </a>
+        <div class="abstract-content">
+            Docker安装Ubuntu    14.04    版本系统中已经自带了    Docker    包，可以直接安装。1234$	sudo	apt-get	update$	sudo	apt-get	install	-y	docker.io$	sudo	ln	-sf	/usr/bin/docker.io	/usr/local/bin/docker$	sudo	sed	-i	&apos;$acomplete	-F	_docker	docker&apos;	/etc/bash_completion.d/docker.io
+这里咱们重点讲述Centos7的Docker安装
+一、检查系统内核Do...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/11/04</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Docker">Docker</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2019/11/04/Docker入门详解笔记/">
+            
+                <span>Docker入门详解笔记</span>
+        </a>
+        <div class="abstract-content">
+            什么是DockerDocker是一个开源项目，诞生于    2013年初，最初是dotCloud公司内部的一个业余项目。它基于Google公司推出的Go语言实现。
+Docker项目的目标是实现轻量级的操作系统虚拟化解决方案。Docker的基础是Linux容器（LXC）等技术
+在LXC的基础上Docker进行了进一步的封装，让用户不需要去关心容器的管理，使得操作更为简便。用户操作Docker的容器就像操作一个快速轻量级的虚拟机一样简单
+特点容器是在操作系统层面上实现虚拟化，直接复用本地主机的操作系统，而传统方式则是在硬件层面实现。
+
+为什么要使用Docker首先，Docker容器的启动可以...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/11/04</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Docker">Docker</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2019/11/04/win10-Git修改打开时的路径与上传文件夹到GitHub/">
             
                 <span>win10 Git修改打开时的路径与上传文件夹到GitHub</span>
@@ -485,246 +691,10 @@ height:50vh;
         </div>
     </article>
     
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/10/24/Hive启动报错-Could-not-create-ServerSocket-on-address-0-0-0-0-0-0-0-0-9083/">
-            
-                <span>Hive启动报错 Could not create ServerSocket on address 0.0.0.0/0.0.0.0:9083</span>
-        </a>
-        <div class="abstract-content">
-            123456789101112Exception in thread &quot;main&quot; org.apache.thrift.transport.TTransportException: Could not create ServerSocket on address 0.0.0.0/0.0.0.0:9083. at org.apache.thrift.transport.TServerSocket.&lt;init&gt;(TServerSocket.java:93) at org.apache.thrift.transport.TServerSocket.&lt;ini...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/10/24</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Hive">Hive</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/10/24/ctf线下AWD攻防赛学习笔记/">
-            
-                <span>ctf线下AWD攻防赛学习笔记</span>
-        </a>
-        <div class="abstract-content">
-            ctf线下AWD攻防赛学习笔记CTF线下攻防赛主要以攻防模式（Attack &amp; Defense）来呈现。一般在这种模式下，一支参赛队伍有三名队员，所有的参赛队伍都会有同样的初始环境，包含若干台服务器。参赛队伍挖掘漏洞，通过攻击对手的服务器获取Flag来得分，以修补自身服务器的漏洞防止扣分。
-在这种赛制中，不仅仅是比参赛队员的智力和技术，同时也比团队之间的分工配合与合作。
-
-题目类型
-语言常见漏洞题目
-
-PHP语言居多
-Python 模板注入(SSTI)：直接利用漏洞执行命令获得Flag、绕过关键字限制。
-Nodejs 任意文件读取：直接读取Flag。
-PHP 各类漏洞：文件包含、...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/10/24</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="AWD">AWD</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/10/24/CTF线下AWD攻防步骤总结/">
-            
-                <span>CTF线下AWD攻防步骤总结</span>
-        </a>
-        <div class="abstract-content">
-            AWD竞赛
-前半个小时应熟悉配置环境。准备网线、网线转接口
-最好的防御就是攻击，一定要做好安全加固
-本次记录的目的是为了给自己一个月来的准备弄个交代,感觉自己跟大佬们差的很远,只拿了三等,往后的路还很长,还是需要亿点点的努力,无限进步.
-赛前准备常用工具：
-
-Burpsuite
-sqlmap
-nmap、masscan
-nc
-D盾
-Xshell、Xftp
-菜刀或蚁剑
-Chrome、Firefox各类插件
-
-一句话木马：
-
-php
-asp
-aspx
-jsp
-内存马
-
-代码比较工具:
-BeyondCompare(windows)
-Kaleidoscope(mac)
-提前准备好各种cms的poc...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/10/24</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="AWD">AWD</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/10/16/解决httpd-Could-not-reliably-determine-the-server-s-fully-qualified-domain-name/">
-            
-                <span>解决httpd: Could not reliably determine the server&#39;s fully qualified domain name</span>
-        </a>
-        <div class="abstract-content">
-            修改httpd.conf
-vim /etc/httpd/conf/httpd.conf
-将里面的 #ServerName localhost:80 注释去掉即可。
-再执行 systemclt restart httpd
-
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/10/16</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Liunx">Liunx</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/10/16/Centos7-bg与fg命令/">
-            
-                <span>Centos7 bg与fg命令</span>
-        </a>
-        <div class="abstract-content">
-            fg 和 bg 命令 调度正在运行的任务
- 假设你发现前台运行的一个程序需要很长的时间，但是需要干其他的事情，你就可以用 Ctrl-Z ，挂起这个程序，然后可以看到系统提示（方括号中的是作业号）：
-这里拿top举个例子
-[1]+  已停止               top
-关于:
-&amp; 
-这个用在一个命令的最后，可以把这个命令放到后台执行
-ctrl + z
-可以将一个正在前台执行的命令放到后台，并且暂停
-jobs
-查看当前有多少在后台运行的命令
-fg
-将后台中的命令调至前台继续运行
-bg
-将一个在后台暂停的命令，变成继续执行
-1234567891011121314151617[r...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/10/16</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Liunx">Liunx</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/10/14/大数据环境准备-搭建数据仓库/">
-            
-                <span>大数据环境准备-搭建数据仓库</span>
-        </a>
-        <div class="abstract-content">
-            环境准备1.首先修改hosts文件，以自己实验ip为准。（master中进行）
-vim /etc/hosts
-然后直接将hosts文件复制到从节点中
-scp /etc/hosts root@slave1:/etc/hosts
-scp /etc/hosts root@slave2:/etc/hosts
-2.开启zookeeper（三台机器）
-进入zookeeper安装目录，直接开启zookeeper。
-/usr/zookeeper/zookeeper-3.4.10/bin/zkServer.sh start
-/usr/zookeeper/zookeeper-3.4.10/bin/zkSer...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/10/14</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Hadoop">Hadoop</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
     <!-- paginator  -->
     
     <nav class="page-nav">
-        <a class="extend prev" rel="prev" href="/page/9/">&#60; PREV</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><a class="page-number" href="/page/12/">12</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/">18</a><a class="extend next" rel="next" href="/page/11/">NEXT &#62;</a>
+        <a class="extend prev" rel="prev" href="/page/9/">&#60; PREV</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><a class="page-number" href="/page/12/">12</a><span class="space">&hellip;</span><a class="page-number" href="/page/19/">19</a><a class="extend next" rel="next" href="/page/11/">NEXT &#62;</a>
     </nav>
     
 </main>
@@ -4576,9 +4546,181 @@ scp /etc/hosts root@slave2:/etc/hosts
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 179
+        Total : 185
         </div>
         <!-- search  -->
         
@@ -4594,27 +4736,37 @@ scp /etc/hosts root@slave2:/etc/hosts
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">05/12</span><a class="archive-post-title" href="/2020/05/12/git-push文件夹时报错Fatal-HttpRequestException-encountered/">git push文件夹时报错Fatal: HttpRequestException encountered.</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/12</span><a class="archive-post-title" href="/2020/05/12/Python垃圾回收与内存管理/">Python垃圾回收与内存管理</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/12</span><a class="archive-post-title" href="/2020/05/12/HA高可用与负载均衡入门到实战（八）-基于Docker配置NFS实现Nginx动静分离/">HA高可用与负载均衡入门到实战（八）---- 基于Docker配置NFS实现Nginx动静分离</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/12</span><a class="archive-post-title" href="/2020/05/12/Docker-三剑客之Machine，Compose，Swarm/">Docker 三剑客之Machine，Compose，Swarm</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/12</span><a class="archive-post-title" href="/2020/05/12/Kubernetes-K8s-入门到实践-七-部署Helm-2-13-1/">Kubernetes(K8s)入门到实践(七)----部署Helm 2.13.1</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/12</span><a class="archive-post-title" href="/2020/05/12/Kubernetes-K8s-入门到实践-八-Kubernetes1-15-1-部署Prometheus/">Kubernetes(K8s)入门到实践(八)----Kubernetes1.15.1 部署Prometheus</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">05/05</span><a class="archive-post-title" href="/2020/05/05/HA高可用与负载均衡入门到实战（七）-基于Docker配置KeepAlive-LVS负载均衡/">HA高可用与负载均衡入门到实战（七）---- 基于Docker配置KeepAlive-LVS负载均衡</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/21</span><a class="archive-post-title" href="/2020/04/21/Kubernetes-K8s-入门到实践-六-深入掌握Pod/">Kubernetes(K8s)入门到实践(六)----深入掌握Pod</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/21</span><a class="archive-post-title" href="/2020/04/21/Python算法学习-2020年蓝桥杯省赛模拟赛-Python题解/">Python算法学习: 2020年蓝桥杯省赛模拟赛-Python题解</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/21</span><a class="archive-post-title" href="/2020/04/21/HA高可用与负载均衡入门到实战（六）-基于Docker配置KeepAlive支持Nginx高可用/">HA高可用与负载均衡入门到实战（六）---- 基于Docker配置KeepAlive支持Nginx高可用</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/21</span><a class="archive-post-title" href="/2020/04/21/Kubernetes-K8s-入门到实践-五-Kubernetes1-15-1安装-Dashboard-的WEB-UI插件/">Kubernetes(K8s)入门到实践(五)----Kubernetes1.15.1安装 Dashboard 的WEB UI插件</a>
         </li>
     
     
@@ -4624,22 +4776,32 @@ scp /etc/hosts root@slave2:/etc/hosts
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/21</span><a class="archive-post-title" href="/2020/04/21/解决Kubernetes1-15-1-部署Flannel网络后pod及容器无法跨主机互通问题/">解决Kubernetes1.15.1 部署Flannel网络后pod及容器无法跨主机互通问题</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">04/21</span><a class="archive-post-title" href="/2020/04/21/解决Kubernetes1-5-1-coredns报错CrashLoopBackOff/">解决Kubernetes1.5.1 coredns报错CrashLoopBackOff</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/09</span><a class="archive-post-title" href="/2020/04/09/HA高可用与负载均衡入门到实战（二）----日志和配置Nginx虚拟主机/">HA高可用与负载均衡入门到实战（一）----Docker中安装与配置Nginx</a>
+            <span class="archive-post-date">04/21</span><a class="archive-post-title" href="/2020/04/21/解决Kubernetes1-15-1-部署Flannel网络后pod及容器无法跨主机互通问题/">解决Kubernetes1.15.1 部署Flannel网络后pod及容器无法跨主机互通问题</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/09</span><a class="archive-post-title" href="/2020/04/09/HA高可用与负载均衡入门到实战（五）-配置nginx反向代理和负载均衡/">HA高可用与负载均衡入门到实战（五）---- 配置nginx反向代理和负载均衡</a>
+            <span class="archive-post-date">04/21</span><a class="archive-post-title" href="/2020/04/21/Python算法学习-2020年蓝桥杯省赛模拟赛-Python题解/">Python算法学习: 2020年蓝桥杯省赛模拟赛-Python题解</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/21</span><a class="archive-post-title" href="/2020/04/21/Kubernetes-K8s-入门到实践-五-Kubernetes1-15-1安装-Dashboard-的WEB-UI插件/">Kubernetes(K8s)入门到实践(五)----Kubernetes1.15.1安装 Dashboard 的WEB UI插件</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/21</span><a class="archive-post-title" href="/2020/04/21/Kubernetes-K8s-入门到实践-六-深入掌握Pod/">Kubernetes(K8s)入门到实践(六)----深入掌握Pod</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/21</span><a class="archive-post-title" href="/2020/04/21/HA高可用与负载均衡入门到实战（六）-基于Docker配置KeepAlive支持Nginx高可用/">HA高可用与负载均衡入门到实战（六）---- 基于Docker配置KeepAlive支持Nginx高可用</a>
         </li>
     
     
@@ -4649,17 +4811,22 @@ scp /etc/hosts root@slave2:/etc/hosts
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/09</span><a class="archive-post-title" href="/2020/04/09/HA高可用与负载均衡入门到实战（三）---- 配置Nginx支持PHP并实现动静分离/">HA高可用与负载均衡入门到实战（一）----Docker中安装与配置Nginx</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">04/09</span><a class="archive-post-title" href="/2020/04/09/HA高可用与负载均衡入门到实战（一）----Docker中安装与配置Nginx /">HA高可用与负载均衡入门到实战（一）----Docker中安装与配置Nginx</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/04</span><a class="archive-post-title" href="/2020/04/04/Kubernetes-K8s-入门到实践-三-Kubernetes-Centos7集群安装/">Kubernetes(K8s)入门到实践(三)----Kubernetes Centos7集群安装</a>
+            <span class="archive-post-date">04/09</span><a class="archive-post-title" href="/2020/04/09/HA高可用与负载均衡入门到实战（二）----日志和配置Nginx虚拟主机/">HA高可用与负载均衡入门到实战（一）----Docker中安装与配置Nginx</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/09</span><a class="archive-post-title" href="/2020/04/09/HA高可用与负载均衡入门到实战（三）---- 配置Nginx支持PHP并实现动静分离/">HA高可用与负载均衡入门到实战（一）----Docker中安装与配置Nginx</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/09</span><a class="archive-post-title" href="/2020/04/09/HA高可用与负载均衡入门到实战（五）-配置nginx反向代理和负载均衡/">HA高可用与负载均衡入门到实战（五）---- 配置nginx反向代理和负载均衡</a>
         </li>
     
     
@@ -4674,7 +4841,7 @@ scp /etc/hosts root@slave2:/etc/hosts
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/04</span><a class="archive-post-title" href="/2020/04/04/Golang1-14-go-modules-怎么导入本地其它项目的包-看完这篇文章-终于搞懂了/">Golang1.14 go modules 怎么导入本地其它项目的包? 看完这篇文章, 终于搞懂了</a>
+            <span class="archive-post-date">04/04</span><a class="archive-post-title" href="/2020/04/04/Kubernetes-K8s-入门到实践-三-Kubernetes-Centos7集群安装/">Kubernetes(K8s)入门到实践(三)----Kubernetes Centos7集群安装</a>
         </li>
     
     
@@ -4684,12 +4851,17 @@ scp /etc/hosts root@slave2:/etc/hosts
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/29</span><a class="archive-post-title" href="/2020/03/29/Golang实战之海量日志收集系统（六）监视etcd配置项的变更/">Golang实战之海量日志收集系统（六）监视etcd配置项的变更</a>
+            <span class="archive-post-date">04/04</span><a class="archive-post-title" href="/2020/04/04/Golang1-14-go-modules-怎么导入本地其它项目的包-看完这篇文章-终于搞懂了/">Golang1.14 go modules 怎么导入本地其它项目的包? 看完这篇文章, 终于搞懂了</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/29</span><a class="archive-post-title" href="/2020/03/29/Windows10配置Elasticsearch7与-Kibana7/">Windows10配置Elasticsearch7与 Kibana7</a>
+            <span class="archive-post-date">03/29</span><a class="archive-post-title" href="/2020/03/29/Golang实战之海量日志收集系统（一）项目背景介绍/">Golang实战之海量日志收集系统（一）项目背景介绍</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/29</span><a class="archive-post-title" href="/2020/03/29/Win10家庭版没有组策略怎么办-教你如何启用组策略gpedit-msc/">Win10家庭版没有组策略怎么办? 教你如何启用组策略gpedit.msc</a>
         </li>
     
     
@@ -4699,7 +4871,7 @@ scp /etc/hosts root@slave2:/etc/hosts
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/29</span><a class="archive-post-title" href="/2020/03/29/Golang实战之海量日志收集系统（八）logTransfer之将日志入库到Elasticsearch并通过Kibana进行展示/">Golang实战之海量日志收集系统（八）logTransfer之将日志入库到Elasticsearch并通过Kibana进行展示</a>
+            <span class="archive-post-date">03/29</span><a class="archive-post-title" href="/2020/03/29/Windows10配置Elasticsearch7与-Kibana7/">Windows10配置Elasticsearch7与 Kibana7</a>
         </li>
     
     
@@ -4714,7 +4886,7 @@ scp /etc/hosts root@slave2:/etc/hosts
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/29</span><a class="archive-post-title" href="/2020/03/29/Golang实战之海量日志收集系统（一）项目背景介绍/">Golang实战之海量日志收集系统（一）项目背景介绍</a>
+            <span class="archive-post-date">03/29</span><a class="archive-post-title" href="/2020/03/29/Golang实战之海量日志收集系统（八）logTransfer之将日志入库到Elasticsearch并通过Kibana进行展示/">Golang实战之海量日志收集系统（八）logTransfer之将日志入库到Elasticsearch并通过Kibana进行展示</a>
         </li>
     
     
@@ -4734,12 +4906,7 @@ scp /etc/hosts root@slave2:/etc/hosts
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/29</span><a class="archive-post-title" href="/2020/03/29/Win10家庭版没有组策略怎么办-教你如何启用组策略gpedit-msc/">Win10家庭版没有组策略怎么办? 教你如何启用组策略gpedit.msc</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">03/17</span><a class="archive-post-title" href="/2020/03/17/Golang语言学习从入门到实战-编写简单的TCP-IP聊天室/">Golang语言学习从入门到实战----编写简单的TCP/IP聊天室</a>
+            <span class="archive-post-date">03/29</span><a class="archive-post-title" href="/2020/03/29/Golang实战之海量日志收集系统（六）监视etcd配置项的变更/">Golang实战之海量日志收集系统（六）监视etcd配置项的变更</a>
         </li>
     
     
@@ -4750,11 +4917,6 @@ scp /etc/hosts root@slave2:/etc/hosts
     
         <li class="archive-post-item">
             <span class="archive-post-date">03/17</span><a class="archive-post-title" href="/2020/03/17/Windows10安装运行Kafka2-1-0与Zookeeper3-4-14/">Windows10安装运行Kafka2.1.0与Zookeeper3.4.14</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">03/17</span><a class="archive-post-title" href="/2020/03/17/关于go-get-以后下载的包不在src下而在pkg的源头并且不可以import-Goland-Modules模块的使用/">关于go get 以后下载的包不在src下而在pkg的源头并且不可以import(Goland Modules模块的使用)</a>
         </li>
     
     
@@ -4774,7 +4936,12 @@ scp /etc/hosts root@slave2:/etc/hosts
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/12</span><a class="archive-post-title" href="/2020/03/12/Liunx-Shell编程入门-编写系统监控脚本与FTP探测脚本/">Liunx Shell编程入门----编写系统监控脚本与FTP探测脚本</a>
+            <span class="archive-post-date">03/17</span><a class="archive-post-title" href="/2020/03/17/Golang语言学习从入门到实战-编写简单的TCP-IP聊天室/">Golang语言学习从入门到实战----编写简单的TCP/IP聊天室</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/17</span><a class="archive-post-title" href="/2020/03/17/关于go-get-以后下载的包不在src下而在pkg的源头并且不可以import-Goland-Modules模块的使用/">关于go get 以后下载的包不在src下而在pkg的源头并且不可以import(Goland Modules模块的使用)</a>
         </li>
     
     
@@ -4789,17 +4956,17 @@ scp /etc/hosts root@slave2:/etc/hosts
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">03/12</span><a class="archive-post-title" href="/2020/03/12/Liunx-Shell编程入门-编写系统监控脚本与FTP探测脚本/">Liunx Shell编程入门----编写系统监控脚本与FTP探测脚本</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/2020/03/09/牛客网校招全国统一模拟笔试2020年2月场运维方向编程题解/">牛客网校招全国统一模拟笔试2020年2月场运维方向编程题解</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/2020/03/09/Python算法学习-竞码编程-蓝桥杯校内选拔赛-初赛-重现赛/">Python算法学习: 竞码编程-蓝桥杯校内选拔赛(初赛)重现赛</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">03/07</span><a class="archive-post-title" href="/2020/03/07/Liunx-Shell编程入门-编写简单的开机欢迎脚本与操作服务脚本/">Liunx Shell编程入门----编写简单的开机欢迎脚本与操作服务脚本</a>
         </li>
     
     
@@ -4834,6 +5001,11 @@ scp /etc/hosts root@slave2:/etc/hosts
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">03/07</span><a class="archive-post-title" href="/2020/03/07/Liunx-Shell编程入门-编写简单的开机欢迎脚本与操作服务脚本/">Liunx Shell编程入门----编写简单的开机欢迎脚本与操作服务脚本</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">03/07</span><a class="archive-post-title" href="/2020/03/07/Golang语言学习从入门到实战-闭包/">Golang语言学习从入门到实战----闭包</a>
         </li>
     
@@ -4854,7 +5026,7 @@ scp /etc/hosts root@slave2:/etc/hosts
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/Python算法学习-任意进制转换/">Python算法学习: 任意进制转换</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/Python算法学习-计蒜客-2020-蓝桥杯大学-B-组省赛模拟赛-（一）题目及解析/">Python算法学习: 计蒜客 2020 蓝桥杯大学 B 组省赛模拟赛 （一）题目及解析</a>
         </li>
     
     
@@ -4874,7 +5046,7 @@ scp /etc/hosts root@slave2:/etc/hosts
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/Python算法学习-计蒜客-2020-蓝桥杯大学-B-组省赛模拟赛-（一）题目及解析/">Python算法学习: 计蒜客 2020 蓝桥杯大学 B 组省赛模拟赛 （一）题目及解析</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/Python算法学习-任意进制转换/">Python算法学习: 任意进制转换</a>
         </li>
     
     
@@ -4919,7 +5091,7 @@ scp /etc/hosts root@slave2:/etc/hosts
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">01/16</span><a class="archive-post-title" href="/2020/01/16/Python算法学习day4-关于一道亚马逊面试题的情景分析/">Python算法学习day4:关于一道亚马逊面试题的情景分析</a>
+            <span class="archive-post-date">01/16</span><a class="archive-post-title" href="/2020/01/16/Python算法学习day5-剑指offer：二进制中1的个数/">Python算法学习day5:剑指offer：二进制中1的个数</a>
         </li>
     
     
@@ -4929,7 +5101,7 @@ scp /etc/hosts root@slave2:/etc/hosts
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">01/16</span><a class="archive-post-title" href="/2020/01/16/Python算法学习day5-剑指offer：二进制中1的个数/">Python算法学习day5:剑指offer：二进制中1的个数</a>
+            <span class="archive-post-date">01/16</span><a class="archive-post-title" href="/2020/01/16/Python算法学习day4-关于一道亚马逊面试题的情景分析/">Python算法学习day4:关于一道亚马逊面试题的情景分析</a>
         </li>
     
     
@@ -5033,7 +5205,7 @@ scp /etc/hosts root@slave2:/etc/hosts
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">11/04</span><a class="archive-post-title" href="/2019/11/04/Docker入门详解笔记/">Docker入门详解笔记</a>
+            <span class="archive-post-date">11/04</span><a class="archive-post-title" href="/2019/11/04/hbase-shell报错-zookeeper-RecoverableZooKeeper-ZooKeeper-exists-failed-after-4-attempts/">hbase shell报错:zookeeper.RecoverableZooKeeper: ZooKeeper exists failed after 4 attempts</a>
         </li>
     
     
@@ -5048,7 +5220,7 @@ scp /etc/hosts root@slave2:/etc/hosts
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">11/04</span><a class="archive-post-title" href="/2019/11/04/hbase-shell报错-zookeeper-RecoverableZooKeeper-ZooKeeper-exists-failed-after-4-attempts/">hbase shell报错:zookeeper.RecoverableZooKeeper: ZooKeeper exists failed after 4 attempts</a>
+            <span class="archive-post-date">11/04</span><a class="archive-post-title" href="/2019/11/04/Docker入门详解笔记/">Docker入门详解笔记</a>
         </li>
     
     
@@ -5353,7 +5525,7 @@ scp /etc/hosts root@slave2:/etc/hosts
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/JobTracker和TaskTracker/">JobTracker和TaskTracker</a>
+            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/Windows下的MapReduce编程实现/">Windows下的MapReduce编程实现</a>
         </li>
     
     
@@ -5363,17 +5535,17 @@ scp /etc/hosts root@slave2:/etc/hosts
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/CentOS7关闭SELinux/">CentOS7关闭SELinux</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/Windows下的MapReduce编程实现/">Windows下的MapReduce编程实现</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/在Centos 7下安装PHP 7/">在Centos 7下安装PHP 7</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/JobTracker和TaskTracker/">JobTracker和TaskTracker</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/CentOS7关闭SELinux/">CentOS7关闭SELinux</a>
         </li>
     
     
@@ -5507,11 +5679,11 @@ scp /etc/hosts root@slave2:/etc/hosts
     
         <span class="sidebar-tag-name" data-tags="高可用负载均衡"><span class="iconfont-archer">&#xe606;</span>高可用负载均衡</span>
     
+        <span class="sidebar-tag-name" data-tags="Docker"><span class="iconfont-archer">&#xe606;</span>Docker</span>
+    
         <span class="sidebar-tag-name" data-tags="Java"><span class="iconfont-archer">&#xe606;</span>Java</span>
     
         <span class="sidebar-tag-name" data-tags="Hadoop"><span class="iconfont-archer">&#xe606;</span>Hadoop</span>
-    
-        <span class="sidebar-tag-name" data-tags="Docker"><span class="iconfont-archer">&#xe606;</span>Docker</span>
     
         <span class="sidebar-tag-name" data-tags="Dokcer"><span class="iconfont-archer">&#xe606;</span>Dokcer</span>
     
@@ -5519,21 +5691,23 @@ scp /etc/hosts root@slave2:/etc/hosts
     
         <span class="sidebar-tag-name" data-tags="Flume"><span class="iconfont-archer">&#xe606;</span>Flume</span>
     
-        <span class="sidebar-tag-name" data-tags="Kafka"><span class="iconfont-archer">&#xe606;</span>Kafka</span>
-    
         <span class="sidebar-tag-name" data-tags="GitHub"><span class="iconfont-archer">&#xe606;</span>GitHub</span>
+    
+        <span class="sidebar-tag-name" data-tags="Kafka"><span class="iconfont-archer">&#xe606;</span>Kafka</span>
     
         <span class="sidebar-tag-name" data-tags="Golang"><span class="iconfont-archer">&#xe606;</span>Golang</span>
     
         <span class="sidebar-tag-name" data-tags="Golang日志收集系统"><span class="iconfont-archer">&#xe606;</span>Golang日志收集系统</span>
     
-        <span class="sidebar-tag-name" data-tags="Hive"><span class="iconfont-archer">&#xe606;</span>Hive</span>
-    
         <span class="sidebar-tag-name" data-tags="Hbase"><span class="iconfont-archer">&#xe606;</span>Hbase</span>
+    
+        <span class="sidebar-tag-name" data-tags="Hive"><span class="iconfont-archer">&#xe606;</span>Hive</span>
     
         <span class="sidebar-tag-name" data-tags="Git"><span class="iconfont-archer">&#xe606;</span>Git</span>
     
         <span class="sidebar-tag-name" data-tags="Kali"><span class="iconfont-archer">&#xe606;</span>Kali</span>
+    
+        <span class="sidebar-tag-name" data-tags="Kubernetes"><span class="iconfont-archer">&#xe606;</span>Kubernetes</span>
     
         <span class="sidebar-tag-name" data-tags="Shell"><span class="iconfont-archer">&#xe606;</span>Shell</span>
     
@@ -5547,23 +5721,21 @@ scp /etc/hosts root@slave2:/etc/hosts
     
         <span class="sidebar-tag-name" data-tags="机器学习"><span class="iconfont-archer">&#xe606;</span>机器学习</span>
     
-        <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
-    
         <span class="sidebar-tag-name" data-tags="Zookeeper"><span class="iconfont-archer">&#xe606;</span>Zookeeper</span>
+    
+        <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
     
         <span class="sidebar-tag-name" data-tags="Hexo"><span class="iconfont-archer">&#xe606;</span>Hexo</span>
     
         <span class="sidebar-tag-name" data-tags="安全"><span class="iconfont-archer">&#xe606;</span>安全</span>
     
-        <span class="sidebar-tag-name" data-tags="Kubernetes"><span class="iconfont-archer">&#xe606;</span>Kubernetes</span>
-    
         <span class="sidebar-tag-name" data-tags="Python"><span class="iconfont-archer">&#xe606;</span>Python</span>
     
         <span class="sidebar-tag-name" data-tags="PySpark"><span class="iconfont-archer">&#xe606;</span>PySpark</span>
     
-        <span class="sidebar-tag-name" data-tags="Maven"><span class="iconfont-archer">&#xe606;</span>Maven</span>
-    
         <span class="sidebar-tag-name" data-tags="网络"><span class="iconfont-archer">&#xe606;</span>网络</span>
+    
+        <span class="sidebar-tag-name" data-tags="Maven"><span class="iconfont-archer">&#xe606;</span>Maven</span>
     
         <span class="sidebar-tag-name" data-tags="数据采集"><span class="iconfont-archer">&#xe606;</span>数据采集</span>
     
@@ -5608,9 +5780,9 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="Liunx"><span class="iconfont-archer">&#xe60a;</span>Liunx</span>
     
-        <span class="sidebar-category-name" data-categories="Hadoop"><span class="iconfont-archer">&#xe60a;</span>Hadoop</span>
-    
         <span class="sidebar-category-name" data-categories="Docker"><span class="iconfont-archer">&#xe60a;</span>Docker</span>
+    
+        <span class="sidebar-category-name" data-categories="Hadoop"><span class="iconfont-archer">&#xe60a;</span>Hadoop</span>
     
         <span class="sidebar-category-name" data-categories="GitHub"><span class="iconfont-archer">&#xe60a;</span>GitHub</span>
     
@@ -5624,6 +5796,8 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="Java"><span class="iconfont-archer">&#xe60a;</span>Java</span>
     
+        <span class="sidebar-category-name" data-categories="Kubernetes"><span class="iconfont-archer">&#xe60a;</span>Kubernetes</span>
+    
         <span class="sidebar-category-name" data-categories="其他"><span class="iconfont-archer">&#xe60a;</span>其他</span>
     
         <span class="sidebar-category-name" data-categories="Python算法"><span class="iconfont-archer">&#xe60a;</span>Python算法</span>
@@ -5635,8 +5809,6 @@ jsonContent:
         <span class="sidebar-category-name" data-categories="机器学习"><span class="iconfont-archer">&#xe60a;</span>机器学习</span>
     
         <span class="sidebar-category-name" data-categories="博客"><span class="iconfont-archer">&#xe60a;</span>博客</span>
-    
-        <span class="sidebar-category-name" data-categories="Kubernetes"><span class="iconfont-archer">&#xe60a;</span>Kubernetes</span>
     
         <span class="sidebar-category-name" data-categories="Python"><span class="iconfont-archer">&#xe60a;</span>Python</span>
     

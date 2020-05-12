@@ -346,6 +346,210 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2020/05/12/Python垃圾回收与内存管理/">
+            
+                <span>Python垃圾回收与内存管理</span>
+        </a>
+        <div class="abstract-content">
+            @[toc]
+Python垃圾回收引用计数器为主，标记清除和分代回收为辅+缓存机制
+1. 引用计数器1.1  环状双向链表 refchain在Python程序中创建的任何对象都会放在refchain中
+static PyObject refchain = {&amp;refchain, &amp;refchain}
+在Python程序中创建的任何对象都会放在refchain链表中
+123str1 = "str"num1 = 1list1 = ["1","2"]
+当进行上述操作时，Python内部会创建一些数据（上一个对象，下一个对象，类型，引用个数，元素个数）
+include/objec...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/05/12</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Python">Python</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2020/05/12/git-push文件夹时报错Fatal-HttpRequestException-encountered/">
+            
+                <span>git push文件夹时报错Fatal: HttpRequestException encountered.</span>
+        </a>
+        <div class="abstract-content">
+            在使用git push时报出如下的错误：123456$ git push -u origin masterfatal: HttpRequestException encountered.   发送请求时出错。fatal: HttpRequestException encountered.   发送请求时出错。Username for 'https://github.com':
+之前时不需要输入的，现在需要输入了，原因是git更新了一个证书，我们本地需要再更新以下：https://github.com/microsoft/Git-Credential-Manager-for-Windows...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/05/12</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="GitHub">GitHub</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2020/05/12/HA高可用与负载均衡入门到实战（八）-基于Docker配置NFS实现Nginx动静分离/">
+            
+                <span>HA高可用与负载均衡入门到实战（八）---- 基于Docker配置NFS实现Nginx动静分离</span>
+        </a>
+        <div class="abstract-content">
+            NFS介绍NFS 是Network File System的缩写，即网络文件系统。一种使用于分散式文件系统的协定，由Sun公司开发，于1984年向外公布。功能是通过网络让不同的机器、不同的操作系统能够彼此分享个别的数据，让应用程序在客户端通过网络访问位于服务器磁盘中的数据，是在类Unix系统间实现磁盘文件共享的一种方法。
+NFS 的基本原则是“容许不同的客户端及服务端通过一组RPC分享相同的文件系统”，它是独立于操作系统，容许不同硬件及操作系统的系统共同进行文件的分享。
+NFS在文件传送或信息传送过程中依赖于RPC协议。RPC，远程过程调用 (Remote Procedure Call)...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/05/12</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="高可用负载均衡">高可用负载均衡</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Docker">Docker</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2020/05/12/Docker-三剑客之Machine，Compose，Swarm/">
+            
+                <span>Docker 三剑客之Machine，Compose，Swarm</span>
+        </a>
+        <div class="abstract-content">
+            Docker三剑客为了把容器化技术的优点发挥到极致，docker公司先后推出了三大技术
+
+docker-machine
+docker-compose
+docker-swarm它们可以说是几乎实现了容器化技术中所有可能需要的底层技术手段。
+图源: https://xiaoxiami.gitbook.io/docker/docker-ji-qun
+
+
+docker-machine - 提供容器服务
+docker-compose - 提供脚本执行服务，不用在像以前把容器的启动命令写的非常的长，用compose编写脚本就能简化容器的启动
+几条简单指令就可以创建一个docker集群，最终实现分布式...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/05/12</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Dokcer">Dokcer</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2020/05/12/Kubernetes-K8s-入门到实践-八-Kubernetes1-15-1-部署Prometheus/">
+            
+                <span>Kubernetes(K8s)入门到实践(八)----Kubernetes1.15.1 部署Prometheus</span>
+        </a>
+        <div class="abstract-content">
+            Prometheus介绍随着容器技术的迅速发展，Kubernetes 已然成为大家追捧的容器集群管理系统。Prometheus 作为生态圈 Cloud Native Computing Foundation（简称：CNCF）中的重要一员,其活跃度仅次于 Kubernetes, 现已广泛用于 Kubernetes 集群的监控系统中。
+本文将简要介绍 Prometheus 的组成和相关概念，并实例演示 Prometheus 的安装，配置及使用。
+Prometheus的特点：
+多维度数据模型。
+灵活的查询语言。
+不依赖分布式存储，单个服务器节点是自主的。
+通过基于HTTP的pull方式采集时序...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/05/12</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Kubernetes">Kubernetes</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2020/05/12/Kubernetes-K8s-入门到实践-七-部署Helm-2-13-1/">
+            
+                <span>Kubernetes(K8s)入门到实践(七)----部署Helm 2.13.1</span>
+        </a>
+        <div class="abstract-content">
+            什么是 HelmHelm官方网站:The package manager for Kubernetes
+在没使用 helm 之前，向 kubernetes 部署应用，我们要依次部署 deployment、svc 等，步骤较繁琐。况且随着很多项目微服务化，复杂的应用在容器中部署以及管理显得较为复杂。
+Helm 通过打包的方式，支持发布的版本管理和控制，很大程度上简化了 Kubernetes 应用的部署和管理Helm 本质就是让 K8s 的应用管理（Deployment,Service 等 ) 可配置，能动态生成，通过动态生成 K8s 资源清单文件（deployment.yaml，servi...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/05/12</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Kubernetes">Kubernetes</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2020/05/05/HA高可用与负载均衡入门到实战（七）-基于Docker配置KeepAlive-LVS负载均衡/">
             
                 <span>HA高可用与负载均衡入门到实战（七）---- 基于Docker配置KeepAlive-LVS负载均衡</span>
@@ -469,210 +673,10 @@ LVS介绍负载均衡工作模式1. NAT模式Virtualserver via Network address t
         </div>
     </article>
     
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2020/04/21/解决Kubernetes1-15-1-部署Flannel网络后pod及容器无法跨主机互通问题/">
-            
-                <span>解决Kubernetes1.15.1 部署Flannel网络后pod及容器无法跨主机互通问题</span>
-        </a>
-        <div class="abstract-content">
-            记一次部署Flannel网络后网络不通问题, 查询网上资料无果
-自己记录一下解决过程
-现象123456789101112131415[root@k8s-master01 ~]# kubectl get pod -n kube-systemNAME                                    READY   STATUS    RESTARTS   AGEcoredns-5c98db65d4-54j5c                1/1     Running   0          5h44mcoredns-5c98db65d4-jmvbf        ...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/04/21</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Kubernetes">Kubernetes</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2020/04/21/Kubernetes-K8s-入门到实践-五-Kubernetes1-15-1安装-Dashboard-的WEB-UI插件/">
-            
-                <span>Kubernetes(K8s)入门到实践(五)----Kubernetes1.15.1安装 Dashboard 的WEB UI插件</span>
-        </a>
-        <div class="abstract-content">
-            上节讲解了通过kubeadm 搭建集群kubeadm1.15.1环境，现在的集群已经搭建成功了，今天给大家展示Kubernetes Dashboard 插件的安装
-下载官方的yaml文件进入官网：https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/1$ wget https://raw.githubusercontent.com/kubernetes/dashboard/v1.10.1/src/deploy/recommended/kubernetes-dashboard.yaml
- 修...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/04/21</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Kubernetes">Kubernetes</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2020/04/21/解决Kubernetes1-5-1-coredns报错CrashLoopBackOff/">
-            
-                <span>解决Kubernetes1.5.1 coredns报错CrashLoopBackOff</span>
-        </a>
-        <div class="abstract-content">
-            今天在使用K8s查看pod时发现,coredns出现了CrashLoopBackOff1234567891011121314[root@k8s-master01 flannel]# kubectl get pod -n kube-systemNAME                                   READY   STATUS             RESTARTS   AGEcoredns-5c98db65d4-f9rb7               0/1     CrashLoopBackOff   50         9dcoredns-5c98db65d...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/04/21</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Kubernetes">Kubernetes</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2020/04/21/Kubernetes-K8s-入门到实践-四-Kubernetes1-15-1配置私有仓库Harbor/">
-            
-                <span>Kubernetes(K8s)入门到实践(四)----Kubernetes1.15.1配置私有仓库Harbor</span>
-        </a>
-        <div class="abstract-content">
-            目录Kubernetes(K8s)入门到实践(一)—-Kubernetes入门Kubernetes(K8s)入门到实践(二)—-Kubernetes的基本概念和术语Kubernetes(K8s)入门到实践(三)—-Kubernetes Centos7集群安装Kubernetes(K8s)入门到实践(四)—-Kubernetes1.15.1配置私有仓库Harbor
-前期准备
-需要三台K8s节点
-Harbor虚拟机
-docker-compose
-harbor安装包
-
-安装docker1234567yum install -y yum-utils device-mapper-persisten...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/04/21</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Kubernetes">Kubernetes</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2020/04/09/HA高可用与负载均衡入门到实战（五）-配置nginx反向代理和负载均衡/">
-            
-                <span>HA高可用与负载均衡入门到实战（五）---- 配置nginx反向代理和负载均衡</span>
-        </a>
-        <div class="abstract-content">
-            网站架构基于Docker容器里构建高并发网站
-拓扑图:
-正向代理
-代理：也被叫做正向代理，是一个位于客户端和目标服务器之间的代理服务器
-作用：客户端将发送的请求和指定的目标服务器提交给代理服务器，然后代理服务器向目标服务器发起请求，并将获得的响应结果返回给客户端的过程
-
-反向代理
-反向代理：对于客户端而言就是目标服务器
-作用：客户端向反向代理服务器发送请求后，反向代理服务器将该请求转发给内部网络上的后端服务器，并将从后端服务器上得到的响应结果返回给客户端反向代理服务配置
-反向代理的配置指令：proxy_pass，用于设置后端服务器的地址。该地址中包括传输数据使用的协议、服务器主机名以及可...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/04/09</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="高可用负载均衡">高可用负载均衡</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Docker">Docker</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2020/04/09/HA高可用与负载均衡入门到实战（四）-配置nginx防盗链和HTTPS/">
-            
-                <span>HA高可用与负载均衡入门到实战（四）---- 配置nginx防盗链和HTTPS</span>
-        </a>
-        <div class="abstract-content">
-            环境要求vmware虚拟机双核2G内存以上安装有CentOS7和docker
-配置nginx图片防盗链配置盗链网站1)    启动nginx容器，设置端口映射，并进入容器docker run -d --privileged -p 80:80 -p 443:443 nginx /usr/sbin/init
-2)    在nginx容器中准备两个网站，配置文件123456789101112server &#123;   listen 80;   server_name  site1.test.com;   root  /var/www/html/site1;   index  index.h...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/04/09</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="高可用负载均衡">高可用负载均衡</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Docker">Docker</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
     <!-- paginator  -->
     
     <nav class="page-nav">
-        <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="page-number" href="/archives/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/18/">18</a><a class="extend next" rel="next" href="/archives/page/2/">NEXT &#62;</a>
+        <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="page-number" href="/archives/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/19/">19</a><a class="extend next" rel="next" href="/archives/page/2/">NEXT &#62;</a>
     </nav>
     
 </main>
@@ -4416,9 +4420,181 @@ harbor安装包
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 179
+        Total : 185
         </div>
         <!-- search  -->
         
@@ -4434,27 +4610,37 @@ harbor安装包
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">05/12</span><a class="archive-post-title" href="/2020/05/12/git-push文件夹时报错Fatal-HttpRequestException-encountered/">git push文件夹时报错Fatal: HttpRequestException encountered.</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/12</span><a class="archive-post-title" href="/2020/05/12/Python垃圾回收与内存管理/">Python垃圾回收与内存管理</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/12</span><a class="archive-post-title" href="/2020/05/12/HA高可用与负载均衡入门到实战（八）-基于Docker配置NFS实现Nginx动静分离/">HA高可用与负载均衡入门到实战（八）---- 基于Docker配置NFS实现Nginx动静分离</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/12</span><a class="archive-post-title" href="/2020/05/12/Docker-三剑客之Machine，Compose，Swarm/">Docker 三剑客之Machine，Compose，Swarm</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/12</span><a class="archive-post-title" href="/2020/05/12/Kubernetes-K8s-入门到实践-七-部署Helm-2-13-1/">Kubernetes(K8s)入门到实践(七)----部署Helm 2.13.1</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/12</span><a class="archive-post-title" href="/2020/05/12/Kubernetes-K8s-入门到实践-八-Kubernetes1-15-1-部署Prometheus/">Kubernetes(K8s)入门到实践(八)----Kubernetes1.15.1 部署Prometheus</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">05/05</span><a class="archive-post-title" href="/2020/05/05/HA高可用与负载均衡入门到实战（七）-基于Docker配置KeepAlive-LVS负载均衡/">HA高可用与负载均衡入门到实战（七）---- 基于Docker配置KeepAlive-LVS负载均衡</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/21</span><a class="archive-post-title" href="/2020/04/21/Kubernetes-K8s-入门到实践-六-深入掌握Pod/">Kubernetes(K8s)入门到实践(六)----深入掌握Pod</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/21</span><a class="archive-post-title" href="/2020/04/21/Python算法学习-2020年蓝桥杯省赛模拟赛-Python题解/">Python算法学习: 2020年蓝桥杯省赛模拟赛-Python题解</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/21</span><a class="archive-post-title" href="/2020/04/21/HA高可用与负载均衡入门到实战（六）-基于Docker配置KeepAlive支持Nginx高可用/">HA高可用与负载均衡入门到实战（六）---- 基于Docker配置KeepAlive支持Nginx高可用</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/21</span><a class="archive-post-title" href="/2020/04/21/Kubernetes-K8s-入门到实践-五-Kubernetes1-15-1安装-Dashboard-的WEB-UI插件/">Kubernetes(K8s)入门到实践(五)----Kubernetes1.15.1安装 Dashboard 的WEB UI插件</a>
         </li>
     
     
@@ -4464,22 +4650,32 @@ harbor安装包
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/21</span><a class="archive-post-title" href="/2020/04/21/解决Kubernetes1-15-1-部署Flannel网络后pod及容器无法跨主机互通问题/">解决Kubernetes1.15.1 部署Flannel网络后pod及容器无法跨主机互通问题</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">04/21</span><a class="archive-post-title" href="/2020/04/21/解决Kubernetes1-5-1-coredns报错CrashLoopBackOff/">解决Kubernetes1.5.1 coredns报错CrashLoopBackOff</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/09</span><a class="archive-post-title" href="/2020/04/09/HA高可用与负载均衡入门到实战（二）----日志和配置Nginx虚拟主机/">HA高可用与负载均衡入门到实战（一）----Docker中安装与配置Nginx</a>
+            <span class="archive-post-date">04/21</span><a class="archive-post-title" href="/2020/04/21/解决Kubernetes1-15-1-部署Flannel网络后pod及容器无法跨主机互通问题/">解决Kubernetes1.15.1 部署Flannel网络后pod及容器无法跨主机互通问题</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/09</span><a class="archive-post-title" href="/2020/04/09/HA高可用与负载均衡入门到实战（五）-配置nginx反向代理和负载均衡/">HA高可用与负载均衡入门到实战（五）---- 配置nginx反向代理和负载均衡</a>
+            <span class="archive-post-date">04/21</span><a class="archive-post-title" href="/2020/04/21/Python算法学习-2020年蓝桥杯省赛模拟赛-Python题解/">Python算法学习: 2020年蓝桥杯省赛模拟赛-Python题解</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/21</span><a class="archive-post-title" href="/2020/04/21/Kubernetes-K8s-入门到实践-五-Kubernetes1-15-1安装-Dashboard-的WEB-UI插件/">Kubernetes(K8s)入门到实践(五)----Kubernetes1.15.1安装 Dashboard 的WEB UI插件</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/21</span><a class="archive-post-title" href="/2020/04/21/Kubernetes-K8s-入门到实践-六-深入掌握Pod/">Kubernetes(K8s)入门到实践(六)----深入掌握Pod</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/21</span><a class="archive-post-title" href="/2020/04/21/HA高可用与负载均衡入门到实战（六）-基于Docker配置KeepAlive支持Nginx高可用/">HA高可用与负载均衡入门到实战（六）---- 基于Docker配置KeepAlive支持Nginx高可用</a>
         </li>
     
     
@@ -4489,17 +4685,22 @@ harbor安装包
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/09</span><a class="archive-post-title" href="/2020/04/09/HA高可用与负载均衡入门到实战（三）---- 配置Nginx支持PHP并实现动静分离/">HA高可用与负载均衡入门到实战（一）----Docker中安装与配置Nginx</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">04/09</span><a class="archive-post-title" href="/2020/04/09/HA高可用与负载均衡入门到实战（一）----Docker中安装与配置Nginx /">HA高可用与负载均衡入门到实战（一）----Docker中安装与配置Nginx</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/04</span><a class="archive-post-title" href="/2020/04/04/Kubernetes-K8s-入门到实践-三-Kubernetes-Centos7集群安装/">Kubernetes(K8s)入门到实践(三)----Kubernetes Centos7集群安装</a>
+            <span class="archive-post-date">04/09</span><a class="archive-post-title" href="/2020/04/09/HA高可用与负载均衡入门到实战（二）----日志和配置Nginx虚拟主机/">HA高可用与负载均衡入门到实战（一）----Docker中安装与配置Nginx</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/09</span><a class="archive-post-title" href="/2020/04/09/HA高可用与负载均衡入门到实战（三）---- 配置Nginx支持PHP并实现动静分离/">HA高可用与负载均衡入门到实战（一）----Docker中安装与配置Nginx</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/09</span><a class="archive-post-title" href="/2020/04/09/HA高可用与负载均衡入门到实战（五）-配置nginx反向代理和负载均衡/">HA高可用与负载均衡入门到实战（五）---- 配置nginx反向代理和负载均衡</a>
         </li>
     
     
@@ -4514,7 +4715,7 @@ harbor安装包
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/04</span><a class="archive-post-title" href="/2020/04/04/Golang1-14-go-modules-怎么导入本地其它项目的包-看完这篇文章-终于搞懂了/">Golang1.14 go modules 怎么导入本地其它项目的包? 看完这篇文章, 终于搞懂了</a>
+            <span class="archive-post-date">04/04</span><a class="archive-post-title" href="/2020/04/04/Kubernetes-K8s-入门到实践-三-Kubernetes-Centos7集群安装/">Kubernetes(K8s)入门到实践(三)----Kubernetes Centos7集群安装</a>
         </li>
     
     
@@ -4524,12 +4725,17 @@ harbor安装包
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/29</span><a class="archive-post-title" href="/2020/03/29/Golang实战之海量日志收集系统（六）监视etcd配置项的变更/">Golang实战之海量日志收集系统（六）监视etcd配置项的变更</a>
+            <span class="archive-post-date">04/04</span><a class="archive-post-title" href="/2020/04/04/Golang1-14-go-modules-怎么导入本地其它项目的包-看完这篇文章-终于搞懂了/">Golang1.14 go modules 怎么导入本地其它项目的包? 看完这篇文章, 终于搞懂了</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/29</span><a class="archive-post-title" href="/2020/03/29/Windows10配置Elasticsearch7与-Kibana7/">Windows10配置Elasticsearch7与 Kibana7</a>
+            <span class="archive-post-date">03/29</span><a class="archive-post-title" href="/2020/03/29/Golang实战之海量日志收集系统（一）项目背景介绍/">Golang实战之海量日志收集系统（一）项目背景介绍</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/29</span><a class="archive-post-title" href="/2020/03/29/Win10家庭版没有组策略怎么办-教你如何启用组策略gpedit-msc/">Win10家庭版没有组策略怎么办? 教你如何启用组策略gpedit.msc</a>
         </li>
     
     
@@ -4539,7 +4745,7 @@ harbor安装包
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/29</span><a class="archive-post-title" href="/2020/03/29/Golang实战之海量日志收集系统（八）logTransfer之将日志入库到Elasticsearch并通过Kibana进行展示/">Golang实战之海量日志收集系统（八）logTransfer之将日志入库到Elasticsearch并通过Kibana进行展示</a>
+            <span class="archive-post-date">03/29</span><a class="archive-post-title" href="/2020/03/29/Windows10配置Elasticsearch7与-Kibana7/">Windows10配置Elasticsearch7与 Kibana7</a>
         </li>
     
     
@@ -4554,7 +4760,7 @@ harbor安装包
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/29</span><a class="archive-post-title" href="/2020/03/29/Golang实战之海量日志收集系统（一）项目背景介绍/">Golang实战之海量日志收集系统（一）项目背景介绍</a>
+            <span class="archive-post-date">03/29</span><a class="archive-post-title" href="/2020/03/29/Golang实战之海量日志收集系统（八）logTransfer之将日志入库到Elasticsearch并通过Kibana进行展示/">Golang实战之海量日志收集系统（八）logTransfer之将日志入库到Elasticsearch并通过Kibana进行展示</a>
         </li>
     
     
@@ -4574,12 +4780,7 @@ harbor安装包
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/29</span><a class="archive-post-title" href="/2020/03/29/Win10家庭版没有组策略怎么办-教你如何启用组策略gpedit-msc/">Win10家庭版没有组策略怎么办? 教你如何启用组策略gpedit.msc</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">03/17</span><a class="archive-post-title" href="/2020/03/17/Golang语言学习从入门到实战-编写简单的TCP-IP聊天室/">Golang语言学习从入门到实战----编写简单的TCP/IP聊天室</a>
+            <span class="archive-post-date">03/29</span><a class="archive-post-title" href="/2020/03/29/Golang实战之海量日志收集系统（六）监视etcd配置项的变更/">Golang实战之海量日志收集系统（六）监视etcd配置项的变更</a>
         </li>
     
     
@@ -4590,11 +4791,6 @@ harbor安装包
     
         <li class="archive-post-item">
             <span class="archive-post-date">03/17</span><a class="archive-post-title" href="/2020/03/17/Windows10安装运行Kafka2-1-0与Zookeeper3-4-14/">Windows10安装运行Kafka2.1.0与Zookeeper3.4.14</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">03/17</span><a class="archive-post-title" href="/2020/03/17/关于go-get-以后下载的包不在src下而在pkg的源头并且不可以import-Goland-Modules模块的使用/">关于go get 以后下载的包不在src下而在pkg的源头并且不可以import(Goland Modules模块的使用)</a>
         </li>
     
     
@@ -4614,7 +4810,12 @@ harbor安装包
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/12</span><a class="archive-post-title" href="/2020/03/12/Liunx-Shell编程入门-编写系统监控脚本与FTP探测脚本/">Liunx Shell编程入门----编写系统监控脚本与FTP探测脚本</a>
+            <span class="archive-post-date">03/17</span><a class="archive-post-title" href="/2020/03/17/Golang语言学习从入门到实战-编写简单的TCP-IP聊天室/">Golang语言学习从入门到实战----编写简单的TCP/IP聊天室</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/17</span><a class="archive-post-title" href="/2020/03/17/关于go-get-以后下载的包不在src下而在pkg的源头并且不可以import-Goland-Modules模块的使用/">关于go get 以后下载的包不在src下而在pkg的源头并且不可以import(Goland Modules模块的使用)</a>
         </li>
     
     
@@ -4629,17 +4830,17 @@ harbor安装包
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">03/12</span><a class="archive-post-title" href="/2020/03/12/Liunx-Shell编程入门-编写系统监控脚本与FTP探测脚本/">Liunx Shell编程入门----编写系统监控脚本与FTP探测脚本</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/2020/03/09/牛客网校招全国统一模拟笔试2020年2月场运维方向编程题解/">牛客网校招全国统一模拟笔试2020年2月场运维方向编程题解</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/2020/03/09/Python算法学习-竞码编程-蓝桥杯校内选拔赛-初赛-重现赛/">Python算法学习: 竞码编程-蓝桥杯校内选拔赛(初赛)重现赛</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">03/07</span><a class="archive-post-title" href="/2020/03/07/Liunx-Shell编程入门-编写简单的开机欢迎脚本与操作服务脚本/">Liunx Shell编程入门----编写简单的开机欢迎脚本与操作服务脚本</a>
         </li>
     
     
@@ -4674,6 +4875,11 @@ harbor安装包
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">03/07</span><a class="archive-post-title" href="/2020/03/07/Liunx-Shell编程入门-编写简单的开机欢迎脚本与操作服务脚本/">Liunx Shell编程入门----编写简单的开机欢迎脚本与操作服务脚本</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">03/07</span><a class="archive-post-title" href="/2020/03/07/Golang语言学习从入门到实战-闭包/">Golang语言学习从入门到实战----闭包</a>
         </li>
     
@@ -4694,7 +4900,7 @@ harbor安装包
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/Python算法学习-任意进制转换/">Python算法学习: 任意进制转换</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/Python算法学习-计蒜客-2020-蓝桥杯大学-B-组省赛模拟赛-（一）题目及解析/">Python算法学习: 计蒜客 2020 蓝桥杯大学 B 组省赛模拟赛 （一）题目及解析</a>
         </li>
     
     
@@ -4714,7 +4920,7 @@ harbor安装包
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/Python算法学习-计蒜客-2020-蓝桥杯大学-B-组省赛模拟赛-（一）题目及解析/">Python算法学习: 计蒜客 2020 蓝桥杯大学 B 组省赛模拟赛 （一）题目及解析</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/Python算法学习-任意进制转换/">Python算法学习: 任意进制转换</a>
         </li>
     
     
@@ -4759,7 +4965,7 @@ harbor安装包
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">01/16</span><a class="archive-post-title" href="/2020/01/16/Python算法学习day4-关于一道亚马逊面试题的情景分析/">Python算法学习day4:关于一道亚马逊面试题的情景分析</a>
+            <span class="archive-post-date">01/16</span><a class="archive-post-title" href="/2020/01/16/Python算法学习day5-剑指offer：二进制中1的个数/">Python算法学习day5:剑指offer：二进制中1的个数</a>
         </li>
     
     
@@ -4769,7 +4975,7 @@ harbor安装包
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">01/16</span><a class="archive-post-title" href="/2020/01/16/Python算法学习day5-剑指offer：二进制中1的个数/">Python算法学习day5:剑指offer：二进制中1的个数</a>
+            <span class="archive-post-date">01/16</span><a class="archive-post-title" href="/2020/01/16/Python算法学习day4-关于一道亚马逊面试题的情景分析/">Python算法学习day4:关于一道亚马逊面试题的情景分析</a>
         </li>
     
     
@@ -4873,7 +5079,7 @@ harbor安装包
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">11/04</span><a class="archive-post-title" href="/2019/11/04/Docker入门详解笔记/">Docker入门详解笔记</a>
+            <span class="archive-post-date">11/04</span><a class="archive-post-title" href="/2019/11/04/hbase-shell报错-zookeeper-RecoverableZooKeeper-ZooKeeper-exists-failed-after-4-attempts/">hbase shell报错:zookeeper.RecoverableZooKeeper: ZooKeeper exists failed after 4 attempts</a>
         </li>
     
     
@@ -4888,7 +5094,7 @@ harbor安装包
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">11/04</span><a class="archive-post-title" href="/2019/11/04/hbase-shell报错-zookeeper-RecoverableZooKeeper-ZooKeeper-exists-failed-after-4-attempts/">hbase shell报错:zookeeper.RecoverableZooKeeper: ZooKeeper exists failed after 4 attempts</a>
+            <span class="archive-post-date">11/04</span><a class="archive-post-title" href="/2019/11/04/Docker入门详解笔记/">Docker入门详解笔记</a>
         </li>
     
     
@@ -5193,7 +5399,7 @@ harbor安装包
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/JobTracker和TaskTracker/">JobTracker和TaskTracker</a>
+            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/Windows下的MapReduce编程实现/">Windows下的MapReduce编程实现</a>
         </li>
     
     
@@ -5203,17 +5409,17 @@ harbor安装包
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/CentOS7关闭SELinux/">CentOS7关闭SELinux</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/Windows下的MapReduce编程实现/">Windows下的MapReduce编程实现</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/在Centos 7下安装PHP 7/">在Centos 7下安装PHP 7</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/JobTracker和TaskTracker/">JobTracker和TaskTracker</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/CentOS7关闭SELinux/">CentOS7关闭SELinux</a>
         </li>
     
     
@@ -5347,11 +5553,11 @@ harbor安装包
     
         <span class="sidebar-tag-name" data-tags="高可用负载均衡"><span class="iconfont-archer">&#xe606;</span>高可用负载均衡</span>
     
+        <span class="sidebar-tag-name" data-tags="Docker"><span class="iconfont-archer">&#xe606;</span>Docker</span>
+    
         <span class="sidebar-tag-name" data-tags="Java"><span class="iconfont-archer">&#xe606;</span>Java</span>
     
         <span class="sidebar-tag-name" data-tags="Hadoop"><span class="iconfont-archer">&#xe606;</span>Hadoop</span>
-    
-        <span class="sidebar-tag-name" data-tags="Docker"><span class="iconfont-archer">&#xe606;</span>Docker</span>
     
         <span class="sidebar-tag-name" data-tags="Dokcer"><span class="iconfont-archer">&#xe606;</span>Dokcer</span>
     
@@ -5359,21 +5565,23 @@ harbor安装包
     
         <span class="sidebar-tag-name" data-tags="Flume"><span class="iconfont-archer">&#xe606;</span>Flume</span>
     
-        <span class="sidebar-tag-name" data-tags="Kafka"><span class="iconfont-archer">&#xe606;</span>Kafka</span>
-    
         <span class="sidebar-tag-name" data-tags="GitHub"><span class="iconfont-archer">&#xe606;</span>GitHub</span>
+    
+        <span class="sidebar-tag-name" data-tags="Kafka"><span class="iconfont-archer">&#xe606;</span>Kafka</span>
     
         <span class="sidebar-tag-name" data-tags="Golang"><span class="iconfont-archer">&#xe606;</span>Golang</span>
     
         <span class="sidebar-tag-name" data-tags="Golang日志收集系统"><span class="iconfont-archer">&#xe606;</span>Golang日志收集系统</span>
     
-        <span class="sidebar-tag-name" data-tags="Hive"><span class="iconfont-archer">&#xe606;</span>Hive</span>
-    
         <span class="sidebar-tag-name" data-tags="Hbase"><span class="iconfont-archer">&#xe606;</span>Hbase</span>
+    
+        <span class="sidebar-tag-name" data-tags="Hive"><span class="iconfont-archer">&#xe606;</span>Hive</span>
     
         <span class="sidebar-tag-name" data-tags="Git"><span class="iconfont-archer">&#xe606;</span>Git</span>
     
         <span class="sidebar-tag-name" data-tags="Kali"><span class="iconfont-archer">&#xe606;</span>Kali</span>
+    
+        <span class="sidebar-tag-name" data-tags="Kubernetes"><span class="iconfont-archer">&#xe606;</span>Kubernetes</span>
     
         <span class="sidebar-tag-name" data-tags="Shell"><span class="iconfont-archer">&#xe606;</span>Shell</span>
     
@@ -5387,23 +5595,21 @@ harbor安装包
     
         <span class="sidebar-tag-name" data-tags="机器学习"><span class="iconfont-archer">&#xe606;</span>机器学习</span>
     
-        <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
-    
         <span class="sidebar-tag-name" data-tags="Zookeeper"><span class="iconfont-archer">&#xe606;</span>Zookeeper</span>
+    
+        <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
     
         <span class="sidebar-tag-name" data-tags="Hexo"><span class="iconfont-archer">&#xe606;</span>Hexo</span>
     
         <span class="sidebar-tag-name" data-tags="安全"><span class="iconfont-archer">&#xe606;</span>安全</span>
     
-        <span class="sidebar-tag-name" data-tags="Kubernetes"><span class="iconfont-archer">&#xe606;</span>Kubernetes</span>
-    
         <span class="sidebar-tag-name" data-tags="Python"><span class="iconfont-archer">&#xe606;</span>Python</span>
     
         <span class="sidebar-tag-name" data-tags="PySpark"><span class="iconfont-archer">&#xe606;</span>PySpark</span>
     
-        <span class="sidebar-tag-name" data-tags="Maven"><span class="iconfont-archer">&#xe606;</span>Maven</span>
-    
         <span class="sidebar-tag-name" data-tags="网络"><span class="iconfont-archer">&#xe606;</span>网络</span>
+    
+        <span class="sidebar-tag-name" data-tags="Maven"><span class="iconfont-archer">&#xe606;</span>Maven</span>
     
         <span class="sidebar-tag-name" data-tags="数据采集"><span class="iconfont-archer">&#xe606;</span>数据采集</span>
     
@@ -5448,9 +5654,9 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="Liunx"><span class="iconfont-archer">&#xe60a;</span>Liunx</span>
     
-        <span class="sidebar-category-name" data-categories="Hadoop"><span class="iconfont-archer">&#xe60a;</span>Hadoop</span>
-    
         <span class="sidebar-category-name" data-categories="Docker"><span class="iconfont-archer">&#xe60a;</span>Docker</span>
+    
+        <span class="sidebar-category-name" data-categories="Hadoop"><span class="iconfont-archer">&#xe60a;</span>Hadoop</span>
     
         <span class="sidebar-category-name" data-categories="GitHub"><span class="iconfont-archer">&#xe60a;</span>GitHub</span>
     
@@ -5464,6 +5670,8 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="Java"><span class="iconfont-archer">&#xe60a;</span>Java</span>
     
+        <span class="sidebar-category-name" data-categories="Kubernetes"><span class="iconfont-archer">&#xe60a;</span>Kubernetes</span>
+    
         <span class="sidebar-category-name" data-categories="其他"><span class="iconfont-archer">&#xe60a;</span>其他</span>
     
         <span class="sidebar-category-name" data-categories="Python算法"><span class="iconfont-archer">&#xe60a;</span>Python算法</span>
@@ -5475,8 +5683,6 @@ jsonContent:
         <span class="sidebar-category-name" data-categories="机器学习"><span class="iconfont-archer">&#xe60a;</span>机器学习</span>
     
         <span class="sidebar-category-name" data-categories="博客"><span class="iconfont-archer">&#xe60a;</span>博客</span>
-    
-        <span class="sidebar-category-name" data-categories="Kubernetes"><span class="iconfont-archer">&#xe60a;</span>Kubernetes</span>
     
         <span class="sidebar-category-name" data-categories="Python"><span class="iconfont-archer">&#xe60a;</span>Python</span>
     
