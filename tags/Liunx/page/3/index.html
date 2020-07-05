@@ -346,6 +346,83 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2019/10/02/Liunx-curl命令详解/">
+            
+                <span>Liunx curl命令详解</span>
+        </a>
+        <div class="abstract-content">
+            curl 是常用的命令行工具，用来请求 Web 服务器。它的名字就是客户端（client）的 URL 工具的意思。
+
+它的功能非常强大，命令行参数多达几十种。如果熟练的话，完全可以取代 Postman 这一类的图形界面工具。
+
+
+
+不带有任何参数时，curl 就是发出 GET 请求。
+
+$ curl https://www.example.com
+
+上面命令向www.example.com发出 GET 请求，服务器返回的内容会在命令行输出。
+
+-A
+
+-A参数指定客户端的用户代理标头，即User-Agent。curl 的默认用户代理字符串是curl/[version]。
+
+$ curl ...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/10/02</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Liunx">Liunx</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2019/09/29/Esxi-centos7搭建NAT和DHCP服务器/">
+            
+                <span>Esxi centos7搭建NAT和DHCP服务器</span>
+        </a>
+        <div class="abstract-content">
+            什么是NATNAT（Network address translation）即网络地址转换，作为一种过渡解决手段，可以用来减少对全球合法IP地址的需求。简单的说，NAT就是在内部专用网络中使用内部地址，而当内部节点要与外界网络发生联系时，就在边缘路由器或者防火墙处，将内部地址转换成公网地址，从而使得在外网（Internet）上使用一个和数个合法IP地址正常传输数据。其中，这里的外网和内网是相对来讲的，下面假设能够访问互联网的网络为外网。
+什么是DHCPDHCP（Dynamic Host Configuration Protocol，动态主机配置协议）通常被应用在大型的局域网络环境中，主要...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/09/29</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Liunx">Liunx</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Esxi">Esxi</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2019/09/06/Liunx中etc下的passwd与shadow文件详解/">
             
                 <span>Liunx中etc下的passwd与shadow文件详解</span>
@@ -383,20 +460,17 @@ root:x:0:0:r...
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2019/08/31/CentOS7关闭SELinux/">
+        <a class="abstract-title" href="/2019/08/31/在Centos 7下安装PHP 7/">
             
-                <span>CentOS7关闭SELinux</span>
+                <span>在Centos 7下安装PHP 7</span>
         </a>
         <div class="abstract-content">
-            查看[root@dev-server ~]# getenforce
-Disabled
-[root@dev-server ~]# /usr/sbin/sestatus -v
-SELinux status:                 disabled
-临时关闭设置SELinux 成为permissive模式setenforce 1 设置SELinux 成为enforcing模式setenforce 0
-永久关闭vi /etc/selinux/config
-将SELINUX=enforcing改为SELINUX=disabled
-设置后需要重启才能生效
-
+            CentOS 7的官方软件源中，只有PHP 5.4这个官方已经不再提供技术支持的老版本。
+不仅仅是为了安全原因，只是PHP 7中的那些新特性，就要求我们必须更新到新版本下。
+启用EPEL和REMI软件源执行以下指令，分别安装EPEL和Remi软件源：
+yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+yum install http://rpms.remirepo.net/enterprise/remi-release-7.rpm
+安装yum包管理工具默认安装的yum软件包...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -420,17 +494,20 @@ SELinux status:                 disabled
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2019/08/31/在Centos 7下安装PHP 7/">
+        <a class="abstract-title" href="/2019/08/31/CentOS7关闭SELinux/">
             
-                <span>在Centos 7下安装PHP 7</span>
+                <span>CentOS7关闭SELinux</span>
         </a>
         <div class="abstract-content">
-            CentOS 7的官方软件源中，只有PHP 5.4这个官方已经不再提供技术支持的老版本。
-不仅仅是为了安全原因，只是PHP 7中的那些新特性，就要求我们必须更新到新版本下。
-启用EPEL和REMI软件源执行以下指令，分别安装EPEL和Remi软件源：
-yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
-yum install http://rpms.remirepo.net/enterprise/remi-release-7.rpm
-安装yum包管理工具默认安装的yum软件包...
+            查看[root@dev-server ~]# getenforce
+Disabled
+[root@dev-server ~]# /usr/sbin/sestatus -v
+SELinux status:                 disabled
+临时关闭设置SELinux 成为permissive模式setenforce 1 设置SELinux 成为enforcing模式setenforce 0
+永久关闭vi /etc/selinux/config
+将SELINUX=enforcing改为SELINUX=disabled
+设置后需要重启才能生效
+
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -658,54 +735,10 @@ java...
         </div>
     </article>
     
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/07/30/Centos7下NAT设置静态ip/">
-            
-                <span>Centos7下NAT设置静态ip</span>
-        </a>
-        <div class="abstract-content">
-            前期准备在VMware下安装Centos7 以后，选择NAT模式
-查看IP地址
-ip addr
-
-现在我的ip地址是dhcp动态分配出的，地址为192.168.0.128，网卡名字为ens33
-点击VMware Workstation 编辑下的虚拟网络编辑器
-
-在里面我们可以看到虚拟网卡的信息
-点击 更改设置
-
-点击Vmnet8网卡，将子网ip改为自己想要的ip地址类型，这里我修改的是192.168.0.0
-然后点击NAT设置，将网关设置为192.168.0.253
-
-
-保存退出。
-修改配置文件在/etc/sysconfig/network-scripts/下找到网卡配置文件 ens33...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/30</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Liunx">Liunx</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
     <!-- paginator  -->
     
     <nav class="page-nav">
-        <a class="extend prev" rel="prev" href="/tags/Liunx/page/2/">&#60; PREV</a><a class="page-number" href="/tags/Liunx/">1</a><a class="page-number" href="/tags/Liunx/page/2/">2</a><span class="page-number current">3</span>
+        <a class="extend prev" rel="prev" href="/tags/Liunx/page/2/">&#60; PREV</a><a class="page-number" href="/tags/Liunx/">1</a><a class="page-number" href="/tags/Liunx/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/tags/Liunx/page/4/">4</a><a class="extend next" rel="next" href="/tags/Liunx/page/4/">NEXT &#62;</a>
     </nav>
     
 </main>
@@ -4570,9 +4603,227 @@ ip addr
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 186
+        Total : 190
         </div>
         <!-- search  -->
         
@@ -4588,32 +4839,27 @@ ip addr
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">07/05</span><a class="archive-post-title" href="/2020/07/05/直播技术原理：CDN技术详解/">直播技术原理：CDN技术详解</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/05</span><a class="archive-post-title" href="/2020/07/05/使用Centos7基于Squid与Lvs搭建小型CDN/">使用Centos7基于Squid与Lvs搭建小型CDN</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/05</span><a class="archive-post-title" href="/2020/07/05/Centos7防火墙与IPTABLES详解/">Centos7防火墙与IPTABLES详解</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/05</span><a class="archive-post-title" href="/2020/07/05/解决Centos系统设置静态ip时报错-ping-www-baidu-com-Name-or-service-not-known/">解决Centos系统设置静态ip时报错 ping: www.baidu.com: Name or service not known</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">05/17</span><a class="archive-post-title" href="/2020/05/17/解决docker中修改docker-daemon文件后启动失败/">解决docker中修改docker.daemon文件后启动失败</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">05/12</span><a class="archive-post-title" href="/2020/05/12/Python垃圾回收与内存管理/">Python垃圾回收与内存管理</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">05/12</span><a class="archive-post-title" href="/2020/05/12/git-push文件夹时报错Fatal-HttpRequestException-encountered/">git push文件夹时报错Fatal: HttpRequestException encountered.</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">05/12</span><a class="archive-post-title" href="/2020/05/12/Docker-三剑客之Machine，Compose，Swarm/">Docker 三剑客之Machine，Compose，Swarm</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">05/12</span><a class="archive-post-title" href="/2020/05/12/Kubernetes-K8s-入门到实践-八-Kubernetes1-15-1-部署Prometheus/">Kubernetes(K8s)入门到实践(八)----Kubernetes1.15.1 部署Prometheus</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">05/12</span><a class="archive-post-title" href="/2020/05/12/Kubernetes-K8s-入门到实践-七-部署Helm-2-13-1/">Kubernetes(K8s)入门到实践(七)----部署Helm 2.13.1</a>
         </li>
     
     
@@ -4623,32 +4869,32 @@ ip addr
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">05/12</span><a class="archive-post-title" href="/2020/05/12/Python垃圾回收与内存管理/">Python垃圾回收与内存管理</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/12</span><a class="archive-post-title" href="/2020/05/12/Kubernetes-K8s-入门到实践-七-部署Helm-2-13-1/">Kubernetes(K8s)入门到实践(七)----部署Helm 2.13.1</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/12</span><a class="archive-post-title" href="/2020/05/12/Kubernetes-K8s-入门到实践-八-Kubernetes1-15-1-部署Prometheus/">Kubernetes(K8s)入门到实践(八)----Kubernetes1.15.1 部署Prometheus</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/12</span><a class="archive-post-title" href="/2020/05/12/Docker-三剑客之Machine，Compose，Swarm/">Docker 三剑客之Machine，Compose，Swarm</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/12</span><a class="archive-post-title" href="/2020/05/12/git-push文件夹时报错Fatal-HttpRequestException-encountered/">git push文件夹时报错Fatal: HttpRequestException encountered.</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">05/05</span><a class="archive-post-title" href="/2020/05/05/HA高可用与负载均衡入门到实战（七）-基于Docker配置KeepAlive-LVS负载均衡/">HA高可用与负载均衡入门到实战（七）---- 基于Docker配置KeepAlive-LVS负载均衡</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/21</span><a class="archive-post-title" href="/2020/04/21/Kubernetes-K8s-入门到实践-四-Kubernetes1-15-1配置私有仓库Harbor/">Kubernetes(K8s)入门到实践(四)----Kubernetes1.15.1配置私有仓库Harbor</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/21</span><a class="archive-post-title" href="/2020/04/21/Kubernetes-K8s-入门到实践-五-Kubernetes1-15-1安装-Dashboard-的WEB-UI插件/">Kubernetes(K8s)入门到实践(五)----Kubernetes1.15.1安装 Dashboard 的WEB UI插件</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/21</span><a class="archive-post-title" href="/2020/04/21/解决Kubernetes1-15-1-部署Flannel网络后pod及容器无法跨主机互通问题/">解决Kubernetes1.15.1 部署Flannel网络后pod及容器无法跨主机互通问题</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/21</span><a class="archive-post-title" href="/2020/04/21/HA高可用与负载均衡入门到实战（六）-基于Docker配置KeepAlive支持Nginx高可用/">HA高可用与负载均衡入门到实战（六）---- 基于Docker配置KeepAlive支持Nginx高可用</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/21</span><a class="archive-post-title" href="/2020/04/21/解决Kubernetes1-5-1-coredns报错CrashLoopBackOff/">解决Kubernetes1.5.1 coredns报错CrashLoopBackOff</a>
         </li>
     
     
@@ -4663,7 +4909,37 @@ ip addr
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">04/21</span><a class="archive-post-title" href="/2020/04/21/HA高可用与负载均衡入门到实战（六）-基于Docker配置KeepAlive支持Nginx高可用/">HA高可用与负载均衡入门到实战（六）---- 基于Docker配置KeepAlive支持Nginx高可用</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/21</span><a class="archive-post-title" href="/2020/04/21/Kubernetes-K8s-入门到实践-四-Kubernetes1-15-1配置私有仓库Harbor/">Kubernetes(K8s)入门到实践(四)----Kubernetes1.15.1配置私有仓库Harbor</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/21</span><a class="archive-post-title" href="/2020/04/21/解决Kubernetes1-5-1-coredns报错CrashLoopBackOff/">解决Kubernetes1.5.1 coredns报错CrashLoopBackOff</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/21</span><a class="archive-post-title" href="/2020/04/21/Kubernetes-K8s-入门到实践-五-Kubernetes1-15-1安装-Dashboard-的WEB-UI插件/">Kubernetes(K8s)入门到实践(五)----Kubernetes1.15.1安装 Dashboard 的WEB UI插件</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/21</span><a class="archive-post-title" href="/2020/04/21/解决Kubernetes1-15-1-部署Flannel网络后pod及容器无法跨主机互通问题/">解决Kubernetes1.15.1 部署Flannel网络后pod及容器无法跨主机互通问题</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">04/09</span><a class="archive-post-title" href="/2020/04/09/HA高可用与负载均衡入门到实战（二）----日志和配置Nginx虚拟主机/">HA高可用与负载均衡入门到实战（一）----Docker中安装与配置Nginx</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/09</span><a class="archive-post-title" href="/2020/04/09/HA高可用与负载均衡入门到实战（三）---- 配置Nginx支持PHP并实现动静分离/">HA高可用与负载均衡入门到实战（一）----Docker中安装与配置Nginx</a>
         </li>
     
     
@@ -4678,32 +4954,7 @@ ip addr
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/09</span><a class="archive-post-title" href="/2020/04/09/HA高可用与负载均衡入门到实战（三）---- 配置Nginx支持PHP并实现动静分离/">HA高可用与负载均衡入门到实战（一）----Docker中安装与配置Nginx</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">04/09</span><a class="archive-post-title" href="/2020/04/09/HA高可用与负载均衡入门到实战（一）----Docker中安装与配置Nginx /">HA高可用与负载均衡入门到实战（一）----Docker中安装与配置Nginx</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/04</span><a class="archive-post-title" href="/2020/04/04/quay-io国内无法访问，解决Kubernetes应用flannel失败，报错Init-ImagePullBackOff/">quay.io国内无法访问，解决Kubernetes应用flannel失败，报错Init:ImagePullBackOff</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/04</span><a class="archive-post-title" href="/2020/04/04/Golang语言学习从入门到实战-Go操作Mysql实现增删改查/">Golang语言学习从入门到实战----Go操作Mysql实现增删改查</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/04</span><a class="archive-post-title" href="/2020/04/04/Golang1-14-go-modules-怎么导入本地其它项目的包-看完这篇文章-终于搞懂了/">Golang1.14 go modules 怎么导入本地其它项目的包? 看完这篇文章, 终于搞懂了</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/04</span><a class="archive-post-title" href="/2020/04/04/Golang实战之海量日志收集系统（九）beegoWeb入门/">Golang实战之海量日志收集系统（九）beegoWeb入门</a>
         </li>
     
     
@@ -4713,27 +4964,22 @@ ip addr
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/29</span><a class="archive-post-title" href="/2020/03/29/Golang实战之海量日志收集系统（八）logTransfer之将日志入库到Elasticsearch并通过Kibana进行展示/">Golang实战之海量日志收集系统（八）logTransfer之将日志入库到Elasticsearch并通过Kibana进行展示</a>
+            <span class="archive-post-date">04/04</span><a class="archive-post-title" href="/2020/04/04/Golang语言学习从入门到实战-Go操作Mysql实现增删改查/">Golang语言学习从入门到实战----Go操作Mysql实现增删改查</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/29</span><a class="archive-post-title" href="/2020/03/29/Golang实战之海量日志收集系统（一）项目背景介绍/">Golang实战之海量日志收集系统（一）项目背景介绍</a>
+            <span class="archive-post-date">04/04</span><a class="archive-post-title" href="/2020/04/04/Golang实战之海量日志收集系统（九）beegoWeb入门/">Golang实战之海量日志收集系统（九）beegoWeb入门</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/29</span><a class="archive-post-title" href="/2020/03/29/Golang实战之海量日志收集系统（三）简单版本logAgent的实现/">Golang实战之海量日志收集系统（三）简单版本logAgent的实现</a>
+            <span class="archive-post-date">04/04</span><a class="archive-post-title" href="/2020/04/04/Golang1-14-go-modules-怎么导入本地其它项目的包-看完这篇文章-终于搞懂了/">Golang1.14 go modules 怎么导入本地其它项目的包? 看完这篇文章, 终于搞懂了</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/29</span><a class="archive-post-title" href="/2020/03/29/Win10家庭版没有组策略怎么办-教你如何启用组策略gpedit-msc/">Win10家庭版没有组策略怎么办? 教你如何启用组策略gpedit.msc</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">03/29</span><a class="archive-post-title" href="/2020/03/29/Golang实战之海量日志收集系统（二）收集应用程序日志到Kafka中/">Golang实战之海量日志收集系统（二）收集应用程序日志到Kafka中</a>
+            <span class="archive-post-date">04/04</span><a class="archive-post-title" href="/2020/04/04/quay-io国内无法访问，解决Kubernetes应用flannel失败，报错Init-ImagePullBackOff/">quay.io国内无法访问，解决Kubernetes应用flannel失败，报错Init:ImagePullBackOff</a>
         </li>
     
     
@@ -4743,12 +4989,27 @@ ip addr
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">03/29</span><a class="archive-post-title" href="/2020/03/29/Golang实战之海量日志收集系统（七）logTransfer之从kafka中获取日志信息/">Golang实战之海量日志收集系统（七）logTransfer之从kafka中获取日志信息</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">03/29</span><a class="archive-post-title" href="/2020/03/29/解决Golang1-14-etcd-clientv3报错：etcd-undefined-resolver-BuildOption/">解决Golang1.14 etcd/clientv3报错：etcd undefined: resolver.BuildOption</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/29</span><a class="archive-post-title" href="/2020/03/29/Golang实战之海量日志收集系统（六）监视etcd配置项的变更/">Golang实战之海量日志收集系统（六）监视etcd配置项的变更</a>
+            <span class="archive-post-date">03/29</span><a class="archive-post-title" href="/2020/03/29/Golang实战之海量日志收集系统（一）项目背景介绍/">Golang实战之海量日志收集系统（一）项目背景介绍</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/29</span><a class="archive-post-title" href="/2020/03/29/Golang实战之海量日志收集系统（二）收集应用程序日志到Kafka中/">Golang实战之海量日志收集系统（二）收集应用程序日志到Kafka中</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/29</span><a class="archive-post-title" href="/2020/03/29/Golang实战之海量日志收集系统（三）简单版本logAgent的实现/">Golang实战之海量日志收集系统（三）简单版本logAgent的实现</a>
         </li>
     
     
@@ -4758,27 +5019,22 @@ ip addr
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/29</span><a class="archive-post-title" href="/2020/03/29/Golang实战之海量日志收集系统（七）logTransfer之从kafka中获取日志信息/">Golang实战之海量日志收集系统（七）logTransfer之从kafka中获取日志信息</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">03/29</span><a class="archive-post-title" href="/2020/03/29/Golang实战之海量日志收集系统（五）根据etcd配置项创建多个tailTask/">Golang实战之海量日志收集系统（五）根据etcd配置项创建多个tailTask</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/17</span><a class="archive-post-title" href="/2020/03/17/Golang语言学习从入门到实战-HTTP-web开发编程/">Golang语言学习从入门到实战----HTTP web开发编程</a>
+            <span class="archive-post-date">03/29</span><a class="archive-post-title" href="/2020/03/29/Golang实战之海量日志收集系统（六）监视etcd配置项的变更/">Golang实战之海量日志收集系统（六）监视etcd配置项的变更</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/17</span><a class="archive-post-title" href="/2020/03/17/Golang语言学习从入门到实战-基于Golang实现简单家庭收支项目/">Golang语言学习从入门到实战----基于Golang实现简单家庭收支项目</a>
+            <span class="archive-post-date">03/29</span><a class="archive-post-title" href="/2020/03/29/Win10家庭版没有组策略怎么办-教你如何启用组策略gpedit-msc/">Win10家庭版没有组策略怎么办? 教你如何启用组策略gpedit.msc</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/17</span><a class="archive-post-title" href="/2020/03/17/Golang语言学习从入门到实战-基于Golang的客户关系管理系统/">Golang语言学习从入门到实战----基于Golang的客户关系管理系统</a>
+            <span class="archive-post-date">03/29</span><a class="archive-post-title" href="/2020/03/29/Golang实战之海量日志收集系统（八）logTransfer之将日志入库到Elasticsearch并通过Kibana进行展示/">Golang实战之海量日志收集系统（八）logTransfer之将日志入库到Elasticsearch并通过Kibana进行展示</a>
         </li>
     
     
@@ -4788,7 +5044,17 @@ ip addr
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">03/17</span><a class="archive-post-title" href="/2020/03/17/Golang语言学习从入门到实战-HTTP-web开发编程/">Golang语言学习从入门到实战----HTTP web开发编程</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">03/17</span><a class="archive-post-title" href="/2020/03/17/Windows10安装运行Kafka2-1-0与Zookeeper3-4-14/">Windows10安装运行Kafka2.1.0与Zookeeper3.4.14</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/17</span><a class="archive-post-title" href="/2020/03/17/Golang语言学习从入门到实战-基于Golang实现简单家庭收支项目/">Golang语言学习从入门到实战----基于Golang实现简单家庭收支项目</a>
         </li>
     
     
@@ -4803,6 +5069,16 @@ ip addr
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">03/17</span><a class="archive-post-title" href="/2020/03/17/Golang语言学习从入门到实战-基于Golang的客户关系管理系统/">Golang语言学习从入门到实战----基于Golang的客户关系管理系统</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/12</span><a class="archive-post-title" href="/2020/03/12/Golang语言学习从入门到实战-结构体以及内存分布/">Golang语言学习从入门到实战----结构体以及内存分布</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">03/12</span><a class="archive-post-title" href="/2020/03/12/Golang语言学习从入门到实战-链表定义/">Golang语言学习从入门到实战----链表定义</a>
         </li>
     
@@ -4813,7 +5089,7 @@ ip addr
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/12</span><a class="archive-post-title" href="/2020/03/12/Golang语言学习从入门到实战-结构体以及内存分布/">Golang语言学习从入门到实战----结构体以及内存分布</a>
+            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/2020/03/09/牛客网校招全国统一模拟笔试2020年2月场运维方向编程题解/">牛客网校招全国统一模拟笔试2020年2月场运维方向编程题解</a>
         </li>
     
     
@@ -4823,12 +5099,7 @@ ip addr
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/2020/03/09/牛客网校招全国统一模拟笔试2020年2月场运维方向编程题解/">牛客网校招全国统一模拟笔试2020年2月场运维方向编程题解</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">03/07</span><a class="archive-post-title" href="/2020/03/07/Python算法学习-竞码编程-蓝桥杯模拟赛3题解/">Python算法学习: 竞码编程-蓝桥杯模拟赛3题解</a>
+            <span class="archive-post-date">03/07</span><a class="archive-post-title" href="/2020/03/07/Golang语言学习从入门到实战-闭包/">Golang语言学习从入门到实战----闭包</a>
         </li>
     
     
@@ -4838,7 +5109,7 @@ ip addr
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/07</span><a class="archive-post-title" href="/2020/03/07/Golang语言学习从入门到实战-闭包/">Golang语言学习从入门到实战----闭包</a>
+            <span class="archive-post-date">03/07</span><a class="archive-post-title" href="/2020/03/07/Kubernetes-K8s-入门到实践-二-Kubernetes的基本概念和术语/">Kubernetes(K8s)入门到实践(二)----Kubernetes的基本概念和术语</a>
         </li>
     
     
@@ -4848,17 +5119,12 @@ ip addr
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/07</span><a class="archive-post-title" href="/2020/03/07/Kubernetes-K8s-入门到实践-二-Kubernetes的基本概念和术语/">Kubernetes(K8s)入门到实践(二)----Kubernetes的基本概念和术语</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">03/07</span><a class="archive-post-title" href="/2020/03/07/Liunx-Shell编程入门-编写简单的开机欢迎脚本与操作服务脚本/">Liunx Shell编程入门----编写简单的开机欢迎脚本与操作服务脚本</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">03/07</span><a class="archive-post-title" href="/2020/03/07/Python算法学习-全排列的回溯实现与二进制枚举/">Python算法学习:全排列的回溯实现与二进制枚举</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/07</span><a class="archive-post-title" href="/2020/03/07/Python算法学习-竞码编程-蓝桥杯模拟赛3题解/">Python算法学习: 竞码编程-蓝桥杯模拟赛3题解</a>
         </li>
     
     
@@ -4868,37 +5134,12 @@ ip addr
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">03/07</span><a class="archive-post-title" href="/2020/03/07/Liunx-Shell编程入门-编写简单的开机欢迎脚本与操作服务脚本/">Liunx Shell编程入门----编写简单的开机欢迎脚本与操作服务脚本</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/2020/02/25/Kubernetes-K8s-入门到实践-一-Kubernetes入门/">Kubernetes(K8s)入门到实践(一)----Kubernetes入门</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/Python算法学习day7-归并排序/">Python算法学习day7:归并排序</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/Python算法学习-计蒜客-2020-蓝桥杯大学-B-组省赛模拟赛-（一）题目及解析/">Python算法学习: 计蒜客 2020 蓝桥杯大学 B 组省赛模拟赛 （一）题目及解析</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/Python算法学习-任意进制转换/">Python算法学习: 任意进制转换</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/Centos7安装Docker-配置使用harbor/">Centos7安装Docker-配置使用harbor</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/Python算法学习-蓝桥杯官方省赛真题-持续更新/">Python算法学习: 蓝桥杯官方省赛真题(持续更新)</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/Python算法学习day10-栈应用-括号匹配问题/">Python算法学习day10: 栈应用(括号匹配问题)</a>
         </li>
     
     
@@ -4908,7 +5149,7 @@ ip addr
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/Python算法学习day9-基数排序-翻转数字的基本应用/">Python算法学习day9:基数排序(翻转数字的基本应用)</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/Python算法学习-蓝桥杯官方省赛真题-持续更新/">Python算法学习: 蓝桥杯官方省赛真题(持续更新)</a>
         </li>
     
     
@@ -4918,7 +5159,42 @@ ip addr
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/Python算法学习day9-基数排序-翻转数字的基本应用/">Python算法学习day9:基数排序(翻转数字的基本应用)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/Centos7安装Docker-配置使用harbor/">Centos7安装Docker-配置使用harbor</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/Python算法学习-任意进制转换/">Python算法学习: 任意进制转换</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/Python算法学习-计蒜客-2020-蓝桥杯大学-B-组省赛模拟赛-（一）题目及解析/">Python算法学习: 计蒜客 2020 蓝桥杯大学 B 组省赛模拟赛 （一）题目及解析</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/Python算法学习day7-归并排序/">Python算法学习day7:归并排序</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/Python算法学习day8-线性时间排序-希尔排序-计数排序/">Python算法学习day8:线性时间排序(希尔排序, 计数排序)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/Docker容器出现使用systemctl问题：Failed-to-get-D-Bus-connection-Operation-not-permitted/">Docker容器出现使用systemctl问题：Failed to get D-Bus connection: Operation not permitted</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/Python算法学习day10-栈应用-括号匹配问题/">Python算法学习day10: 栈应用(括号匹配问题)</a>
         </li>
     
     
@@ -4933,32 +5209,7 @@ ip addr
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/Docker容器出现使用systemctl问题：Failed-to-get-D-Bus-connection-Operation-not-permitted/">Docker容器出现使用systemctl问题：Failed to get D-Bus connection: Operation not permitted</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">01/19</span><a class="archive-post-title" href="/2020/01/19/Python算法学习day6-堆排序-二叉树/">Python算法学习day6:堆排序(二叉树)</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">01/16</span><a class="archive-post-title" href="/2020/01/16/SparkSQL，创建表，查询数据/">SparkSQL，创建表，查询数据</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">01/16</span><a class="archive-post-title" href="/2020/01/16/Windows-10上用AutoHotkey实现快速隐藏-显示桌面图标与切换虚拟桌面/">Windows 10上用AutoHotkey实现快速隐藏/显示桌面图标与切换虚拟桌面</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">01/16</span><a class="archive-post-title" href="/2020/01/16/访问php-该网页无法正常运作-目前无法处理此请求/">访问php 该网页无法正常运作 目前无法处理此请求</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">01/16</span><a class="archive-post-title" href="/2020/01/16/Python算法学习day2-查找和排序-一/">Python算法学习day2:查找和排序(一)</a>
         </li>
     
     
@@ -4983,12 +5234,12 @@ ip addr
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">01/16</span><a class="archive-post-title" href="/2020/01/16/SparkSQL，加载文件，处理文件，存储文件/">SparkSQL，加载文件，处理文件，存储文件</a>
+            <span class="archive-post-date">01/16</span><a class="archive-post-title" href="/2020/01/16/SparkSQL，创建表，查询数据/">SparkSQL，创建表，查询数据</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">01/16</span><a class="archive-post-title" href="/2020/01/16/Python算法学习day1-汉诺塔-斐波那契数列-递归/">Python算法学习day1:汉诺塔,斐波那契数列(递归)</a>
+            <span class="archive-post-date">01/16</span><a class="archive-post-title" href="/2020/01/16/SparkSQL，加载文件，处理文件，存储文件/">SparkSQL，加载文件，处理文件，存储文件</a>
         </li>
     
     
@@ -4998,7 +5249,27 @@ ip addr
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">01/16</span><a class="archive-post-title" href="/2020/01/16/访问php-该网页无法正常运作-目前无法处理此请求/">访问php 该网页无法正常运作 目前无法处理此请求</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/16</span><a class="archive-post-title" href="/2020/01/16/Python算法学习day2-查找和排序-一/">Python算法学习day2:查找和排序(一)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/16</span><a class="archive-post-title" href="/2020/01/16/Windows-10上用AutoHotkey实现快速隐藏-显示桌面图标与切换虚拟桌面/">Windows 10上用AutoHotkey实现快速隐藏/显示桌面图标与切换虚拟桌面</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">01/16</span><a class="archive-post-title" href="/2020/01/16/Win10开启与搭建FTP服务器-详细图文版/">Win10开启与搭建FTP服务器(详细图文版)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/16</span><a class="archive-post-title" href="/2020/01/16/Python算法学习day1-汉诺塔-斐波那契数列-递归/">Python算法学习day1:汉诺塔,斐波那契数列(递归)</a>
         </li>
     
     
@@ -5012,7 +5283,7 @@ ip addr
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">11/28</span><a class="archive-post-title" href="/2019/11/28/Ubuntu-18-04-2-LTS网络设置/">Ubuntu 18.04.2 LTS网络设置</a>
+            <span class="archive-post-date">11/28</span><a class="archive-post-title" href="/2019/11/28/Hive基本命令操作/">Hive基本命令操作</a>
         </li>
     
     
@@ -5022,12 +5293,7 @@ ip addr
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">11/28</span><a class="archive-post-title" href="/2019/11/28/Docker实战-创建支持SSH服务的镜像-超详细/">Docker实战 创建支持SSH服务的镜像(超详细)</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">11/28</span><a class="archive-post-title" href="/2019/11/28/WindowsServer-2016-最新激活方法/">WindowsServer 2016 最新激活方法</a>
+            <span class="archive-post-date">11/28</span><a class="archive-post-title" href="/2019/11/28/使用etree与xpath爬取Discuz论坛/">使用etree与xpath爬取Discuz论坛</a>
         </li>
     
     
@@ -5037,7 +5303,7 @@ ip addr
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">11/28</span><a class="archive-post-title" href="/2019/11/28/Hive基本命令操作/">Hive基本命令操作</a>
+            <span class="archive-post-date">11/28</span><a class="archive-post-title" href="/2019/11/28/Ubuntu-18-04-2-LTS网络设置/">Ubuntu 18.04.2 LTS网络设置</a>
         </li>
     
     
@@ -5047,22 +5313,22 @@ ip addr
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">11/28</span><a class="archive-post-title" href="/2019/11/28/Hive-java-API接口/">Hive java API接口</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">11/28</span><a class="archive-post-title" href="/2019/11/28/使用etree与xpath爬取Discuz论坛/">使用etree与xpath爬取Discuz论坛</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">11/28</span><a class="archive-post-title" href="/2019/11/28/Spark-Shell操作/">Spark Shell操作</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">11/04</span><a class="archive-post-title" href="/2019/11/04/hbase-shell报错-zookeeper-RecoverableZooKeeper-ZooKeeper-exists-failed-after-4-attempts/">hbase shell报错:zookeeper.RecoverableZooKeeper: ZooKeeper exists failed after 4 attempts</a>
+            <span class="archive-post-date">11/28</span><a class="archive-post-title" href="/2019/11/28/WindowsServer-2016-最新激活方法/">WindowsServer 2016 最新激活方法</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/28</span><a class="archive-post-title" href="/2019/11/28/Docker实战-创建支持SSH服务的镜像-超详细/">Docker实战 创建支持SSH服务的镜像(超详细)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/28</span><a class="archive-post-title" href="/2019/11/28/Hive-java-API接口/">Hive java API接口</a>
         </li>
     
     
@@ -5072,17 +5338,37 @@ ip addr
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">11/04</span><a class="archive-post-title" href="/2019/11/04/Docker数据管理-实现将主机目录挂载到容器中并共享/">Docker数据管理:实现将主机目录挂载到容器中并共享</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">11/04</span><a class="archive-post-title" href="/2019/11/04/Centos7-Docker基本命令详解/">Centos7 Docker基本命令详解</a>
         </li>
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">11/04</span><a class="archive-post-title" href="/2019/11/04/Docker数据管理-实现将主机目录挂载到容器中并共享/">Docker数据管理:实现将主机目录挂载到容器中并共享</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/04</span><a class="archive-post-title" href="/2019/11/04/hbase-shell报错-zookeeper-RecoverableZooKeeper-ZooKeeper-exists-failed-after-4-attempts/">hbase shell报错:zookeeper.RecoverableZooKeeper: ZooKeeper exists failed after 4 attempts</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">11/04</span><a class="archive-post-title" href="/2019/11/04/win10-Git修改打开时的路径与上传文件夹到GitHub/">win10 Git修改打开时的路径与上传文件夹到GitHub</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/24</span><a class="archive-post-title" href="/2019/10/24/Hive启动报错-Could-not-create-ServerSocket-on-address-0-0-0-0-0-0-0-0-9083/">Hive启动报错 Could not create ServerSocket on address 0.0.0.0/0.0.0.0:9083</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/24</span><a class="archive-post-title" href="/2019/10/24/源码安装httpd报错-checking-for-APR-configure-error-the-with-apr-parameter-is-incorrect/">源码安装httpd报错: checking for APR... configure: error: the --with-apr parameter is incorrect.</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/24</span><a class="archive-post-title" href="/2019/10/24/Hive报错-javax-jdo-JDOFatalDataStoreException-Unable-to-open-a-test-connection-to-the-given-database/">Hive报错:javax.jdo.JDOFatalDataStoreException: Unable to open a test connection to the given database.</a>
         </li>
     
     
@@ -5093,21 +5379,6 @@ ip addr
     
         <li class="archive-post-item">
             <span class="archive-post-date">10/24</span><a class="archive-post-title" href="/2019/10/24/ctf线下AWD攻防赛学习笔记/">ctf线下AWD攻防赛学习笔记</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">10/24</span><a class="archive-post-title" href="/2019/10/24/Hive报错-javax-jdo-JDOFatalDataStoreException-Unable-to-open-a-test-connection-to-the-given-database/">Hive报错:javax.jdo.JDOFatalDataStoreException: Unable to open a test connection to the given database.</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">10/24</span><a class="archive-post-title" href="/2019/10/24/源码安装httpd报错-checking-for-APR-configure-error-the-with-apr-parameter-is-incorrect/">源码安装httpd报错: checking for APR... configure: error: the --with-apr parameter is incorrect.</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">10/24</span><a class="archive-post-title" href="/2019/10/24/Hive启动报错-Could-not-create-ServerSocket-on-address-0-0-0-0-0-0-0-0-9083/">Hive启动报错 Could not create ServerSocket on address 0.0.0.0/0.0.0.0:9083</a>
         </li>
     
     
@@ -5127,17 +5398,17 @@ ip addr
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/14</span><a class="archive-post-title" href="/2019/10/14/Centos7配置yum源安装Mysql/">Centos7配置yum源安装Mysql</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">10/14</span><a class="archive-post-title" href="/2019/10/14/大数据环境准备-搭建数据仓库/">大数据环境准备-搭建数据仓库</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">10/14</span><a class="archive-post-title" href="/2019/10/14/Centos7配置时间同步/">Centos7配置时间同步</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/14</span><a class="archive-post-title" href="/2019/10/14/Centos7配置yum源安装Mysql/">Centos7配置yum源安装Mysql</a>
         </li>
     
     
@@ -5152,6 +5423,11 @@ ip addr
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">10/10</span><a class="archive-post-title" href="/2019/10/10/基于PySpark的电影推荐引擎/">基于PySpark的电影推荐引擎</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">10/10</span><a class="archive-post-title" href="/2019/10/10/使用PySpark对招聘信息数据进行分析/">使用PySpark对招聘信息数据进行分析</a>
         </li>
     
@@ -5162,32 +5438,12 @@ ip addr
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/10</span><a class="archive-post-title" href="/2019/10/10/Liunx-管理用户、组及权限/">Liunx 管理用户、组及权限</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">10/10</span><a class="archive-post-title" href="/2019/10/10/CTF-河北大赛AWD简单的代码审计/">CTF 河北大赛AWD简单的代码审计</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/10</span><a class="archive-post-title" href="/2019/10/10/基于PySpark的电影推荐引擎/">基于PySpark的电影推荐引擎</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">10/06</span><a class="archive-post-title" href="/2019/10/06/Kali-apt-get报E-无法打开锁文件-var-lib-dpkg-lock-frontend-open-2-没有那个文件或目录/">Kali apt-get报E: 无法打开锁文件 /var/lib/dpkg/lock-frontend - open (2: 没有那个文件或目录)</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">10/06</span><a class="archive-post-title" href="/2019/10/06/payload、shellcode、exp、poc区分方法/">payload、shellcode、exp、poc区分方法</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">10/06</span><a class="archive-post-title" href="/2019/10/06/思科模拟器-使用IOS配置启用ospf路由/">思科模拟器 使用IOS配置启用ospf路由</a>
+            <span class="archive-post-date">10/10</span><a class="archive-post-title" href="/2019/10/10/Liunx-管理用户、组及权限/">Liunx 管理用户、组及权限</a>
         </li>
     
     
@@ -5207,12 +5463,22 @@ ip addr
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/06</span><a class="archive-post-title" href="/2019/10/06/MobaXterm汉化以及解决中文乱码问题/">MobaXterm汉化以及解决中文乱码问题</a>
+            <span class="archive-post-date">10/06</span><a class="archive-post-title" href="/2019/10/06/Kali-apt-get报E-无法打开锁文件-var-lib-dpkg-lock-frontend-open-2-没有那个文件或目录/">Kali apt-get报E: 无法打开锁文件 /var/lib/dpkg/lock-frontend - open (2: 没有那个文件或目录)</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/03</span><a class="archive-post-title" href="/2019/10/03/centos7-使用linux命令管理目录和文件/">centos7 使用linux命令管理目录和文件</a>
+            <span class="archive-post-date">10/06</span><a class="archive-post-title" href="/2019/10/06/payload、shellcode、exp、poc区分方法/">payload、shellcode、exp、poc区分方法</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/06</span><a class="archive-post-title" href="/2019/10/06/思科模拟器-使用IOS配置启用ospf路由/">思科模拟器 使用IOS配置启用ospf路由</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/06</span><a class="archive-post-title" href="/2019/10/06/MobaXterm汉化以及解决中文乱码问题/">MobaXterm汉化以及解决中文乱码问题</a>
         </li>
     
     
@@ -5222,7 +5488,7 @@ ip addr
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/03</span><a class="archive-post-title" href="/2019/10/03/Centos7-图形化安装-分区-网络设置/">Centos7 图形化安装,分区,网络设置</a>
+            <span class="archive-post-date">10/03</span><a class="archive-post-title" href="/2019/10/03/centos7-使用vi编辑器配置网络环境/">centos7 使用vi编辑器配置网络环境</a>
         </li>
     
     
@@ -5232,17 +5498,17 @@ ip addr
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/03</span><a class="archive-post-title" href="/2019/10/03/centos7-使用vi编辑器配置网络环境/">centos7 使用vi编辑器配置网络环境</a>
+            <span class="archive-post-date">10/03</span><a class="archive-post-title" href="/2019/10/03/Centos7-图形化安装-分区-网络设置/">Centos7 图形化安装,分区,网络设置</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/03</span><a class="archive-post-title" href="/2019/10/03/centos7-使用linux命令管理目录和文件/">centos7 使用linux命令管理目录和文件</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">10/02</span><a class="archive-post-title" href="/2019/10/02/CTF隐写总结/">CTF隐写总结</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">10/02</span><a class="archive-post-title" href="/2019/10/02/Linux-crontab命令详解/">Linux crontab命令详解</a>
         </li>
     
     
@@ -5257,7 +5523,7 @@ ip addr
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/02</span><a class="archive-post-title" href="/2019/10/02/Nmap工具命令详解/">Nmap工具命令详解</a>
+            <span class="archive-post-date">10/02</span><a class="archive-post-title" href="/2019/10/02/Linux-crontab命令详解/">Linux crontab命令详解</a>
         </li>
     
     
@@ -5267,47 +5533,7 @@ ip addr
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/Flume传输数据给Kafka/">Flume传输数据给Kafka</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/centos7-访问php-该网页无法正常运作-目前无法处理此请求/">centos7 访问php 该网页无法正常运作 目前无法处理此请求</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/Spark-2-4-2的环境搭建/">Spark 2.4.2的环境搭建</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/Hive2-3-0的环境搭建/">Hive2.3.0的环境搭建</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/在Ubuntu的Anaconda环境下创建深度学习环境/">在Ubuntu的Anaconda环境下创建深度学习环境</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/Hive-beeline-Hiveserver2/">Hive beeline Hiveserver2</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/分布式消息系统Kafka/">分布式消息系统Kafka</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/Sqoop学习笔记/">Sqoop学习笔记</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/Zookeeper环境搭建/">Zookeeper环境搭建</a>
+            <span class="archive-post-date">10/02</span><a class="archive-post-title" href="/2019/10/02/Nmap工具命令详解/">Nmap工具命令详解</a>
         </li>
     
     
@@ -5317,12 +5543,7 @@ ip addr
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/python-读写csv数据/">python 读写csv数据</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/Flume多source，多sink组合框架搭建/">Flume多source，多sink组合框架搭建</a>
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/Hive学习笔记/">Hive学习笔记</a>
         </li>
     
     
@@ -5332,7 +5553,42 @@ ip addr
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/Hive学习笔记/">Hive学习笔记</a>
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/Hive-beeline-Hiveserver2/">Hive beeline Hiveserver2</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/修改Compare-py报错时的解决方案/">修改Compare.py报错时的解决方案</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/Hive报错记录/">Hive报错记录</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/在Ubuntu的Anaconda环境下创建深度学习环境/">在Ubuntu的Anaconda环境下创建深度学习环境</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/Hive2-3-0的环境搭建/">Hive2.3.0的环境搭建</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/分布式消息系统Kafka/">分布式消息系统Kafka</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/Spark-2-4-2的环境搭建/">Spark 2.4.2的环境搭建</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/Zookeeper环境搭建/">Zookeeper环境搭建</a>
         </li>
     
     
@@ -5347,17 +5603,32 @@ ip addr
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/Flume传输数据给Kafka/">Flume传输数据给Kafka</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/python-读写csv数据/">python 读写csv数据</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/Flume多source，多sink组合框架搭建/">Flume多source，多sink组合框架搭建</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/Sqoop学习笔记/">Sqoop学习笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/ZooKeeper学习笔记/">ZooKeeper学习笔记</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/Hive报错记录/">Hive报错记录</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/修改Compare-py报错时的解决方案/">修改Compare.py报错时的解决方案</a>
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/centos7-访问php-该网页无法正常运作-目前无法处理此请求/">centos7 访问php 该网页无法正常运作 目前无法处理此请求</a>
         </li>
     
     
@@ -5387,12 +5658,12 @@ ip addr
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/CentOS7关闭SELinux/">CentOS7关闭SELinux</a>
+            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/解决vmware（vsphere）部署linux系统模板后无法联网问题/">解决vmware（vsphere）部署linux系统模板后无法联网问题</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/Windows下的MapReduce编程实现/">Windows下的MapReduce编程实现</a>
+            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/CentOS7关闭SELinux/">CentOS7关闭SELinux</a>
         </li>
     
     
@@ -5402,22 +5673,12 @@ ip addr
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/解决vmware（vsphere）部署linux系统模板后无法联网问题/">解决vmware（vsphere）部署linux系统模板后无法联网问题</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/在Centos 7下安装PHP 7/">在Centos 7下安装PHP 7</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">08/20</span><a class="archive-post-title" href="/2019/08/20/Mysql（双主）主主架构配置/">Mysql（双主）主主架构配置</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">08/20</span><a class="archive-post-title" href="/2019/08/20/Centos7-防火墙关闭与nginx无法访问/">Centos7 防火墙关闭与nginx无法访问</a>
+            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/Windows下的MapReduce编程实现/">Windows下的MapReduce编程实现</a>
         </li>
     
     
@@ -5427,7 +5688,12 @@ ip addr
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">08/20</span><a class="archive-post-title" href="/2019/08/20/Centos7-安装-php-和-php-fpm/">Centos7 安装 php 和 php-fpm</a>
+            <span class="archive-post-date">08/20</span><a class="archive-post-title" href="/2019/08/20/Centos7-防火墙关闭与nginx无法访问/">Centos7 防火墙关闭与nginx无法访问</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/20</span><a class="archive-post-title" href="/2019/08/20/Mysql（双主）主主架构配置/">Mysql（双主）主主架构配置</a>
         </li>
     
     
@@ -5437,17 +5703,22 @@ ip addr
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">08/20</span><a class="archive-post-title" href="/2019/08/20/Centos7-安装-php-和-php-fpm/">Centos7 安装 php 和 php-fpm</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">08/20</span><a class="archive-post-title" href="/2019/08/20/keepalived+nginx+apache+mysql实现高可用、负载均衡的网站(上)/">keepalived+nginx+apache+mysql实现高可用、负载均衡的网站(上)</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">08/17</span><a class="archive-post-title" href="/2019/08/17/IDEA使用Git将项目上传到Github/">IDEA使用Git将项目上传到Github</a>
+            <span class="archive-post-date">08/17</span><a class="archive-post-title" href="/2019/08/17/本地安装maven库与IDEA安装本地maven库/">本地安装maven库与IDEA安装本地maven库</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">08/17</span><a class="archive-post-title" href="/2019/08/17/本地安装maven库与IDEA安装本地maven库/">本地安装maven库与IDEA安装本地maven库</a>
+            <span class="archive-post-date">08/17</span><a class="archive-post-title" href="/2019/08/17/IDEA使用Git将项目上传到Github/">IDEA使用Git将项目上传到Github</a>
         </li>
     
     
@@ -5482,12 +5753,12 @@ ip addr
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">08/08</span><a class="archive-post-title" href="/2019/08/08/Scala的安装/">Scala的安装</a>
+            <span class="archive-post-date">08/08</span><a class="archive-post-title" href="/2019/08/08/Liunx中tar命令的使用/">Liunx中tar命令的使用</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">08/08</span><a class="archive-post-title" href="/2019/08/08/Liunx中tar命令的使用/">Liunx中tar命令的使用</a>
+            <span class="archive-post-date">08/08</span><a class="archive-post-title" href="/2019/08/08/Scala的安装/">Scala的安装</a>
         </li>
     
     
@@ -5530,9 +5801,9 @@ ip addr
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
     
-        <span class="sidebar-tag-name" data-tags="Liunx"><span class="iconfont-archer">&#xe606;</span>Liunx</span>
-    
         <span class="sidebar-tag-name" data-tags="CTF"><span class="iconfont-archer">&#xe606;</span>CTF</span>
+    
+        <span class="sidebar-tag-name" data-tags="Liunx"><span class="iconfont-archer">&#xe606;</span>Liunx</span>
     
         <span class="sidebar-tag-name" data-tags="高可用负载均衡"><span class="iconfont-archer">&#xe606;</span>高可用负载均衡</span>
     
@@ -5542,15 +5813,15 @@ ip addr
     
         <span class="sidebar-tag-name" data-tags="Docker"><span class="iconfont-archer">&#xe606;</span>Docker</span>
     
-        <span class="sidebar-tag-name" data-tags="Dokcer"><span class="iconfont-archer">&#xe606;</span>Dokcer</span>
-    
         <span class="sidebar-tag-name" data-tags="Esxi"><span class="iconfont-archer">&#xe606;</span>Esxi</span>
+    
+        <span class="sidebar-tag-name" data-tags="Dokcer"><span class="iconfont-archer">&#xe606;</span>Dokcer</span>
     
         <span class="sidebar-tag-name" data-tags="Flume"><span class="iconfont-archer">&#xe606;</span>Flume</span>
     
-        <span class="sidebar-tag-name" data-tags="Kafka"><span class="iconfont-archer">&#xe606;</span>Kafka</span>
-    
         <span class="sidebar-tag-name" data-tags="GitHub"><span class="iconfont-archer">&#xe606;</span>GitHub</span>
+    
+        <span class="sidebar-tag-name" data-tags="Kafka"><span class="iconfont-archer">&#xe606;</span>Kafka</span>
     
         <span class="sidebar-tag-name" data-tags="Golang"><span class="iconfont-archer">&#xe606;</span>Golang</span>
     
@@ -5590,11 +5861,13 @@ ip addr
     
         <span class="sidebar-tag-name" data-tags="PySpark"><span class="iconfont-archer">&#xe606;</span>PySpark</span>
     
-        <span class="sidebar-tag-name" data-tags="网络"><span class="iconfont-archer">&#xe606;</span>网络</span>
-    
         <span class="sidebar-tag-name" data-tags="Maven"><span class="iconfont-archer">&#xe606;</span>Maven</span>
     
+        <span class="sidebar-tag-name" data-tags="网络"><span class="iconfont-archer">&#xe606;</span>网络</span>
+    
         <span class="sidebar-tag-name" data-tags="数据采集"><span class="iconfont-archer">&#xe606;</span>数据采集</span>
+    
+        <span class="sidebar-tag-name" data-tags="CDN"><span class="iconfont-archer">&#xe606;</span>CDN</span>
     
         <span class="sidebar-tag-name" data-tags="AWD"><span class="iconfont-archer">&#xe606;</span>AWD</span>
     
@@ -5633,9 +5906,9 @@ jsonContent:
         <div class="sidebar-panel-categories">
     <div class="sidebar-categories-name">
     
-        <span class="sidebar-category-name" data-categories="Liunx"><span class="iconfont-archer">&#xe60a;</span>Liunx</span>
-    
         <span class="sidebar-category-name" data-categories="CTF"><span class="iconfont-archer">&#xe60a;</span>CTF</span>
+    
+        <span class="sidebar-category-name" data-categories="Liunx"><span class="iconfont-archer">&#xe60a;</span>Liunx</span>
     
         <span class="sidebar-category-name" data-categories="Hadoop"><span class="iconfont-archer">&#xe60a;</span>Hadoop</span>
     
@@ -5670,6 +5943,8 @@ jsonContent:
         <span class="sidebar-category-name" data-categories="Python"><span class="iconfont-archer">&#xe60a;</span>Python</span>
     
         <span class="sidebar-category-name" data-categories="网络"><span class="iconfont-archer">&#xe60a;</span>网络</span>
+    
+        <span class="sidebar-category-name" data-categories="CDN"><span class="iconfont-archer">&#xe60a;</span>CDN</span>
     
     </div>
     <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>

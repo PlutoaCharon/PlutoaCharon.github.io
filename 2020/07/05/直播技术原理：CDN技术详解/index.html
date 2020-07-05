@@ -1,0 +1,5800 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <!-- title -->
+
+
+
+
+<!-- keywords -->
+
+
+
+
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="author" content="浩翰">
+    <meta name="renderer" content="webkit">
+    <meta name="copyright" content="浩翰">
+    
+    <meta name="keywords" content="hexo,hexo-theme,hexo-blog">
+    
+    <meta name="description" content="Just Do ‘IT’ .">
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>直播技术原理：CDN技术详解 · 浩翰Redamancy的博客</title>
+    <style type="text/css">
+    @font-face {
+        font-family: 'Oswald-Regular';
+        src: url("/font/Oswald-Regular.ttf");
+    }
+
+    body {
+        margin: 0;
+    }
+
+    header,
+    footer,
+    .back-top,
+    .sidebar,
+    .container,
+    .site-intro-meta,
+    .toc-wrapper {
+        display: none;
+    }
+
+    .site-intro {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        /* height: 50vh; */
+        overflow: hidden;
+    }
+
+    .site-intro-placeholder {
+        position: absolute;
+        z-index: -2;
+        top: 0;
+        left: 0;
+        width: calc(100% + 300px);
+        height: 100%;
+        background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
+        background-position: center center;
+        transform: translate3d(-226px, 0, 0);
+        animation: gradient-move 2.5s ease-out 0s infinite;
+    }
+
+    @keyframes gradient-move {
+        0% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        100% {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+</style>
+
+    <link rel="preload" href="/css/style.css?v=20180824" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="stylesheet" href="/css/mobile.css?v=20180824" media="(max-width: 980px)">
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    
+    <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
+/* This file is meant as a standalone workflow for
+- testing support for link[rel=preload]
+- enabling async CSS loading in browsers that do not support rel=preload
+- applying rel preload css once loaded, whether supported or not.
+*/ -->
+<script>
+(function( w ){
+	"use strict";
+	// rel=preload support test
+	if( !w.loadCSS ){
+		w.loadCSS = function(){};
+	}
+	// define on the loadCSS obj
+	var rp = loadCSS.relpreload = {};
+	// rel=preload feature support test
+	// runs once and returns a function for compat purposes
+	rp.support = (function(){
+		var ret;
+		try {
+			ret = w.document.createElement( "link" ).relList.supports( "preload" );
+		} catch (e) {
+			ret = false;
+		}
+		return function(){
+			return ret;
+		};
+	})();
+
+	// if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+	// then change that media back to its intended value on load
+	rp.bindMediaToggle = function( link ){
+		// remember existing media attr for ultimate state, or default to 'all'
+		var finalMedia = link.media || "all";
+
+		function enableStylesheet(){
+			link.media = finalMedia;
+		}
+
+		// bind load handlers to enable media
+		if( link.addEventListener ){
+			link.addEventListener( "load", enableStylesheet );
+		} else if( link.attachEvent ){
+			link.attachEvent( "onload", enableStylesheet );
+		}
+
+		// Set rel and non-applicable media type to start an async request
+		// note: timeout allows this to happen async to let rendering continue in IE
+		setTimeout(function(){
+			link.rel = "stylesheet";
+			link.media = "only x";
+		});
+		// also enable media after 3 seconds,
+		// which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+		setTimeout( enableStylesheet, 3000 );
+	};
+
+	// loop through link elements in DOM
+	rp.poly = function(){
+		// double check this to prevent external calls from running
+		if( rp.support() ){
+			return;
+		}
+		var links = w.document.getElementsByTagName( "link" );
+		for( var i = 0; i < links.length; i++ ){
+			var link = links[ i ];
+			// qualify links to those with rel=preload and as=style attrs
+			if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
+				// prevent rerunning on link
+				link.setAttribute( "data-loadcss", true );
+				// bind listeners to toggle media back
+				rp.bindMediaToggle( link );
+			}
+		}
+	};
+
+	// if unsupported, run the polyfill
+	if( !rp.support() ){
+		// run once at least
+		rp.poly();
+
+		// rerun poly on an interval until onload
+		var run = w.setInterval( rp.poly, 500 );
+		if( w.addEventListener ){
+			w.addEventListener( "load", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		} else if( w.attachEvent ){
+			w.attachEvent( "onload", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		}
+	}
+
+
+	// commonjs
+	if( typeof exports !== "undefined" ){
+		exports.loadCSS = loadCSS;
+	}
+	else {
+		w.loadCSS = loadCSS;
+	}
+}( typeof global !== "undefined" ? global : this ) );
+</script>
+
+    <link rel="icon" href="/assets/favicon.ico">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js" as="script">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" as="script">
+    <link rel="preload" href="/scripts/main.js" as="script">
+    <link rel="preload" as="font" href="/font/Oswald-Regular.ttf" crossorigin>
+    <link rel="preload" as="font" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" crossorigin>
+    
+    <!-- fancybox -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script>
+    <!-- 百度统计  -->
+    
+    <!-- 谷歌统计  -->
+    
+</head>
+
+    
+        <body class="post-body">
+    
+    
+<header class="header">
+
+    <div class="read-progress"></div>
+    <div class="header-sidebar-menu">&#xe775;</div>
+    <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/">Just Do IT !</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">直播技术原理：CDN技术详解</a>
+            </div>
+    </div>
+    
+    <a class="home-link" href="/">Just Do IT !</a>
+</header>
+    <div class="wrapper">
+        <div class="site-intro" style="
+
+
+
+
+
+
+
+height:50vh;
+">
+    
+    <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
+            
+    <div class="site-intro-placeholder"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
+    <div class="site-intro-meta">
+        <!-- 标题  -->
+        <h1 class="intro-title">
+            <!-- 主页  -->
+            
+            直播技术原理：CDN技术详解
+            <!-- 404 -->
+            
+        </h1>
+        <!-- 副标题 -->
+        <p class="intro-subtitle">
+            <!-- 主页副标题  -->
+            
+            
+            <!-- 404 -->
+            
+        </p>
+        <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class="post-intro-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="CDN">CDN</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>字数统计: <span class="post-count word-count">6k</span>阅读时长: <span class="post-count reading-time">20 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2020/07/05</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
+        
+    </div>
+</div>
+        <script>
+ 
+  // get user agent
+  var browser = {
+    versions: function () {
+      var u = window.navigator.userAgent;
+      return {
+        userAgent: u,
+        trident: u.indexOf('Trident') > -1, //IE内核
+        presto: u.indexOf('Presto') > -1, //opera内核
+        webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+        gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+        mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+        ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+        android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+        iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
+        iPad: u.indexOf('iPad') > -1, //是否为iPad
+        webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
+        weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
+        uc: u.indexOf('UCBrowser') > -1 //是否为android下的UC浏览器
+      };
+    }()
+  }
+  console.log("userAgent:" + browser.versions.userAgent);
+
+  // callback
+  function fontLoaded() {
+    console.log('font loaded');
+    if (document.getElementsByClassName('site-intro-meta')) {
+      document.getElementsByClassName('intro-title')[0].classList.add('intro-fade-in');
+      document.getElementsByClassName('intro-subtitle')[0].classList.add('intro-fade-in');
+      var postIntros = document.getElementsByClassName('post-intros')[0]
+      if (postIntros) {
+        postIntros.classList.add('post-fade-in');
+      }
+    }
+  }
+
+  // UC不支持跨域，所以直接显示
+  function asyncCb(){
+    if (browser.versions.uc) {
+      console.log("UCBrowser");
+      fontLoaded();
+    } else {
+      WebFont.load({
+        custom: {
+          families: ['Oswald-Regular']
+        },
+        loading: function () {  //所有字体开始加载
+          // console.log('loading');
+        },
+        active: function () {  //所有字体已渲染
+          fontLoaded();
+        },
+        inactive: function () { //字体预加载失败，无效字体或浏览器不支持加载
+          console.log('inactive: timeout');
+          fontLoaded();
+        },
+        timeout: 5000 // Set the timeout to two seconds
+      });
+    }
+  }
+
+  function asyncErr(){
+    console.warn('script load from CDN failed, will load local script')
+  }
+
+  // load webfont-loader async, and add callback function
+  function async(u, cb, err) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (cb) { o.addEventListener('load', function (e) { cb(null, e); }, false); }
+    if (err) { o.addEventListener('error', function (e) { err(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+
+  var asyncLoadWithFallBack = function(arr, success, reject) {
+      var currReject = function(){
+        reject()
+        arr.shift()
+        if(arr.length)
+          async(arr[0], success, currReject)
+        }
+
+      async(arr[0], success, currReject)
+  }
+
+  asyncLoadWithFallBack([
+    "https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js", 
+    "https://cdn.bootcss.com/webfont/1.6.28/webfontloader.js",
+    "/lib/webfontloader.min.js"
+  ], asyncCb, asyncErr)
+</script>        
+        <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
+        <div class="container container-unloaded">
+            
+<main class="main post-page">
+    <article class="article-entry">
+        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>随着互联网应用的迅速发展与网络流量的大幅度激增，用户对网站的加速需求日益增长。由于 CDN 技术能够及时解决网站的响应速度问题，并对网站的稳定性起了较大的提升作用，因此受到了业界的很大关注。 </p>
+<p>不同于网站镜像的单纯内容复制，CDN 技术更加智能，可以用这样一个式子来解释 CDN 与镜像的关系： CDN＝更智能的镜像＋缓存＋流量调度。 从上面的关系式可以看出，CDN 能够明显提高网络中数据流动的效率，从而解决网络带宽不足、 用户访问量过大以及内容分布不均等问题，提升用户的网站访问体验。 许多我国国内的网站出于业务需要，将源站服务器放在欧美地区。 这样一来，物理距离距中国太远，普遍 Ping 所需的时间都在 100ms 以上，使网站的用户会感觉到访问速率比较慢，访问体验度方面有所下降。所以 CDN 技术首先要解决的就是物理距离远所导致的访问速率降低问题。</p>
+<p> 通过 CDN 技术，在中国香港、中国台湾等地区和日本、韩国等国家部署 CDN 节点进行数据分发，即使源站放置在遥远的欧美地区，中国用户的访问速率也会得到明显的改善。 最初 CDN 的提出，就是为了通过就近提供服务来解决物理距离过远导致性能不好的问题。使用 CDN 后，网络的基本组织架构和内容传输情况发生了很大变化。从普通网站用户的角度上看， CDN 节点的作用就相当于把一个网站就近部署在用户周围。 CDN 服务器会像源站服务器一样，为用户提供需要的内容服务。但是，由于 CDN 节点更靠近用户，因而能够更快地响应用户的请求。</p>
+<p>以视频网站为例， 使用CDN 服务后，对服务请求进行了优化调度，更加有效地利用了带宽资源，使得视频加载时间减少，性能提高。<br><img src="https://img-blog.csdnimg.cn/2020062315100033.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>总的来说， CDN 对互联网应用的优化作用主要体现在以下几个方面： </p>
+<ul>
+<li>缓解源站服务器访问压力，解决服务器端的“第一千米”问题</li>
+<li>优化热点内容的分布，合理缓存，减轻骨干网传输的流量压力</li>
+<li>提升用户的访问质量和体验，全面提高网站访问速度</li>
+<li>增强网站服务的可靠性，解决网站突发峰值流量问题</li>
+<li>解决不同电信运营商之间互联互通问题造成的影响</li>
+<li>提高安全性，有效防止异常流量对源站的攻击</li>
+</ul>
+<h2 id="CDN-基本概念"><a href="#CDN-基本概念" class="headerlink" title="CDN 基本概念"></a>CDN 基本概念</h2><h3 id="1-CON-的定义"><a href="#1-CON-的定义" class="headerlink" title="1. CON 的定义"></a>1. CON 的定义</h3><p>内容分发网络（Content Delivery Network, CDN），是在现有网络中增加一层新的网络架 构。 CDN 将源站的内容发布和传送到最靠近用户的边缘地区，使用户可以就近访问想要的内 容，从而提高用户访问的响应速度。 CDN 的基本原理是依靠放置在各地的缓存服务器，通过全局调度以及内容分发等功能模 块，将用户需要的那部分内容部署到最贴近用户的地方，将原本低效、不可靠的四网络转变成高效、可靠的智能网络，满足用户对内容访问质量的更高要求， 改善互联网网络拥塞问题， 提高用户访问网站的响应速度。<br>从字面意义上可以看出， CDN 的构成元素为内容 (Content）、分发（Delivery） 以及网 络（Network）。</p>
+<p><strong>(1) 内容</strong></p>
+<p>CDN 的内容通常是以下两种： 静态内容以及动态内容。</p>
+<ul>
+<li>静态内容：内容不经常更改，并且一旦它在 CDN 缓存中，可以由许多用户进行访问，缓存性强。 </li>
+<li>动态内容：内容用于特定的用户或组，并且更新频率较高，通常来自源服务器并实时发送到CDN 中，缓存性较弱。对于用户的每一次请求， CDN 都必须从源站服务器拉取动态内容，所以动态内容加速的常用方法就是降低源站服务器和用户终端之间的传输时延。</li>
+</ul>
+<p><strong>(2）分发</strong> </p>
+<p>CDN 的分发是指利用一定传送策略，将用户请求的内容发布到距离该用户最近的节点。</p>
+<p><strong>(3）网络</strong></p>
+<p>CDN 由成千上万个分布式服务器组成，通过服务器的通信，把内容分发和传送给终端用 户。<br>CDN 各节点之间是通过电信运营商的宽带网络进行通信的，可以说 CDN 是在电信运营 商的网络之上的一层网络。</p>
+<h3 id="2-CON-可承载的内容"><a href="#2-CON-可承载的内容" class="headerlink" title="2. CON 可承载的内容"></a>2. CON 可承载的内容</h3><p>用户在向网站发起访问请求时，如果等待一定时间网站还没有响 应，用户就会放弃访问，而镜像通常不适用于大规模商业网站加速，因此，CDN 加速需求应运而生。 </p>
+<p>静态内容是最早出现的 CDN 承载的内容类型，以文字、图片、动画等更新频率低的内容为主。</p>
+<p>因此，CDN 技术最初就是用来对这些静态内容网页进行加速的。 </p>
+<p>后来，随着互联网的大幅度升温、宽带的普及，用户利用互联网下载所需文件已经成为一种习惯，因此， CDN 对下载业务的加速服务也是必不可少的。 </p>
+<p>近年来，大量视频网站涌现，流媒体流量随之迅速攀升，从而驱动了 CDN 技术的应用重点也逐步转为流媒体加速服务。 随着互联网技术的发展，社交网络、在线支付以及网络游戏等实时性强、内容经常更新 的互联网应用逐渐产生，因此，CDN技术也从静态内容的加速发展到动态内容的加速。 </p>
+<p>从互联网应用的角度看， 需要CDN承载的内容主要为静态内容和动态内容。</p>
+<h3 id="3-CDN-的工作过程"><a href="#3-CDN-的工作过程" class="headerlink" title="3. CDN 的工作过程"></a>3. CDN 的工作过程</h3><p>CDN 服务与传统网络服务最大的差别在于访问方式。传统情况下，用户发起访问请求后， 对于同一个内容的所有用户请求，都集中在同一个目标服务器上。</p>
+<p> 而利用 CDN 加速后，用户的内容请求解析权交给了 CDN 的调度系统，然后将用户请求引导到性能最佳的最靠近用户的 CDN 节点上， 最终该节点为用户请求提供服务。 </p>
+<p>传统的访问方式，造成了在网络中传输的极大压力，并且还无法保证用户的良好访问体验。 而使用 CDN 服务后，用户的访问请求不会集中在相同的目标服务器上，而是会分散到不同节点，在这种情况下，用户请求就不会跨地区，并且骨干网也不需要承担过重的流量负担，进而使得用户访问质量得到保证。 </p>
+<p>下面介绍 CDN 的基本工作过程，包括内容注入、用户请求调度、内容分发以 及内容服务这 4 个步骤。<br> <strong>(1）内容注入</strong></p>
+<p>内容注入是 CDN 能为用户提供服务的第一步，是内容从源站注入 CDN 的过程，使得用 户能从 CDN 系统中获取源站的内容。</p>
+<p><strong>(2）用户请求调度</strong></p>
+<p>用户请求调度是用户向网站发起访问请求， 最终用户被引导到最佳的有内容的 CDN 节点的过程，具体如下：</p>
+<p> (a）当用户向网站发起访问请求时，经由本地 DNS 系统解析，本地 DNS 会通过递归方式将域名的解析权最终交给 CDN 授权 DNS 服务器 CGSLB);</p>
+<p> (b) CDNGSLB 可将 CDN 节点设备的回地址返回用户，也可以将另一个负责解析用户 终端 IP 地址的 GSLB 设备的 IP 地址返回用户 </p>
+<p>(c）用户向 CDN 的 GSLB 设备发起内容访问请求（IP 调度方式）</p>
+<p> (d) CDN 的 GSLB 设备根据用户 E 地址以及用户请求的内容 URL，选择一台用户所属地区的本地负载均衡 (SLB)  设备，并让用户向该 SLB 发起访问请求；</p>
+<p>  (e）该 SLB 设备通过决策选择一台最佳的服务器为用户提供服务，用户向该服务器发起访问请求；</p>
+<p> (f) 若该服务器内容未命中，而 SLB 仍将该服务器分配给用户， 则该服务器需要向上级 节点请求内容，然后，由该服务器向用户提供“边拉边放”的服务或者由上级节点直接为用户提供服务。 </p>
+<p><strong>(3）内容分发</strong></p>
+<p>当用户发起请求时，对于用户想要的内容，一部分已经预先直接推送到靠近用户的节点；<br>但是，当下级节点上并没有用户想要的内容时，就要通过向上级节点拉取内容的方式，把用户想要的内容分发到下级节点。</p>
+<p> <strong>(4）内容服务</strong> </p>
+<p>把找到的最靠近用户的 CDN 节点中的内容交付给终端用户。</p>
+<p><img src="https://img-blog.csdnimg.cn/20200623154953556.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h3 id="4-CON-内容接入"><a href="#4-CON-内容接入" class="headerlink" title="4. CON 内容接入"></a>4. CON 内容接入</h3><p>CDN 内容接入是指内容从内容源接入 CDN 的行为<br><img src="https://img-blog.csdnimg.cn/20200623155453673.png" alt="在这里插入图片描述"><br>当互联网应用希望 由集中式部署向分布式的 CDN 部署转变时，首先要考虑、通过对接 CDN 将现有集中式部署的 内容转移到 CDN 中。 CDN 内容接入有 3 种接入方式：内容存储接入方式、内容预注入方式、实时回源方式，<br>这 3 种内容接入方式的适用场景及业务流程均有较大不同。</p>
+<p><strong>(1) 内容存储接入</strong> </p>
+<p>内容存储接入指源站（互联网应用的内容源）在发布内容前，提前把内容注入 CDN。内 容存储接入方式下，业务系统需主动向 CDN 内容库发送操作指令， CDN 根据指令获得内容并存储在 CDN 内容库中，从而在终端访问 CDN 时直接由 CDN 向终端提供内容，无需再从源站获取，提升了终端用户体验。 采用内容存储接入方式接入的内容将永久存储在 CDN 中，直到通过内容接入操作指令对该内容显式删除。 CDN 的内容存储接入包括对注入内容的增加、删除和更新，能够通过业 务系统或手工方式主动发起内容删除操作并立即实现全网删除。</p>
+<p><strong>(2）内容预注入</strong></p>
+<p>内容预注入是指源站在内容发布之前将内容注入 CDN 中 。 内容预注入与内容存储接入方式类似，都是由业务系统主动向 CDN 发送操作指令， CDN 根据指令预先从内容源回源获取内容，是就近提供服务的接入方式。 但采用内容预注入方式接入的内容并不永久存储在 CDN 中，而仅仅是进行内容缓存， CDN 会根据内容访问的热度情况对缓存内容进行智能删除，预注入内容可以设定一段时间不被删除的内容保护期。采用内容预注入方式接入的内容当被缓存删除后， CDN 仍可以通过回源方式获取内容提供服务。</p>
+<p> <strong>(3）实时回源</strong></p>
+<p>实时回源 （未注入〉是指源站在内容发布之前不向 CDN 注入内容，但当用户内容访问请求时， CDN 实时地从源站拉取内容。 </p>
+<p>内容回源是指对于非托管模式的内容接入，当 CDN 收到业务系统内容预注入指令或用户内容服务请求而本地没有内容时，向内容源请求并获取内容接入 CDN 的行为。</p>
+<p>实时回源方式无需由业务系统主动向 CDN 预先注入内容，而是在终端访问 CDN 时，通过回源方式向内容源实时获取内容到 CDN 中，向终端提供后续就近缓存服务。 </p>
+<p>内容存储接入方式对用户的服务质量保障最佳，但对 CDN 的资源消耗较大，成本较高，适用于 IPTV 等对质量要求极高的业务应用。 </p>
+<p>实时回源获取方式对 CDN 资源消耗较小，成本较低， 但对用户的服务质量保障比不上内容存储接入方式， 一般在网站等业务应用上使用， 是目前 CDN 的最主要接入方式。</p>
+<p>内容预注入方式介于内容存储接入与实时获取方式，互联网服务提供商可根据自有业务的需求选择合适的内容接入方式。</p>
+<h3 id="5-CON-用户请求调度"><a href="#5-CON-用户请求调度" class="headerlink" title="5. CON 用户请求调度"></a>5. CON 用户请求调度</h3><p>通常情况下， CDN 用户的内容访问请求调度如图 2-4 所示，分为两个层次：全局调度和本地调度</p>
+<p><strong>(1)  全局调度</strong></p>
+<p>全局调度的主要目的是根据用户所在地理位置不同，在各个节点之间进行分析决策，将 用户请求转移到整个网络中最靠近用户的节点。</p>
+<p>全局调度方式目前主要有基于 DNS 调度方式和基于应用层重定向调度两种方式。</p>
+<p><strong>(2）本地调度</strong> </p>
+<p>和全局调度系统相比，本地调度通常被限制在一定地区范围内，并且更加关注 CDN 服务器设备具体的健康状况与负载情况，根据实时响应时间，将任务分配给最适合的服务器设备进行处理，进行更精细粒度的调度决策，实现真正的智能通信和发挥服务器集群最佳性能。 本地调度的意义在于充分利用现有设备，有效地解决了用户访问请求过多引起的系统负载过重的问题。<br><img src="https://img-blog.csdnimg.cn/20200623155841888.png" alt="在这里插入图片描述"></p>
+<h3 id="6-CON-内容分发"><a href="#6-CON-内容分发" class="headerlink" title="6. CON 内容分发"></a>6. CON 内容分发</h3><p>互联网应用的响应时间通常是由网络带宽、路由时延、网站处理能力以及物理距离等因素决定的。其中，物理距离过长对互联网应用的响应时间有最直接的影响，会使响应速度变得十分缓慢。</p>
+<p>因此，利用 CDN 技术把最热的内容分发部署到各地的节点上。</p>
+<p>内容为不同地区的用户提供就近服务，就能够有效地提高互联网应用的响应速度<br><img src="https://img-blog.csdnimg.cn/20200623160225538.png" alt="在这里插入图片描述"><br>内容的分发有 Push 和 Pull 以及混合分发共 3 种实现方式。</p>
+<p> <strong>(1) Push 方式</strong></p>
+<p>Push 是一种主动分发的方式。通常， Push 由 CDN 内容管理系统发起，将内容从源站或 者中心内容库主动分发到各边缘的 CDN 节点，分发的协议可以采用 HTTP、 FTP 等。通过 Push 分发的内容一般是比较热点的内容，这些内容通过 Push 方式预先主动分发到边缘CDN 节点，可以实现有针对性的内容提供。对于 Push 分发需要考虑的主要问题是分发策略，即在什么时候分发什么内容。 一般来说， Push 分发是一种智能的主动分发策略。 可以通过用户访问的统计信息（例如， 热度级别排序信息）和己经预先设定的内容分发的规则，智能地决定是否进行内容主动分发。 并且可以根据用户历史访问数据等，建立回归模型，对于智能预测用户可能会大量访问的内容，将其提前推送到边缘节点。 </p>
+<p><strong>(2) Pull 方式</strong></p>
+<p>Pull 是一种被动的分发方式， Pull 分发通常由用户请求驱动。 当用户请求的内容在本地 的边缘 CDN 节点上不存在（未命中）时， 该 CDN 节点启动 Pull 方式从内容源或者其他 CDN 节点实时拉取内容， 并且在 Pull 方式下，内容是按需分发的。 在实际的 CDN 系统中， 一般两种分发方式都支持，但是根据内容的类型和业务模式的 不同，在选择主要的内容分发方式时会有所不同。通常， Push 方式适合内容访问比较集中的情况，例如，热点的流媒体视频内容： Pull 方式比较适合内容访问分散的情况。</p>
+<p> <strong>(3）混合分发方式</strong> </p>
+<p>混合分发方式就是 Push 与 Pull 分发方式结合的一种机制。混合分发方式有多种方案， 最常见的混合分发机制，是利用 Push 方式进行内容预推，后续则使用 Pull 方式拉取。 混合分发方式能够根据当前内容分发系统中的内容服务状况，采用推拉的方式动态地调 整内容在内容分发系统中的分布，对于热点内容主动将其推送（缓存）到边缘节点。</p>
+<h2 id="典型的CDN架构与组网"><a href="#典型的CDN架构与组网" class="headerlink" title="典型的CDN架构与组网"></a>典型的CDN架构与组网</h2><h3 id="1-CDN-功能平面"><a href="#1-CDN-功能平面" class="headerlink" title="1. CDN 功能平面"></a>1. CDN 功能平面</h3><p>CDN 从功能上可以划分为包含管理平面、调度平面和数据平面在内的 3 个逻辑平面。</p>
+<p>其中，在管理平面的管理和控制下实现内容分发和推送，在调度平面完成用户请求的调度、控制以及各种内容调度策略，在数据平面实现内容分发与服务实体。 </p>
+<p>CDN 管理平面主要用来完成业务管理、网络管理、分发策略管理、 内容接入管理以及回源分发管理等一系列管理功能，管理、监控并保障 CDN 承载业务的高效运营。 </p>
+<p>CDN 调度平面主要实现用户服务请求调度（包括 DNS 调度、 HTTP 调度、 RTSP 调度）内容定位、内容路由等功能，通过控制用户服务请求的调度，实现对用户的就近及有保障的服务。 </p>
+<p>CDN 数据平面主要是内容分发与服务实体，主要负责为用户提供内容分发与应用服务， 包括内容存储、 内容缓存、内容分发、内容转码、内容服务等功能。<br><img src="https://img-blog.csdnimg.cn/20200623162457464.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200623162517670.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h2 id="CDN-部署架构"><a href="#CDN-部署架构" class="headerlink" title="CDN 部署架构"></a>CDN 部署架构</h2><p>节点是指多台物理设备在某地理区域范围内作为一个整体对外提供内容服务。每个 CDN 节点通常包含多台服务器设备，节点是 CDN 系统最基本的组成单元。 CDN 系统设计的主要目标是尽量提高用户请求的响应速度，为达到这一目标， CDN节点部署的原则是尽量将内容存放在最靠近用户的位置。</p>
+<p>通俗地说，就是将为用户提供实际内容服务的服务器部署在网络的边缘位置。 中心节点层保存着完整的内容副本，当用户请求的内容在边缘层未命中时， 中心层可能会为用户直接提供服务，也可能由下级边缘节点向中心节点请求拉取内容，再分发到边缘节点为用户提供直接服务。但是，当用户请求量过大时，若大量边缘节点都直接向中心节点请求拉取内容，会造成中心层压力过大，这时，就需要考虑在边缘节点层和中心节点层之间部署一个区域层。区域层保存了部分内容副本，使其能够分发内容并在边缘节点未命中时提供服务，以减轻中心节点的压力。这样，就形成了 CDN 的三级系统架构。<br><img src="https://img-blog.csdnimg.cn/20200623162707202.png" alt="在这里插入图片描述"><br>从节点构成的角度来说，无论是 CDN 区域层节点还是 CDN 边缘层节点，都是由缓存设 备和本地负载均衡设备（ SLB）构成的。在一个 CDN 节点中，缓存设备和本地负载均衡设备 的连接方式有两种： 一种是旁路方式，另一种是穿越方式<br><img src="https://img-blog.csdnimg.cn/20200623162743125.png" alt="在这里插入图片描述"><br>在穿越方式下， SLB 一般由四七层交换机实现， SLB 向外提供可访问（公网〉的虚拟 IP (VIP）地址，每台缓存设备分配不同的私网 IP 地址，该 SLB 连接下挂的所有缓存设备构成一个服务单元。所有用户请求经由该 SLB 设备，再由该 SLB 向上向下进行转发。 SLB 实际上承担了网络地址转换（Network Address Translation, NAT）功能，向用户隐藏了各台缓存设备设备的IP地址。这种方式是 CDN 系统中应用较多的方式，优点是具有较高的安全性和可靠性，但是，当节点容量大时，四七层交换机容易形成性能瓶颈。</p>
+<p>在旁路方式下， SLB 有两种实现方式。 在早期， SLB 一般由软件实现。 SLB 和缓存设备都具有公共的 IP 地址， SLB 和缓存是并联关系。用户需要先访问 SLB 设备，然后再以重定 向的方式访问特定的缓存。 这种实现方式简单灵活，扩展性好，缺点是安全性较差，而且需要依赖于应用层重定向 。 随着技术的发展，四七层交换机也可采用旁路部署方式，旁挂在路由交换设备上， 数据流量通过三角传输方式进行转发。</p>
+<h2 id="CDN-间组网"><a href="#CDN-间组网" class="headerlink" title="CDN 间组网"></a>CDN 间组网</h2><p>当 CDN 覆盖范围或能力不足，或需要多厂商时， CDN 可以进行组网。不同 CDN 的共同组网目标是实现 CDN 分发与服务能力的共享，各 CDN 通过标准接口实现互联互通。 CDN 共同组网根据服务的场景及各 CDN 的功能与性能不同，可选择不同的组网架构， 典型的组网逻辑可分为以下两种。</p>
+<p><strong>（1）并联组网</strong> </p>
+<p>源站同时接入多个 CDN，边’过用户请求调度层面进行流量分配，不同 CDN 共同承载内容。<br><img src="https://img-blog.csdnimg.cn/20200623163424979.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>并联组网方式需要把用户流量通过 CNAME 引导到一个用户请求流量调度系统，由该调度系统把请求分配至不同 CDN。 不同 CDN 间不进行内容的分发与服务互联，均需与源站系统进行互联的实现内容注入，或分别回源获取内容，再独立进行分发服务。在一个区域内引 入多家 CDN 服务提供商向用户提供 CDN 服务时， 一般采用这种组网方式。</p>
+<p><strong>（2）级联组网</strong> </p>
+<p>源站接入上游 CDN，上游 CDN 再进一步和下游其他 CDN 对接，上游 CDN 和下游 CDN 除调度层面外， CDN 内容分发与服务层面也进行互联，共同组成一张统一的 CDN<br><img src="https://img-blog.csdnimg.cn/20200623163521175.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDQyNTI0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>级联组网方式需要 CDN 承载的业务系统只对接一个 CDN （上游 CDN），向该 CDN 注入 内容或由该 CDN 向源站获取内容，并由该 CDN 决定用户调度和内容分发策略，把用户请求调度到其他下游CDN， 再由下游 CDN 通过 CDN 间的分发服务或回源接口实现上下游 CDN 间的互联，向最终用户提供服务。 为保证服务质量，需要服务的内容也可以通过内容预注入的方式通过上游 CDN 提前注入下游 CDN 中。</p>
+
+    </article>
+    <!-- license  -->
+    
+        <div class="license-wrapper">
+            <p>原文作者：<a href="https://plutoacharon.github.io">浩翰</a>
+            </p><p>原文链接：<a href="https://plutoacharon.github.io/2020/07/05/直播技术原理：CDN技术详解/">https://plutoacharon.github.io/2020/07/05/直播技术原理：CDN技术详解/</a>
+            </p><p>发表日期：<a href="https://plutoacharon.github.io/2020/07/05/直播技术原理：CDN技术详解/">July 5th 2020, 10:05:21 pm</a>
+            </p><p>更新日期：<a href="https://plutoacharon.github.io/2020/07/05/直播技术原理：CDN技术详解/">July 5th 2020, 10:05:38 pm</a>
+            </p><p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
+        </div>
+    
+    <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+                <div class="nextSlogan">Next Post</div>
+                <a href="/2020/07/05/使用Centos7基于Squid与Lvs搭建小型CDN/" title="使用Centos7基于Squid与Lvs搭建小型CDN">
+                    <div class="nextTitle">使用Centos7基于Squid与Lvs搭建小型CDN</div>
+                </a>
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href="/2020/07/05/Centos7防火墙与IPTABLES详解/" title="Centos7防火墙与IPTABLES详解">
+                    <div class="prevTitle">Centos7防火墙与IPTABLES详解</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
+    
+    
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
+</main>
+            <!-- profile -->
+            
+        </div>
+        <footer class="footer footer-unloaded">
+    <!-- social  -->
+    
+    <div class="social">
+        
+    
+        
+            
+                <a href="mailto:thishaohan@foxmail.com" class="iconfont-archer email" title="email"></a>
+            
+        
+    
+        
+            
+                <a href="https://github.com/PlutoaCharon" class="iconfont-archer github" target="_blank" title="github"></a>
+            
+        
+    
+        
+            
+                <span class="iconfont-archer wechat" title="wechat">
+                  
+                  <img class="profile-qr" src="/assets/mmqrcode1570781814268.png">
+                </span>
+            
+        
+    
+        
+            
+                <span class="iconfont-archer qq" title="qq">
+                  
+                  <img class="profile-qr" src="/assets/qrcode_1570781828190.jpg">
+                </span>
+            
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+            
+                <a href="https://www.linkedin.com/in/%E6%B5%A9%E7%BF%B0-%E8%AE%B8-3918b0191/" class="iconfont-archer linkedin" target="_blank" title="linkedin"></a>
+            
+        
+    
+        
+    
+        
+            
+                <a href="https://me.csdn.net/qq_43442524" class="iconfont-archer others" target="_blank" title="others"></a>
+            
+        
+    
+        
+            
+                <a href="/atom.xml" class="iconfont-archer rss" target="_blank" title="rss"></a>
+            
+        
+    
+
+    </div>
+    
+    <!-- powered by Hexo  -->
+    <div class="copyright">
+        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">Archer</a></span>
+    </div>
+    <!-- 不蒜子  -->
+    
+    <div class="busuanzi-container">
+    
+     
+    <span id="busuanzi_container_site_pv">PV: <span id="busuanzi_value_site_pv"></span> :)</span>
+    
+    </div>
+    
+</footer>
+    </div>
+    <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#背景"><span class="toc-number">1.</span> <span class="toc-text">背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CDN-基本概念"><span class="toc-number">2.</span> <span class="toc-text">CDN 基本概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-CON-的定义"><span class="toc-number">2.1.</span> <span class="toc-text">1. CON 的定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-CON-可承载的内容"><span class="toc-number">2.2.</span> <span class="toc-text">2. CON 可承载的内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-CDN-的工作过程"><span class="toc-number">2.3.</span> <span class="toc-text">3. CDN 的工作过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-CON-内容接入"><span class="toc-number">2.4.</span> <span class="toc-text">4. CON 内容接入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-CON-用户请求调度"><span class="toc-number">2.5.</span> <span class="toc-text">5. CON 用户请求调度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-CON-内容分发"><span class="toc-number">2.6.</span> <span class="toc-text">6. CON 内容分发</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#典型的CDN架构与组网"><span class="toc-number">3.</span> <span class="toc-text">典型的CDN架构与组网</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-CDN-功能平面"><span class="toc-number">3.1.</span> <span class="toc-text">1. CDN 功能平面</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CDN-部署架构"><span class="toc-number">4.</span> <span class="toc-text">CDN 部署架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CDN-间组网"><span class="toc-number">5.</span> <span class="toc-text">CDN 间组网</span></a></li></ol>
+    </div>
+    
+    <div class="back-top iconfont-archer">&#xe639;</div>
+    <div class="sidebar sidebar-hide">
+    <ul class="sidebar-tabs sidebar-tabs-active-0">
+        <li class="sidebar-tab-archives"><span class="iconfont-archer">&#xe67d;</span><span class="tab-name">Archive</span></li>
+        <li class="sidebar-tab-tags"><span class="iconfont-archer">&#xe61b;</span><span class="tab-name">Tag</span></li>
+        <li class="sidebar-tab-categories"><span class="iconfont-archer">&#xe666;</span><span class="tab-name">Cate</span></li>
+    </ul>
+    <div class="sidebar-content sidebar-content-show-archive">
+          <div class="sidebar-panel-archives">
+    <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="total-and-search">
+        <div class="total-archive">
+        Total : 190
+        </div>
+        <!-- search  -->
+        
+    </div>
+    
+    <div class="post-archive">
+    
+    
+    
+    
+    <div class="archive-year"> 2020 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/05</span><a class="archive-post-title" href="/2020/07/05/直播技术原理：CDN技术详解/">直播技术原理：CDN技术详解</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/05</span><a class="archive-post-title" href="/2020/07/05/使用Centos7基于Squid与Lvs搭建小型CDN/">使用Centos7基于Squid与Lvs搭建小型CDN</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/05</span><a class="archive-post-title" href="/2020/07/05/Centos7防火墙与IPTABLES详解/">Centos7防火墙与IPTABLES详解</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/05</span><a class="archive-post-title" href="/2020/07/05/解决Centos系统设置静态ip时报错-ping-www-baidu-com-Name-or-service-not-known/">解决Centos系统设置静态ip时报错 ping: www.baidu.com: Name or service not known</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/17</span><a class="archive-post-title" href="/2020/05/17/解决docker中修改docker-daemon文件后启动失败/">解决docker中修改docker.daemon文件后启动失败</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/12</span><a class="archive-post-title" href="/2020/05/12/HA高可用与负载均衡入门到实战（八）-基于Docker配置NFS实现Nginx动静分离/">HA高可用与负载均衡入门到实战（八）---- 基于Docker配置NFS实现Nginx动静分离</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/12</span><a class="archive-post-title" href="/2020/05/12/Python垃圾回收与内存管理/">Python垃圾回收与内存管理</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/12</span><a class="archive-post-title" href="/2020/05/12/Kubernetes-K8s-入门到实践-七-部署Helm-2-13-1/">Kubernetes(K8s)入门到实践(七)----部署Helm 2.13.1</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/12</span><a class="archive-post-title" href="/2020/05/12/Kubernetes-K8s-入门到实践-八-Kubernetes1-15-1-部署Prometheus/">Kubernetes(K8s)入门到实践(八)----Kubernetes1.15.1 部署Prometheus</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/12</span><a class="archive-post-title" href="/2020/05/12/Docker-三剑客之Machine，Compose，Swarm/">Docker 三剑客之Machine，Compose，Swarm</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/12</span><a class="archive-post-title" href="/2020/05/12/git-push文件夹时报错Fatal-HttpRequestException-encountered/">git push文件夹时报错Fatal: HttpRequestException encountered.</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/05</span><a class="archive-post-title" href="/2020/05/05/HA高可用与负载均衡入门到实战（七）-基于Docker配置KeepAlive-LVS负载均衡/">HA高可用与负载均衡入门到实战（七）---- 基于Docker配置KeepAlive-LVS负载均衡</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/21</span><a class="archive-post-title" href="/2020/04/21/Python算法学习-2020年蓝桥杯省赛模拟赛-Python题解/">Python算法学习: 2020年蓝桥杯省赛模拟赛-Python题解</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/21</span><a class="archive-post-title" href="/2020/04/21/Kubernetes-K8s-入门到实践-六-深入掌握Pod/">Kubernetes(K8s)入门到实践(六)----深入掌握Pod</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/21</span><a class="archive-post-title" href="/2020/04/21/HA高可用与负载均衡入门到实战（六）-基于Docker配置KeepAlive支持Nginx高可用/">HA高可用与负载均衡入门到实战（六）---- 基于Docker配置KeepAlive支持Nginx高可用</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/21</span><a class="archive-post-title" href="/2020/04/21/Kubernetes-K8s-入门到实践-四-Kubernetes1-15-1配置私有仓库Harbor/">Kubernetes(K8s)入门到实践(四)----Kubernetes1.15.1配置私有仓库Harbor</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/21</span><a class="archive-post-title" href="/2020/04/21/解决Kubernetes1-5-1-coredns报错CrashLoopBackOff/">解决Kubernetes1.5.1 coredns报错CrashLoopBackOff</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/21</span><a class="archive-post-title" href="/2020/04/21/Kubernetes-K8s-入门到实践-五-Kubernetes1-15-1安装-Dashboard-的WEB-UI插件/">Kubernetes(K8s)入门到实践(五)----Kubernetes1.15.1安装 Dashboard 的WEB UI插件</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/21</span><a class="archive-post-title" href="/2020/04/21/解决Kubernetes1-15-1-部署Flannel网络后pod及容器无法跨主机互通问题/">解决Kubernetes1.15.1 部署Flannel网络后pod及容器无法跨主机互通问题</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/09</span><a class="archive-post-title" href="/2020/04/09/HA高可用与负载均衡入门到实战（二）----日志和配置Nginx虚拟主机/">HA高可用与负载均衡入门到实战（一）----Docker中安装与配置Nginx</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/09</span><a class="archive-post-title" href="/2020/04/09/HA高可用与负载均衡入门到实战（三）---- 配置Nginx支持PHP并实现动静分离/">HA高可用与负载均衡入门到实战（一）----Docker中安装与配置Nginx</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/09</span><a class="archive-post-title" href="/2020/04/09/HA高可用与负载均衡入门到实战（四）-配置nginx防盗链和HTTPS/">HA高可用与负载均衡入门到实战（四）---- 配置nginx防盗链和HTTPS</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/09</span><a class="archive-post-title" href="/2020/04/09/HA高可用与负载均衡入门到实战（五）-配置nginx反向代理和负载均衡/">HA高可用与负载均衡入门到实战（五）---- 配置nginx反向代理和负载均衡</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/09</span><a class="archive-post-title" href="/2020/04/09/HA高可用与负载均衡入门到实战（一）----Docker中安装与配置Nginx /">HA高可用与负载均衡入门到实战（一）----Docker中安装与配置Nginx</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/04</span><a class="archive-post-title" href="/2020/04/04/Kubernetes-K8s-入门到实践-三-Kubernetes-Centos7集群安装/">Kubernetes(K8s)入门到实践(三)----Kubernetes Centos7集群安装</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/04</span><a class="archive-post-title" href="/2020/04/04/Golang语言学习从入门到实战-Go操作Mysql实现增删改查/">Golang语言学习从入门到实战----Go操作Mysql实现增删改查</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/04</span><a class="archive-post-title" href="/2020/04/04/Golang实战之海量日志收集系统（九）beegoWeb入门/">Golang实战之海量日志收集系统（九）beegoWeb入门</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/04</span><a class="archive-post-title" href="/2020/04/04/Golang1-14-go-modules-怎么导入本地其它项目的包-看完这篇文章-终于搞懂了/">Golang1.14 go modules 怎么导入本地其它项目的包? 看完这篇文章, 终于搞懂了</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/04</span><a class="archive-post-title" href="/2020/04/04/quay-io国内无法访问，解决Kubernetes应用flannel失败，报错Init-ImagePullBackOff/">quay.io国内无法访问，解决Kubernetes应用flannel失败，报错Init:ImagePullBackOff</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/29</span><a class="archive-post-title" href="/2020/03/29/Windows10配置Elasticsearch7与-Kibana7/">Windows10配置Elasticsearch7与 Kibana7</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/29</span><a class="archive-post-title" href="/2020/03/29/Golang实战之海量日志收集系统（七）logTransfer之从kafka中获取日志信息/">Golang实战之海量日志收集系统（七）logTransfer之从kafka中获取日志信息</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/29</span><a class="archive-post-title" href="/2020/03/29/解决Golang1-14-etcd-clientv3报错：etcd-undefined-resolver-BuildOption/">解决Golang1.14 etcd/clientv3报错：etcd undefined: resolver.BuildOption</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/29</span><a class="archive-post-title" href="/2020/03/29/Golang实战之海量日志收集系统（一）项目背景介绍/">Golang实战之海量日志收集系统（一）项目背景介绍</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/29</span><a class="archive-post-title" href="/2020/03/29/Golang实战之海量日志收集系统（二）收集应用程序日志到Kafka中/">Golang实战之海量日志收集系统（二）收集应用程序日志到Kafka中</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/29</span><a class="archive-post-title" href="/2020/03/29/Golang实战之海量日志收集系统（三）简单版本logAgent的实现/">Golang实战之海量日志收集系统（三）简单版本logAgent的实现</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/29</span><a class="archive-post-title" href="/2020/03/29/Golang实战之海量日志收集系统（四）etcd介绍与使用etcd获取配置信息/">Golang实战之海量日志收集系统（四）etcd介绍与使用etcd获取配置信息</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/29</span><a class="archive-post-title" href="/2020/03/29/Golang实战之海量日志收集系统（五）根据etcd配置项创建多个tailTask/">Golang实战之海量日志收集系统（五）根据etcd配置项创建多个tailTask</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/29</span><a class="archive-post-title" href="/2020/03/29/Golang实战之海量日志收集系统（六）监视etcd配置项的变更/">Golang实战之海量日志收集系统（六）监视etcd配置项的变更</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/29</span><a class="archive-post-title" href="/2020/03/29/Win10家庭版没有组策略怎么办-教你如何启用组策略gpedit-msc/">Win10家庭版没有组策略怎么办? 教你如何启用组策略gpedit.msc</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/29</span><a class="archive-post-title" href="/2020/03/29/Golang实战之海量日志收集系统（八）logTransfer之将日志入库到Elasticsearch并通过Kibana进行展示/">Golang实战之海量日志收集系统（八）logTransfer之将日志入库到Elasticsearch并通过Kibana进行展示</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/17</span><a class="archive-post-title" href="/2020/03/17/Golang语言学习从入门到实战-编写简单的TCP-IP聊天室/">Golang语言学习从入门到实战----编写简单的TCP/IP聊天室</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/17</span><a class="archive-post-title" href="/2020/03/17/Golang语言学习从入门到实战-HTTP-web开发编程/">Golang语言学习从入门到实战----HTTP web开发编程</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/17</span><a class="archive-post-title" href="/2020/03/17/Windows10安装运行Kafka2-1-0与Zookeeper3-4-14/">Windows10安装运行Kafka2.1.0与Zookeeper3.4.14</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/17</span><a class="archive-post-title" href="/2020/03/17/Golang语言学习从入门到实战-基于Golang实现简单家庭收支项目/">Golang语言学习从入门到实战----基于Golang实现简单家庭收支项目</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/17</span><a class="archive-post-title" href="/2020/03/17/关于go-get-以后下载的包不在src下而在pkg的源头并且不可以import-Goland-Modules模块的使用/">关于go get 以后下载的包不在src下而在pkg的源头并且不可以import(Goland Modules模块的使用)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/17</span><a class="archive-post-title" href="/2020/03/17/Golang语言学习从入门到实战-接口/">Golang语言学习从入门到实战----接口</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/17</span><a class="archive-post-title" href="/2020/03/17/Golang语言学习从入门到实战-基于Golang的客户关系管理系统/">Golang语言学习从入门到实战----基于Golang的客户关系管理系统</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/12</span><a class="archive-post-title" href="/2020/03/12/Golang语言学习从入门到实战-结构体以及内存分布/">Golang语言学习从入门到实战----结构体以及内存分布</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/12</span><a class="archive-post-title" href="/2020/03/12/Golang语言学习从入门到实战-链表定义/">Golang语言学习从入门到实战----链表定义</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/12</span><a class="archive-post-title" href="/2020/03/12/Liunx-Shell编程入门-编写系统监控脚本与FTP探测脚本/">Liunx Shell编程入门----编写系统监控脚本与FTP探测脚本</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/2020/03/09/牛客网校招全国统一模拟笔试2020年2月场运维方向编程题解/">牛客网校招全国统一模拟笔试2020年2月场运维方向编程题解</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/2020/03/09/Python算法学习-竞码编程-蓝桥杯校内选拔赛-初赛-重现赛/">Python算法学习: 竞码编程-蓝桥杯校内选拔赛(初赛)重现赛</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/07</span><a class="archive-post-title" href="/2020/03/07/Golang语言学习从入门到实战-闭包/">Golang语言学习从入门到实战----闭包</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/07</span><a class="archive-post-title" href="/2020/03/07/Golang语言学习从入门到实战-defer/">Golang语言学习从入门到实战----defer</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/07</span><a class="archive-post-title" href="/2020/03/07/Kubernetes-K8s-入门到实践-二-Kubernetes的基本概念和术语/">Kubernetes(K8s)入门到实践(二)----Kubernetes的基本概念和术语</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/07</span><a class="archive-post-title" href="/2020/03/07/Git上传文件时报错-error-failed-to-push-some-refs-to-https-github-com-XXX/">Git上传文件时报错:error: failed to push some refs to 'https://github.com/XXX'</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/07</span><a class="archive-post-title" href="/2020/03/07/Python算法学习-全排列的回溯实现与二进制枚举/">Python算法学习:全排列的回溯实现与二进制枚举</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/07</span><a class="archive-post-title" href="/2020/03/07/Python算法学习-竞码编程-蓝桥杯模拟赛3题解/">Python算法学习: 竞码编程-蓝桥杯模拟赛3题解</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/07</span><a class="archive-post-title" href="/2020/03/07/Golang语言学习从入门到实战-指针和内存布局/">Golang语言学习从入门到实战----指针和内存布局</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/07</span><a class="archive-post-title" href="/2020/03/07/Liunx-Shell编程入门-编写简单的开机欢迎脚本与操作服务脚本/">Liunx Shell编程入门----编写简单的开机欢迎脚本与操作服务脚本</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/2020/02/25/Kubernetes-K8s-入门到实践-一-Kubernetes入门/">Kubernetes(K8s)入门到实践(一)----Kubernetes入门</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/Python算法学习-计蒜客蓝桥杯训练营题解-持续更新/">Python算法学习: 计蒜客蓝桥杯训练营题解(持续更新)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/Python算法学习-蓝桥杯官方省赛真题-持续更新/">Python算法学习: 蓝桥杯官方省赛真题(持续更新)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/Python算法学习-竞码编程-蓝桥杯模拟赛2题解/">Python算法学习: 竞码编程-蓝桥杯模拟赛2题解</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/Python算法学习day9-基数排序-翻转数字的基本应用/">Python算法学习day9:基数排序(翻转数字的基本应用)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/Centos7安装Docker-配置使用harbor/">Centos7安装Docker-配置使用harbor</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/Python算法学习-任意进制转换/">Python算法学习: 任意进制转换</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/Python算法学习-计蒜客-2020-蓝桥杯大学-B-组省赛模拟赛-（一）题目及解析/">Python算法学习: 计蒜客 2020 蓝桥杯大学 B 组省赛模拟赛 （一）题目及解析</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/Python算法学习day7-归并排序/">Python算法学习day7:归并排序</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/Python算法学习day8-线性时间排序-希尔排序-计数排序/">Python算法学习day8:线性时间排序(希尔排序, 计数排序)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/Docker容器出现使用systemctl问题：Failed-to-get-D-Bus-connection-Operation-not-permitted/">Docker容器出现使用systemctl问题：Failed to get D-Bus connection: Operation not permitted</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/Python算法学习day10-栈应用-括号匹配问题/">Python算法学习day10: 栈应用(括号匹配问题)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/Python算法学习-竞码编程-蓝桥杯模拟赛题解/">Python算法学习: 竞码编程-蓝桥杯模拟赛题解</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2020/02/23/Centos7配置Docker镜像加速器-阿里云官方-报错解决repository-does-not-exist-or-may-require-docker-login/">Centos7配置Docker镜像加速器-阿里云官方(报错解决repository does not exist or may require 'docker login')</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/19</span><a class="archive-post-title" href="/2020/01/19/Python算法学习day6-堆排序-二叉树/">Python算法学习day6:堆排序(二叉树)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/16</span><a class="archive-post-title" href="/2020/01/16/Python算法学习day4-关于一道亚马逊面试题的情景分析/">Python算法学习day4:关于一道亚马逊面试题的情景分析</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/16</span><a class="archive-post-title" href="/2020/01/16/Centos7搭建Hadoop3-1-3完全分布模式/">Centos7搭建Hadoop3.1.3完全分布模式</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/16</span><a class="archive-post-title" href="/2020/01/16/Python算法学习day5-剑指offer：二进制中1的个数/">Python算法学习day5:剑指offer：二进制中1的个数</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/16</span><a class="archive-post-title" href="/2020/01/16/Python算法学习day3-快速排序-二/">Python算法学习day3:快速排序(二)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/16</span><a class="archive-post-title" href="/2020/01/16/SparkSQL，创建表，查询数据/">SparkSQL，创建表，查询数据</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/16</span><a class="archive-post-title" href="/2020/01/16/SparkSQL，加载文件，处理文件，存储文件/">SparkSQL，加载文件，处理文件，存储文件</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/16</span><a class="archive-post-title" href="/2020/01/16/CentOS7-Failed-to-start-LSB-Bring-up-down解决方法/">CentOS7 Failed to start LSB: Bring up/down解决方法</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/16</span><a class="archive-post-title" href="/2020/01/16/访问php-该网页无法正常运作-目前无法处理此请求/">访问php 该网页无法正常运作 目前无法处理此请求</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/16</span><a class="archive-post-title" href="/2020/01/16/Python算法学习day2-查找和排序-一/">Python算法学习day2:查找和排序(一)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/16</span><a class="archive-post-title" href="/2020/01/16/Windows-10上用AutoHotkey实现快速隐藏-显示桌面图标与切换虚拟桌面/">Windows 10上用AutoHotkey实现快速隐藏/显示桌面图标与切换虚拟桌面</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/16</span><a class="archive-post-title" href="/2020/01/16/Win10开启与搭建FTP服务器-详细图文版/">Win10开启与搭建FTP服务器(详细图文版)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/16</span><a class="archive-post-title" href="/2020/01/16/Python算法学习day1-汉诺塔-斐波那契数列-递归/">Python算法学习day1:汉诺塔,斐波那契数列(递归)</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> 2019 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/28</span><a class="archive-post-title" href="/2019/11/28/Hive基本命令操作/">Hive基本命令操作</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/28</span><a class="archive-post-title" href="/2019/11/28/WindowsServer2016-Anaconda下TensorFlow-GPU环境搭建详细教程（包含CUDA-cuDNN安装过程）/">WindowsServer2016 Anaconda下TensorFlow-GPU环境搭建详细教程（包含CUDA+cuDNN安装过程）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/28</span><a class="archive-post-title" href="/2019/11/28/使用etree与xpath爬取Discuz论坛/">使用etree与xpath爬取Discuz论坛</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/28</span><a class="archive-post-title" href="/2019/11/28/华为服务器H22H-03的Windows-Server2012安装/">华为服务器H22H-03的Windows Server2012安装</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/28</span><a class="archive-post-title" href="/2019/11/28/Ubuntu-18-04-2-LTS网络设置/">Ubuntu 18.04.2 LTS网络设置</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/28</span><a class="archive-post-title" href="/2019/11/28/Hbase-Java-API接口/">Hbase Java API接口</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/28</span><a class="archive-post-title" href="/2019/11/28/Spark-Shell操作/">Spark Shell操作</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/28</span><a class="archive-post-title" href="/2019/11/28/WindowsServer-2016-最新激活方法/">WindowsServer 2016 最新激活方法</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/28</span><a class="archive-post-title" href="/2019/11/28/Docker实战-创建支持SSH服务的镜像-超详细/">Docker实战 创建支持SSH服务的镜像(超详细)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/28</span><a class="archive-post-title" href="/2019/11/28/Hive-java-API接口/">Hive java API接口</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/04</span><a class="archive-post-title" href="/2019/11/04/Docker入门详解笔记/">Docker入门详解笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/04</span><a class="archive-post-title" href="/2019/11/04/Centos7-Docker基本命令详解/">Centos7 Docker基本命令详解</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/04</span><a class="archive-post-title" href="/2019/11/04/Docker数据管理-实现将主机目录挂载到容器中并共享/">Docker数据管理:实现将主机目录挂载到容器中并共享</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/04</span><a class="archive-post-title" href="/2019/11/04/hbase-shell报错-zookeeper-RecoverableZooKeeper-ZooKeeper-exists-failed-after-4-attempts/">hbase shell报错:zookeeper.RecoverableZooKeeper: ZooKeeper exists failed after 4 attempts</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/04</span><a class="archive-post-title" href="/2019/11/04/win10-Git修改打开时的路径与上传文件夹到GitHub/">win10 Git修改打开时的路径与上传文件夹到GitHub</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/24</span><a class="archive-post-title" href="/2019/10/24/Hive启动报错-Could-not-create-ServerSocket-on-address-0-0-0-0-0-0-0-0-9083/">Hive启动报错 Could not create ServerSocket on address 0.0.0.0/0.0.0.0:9083</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/24</span><a class="archive-post-title" href="/2019/10/24/源码安装httpd报错-checking-for-APR-configure-error-the-with-apr-parameter-is-incorrect/">源码安装httpd报错: checking for APR... configure: error: the --with-apr parameter is incorrect.</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/24</span><a class="archive-post-title" href="/2019/10/24/Hive报错-javax-jdo-JDOFatalDataStoreException-Unable-to-open-a-test-connection-to-the-given-database/">Hive报错:javax.jdo.JDOFatalDataStoreException: Unable to open a test connection to the given database.</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/24</span><a class="archive-post-title" href="/2019/10/24/vsphere报错-连接到虚拟机控制台失败并显示错误：VMRC-控制台的连接已断开。正在尝试重新连接/">vsphere报错: 连接到虚拟机控制台失败并显示错误：VMRC 控制台的连接已断开。正在尝试重新连接</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/24</span><a class="archive-post-title" href="/2019/10/24/ctf线下AWD攻防赛学习笔记/">ctf线下AWD攻防赛学习笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/24</span><a class="archive-post-title" href="/2019/10/24/CTF线下AWD攻防步骤总结/">CTF线下AWD攻防步骤总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/16</span><a class="archive-post-title" href="/2019/10/16/Centos7-bg与fg命令/">Centos7 bg与fg命令</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/16</span><a class="archive-post-title" href="/2019/10/16/解决httpd-Could-not-reliably-determine-the-server-s-fully-qualified-domain-name/">解决httpd: Could not reliably determine the server's fully qualified domain name</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/14</span><a class="archive-post-title" href="/2019/10/14/大数据环境准备-搭建数据仓库/">大数据环境准备-搭建数据仓库</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/14</span><a class="archive-post-title" href="/2019/10/14/Centos7配置时间同步/">Centos7配置时间同步</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/14</span><a class="archive-post-title" href="/2019/10/14/Centos7配置yum源安装Mysql/">Centos7配置yum源安装Mysql</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/14</span><a class="archive-post-title" href="/2019/10/14/大数据基础环境搭建/">大数据基础环境搭建</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/10</span><a class="archive-post-title" href="/2019/10/10/Centos7安装Anaconda详细版/">Centos7安装Anaconda详细版</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/10</span><a class="archive-post-title" href="/2019/10/10/基于PySpark的电影推荐引擎/">基于PySpark的电影推荐引擎</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/10</span><a class="archive-post-title" href="/2019/10/10/使用PySpark对招聘信息数据进行分析/">使用PySpark对招聘信息数据进行分析</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/10</span><a class="archive-post-title" href="/2019/10/10/PHP代码审计工具Rips的使用/">PHP代码审计工具Rips的使用</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/10</span><a class="archive-post-title" href="/2019/10/10/CTF-河北大赛AWD简单的代码审计/">CTF 河北大赛AWD简单的代码审计</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/10</span><a class="archive-post-title" href="/2019/10/10/Liunx-管理用户、组及权限/">Liunx 管理用户、组及权限</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/06</span><a class="archive-post-title" href="/2019/10/06/Liunx提权常用命令/">Liunx提权常用命令</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/06</span><a class="archive-post-title" href="/2019/10/06/kali20119最新更新源/">kali20119最新更新源</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/06</span><a class="archive-post-title" href="/2019/10/06/Kali-apt报错E-无法获得锁-var-cache-apt-archives-lock-open-11-资源暂时不可用/">Kali apt报错E: 无法获得锁 /var/cache/apt/archives/lock - open (11: 资源暂时不可用)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/06</span><a class="archive-post-title" href="/2019/10/06/Kali-apt-get报E-无法打开锁文件-var-lib-dpkg-lock-frontend-open-2-没有那个文件或目录/">Kali apt-get报E: 无法打开锁文件 /var/lib/dpkg/lock-frontend - open (2: 没有那个文件或目录)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/06</span><a class="archive-post-title" href="/2019/10/06/payload、shellcode、exp、poc区分方法/">payload、shellcode、exp、poc区分方法</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/06</span><a class="archive-post-title" href="/2019/10/06/思科模拟器-使用IOS配置启用ospf路由/">思科模拟器 使用IOS配置启用ospf路由</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/06</span><a class="archive-post-title" href="/2019/10/06/MobaXterm汉化以及解决中文乱码问题/">MobaXterm汉化以及解决中文乱码问题</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/03</span><a class="archive-post-title" href="/2019/10/03/centos7-挂载使用外部存储系统/">centos7 挂载使用外部存储系统</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/03</span><a class="archive-post-title" href="/2019/10/03/centos7-使用vi编辑器配置网络环境/">centos7 使用vi编辑器配置网络环境</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/03</span><a class="archive-post-title" href="/2019/10/03/yum更新报错-您可以尝试添加-skip-broken-选项来解决该问题/">yum更新报错 您可以尝试添加 --skip-broken 选项来解决该问题</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/03</span><a class="archive-post-title" href="/2019/10/03/Centos7-图形化安装-分区-网络设置/">Centos7 图形化安装,分区,网络设置</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/03</span><a class="archive-post-title" href="/2019/10/03/centos7-使用linux命令管理目录和文件/">centos7 使用linux命令管理目录和文件</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/02</span><a class="archive-post-title" href="/2019/10/02/CTF隐写总结/">CTF隐写总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/02</span><a class="archive-post-title" href="/2019/10/02/Python-爬取Boos直聘/">Python 爬取Boos直聘</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/02</span><a class="archive-post-title" href="/2019/10/02/Liunx-curl命令详解/">Liunx curl命令详解</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/02</span><a class="archive-post-title" href="/2019/10/02/Linux-crontab命令详解/">Linux crontab命令详解</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/02</span><a class="archive-post-title" href="/2019/10/02/Linux下查看用户列表/">Linux下查看用户列表</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/02</span><a class="archive-post-title" href="/2019/10/02/Nmap工具命令详解/">Nmap工具命令详解</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/基于Facenet与MTCNN的人脸识别/">基于Facenet与MTCNN的人脸识别</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/Hive学习笔记/">Hive学习笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/python-字典列表相互转换与排序/">python 字典列表相互转换与排序</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/Hive-beeline-Hiveserver2/">Hive beeline Hiveserver2</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/修改Compare-py报错时的解决方案/">修改Compare.py报错时的解决方案</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/Hive报错记录/">Hive报错记录</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/在Ubuntu的Anaconda环境下创建深度学习环境/">在Ubuntu的Anaconda环境下创建深度学习环境</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/Hive2-3-0的环境搭建/">Hive2.3.0的环境搭建</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/分布式消息系统Kafka/">分布式消息系统Kafka</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/Spark-2-4-2的环境搭建/">Spark 2.4.2的环境搭建</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/Zookeeper环境搭建/">Zookeeper环境搭建</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/VMware-Workstation-14运行虚拟机黑屏时的解决方案/">VMware Workstation 14运行虚拟机黑屏时的解决方案</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/Flume学习笔记/">Flume学习笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/Flume传输数据给Kafka/">Flume传输数据给Kafka</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/python-读写csv数据/">python 读写csv数据</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/Flume多source，多sink组合框架搭建/">Flume多source，多sink组合框架搭建</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/Sqoop学习笔记/">Sqoop学习笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/ZooKeeper学习笔记/">ZooKeeper学习笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/centos7-访问php-该网页无法正常运作-目前无法处理此请求/">centos7 访问php 该网页无法正常运作 目前无法处理此请求</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/2019/09/29/Esxi-centos7搭建NAT和DHCP服务器/">Esxi centos7搭建NAT和DHCP服务器</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/06</span><a class="archive-post-title" href="/2019/09/06/Liunx中etc下的passwd与shadow文件详解/">Liunx中etc下的passwd与shadow文件详解</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/05</span><a class="archive-post-title" href="/2019/09/05/tracert命令详解/">tracert命令详解</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/win10下用IDEA-Hadoop运行时的环境搭建/">win10下用IDEA+Hadoop运行时的环境搭建</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/JobTracker和TaskTracker/">JobTracker和TaskTracker</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/解决vmware（vsphere）部署linux系统模板后无法联网问题/">解决vmware（vsphere）部署linux系统模板后无法联网问题</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/CentOS7关闭SELinux/">CentOS7关闭SELinux</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/HDFS文件接口/">HDFS文件接口</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/在Centos 7下安装PHP 7/">在Centos 7下安装PHP 7</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/Windows下的MapReduce编程实现/">Windows下的MapReduce编程实现</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/20</span><a class="archive-post-title" href="/2019/08/20/Linux下进程kill掉的N种方法/">Linux下进程kill掉的N种方法</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/20</span><a class="archive-post-title" href="/2019/08/20/Centos7-防火墙关闭与nginx无法访问/">Centos7 防火墙关闭与nginx无法访问</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/20</span><a class="archive-post-title" href="/2019/08/20/Mysql（双主）主主架构配置/">Mysql（双主）主主架构配置</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/20</span><a class="archive-post-title" href="/2019/08/20/keepalived-nginx-apache-mysql实现高可用、负载均衡的网站-下/">keepalived+nginx+apache+mysql实现高可用、负载均衡的网站(下)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/20</span><a class="archive-post-title" href="/2019/08/20/Centos7-安装-php-和-php-fpm/">Centos7 安装 php 和 php-fpm</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/20</span><a class="archive-post-title" href="/2019/08/20/keepalived+nginx+apache+mysql实现高可用、负载均衡的网站(上)/">keepalived+nginx+apache+mysql实现高可用、负载均衡的网站(上)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/17</span><a class="archive-post-title" href="/2019/08/17/本地安装maven库与IDEA安装本地maven库/">本地安装maven库与IDEA安装本地maven库</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/17</span><a class="archive-post-title" href="/2019/08/17/IDEA使用Git将项目上传到Github/">IDEA使用Git将项目上传到Github</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/13</span><a class="archive-post-title" href="/2019/08/13/初识Spark/">初识Spark</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/13</span><a class="archive-post-title" href="/2019/08/13/Java中“-”与equeals的区别/">Java中“==”与equeals的区别</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/10</span><a class="archive-post-title" href="/2019/08/10/Java编程思想学习笔记/">Java编程思想学习笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/10</span><a class="archive-post-title" href="/2019/08/10/Java编程思想学习笔记-二/">Java编程思想学习笔记(二)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/09</span><a class="archive-post-title" href="/2019/08/09/Hadoop2-8-0的环境搭建/">Hadoop2.8.0的环境搭建</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/08</span><a class="archive-post-title" href="/2019/08/08/初识Scala/">初识Scala</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/08</span><a class="archive-post-title" href="/2019/08/08/Liunx中tar命令的使用/">Liunx中tar命令的使用</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/08</span><a class="archive-post-title" href="/2019/08/08/Scala的安装/">Scala的安装</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/02</span><a class="archive-post-title" href="/2019/08/02/Java变量类型/">Java变量类型</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/02</span><a class="archive-post-title" href="/2019/08/02/什么是环境变量/">什么是环境变量</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/31</span><a class="archive-post-title" href="/2019/07/31/Centos7下的JDK安装/">Centos7下的JDK安装</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/30</span><a class="archive-post-title" href="/2019/07/30/Centos7下NAT设置静态ip/">Centos7下NAT设置静态ip</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/17</span><a class="archive-post-title" href="/2019/07/17/Github学习笔记/">Github学习笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/21</span><a class="archive-post-title" href="/2019/05/21/hexo搭建个人博客（二）/">hexo搭建个人博客（二）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/20</span><a class="archive-post-title" href="/2019/05/20/hexo搭建个人博客（一）/">hexo搭建个人博客（一）</a>
+        </li>
+    
+    </ul></div>
+  </div>
+        <div class="sidebar-panel-tags">
+    <div class="sidebar-tags-name">
+    
+        <span class="sidebar-tag-name" data-tags="CTF"><span class="iconfont-archer">&#xe606;</span>CTF</span>
+    
+        <span class="sidebar-tag-name" data-tags="Liunx"><span class="iconfont-archer">&#xe606;</span>Liunx</span>
+    
+        <span class="sidebar-tag-name" data-tags="高可用负载均衡"><span class="iconfont-archer">&#xe606;</span>高可用负载均衡</span>
+    
+        <span class="sidebar-tag-name" data-tags="Java"><span class="iconfont-archer">&#xe606;</span>Java</span>
+    
+        <span class="sidebar-tag-name" data-tags="Hadoop"><span class="iconfont-archer">&#xe606;</span>Hadoop</span>
+    
+        <span class="sidebar-tag-name" data-tags="Docker"><span class="iconfont-archer">&#xe606;</span>Docker</span>
+    
+        <span class="sidebar-tag-name" data-tags="Esxi"><span class="iconfont-archer">&#xe606;</span>Esxi</span>
+    
+        <span class="sidebar-tag-name" data-tags="Dokcer"><span class="iconfont-archer">&#xe606;</span>Dokcer</span>
+    
+        <span class="sidebar-tag-name" data-tags="Flume"><span class="iconfont-archer">&#xe606;</span>Flume</span>
+    
+        <span class="sidebar-tag-name" data-tags="GitHub"><span class="iconfont-archer">&#xe606;</span>GitHub</span>
+    
+        <span class="sidebar-tag-name" data-tags="Kafka"><span class="iconfont-archer">&#xe606;</span>Kafka</span>
+    
+        <span class="sidebar-tag-name" data-tags="Golang"><span class="iconfont-archer">&#xe606;</span>Golang</span>
+    
+        <span class="sidebar-tag-name" data-tags="Golang日志收集系统"><span class="iconfont-archer">&#xe606;</span>Golang日志收集系统</span>
+    
+        <span class="sidebar-tag-name" data-tags="Hbase"><span class="iconfont-archer">&#xe606;</span>Hbase</span>
+    
+        <span class="sidebar-tag-name" data-tags="Hive"><span class="iconfont-archer">&#xe606;</span>Hive</span>
+    
+        <span class="sidebar-tag-name" data-tags="Git"><span class="iconfont-archer">&#xe606;</span>Git</span>
+    
+        <span class="sidebar-tag-name" data-tags="Kali"><span class="iconfont-archer">&#xe606;</span>Kali</span>
+    
+        <span class="sidebar-tag-name" data-tags="Kubernetes"><span class="iconfont-archer">&#xe606;</span>Kubernetes</span>
+    
+        <span class="sidebar-tag-name" data-tags="Shell"><span class="iconfont-archer">&#xe606;</span>Shell</span>
+    
+        <span class="sidebar-tag-name" data-tags="Python算法"><span class="iconfont-archer">&#xe606;</span>Python算法</span>
+    
+        <span class="sidebar-tag-name" data-tags="Spark"><span class="iconfont-archer">&#xe606;</span>Spark</span>
+    
+        <span class="sidebar-tag-name" data-tags="Sqoop"><span class="iconfont-archer">&#xe606;</span>Sqoop</span>
+    
+        <span class="sidebar-tag-name" data-tags="Vmware"><span class="iconfont-archer">&#xe606;</span>Vmware</span>
+    
+        <span class="sidebar-tag-name" data-tags="机器学习"><span class="iconfont-archer">&#xe606;</span>机器学习</span>
+    
+        <span class="sidebar-tag-name" data-tags="Zookeeper"><span class="iconfont-archer">&#xe606;</span>Zookeeper</span>
+    
+        <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
+    
+        <span class="sidebar-tag-name" data-tags="Hexo"><span class="iconfont-archer">&#xe606;</span>Hexo</span>
+    
+        <span class="sidebar-tag-name" data-tags="安全"><span class="iconfont-archer">&#xe606;</span>安全</span>
+    
+        <span class="sidebar-tag-name" data-tags="Python"><span class="iconfont-archer">&#xe606;</span>Python</span>
+    
+        <span class="sidebar-tag-name" data-tags="PySpark"><span class="iconfont-archer">&#xe606;</span>PySpark</span>
+    
+        <span class="sidebar-tag-name" data-tags="Maven"><span class="iconfont-archer">&#xe606;</span>Maven</span>
+    
+        <span class="sidebar-tag-name" data-tags="网络"><span class="iconfont-archer">&#xe606;</span>网络</span>
+    
+        <span class="sidebar-tag-name" data-tags="数据采集"><span class="iconfont-archer">&#xe606;</span>数据采集</span>
+    
+        <span class="sidebar-tag-name" data-tags="CDN"><span class="iconfont-archer">&#xe606;</span>CDN</span>
+    
+        <span class="sidebar-tag-name" data-tags="AWD"><span class="iconfont-archer">&#xe606;</span>AWD</span>
+    
+        <span class="sidebar-tag-name" data-tags="ZooKeeper"><span class="iconfont-archer">&#xe606;</span>ZooKeeper</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
+    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+    缺失模块。<br>
+    1、请确保node版本大于6.2<br>
+    2、在博客根目录（注意不是archer根目录）执行以下命令：<br>
+    <span style="color: #f75357; font-size: 1rem; line-height: 2rem;">npm i hexo-generator-json-content --save</span><br>
+    3、在根目录_config.yml里添加配置：
+    <pre style="color: #787878; font-size: 0.6rem;">
+jsonContent:
+  meta: false
+  pages: false
+  posts:
+    title: true
+    date: true
+    path: true
+    text: false
+    raw: false
+    content: false
+    slug: false
+    updated: false
+    comments: false
+    link: false
+    permalink: false
+    excerpt: false
+    categories: true
+    tags: true</pre>
+    </div> 
+    <div class="sidebar-tags-list"></div>
+</div>
+        <div class="sidebar-panel-categories">
+    <div class="sidebar-categories-name">
+    
+        <span class="sidebar-category-name" data-categories="CTF"><span class="iconfont-archer">&#xe60a;</span>CTF</span>
+    
+        <span class="sidebar-category-name" data-categories="Liunx"><span class="iconfont-archer">&#xe60a;</span>Liunx</span>
+    
+        <span class="sidebar-category-name" data-categories="Hadoop"><span class="iconfont-archer">&#xe60a;</span>Hadoop</span>
+    
+        <span class="sidebar-category-name" data-categories="Docker"><span class="iconfont-archer">&#xe60a;</span>Docker</span>
+    
+        <span class="sidebar-category-name" data-categories="GitHub"><span class="iconfont-archer">&#xe60a;</span>GitHub</span>
+    
+        <span class="sidebar-category-name" data-categories="Golang"><span class="iconfont-archer">&#xe60a;</span>Golang</span>
+    
+        <span class="sidebar-category-name" data-categories="Golang日志收集系统"><span class="iconfont-archer">&#xe60a;</span>Golang日志收集系统</span>
+    
+        <span class="sidebar-category-name" data-categories="高可用负载均衡"><span class="iconfont-archer">&#xe60a;</span>高可用负载均衡</span>
+    
+        <span class="sidebar-category-name" data-categories="Hive"><span class="iconfont-archer">&#xe60a;</span>Hive</span>
+    
+        <span class="sidebar-category-name" data-categories="Java"><span class="iconfont-archer">&#xe60a;</span>Java</span>
+    
+        <span class="sidebar-category-name" data-categories="Kubernetes"><span class="iconfont-archer">&#xe60a;</span>Kubernetes</span>
+    
+        <span class="sidebar-category-name" data-categories="其他"><span class="iconfont-archer">&#xe60a;</span>其他</span>
+    
+        <span class="sidebar-category-name" data-categories="Python算法"><span class="iconfont-archer">&#xe60a;</span>Python算法</span>
+    
+        <span class="sidebar-category-name" data-categories="Spark"><span class="iconfont-archer">&#xe60a;</span>Spark</span>
+    
+        <span class="sidebar-category-name" data-categories="Vmware"><span class="iconfont-archer">&#xe60a;</span>Vmware</span>
+    
+        <span class="sidebar-category-name" data-categories="机器学习"><span class="iconfont-archer">&#xe60a;</span>机器学习</span>
+    
+        <span class="sidebar-category-name" data-categories="博客"><span class="iconfont-archer">&#xe60a;</span>博客</span>
+    
+        <span class="sidebar-category-name" data-categories="Python"><span class="iconfont-archer">&#xe60a;</span>Python</span>
+    
+        <span class="sidebar-category-name" data-categories="网络"><span class="iconfont-archer">&#xe60a;</span>网络</span>
+    
+        <span class="sidebar-category-name" data-categories="CDN"><span class="iconfont-archer">&#xe60a;</span>CDN</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
+    <div class="sidebar-categories-list"></div>
+</div>
+    </div>
+</div> 
+    <script>
+    var siteMeta = {
+        root: "/",
+        author: "浩翰"
+    }
+</script>
+    <!-- CDN failover -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+        if (typeof window.$ === 'undefined')
+        {
+            console.warn('jquery load from jsdelivr failed, will load local script')
+            document.write('<script src="/lib/jquery.min.js">\x3C/script>')
+        }
+    </script>
+    <script src="/scripts/main.js"></script>
+    <!-- algolia -->
+    
+    <!-- busuanzi  -->
+    
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+    <!-- CNZZ  -->
+    
+    </div>
+    <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
+     
+    </body>
+</html>
+
+
